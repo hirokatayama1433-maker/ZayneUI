@@ -28,16 +28,21 @@ class InstallCommand extends Command
 
         $force = $this->option('force');
 
-        // 1. Copy all stubs into the app
+        // 1. Ensure TailwindMerge is installed
+        if (! $this->ensureTailwindMerge()) {
+            return self::FAILURE;
+        }
+
+        // 2. Copy all stubs into the app
         $this->publishStubs($force);
 
-        // 2. Register the app-side service provider
+        // 3. Register the app-side service provider
         $this->registerServiceProvider();
 
-        // 3. Inject CSS imports into app.css
+        // 4. Inject CSS imports into app.css
         $this->injectCssImports();
 
-        // 4. Inject JS import into app.js
+        // 5. Inject JS import into app.js
         $this->injectJsImport();
 
         $this->newLine();
@@ -50,6 +55,53 @@ class InstallCommand extends Command
         $this->newLine();
 
         return self::SUCCESS;
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    //  TailwindMerge check
+    // ─────────────────────────────────────────────────────────────────────────
+
+    protected function ensureTailwindMerge(): bool
+    {
+        $package = 'gehrisandro/tailwind-merge-laravel';
+
+        if (class_exists(\TailwindMerge\Laravel\TailwindMergeServiceProvider::class)) {
+            $this->components->twoColumnDetail(
+                '<fg=green>Found</> TailwindMerge',
+                '<fg=gray>gehrisandro/tailwind-merge-laravel</>',
+            );
+            return true;
+        }
+
+        $this->components->warn("ZayneUI requires {$package}.");
+        $this->newLine();
+
+        if (! $this->confirm("Install {$package} now?", true)) {
+            $this->newLine();
+            $this->components->error('Installation cancelled.');
+            $this->line("  Run <fg=cyan>composer require {$package}</> then try again.");
+            $this->newLine();
+            return false;
+        }
+
+        $this->components->info("Running composer require {$package}...");
+        $this->newLine();
+
+        passthru("composer require {$package}", $exitCode);
+
+        if ($exitCode !== 0) {
+            $this->newLine();
+            $this->components->error("Composer failed. Install {$package} manually and re-run zayne:install.");
+            return false;
+        }
+
+        $this->newLine();
+        $this->components->twoColumnDetail(
+            '<fg=green>Installed</> TailwindMerge',
+            '<fg=gray>gehrisandro/tailwind-merge-laravel</>',
+        );
+
+        return true;
     }
 
     // ─────────────────────────────────────────────────────────────────────────
