@@ -1,0 +1,38 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Env
+.env
+.env.*
+
+# Composer (library)
+vendor/
+composer.lock
+
+# Node (if you ever add it)
+node_modules/
+dist/
+build/
+
+# Cache / temp (THIS FIXES YOUR 10K FILES)
+.cache/
+tmp/
+temp/
+
+# Testing
+.phpunit.result.cache
+coverage/
+
+# Misc
+*.bak
+*.backup
