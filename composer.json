@@ -1,5 +1,5 @@
 {
-    "name": "zayne/zayneui",
+    "name": "zayne/ui",
     "description": "A Laravel Blade component library. Install once, own everything.",
     "type": "library",
     "keywords": ["laravel", "blade", "components", "ui", "tailwind"],
