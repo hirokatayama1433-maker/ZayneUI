@@ -3,6 +3,7 @@
 namespace App\View\Components\Zayne;
 
 use App\View\Components\Zayne\ZayneComponent;
+use App\View\Components\Zayne\Traits\HasSemanticColors;
 
 class Alert extends ZayneComponent
 {
