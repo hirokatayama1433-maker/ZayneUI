@@ -42,8 +42,6 @@ class Card extends ZayneComponent
 
     public function render()
     {
-        return view('components.zayne.layout.card', [
-            'paddingClasses' => $this->paddingClasses(),
-        ]);
+        return view('components.zayne.card');
     }
 }

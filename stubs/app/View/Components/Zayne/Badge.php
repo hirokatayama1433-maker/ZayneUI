@@ -74,8 +74,6 @@ class Badge extends ZayneComponent
 
     public function render()
     {
-        return view('components.zayne.display.badge', [
-            'dotColorClass' => $this->dotColorClass(),
-        ]);
+        return view('components.zayne.badge');
     }
 }

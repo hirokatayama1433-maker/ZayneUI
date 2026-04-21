@@ -54,8 +54,6 @@ class Divider extends ZayneComponent
 
     public function render()
     {
-        return view('components.zayne.layout.divider', [
-            'lineClasses' => $this->lineClasses,
-        ]);
+        return view('components.zayne.divider');
     }
 }

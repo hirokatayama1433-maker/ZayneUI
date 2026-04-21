@@ -63,9 +63,6 @@ class Drawer extends ZayneComponent
 
     public function render()
     {
-        return view('components.zayne.overlay.drawer', [
-            'enterStart' => $this->enterStart,
-            'enterEnd'   => $this->enterEnd,
-        ]);
+        return view('components.zayne.drawer');
     }
 }
