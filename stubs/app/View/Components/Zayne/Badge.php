@@ -16,6 +16,7 @@ class Badge extends ZayneComponent
     public bool $dot;
 
     public string $classes;
+    public string $dotColorClass;
 
     public function __construct(
         string $variant = 'soft',
@@ -35,6 +36,7 @@ class Badge extends ZayneComponent
             $this->sizeClasses(),
             $this->resolveVariant(),
         );
+        $this->dotColorClass = $this->resolveDotColorClass();
     }
 
     protected function baseClasses(): string
@@ -57,7 +59,7 @@ class Badge extends ZayneComponent
         };
     }
 
-    protected function dotColorClass(): string
+    protected function resolveDotColorClass(): string
     {
         // Reuse the color token to tint the dot
         return match ($this->color) {
