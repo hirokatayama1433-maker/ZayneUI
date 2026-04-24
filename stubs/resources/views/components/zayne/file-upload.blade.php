@@ -8,7 +8,7 @@
     'hint'         => null,
 ])
 
-<div class="{{ $zoneClasses }}">
+<div {{ $attributes->only('class')->merge(['class' => $zoneClasses]) }}>
     {{-- Hidden file input — $attributes go here for wire:model etc. --}}
     <input
         type="file"
@@ -16,7 +16,7 @@
         @if ($multiple) multiple @endif
         @if ($accept) accept="{{ $accept }}" @endif
         @disabled($disabled)
-        {{ $attributes }}
+        {{ $attributes->except('class') }}
     />
 
     {{-- Upload icon --}}

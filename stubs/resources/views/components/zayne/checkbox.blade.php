@@ -1,6 +1,6 @@
 @props([
-    'inputClasses' => '',
-    'labelClasses' => '',
+    'inputClasses',
+    'labelClasses',
     'label'        => null,
     'disabled'     => false,
 ])

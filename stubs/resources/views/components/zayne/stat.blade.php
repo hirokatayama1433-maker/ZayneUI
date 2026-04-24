@@ -3,7 +3,7 @@
     'label'        => null,
     'value'        => null,
     'change'       => null,
-    'trendClasses' => '',
+    'trendClasses',
 ])
 
 <div {{ $attributes->except('class')->merge(['class' => $classes]) }}> 

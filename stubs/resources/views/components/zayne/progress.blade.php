@@ -9,7 +9,7 @@
 
     {{-- Optional label + percentage --}}
     @if ($label)
-        <div class="flex items-center justify-between text-xs text-(--zayne-color-base-content-muted)">
+        <div class="flex items-center justify-between text-xs text-[var(--zayne-color-base-content-muted)]">
             <span>{{ $label }}</span>
             <span>{{ $value }}%</span>
         </div>

@@ -4,9 +4,15 @@
     'height'  => null,
 ])
 
+@php
+    $style = implode(' ', array_filter([
+        $width ? "width: {$width};" : null,
+        $height ? "height: {$height};" : null,
+    ]));
+@endphp
+
 <div
     {{ $attributes->except('class')->merge(['class' => $classes]) }}
-    @if ($width) style="width: {{ $width }}; {{ $height ? 'height: ' . $height . ';' : '' }}" @endif
-    @if (!$width && $height) style="height: {{ $height }};" @endif
+    @if ($style) style="{{ $style }}" @endif
     aria-hidden="true"
 ></div>

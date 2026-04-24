@@ -1,10 +1,10 @@
-<div class="flex items-center gap-[9px] h-[34px] px-[10px] my-[2px] bg-neutral-400/10 rounded-md flex items-center justify-center">
+<div class="flex items-center justify-center gap-[9px] h-[34px] px-[10px] my-[2px] bg-neutral-400/10 rounded-md">
 
                         {{-- Light --}}
                         <button
                             type="button"
                             title="Light"
-                            onclick="Theme.set('light')"
+                            onclick="Zayne.Theme.set('light')"
                             class="theme-btn shrink-0 size-[22px] rounded-full flex items-center justify-center
                                 text-[var(--zayne-custom-sidebar-item-content)] opacity-50
                                 hover:opacity-100 transition-opacity duration-150"
@@ -20,7 +20,7 @@
                         <button
                             type="button"
                             title="Dark"
-                            onclick="Theme.set('dark')"
+                            onclick="Zayne.Theme.set('dark')"
                             class="theme-btn shrink-0 size-[22px] rounded-full flex items-center justify-center
                                 text-[var(--zayne-custom-sidebar-item-content)] opacity-50
                                 hover:opacity-100 transition-opacity duration-150"
@@ -35,7 +35,7 @@
                         <button
                             type="button"
                             title="Abyss"
-                            onclick="Theme.set('abyss')"
+                            onclick="Zayne.Theme.set('abyss')"
                             class="theme-btn shrink-0 size-[22px] rounded-full flex items-center justify-center
                                 text-[var(--zayne-custom-sidebar-item-content)] opacity-50
                                 hover:opacity-100 transition-opacity duration-150"

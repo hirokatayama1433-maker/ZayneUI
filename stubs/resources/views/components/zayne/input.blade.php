@@ -8,7 +8,7 @@
     'label'              => null,
     'legend'             => null,
     'disabled'           => false,
-    'error'              => false,
+    'error',
 ])
 
 <div class="w-full flex flex-col gap-1">

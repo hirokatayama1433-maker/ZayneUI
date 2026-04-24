@@ -1,7 +1,7 @@
 @props([
     'orientation' => 'horizontal',
     'classes'     => '',
-    'lineClasses' => '',
+    'lineClasses' => 'flex-1 border-t border-[var(--zayne-color-base-border)] border-solid',
     'label'       => null,
     'align'       => 'center',
 ])
