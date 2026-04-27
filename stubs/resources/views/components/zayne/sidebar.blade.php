@@ -10,7 +10,7 @@
         <div class="px-3 py-4 shrink-0">
             {{ $header }}
         </div>
-        <x-zayne.layout.divider />
+        <x-zayne.divider />
     @endisset
 
     {{-- Nav items --}}
@@ -20,7 +20,7 @@
 
     {{-- Footer --}}
     @isset($footer)
-        <x-zayne.layout.divider />
+        <x-zayne.divider />
         <div class="px-3 py-4 shrink-0">
             {{ $footer }}
         </div>
