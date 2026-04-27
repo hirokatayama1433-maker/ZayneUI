@@ -1,0 +1,124 @@
+#!/usr/bin/env bash
+
+COMMAND="$1"
+COMPONENT_ARG="$2"
+
+find_project_root() {
+    local dir="$PWD"
+    while [ "$dir" != "/" ]; do
+        if [ -f "$dir/composer.json" ] && grep -q '"zayne/ui"' "$dir/composer.json" 2>/dev/null; then
+            echo "$dir"
+            return
+        fi
+        dir=$(dirname "$dir")
+    done
+    echo ""
+}
+
+PROJECT_ROOT=$(find_project_root)
+
+if [ -z "$PROJECT_ROOT" ]; then
+    echo "  ✘ Could not find ZayneUI project root."
+    exit 1
+fi
+
+STUBS_PHP="$PROJECT_ROOT/stubs/app/View/Components/Zayne"
+STUBS_BLADE="$PROJECT_ROOT/stubs/resources/views/components/zayne"
+
+show_help() {
+    echo ""
+    echo "  ZayneUI CLI"
+    echo ""
+    echo "  Usage:"
+    echo "    ./bin/zayneui make:component <category/name>"
+    echo ""
+    echo "  Examples:"
+    echo "    ./bin/zayneui make:component action/button"
+    echo "    ./bin/zayneui make:component form/date-picker"
+    echo "    ./bin/zayneui make:component overlay/confirm-modal"
+    echo ""
+}
+
+make_component() {
+    if [ -z "$COMPONENT_ARG" ]; then
+        echo "  ✘ Missing argument. Usage: ./bin/zayneui make:component <category/name>"
+        exit 1
+    fi
+
+    if [[ "$COMPONENT_ARG" != */* ]]; then
+        echo "  ✘ Format must be category/name (e.g. action/button)"
+        exit 1
+    fi
+
+    RAW_CATEGORY="${COMPONENT_ARG%%/*}"
+    RAW_NAME="${COMPONENT_ARG##*/}"
+
+    CATEGORY_LOWER=$(echo "$RAW_CATEGORY" | tr '[:upper:]' '[:lower:]')
+    CATEGORY_PASCAL=$(echo "$RAW_CATEGORY" | awk -F'-' '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1' OFS='')
+
+    NAME_KEBAB=$(echo "$RAW_NAME" | tr '[:upper:]' '[:lower:]')
+    NAME_PASCAL=$(echo "$RAW_NAME" | awk -F'-' '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1' OFS='')
+
+    PHP_DIR="$STUBS_PHP/$CATEGORY_PASCAL"
+    PHP_FILE="$PHP_DIR/${NAME_PASCAL}.php"
+    BLADE_DIR="$STUBS_BLADE/$CATEGORY_LOWER"
+    BLADE_FILE="$BLADE_DIR/${NAME_KEBAB}.blade.php"
+    NAMESPACE="App\View\Components\Zayne\\${CATEGORY_PASCAL}"
+    VIEW_PATH="zayne.${CATEGORY_LOWER}.${NAME_KEBAB}"
+
+    if [ -f "$PHP_FILE" ]; then
+        echo "  ✘ PHP class already exists: $PHP_FILE"
+        exit 1
+    fi
+
+    if [ -f "$BLADE_FILE" ]; then
+        echo "  ✘ Blade file already exists: $BLADE_FILE"
+        exit 1
+    fi
+
+    mkdir -p "$PHP_DIR"
+    mkdir -p "$BLADE_DIR"
+
+    cat > "$PHP_FILE" <<PHP
+<?php
+
+namespace ${NAMESPACE};
+
+class ${NAME_PASCAL} extends \App\View\Components\Zayne\ZayneComponent
+{
+    public function __construct(
+        //
+    ) {
+        //
+    }
+
+    public function render()
+    {
+        return view('${VIEW_PATH}');
+    }
+}
+PHP
+
+    cat > "$BLADE_FILE" <<BLADE
+<div {{ \$attributes }}>
+    {{ \$slot }}
+</div>
+BLADE
+
+    echo ""
+    echo "  ✔ Component created: ${CATEGORY_PASCAL}/${NAME_PASCAL}"
+    echo ""
+    echo "    PHP   → stubs/app/View/Components/Zayne/${CATEGORY_PASCAL}/${NAME_PASCAL}.php"
+    echo "    Blade → stubs/resources/views/components/zayne/${CATEGORY_LOWER}/${NAME_KEBAB}.blade.php"
+    echo ""
+    echo "    namespace → ${NAMESPACE}"
+    echo "    view()    → '${VIEW_PATH}'"
+    echo "    usage     → <x-zayne.${CATEGORY_LOWER}.${NAME_KEBAB} />"
+    echo ""
+}
+
+case "$COMMAND" in
+    make:component) make_component ;;
+    help|--help|-h|"") show_help ;;
+    *) echo "  ✘ Unknown command: $COMMAND"; show_help; exit 1 ;;
+esac
