@@ -1,6 +1,6 @@
 <?php
 
-namespace View\Components\Zayne\Sidebar;
+namespace App\View\Components\Zayne\Sidebar;
 
 use App\View\Components\Zayne\ZayneComponent;
 
@@ -14,6 +14,6 @@ class Tree extends ZayneComponent
 
     public function render()
     {
-        return view('zayne.sidebar.tree');
+        return view('components.zayne.sidebar.tree');
     }
 }

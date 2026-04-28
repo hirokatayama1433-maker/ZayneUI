@@ -1,12 +1,12 @@
 {{-- resources/views/components/zayne/sidebar/tree.blade.php --}}
 {{--
     Usage:
-    <x-zayne.tree icon="cog-6-tooth" label="Settings" :badge="3">
+    <x-zayne.sidebar.tree icon="cog-6-tooth" label="Settings" :badge="3">
         <x-slot:items>
-            <x-zayne.item href="/settings/general" icon="adjustments-horizontal">General</x-zayne.item>
-            <x-zayne.item href="/settings/billing" icon="credit-card">Billing</x-zayne.item>
+            <x-zayne.sidebar.item href="/settings/general" icon="adjustments-horizontal">General</x-zayne.sidebar.item>
+            <x-zayne.sidebar.item href="/settings/billing" icon="credit-card">Billing</x-zayne.sidebar.item>
         </x-slot:items>
-    </x-zayne.tree>
+    </x-zayne.sidebar.tree>
 --}}
 <div
     class="w-full"

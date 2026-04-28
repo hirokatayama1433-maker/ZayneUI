@@ -30,41 +30,94 @@ show_help() {
     echo "  ZayneUI CLI"
     echo ""
     echo "  Usage:"
-    echo "    ./bin/zayneui make:component <category/name>"
+    echo "    ./bin/zayneui make:component <name[/subname]>"
     echo ""
     echo "  Examples:"
-    echo "    ./bin/zayneui make:component action/button"
-    echo "    ./bin/zayneui make:component form/date-picker"
-    echo "    ./bin/zayneui make:component overlay/confirm-modal"
+    echo "    ./bin/zayneui make:component button"
+    echo "    ./bin/zayneui make:component button/group"
+    echo "    ./bin/zayneui make:component sidebar/nav-item"
     echo ""
+}
+
+to_pascal() {
+    local input="$1"
+    local result=""
+    local part=""
+
+    IFS='-' read -r -a parts <<< "$input"
+    for part in "${parts[@]}"; do
+        [ -z "$part" ] && continue
+        part=$(echo "$part" | tr '[:upper:]' '[:lower:]')
+        result="${result}$(echo "${part:0:1}" | tr '[:lower:]' '[:upper:]')${part:1}"
+    done
+
+    echo "$result"
 }
 
 make_component() {
     if [ -z "$COMPONENT_ARG" ]; then
-        echo "  ✘ Missing argument. Usage: ./bin/zayneui make:component <category/name>"
+        echo "  ✘ Missing argument. Usage: ./bin/zayneui make:component <name[/subname]>"
         exit 1
     fi
 
-    if [[ "$COMPONENT_ARG" != */* ]]; then
-        echo "  ✘ Format must be category/name (e.g. action/button)"
+    if [[ "$COMPONENT_ARG" == */ || "$COMPONENT_ARG" == /* || "$COMPONENT_ARG" == *"//"* ]]; then
+        echo "  ✘ Invalid component path: $COMPONENT_ARG"
         exit 1
     fi
 
-    RAW_CATEGORY="${COMPONENT_ARG%%/*}"
-    RAW_NAME="${COMPONENT_ARG##*/}"
+    if [[ ! "$COMPONENT_ARG" =~ ^[A-Za-z0-9/-]+$ ]]; then
+        echo "  ✘ Component path may only contain letters, numbers, dashes, and slashes."
+        exit 1
+    fi
 
-    CATEGORY_LOWER=$(echo "$RAW_CATEGORY" | tr '[:upper:]' '[:lower:]')
-    CATEGORY_PASCAL=$(echo "$RAW_CATEGORY" | awk -F'-' '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1' OFS='')
+    IFS='/' read -r -a RAW_SEGMENTS <<< "$COMPONENT_ARG"
 
-    NAME_KEBAB=$(echo "$RAW_NAME" | tr '[:upper:]' '[:lower:]')
-    NAME_PASCAL=$(echo "$RAW_NAME" | awk -F'-' '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1' OFS='')
+    KEBAB_SEGMENTS=()
+    PASCAL_SEGMENTS=()
 
-    PHP_DIR="$STUBS_PHP/$CATEGORY_PASCAL"
-    PHP_FILE="$PHP_DIR/${NAME_PASCAL}.php"
-    BLADE_DIR="$STUBS_BLADE/$CATEGORY_LOWER"
-    BLADE_FILE="$BLADE_DIR/${NAME_KEBAB}.blade.php"
-    NAMESPACE="App\View\Components\Zayne\\${CATEGORY_PASCAL}"
-    VIEW_PATH="zayne.${CATEGORY_LOWER}.${NAME_KEBAB}"
+    for raw in "${RAW_SEGMENTS[@]}"; do
+        seg=$(echo "$raw" | tr '[:upper:]' '[:lower:]')
+
+        if [[ ! "$seg" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]]; then
+            echo "  ✘ Invalid segment: $raw (use kebab-case words only)"
+            exit 1
+        fi
+
+        KEBAB_SEGMENTS+=("$seg")
+        PASCAL_SEGMENTS+=("$(to_pascal "$seg")")
+    done
+
+    SEGMENT_COUNT=${#KEBAB_SEGMENTS[@]}
+    LAST_INDEX=$((SEGMENT_COUNT - 1))
+
+    CLASS_NAME="${PASCAL_SEGMENTS[$LAST_INDEX]}"
+    FILE_NAME="${CLASS_NAME}.php"
+    BLADE_NAME="${KEBAB_SEGMENTS[$LAST_INDEX]}.blade.php"
+
+    PHP_DIR="$STUBS_PHP"
+    BLADE_DIR="$STUBS_BLADE"
+    NAMESPACE="App\View\Components\Zayne"
+    VIEW_PATH="components.zayne"
+    USAGE_TAG="x-zayne"
+    PHP_DISPLAY_PATH="stubs/app/View/Components/Zayne"
+    BLADE_DISPLAY_PATH="stubs/resources/views/components/zayne"
+
+    if [ "$SEGMENT_COUNT" -gt 1 ]; then
+        for ((i=0; i<LAST_INDEX; i++)); do
+            PHP_DIR="${PHP_DIR}/${PASCAL_SEGMENTS[$i]}"
+            BLADE_DIR="${BLADE_DIR}/${KEBAB_SEGMENTS[$i]}"
+            NAMESPACE="${NAMESPACE}\\\\${PASCAL_SEGMENTS[$i]}"
+            VIEW_PATH="${VIEW_PATH}.${KEBAB_SEGMENTS[$i]}"
+            USAGE_TAG="${USAGE_TAG}.${KEBAB_SEGMENTS[$i]}"
+            PHP_DISPLAY_PATH="${PHP_DISPLAY_PATH}/${PASCAL_SEGMENTS[$i]}"
+            BLADE_DISPLAY_PATH="${BLADE_DISPLAY_PATH}/${KEBAB_SEGMENTS[$i]}"
+        done
+    fi
+
+    PHP_FILE="$PHP_DIR/$FILE_NAME"
+    BLADE_FILE="$BLADE_DIR/$BLADE_NAME"
+    VIEW_PATH="${VIEW_PATH}.${KEBAB_SEGMENTS[$LAST_INDEX]}"
+    USAGE_TAG="${USAGE_TAG}.${KEBAB_SEGMENTS[$LAST_INDEX]}"
 
     if [ -f "$PHP_FILE" ]; then
         echo "  ✘ PHP class already exists: $PHP_FILE"
@@ -84,7 +137,7 @@ make_component() {
 
 namespace ${NAMESPACE};
 
-class ${NAME_PASCAL} extends \App\View\Components\Zayne\ZayneComponent
+class ${CLASS_NAME} extends \App\View\Components\Zayne\ZayneComponent
 {
     public function __construct(
         //
@@ -106,14 +159,14 @@ PHP
 BLADE
 
     echo ""
-    echo "  ✔ Component created: ${CATEGORY_PASCAL}/${NAME_PASCAL}"
+    echo "  ✔ Component created: ${COMPONENT_ARG}"
     echo ""
-    echo "    PHP   → stubs/app/View/Components/Zayne/${CATEGORY_PASCAL}/${NAME_PASCAL}.php"
-    echo "    Blade → stubs/resources/views/components/zayne/${CATEGORY_LOWER}/${NAME_KEBAB}.blade.php"
+    echo "    PHP   → ${PHP_DISPLAY_PATH}/${FILE_NAME}"
+    echo "    Blade → ${BLADE_DISPLAY_PATH}/${BLADE_NAME}"
     echo ""
     echo "    namespace → ${NAMESPACE}"
     echo "    view()    → '${VIEW_PATH}'"
-    echo "    usage     → <x-zayne.${CATEGORY_LOWER}.${NAME_KEBAB} />"
+    echo "    usage     → <${USAGE_TAG} />"
     echo ""
 }
 

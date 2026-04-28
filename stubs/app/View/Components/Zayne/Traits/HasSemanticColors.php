@@ -1,6 +1,6 @@
 <?php
 
-namespace View\Components\Zayne\Traits;
+namespace App\View\Components\Zayne\Traits;
 
 trait HasSemanticColors
 {
