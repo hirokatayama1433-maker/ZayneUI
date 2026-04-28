@@ -33,6 +33,6 @@ class Sidebar extends ZayneComponent
 
     public function render()
     {
-        return view('components.zayne.sidebar');
+        return view('components.zayne.layout.sidebar');
     }
 }

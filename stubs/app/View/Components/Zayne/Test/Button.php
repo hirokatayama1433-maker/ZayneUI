@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Zayne\Test;
+namespace View\Components\Zayne\Test;
 
 class Button extends \App\View\Components\Zayne\ZayneComponent
 {
