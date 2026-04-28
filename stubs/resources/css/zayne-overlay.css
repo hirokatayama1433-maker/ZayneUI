@@ -12,6 +12,11 @@
     --ease-out-back   : cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* Prevent pre-hydration flash for Alpine-controlled overlays */
+[x-cloak] {
+    display: none !important;
+}
+
 /* ── Backdrop ── */
 @keyframes zayne-fade-in  { from { opacity: 0; } to { opacity: 1; } }
 @keyframes zayne-fade-out { from { opacity: 1; } to { opacity: 0; } }

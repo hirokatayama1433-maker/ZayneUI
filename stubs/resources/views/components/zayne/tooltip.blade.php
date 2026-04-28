@@ -27,6 +27,7 @@
 
     <div
         x-show="show"
+        x-cloak
         :class="show ? 'zayne-tooltip-enter' : 'zayne-tooltip-leave'"
         class="absolute {{ $positionClass }} z-50 w-max max-w-xs px-2.5 py-1.5 text-xs font-medium rounded-[var(--zayne-radius-field)] bg-[var(--zayne-color-base-content)] text-[var(--zayne-color-base-100)] shadow-sm pointer-events-none {{ $tipClasses }}"
         role="tooltip"

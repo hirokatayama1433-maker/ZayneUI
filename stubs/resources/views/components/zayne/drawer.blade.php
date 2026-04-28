@@ -47,6 +47,7 @@
     {{-- Backdrop --}}
     <div
         x-show="open"
+        x-cloak
         :class="closing ? 'zayne-backdrop-leave' : 'zayne-backdrop-enter'"
         class="fixed inset-0 z-40 bg-black/50"
         @if($dismissible) @click="hide()" @endif
@@ -57,6 +58,7 @@
     {{-- Panel --}}
     <div
         x-show="open"
+        x-cloak
         :class="closing ? '{{ $leaveClass }}' : '{{ $enterClass }}'"
         class="fixed {{ $position }} z-50 flex flex-col bg-[var(--zayne-color-base-100)] border-[var(--zayne-color-base-border)] shadow-xl {{ $panelClasses }}"
         role="dialog"

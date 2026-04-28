@@ -47,6 +47,7 @@
     {{-- Backdrop --}}
     <div
         x-show="open"
+        x-cloak
         :class="closing ? 'zayne-backdrop-leave' : 'zayne-backdrop-enter'"
         class="fixed inset-0 z-40 bg-black/50"
         @if($dismissible) @click="hide()" @endif
@@ -57,6 +58,7 @@
     {{-- Centering wrapper --}}
     <div
         x-show="open"
+        x-cloak
         class="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
         style="display:none"
     >

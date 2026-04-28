@@ -33,17 +33,25 @@ class InstallCommand extends Command
             return self::FAILURE;
         }
 
-        // 2. Copy all stubs into the app
+        // 2. Ensure Alpine.js dependency is installed
+        if (! $this->ensureAlpineJs()) {
+            return self::FAILURE;
+        }
+
+        // 3. Copy all stubs into the app
         $this->publishStubs($force);
 
-        // 3. Register the app-side service provider
+        // 4. Register the app-side service provider
         $this->registerServiceProvider();
 
-        // 4. Inject CSS imports into app.css
+        // 5. Inject CSS imports into app.css
         $this->injectCssImports();
 
-        // 5. Inject JS import into app.js
+        // 6. Inject JS imports + Alpine bootstrap into app.js
         $this->injectJsImport();
+
+        // 7. Remove duplicate Alpine CDN script tags in default welcome view
+        $this->removeAlpineCdnFromWelcomeView();
 
         $this->newLine();
         $this->components->info('ZayneUI installed successfully.');
@@ -102,6 +110,84 @@ class InstallCommand extends Command
         );
 
         return true;
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    //  Alpine.js check
+    // ─────────────────────────────────────────────────────────────────────────
+
+    protected function ensureAlpineJs(): bool
+    {
+        $packageJsonPath = base_path('package.json');
+        $package = 'alpinejs';
+
+        if (! $this->files->exists($packageJsonPath)) {
+            $this->components->warn('package.json not found. Install Alpine.js manually: npm install alpinejs');
+            return true;
+        }
+
+        $decoded = json_decode($this->files->get($packageJsonPath), true);
+
+        if (! is_array($decoded)) {
+            $this->components->warn('Could not parse package.json. Install Alpine.js manually: npm install alpinejs');
+            return true;
+        }
+
+        $dependencies = $decoded['dependencies'] ?? [];
+        $devDependencies = $decoded['devDependencies'] ?? [];
+        $hasAlpine = array_key_exists($package, $dependencies) || array_key_exists($package, $devDependencies);
+
+        if ($hasAlpine) {
+            $this->components->twoColumnDetail(
+                '<fg=green>Found</> Alpine.js',
+                '<fg=gray>alpinejs</>',
+            );
+            return true;
+        }
+
+        $this->components->warn('ZayneUI interactive components require alpinejs.');
+        $this->newLine();
+
+        if (! $this->confirm("Install {$package} now?", true)) {
+            $this->newLine();
+            $this->components->error('Installation cancelled.');
+            $this->line("  Run <fg=cyan>npm install {$package}</> then try again.");
+            $this->newLine();
+            return false;
+        }
+
+        $installCommand = $this->detectNodeInstallCommand($package);
+        $this->components->info("Running {$installCommand}...");
+        $this->newLine();
+
+        passthru($installCommand, $exitCode);
+
+        if ($exitCode !== 0) {
+            $this->newLine();
+            $this->components->error("Failed to install {$package}. Install it manually, then re-run zayne:install.");
+            return false;
+        }
+
+        $this->newLine();
+        $this->components->twoColumnDetail(
+            '<fg=green>Installed</> Alpine.js',
+            '<fg=gray>alpinejs</>',
+        );
+
+        return true;
+    }
+
+    protected function detectNodeInstallCommand(string $package): string
+    {
+        if ($this->files->exists(base_path('pnpm-lock.yaml'))) {
+            return "pnpm add {$package}";
+        }
+
+        if ($this->files->exists(base_path('yarn.lock'))) {
+            return "yarn add {$package}";
+        }
+
+        return "npm install {$package}";
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -244,28 +330,80 @@ class InstallCommand extends Command
         $jsPath = resource_path('js/app.js');
 
         if (! $this->files->exists($jsPath)) {
-            $this->components->warn('resources/js/app.js not found. Add this import manually:');
+            $this->components->warn('resources/js/app.js not found. Add these lines manually:');
+            $this->line("  import Alpine from 'alpinejs';");
             $this->line("  import './zayne.js';");
+            $this->line('  window.Alpine = Alpine;');
+            $this->line('  Alpine.start();');
             return;
         }
 
         $contents = $this->files->get($jsPath);
-        $import   = "import './zayne.js';";
+        $changed = false;
 
-        if (Str::contains($contents, $import)) {
+        if (! preg_match('/^\s*import\s+Alpine\s+from\s+[\'"]alpinejs[\'"]\s*;?\s*$/m', $contents)) {
+            $contents = "import Alpine from 'alpinejs';\n" . ltrim($contents);
+            $changed = true;
+        }
+
+        if (! preg_match('/^\s*import\s+[\'"]\.\/zayne\.js[\'"]\s*;?\s*$/m', $contents)) {
+            $contents = rtrim($contents) . "\nimport './zayne.js';\n";
+            $changed = true;
+        }
+
+        if (! preg_match('/^\s*window\.Alpine\s*=\s*Alpine\s*;?\s*$/m', $contents)) {
+            $contents = rtrim($contents) . "\nwindow.Alpine = Alpine;\n";
+            $changed = true;
+        }
+
+        if (! preg_match('/^\s*Alpine\.start\(\)\s*;?\s*$/m', $contents)) {
+            $contents = rtrim($contents) . "\nAlpine.start();\n";
+            $changed = true;
+        }
+
+        if (! $changed) {
             $this->components->twoColumnDetail(
-                '<fg=yellow>Skipped</> JS import',
-                '<fg=gray>already present</>',
+                '<fg=yellow>Skipped</> JS bootstrap',
+                '<fg=gray>Alpine + Zayne already wired</>',
             );
             return;
         }
 
-        $contents .= "\n{$import}\n";
         $this->files->put($jsPath, $contents);
 
         $this->components->twoColumnDetail(
-            '<fg=green>Injected</> JS import',
+            '<fg=green>Injected</> JS bootstrap',
             '<fg=gray>resources/js/app.js</>',
+        );
+    }
+
+    protected function removeAlpineCdnFromWelcomeView(): void
+    {
+        $welcomePath = resource_path('views/welcome.blade.php');
+
+        if (! $this->files->exists($welcomePath)) {
+            return;
+        }
+
+        $contents = $this->files->get($welcomePath);
+        $updated = preg_replace(
+            '/^\s*<script[^>]+alpinejs[^>]*><\/script>\s*$/mi',
+            '',
+            $contents,
+        );
+
+        if (! is_string($updated) || $updated === $contents) {
+            $this->components->twoColumnDetail(
+                '<fg=yellow>Skipped</> Alpine CDN cleanup',
+                '<fg=gray>no alpinejs script tag in welcome.blade.php</>',
+            );
+            return;
+        }
+
+        $this->files->put($welcomePath, $updated);
+        $this->components->twoColumnDetail(
+            '<fg=green>Removed</> Alpine CDN script',
+            '<fg=gray>resources/views/welcome.blade.php</>',
         );
     }
 }
