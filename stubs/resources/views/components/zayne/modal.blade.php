@@ -4,7 +4,7 @@
     'title'        => null,
     'size'         => 'md',
     'dismissible'  => true,
-    'lazy'         => false,   {{-- true = x-if (destroy on close), false = x-show (keep DOM) --}}
+    'lazy'         => false,
 ])
 
 @php
