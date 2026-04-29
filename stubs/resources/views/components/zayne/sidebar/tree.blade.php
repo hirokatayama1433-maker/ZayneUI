@@ -23,12 +23,12 @@
             children.style.maxHeight = open ? children.scrollHeight + 'px' : '0';
         "
         @class([
-            'flex items-center gap-[9px] h-[34px] px-[10px] my-[2px] rounded-[var(--zayne-radius-field)] w-full group backdrop-blur-xl text-[14px]',
+            'flex items-center gap-[9px] h-[34px] px-[10px] my-[2px] rounded-[var(--zayne-radius-field)] w-full overflow-hidden group backdrop-blur-xl text-[14px]',
             'bg-[var(--zayne-custom-sidebar-item-bg)]',
             'text-[var(--zayne-custom-sidebar-item-content)]',
             'hover:bg-[var(--zayne-custom-sidebar-item-bg-hover)]',
             'hover:text-[var(--zayne-custom-sidebar-item-content-hover)]',
-            'group-data-[sidebar=collapsed]:mx-auto group-data-[sidebar=collapsed]:min-w-[34px] group-data-[sidebar=collapsed]:max-w-[34px] group-data-[sidebar=collapsed]:justify-center group-data-[sidebar=collapsed]:gap-0 group-data-[sidebar=collapsed]:px-0',
+            'group-data-[sidebar=collapsed]:min-w-[34px] group-data-[sidebar=collapsed]:max-w-[34px] group-data-[sidebar=collapsed]:justify-start group-data-[sidebar=collapsed]:gap-0 group-data-[sidebar=collapsed]:pl-[10px] group-data-[sidebar=collapsed]:pr-0',
             'hover:scale-102',
             'transition-all duration-150 cursor-pointer',
             $attributes->get('class'),
@@ -41,7 +41,7 @@
         @endif
 
         {{-- Label --}}
-        <span class="truncate opacity-100 flex-1 text-left transition-all duration-200 group-data-[sidebar=collapsed]:w-0 group-data-[sidebar=collapsed]:overflow-hidden group-data-[sidebar=collapsed]:opacity-0">
+        <span class="min-w-0 truncate opacity-100 flex-1 text-left transition-all duration-200 group-data-[sidebar=collapsed]:w-0 group-data-[sidebar=collapsed]:overflow-hidden group-data-[sidebar=collapsed]:opacity-0">
             @if($label)
                 {{ $label }}
             @else
@@ -55,7 +55,7 @@
                 rounded-full text-[10px] font-semibold
                 flex items-center justify-center
                 bg-[var(--zayne-custom-sidebar-item-content)]
-                text-[var(--zayne-custom-sidebar)]">
+                text-[var(--zayne-custom-sidebar)] group-data-[sidebar=collapsed]:opacity-0">
                 {{ $badge }}
             </span>
         @endif
