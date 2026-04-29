@@ -12,7 +12,8 @@ class Sidebar extends ZayneComponent
     public string $classes;
     public string $state;
     public string $collapsedState;
-    public string $styles;
+    public string $shellStyles;
+    public string $frameStyles;
 
     public function __construct(
         string $side = 'left',
@@ -29,20 +30,18 @@ class Sidebar extends ZayneComponent
         $this->collapsed = $collapsed;
         $this->state     = $collapsed ? 'collapsed' : 'expanded';
         $this->collapsedState = $this->normalizeCollapsedState($collapsedstate);
-        $this->styles = $this->buildStyles([
-            'margin' => $sidebarmargin,
+        $this->shellStyles = $this->buildStyles([
+            'padding' => $sidebarmargin,
+        ]);
+        $this->frameStyles = $this->buildStyles([
             'padding' => $sidebarpadding,
             'border-width' => $sidebarborder,
             'border-radius' => $sidebarradius,
         ]);
 
         $this->classes = $this->mergeClasses(
-            'group flex h-full flex-col shrink-0 overflow-hidden zaynesidebar',
+            'group shrink-0 zaynesidebar',
             $collapsed ? 'w-14' : $width,
-            'bg-[var(--zayne-custom-sidebar)] text-[var(--zayne-custom-sidebar-content)]',
-            $side === 'right'
-                ? 'border-l border-[var(--zayne-custom-sidebar-content)]/10'
-                : 'border-r border-[var(--zayne-custom-sidebar-content)]/10',
             'transition-all duration-200',
         );
     }
