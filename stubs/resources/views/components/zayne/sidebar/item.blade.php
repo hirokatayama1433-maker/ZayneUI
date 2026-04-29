@@ -9,12 +9,13 @@
         'hover:text-[var(--zayne-custom-sidebar-item-content-hover)]',
         'data-[active=true]:bg-[var(--zayne-custom-sidebar-item-bg-active)]',
         'data-[active=true]:text-[var(--zayne-custom-sidebar-item-content-active)]',
-        'group-data-[sidebar=collapsed]:justify-center group-data-[sidebar=collapsed]:gap-0 group-data-[sidebar=collapsed]:px-2',
+        'group-data-[sidebar=collapsed]:mx-auto group-data-[sidebar=collapsed]:min-w-[34px] group-data-[sidebar=collapsed]:max-w-[34px] group-data-[sidebar=collapsed]:justify-center group-data-[sidebar=collapsed]:gap-0 group-data-[sidebar=collapsed]:px-0',
         'hover:scale-102',
         'transition-all duration-150',
         $attributes->get('class'),
     ])
     data-active="{{ $isActive() ? 'true' : 'false' }}"
+    data-sidebar-item
     {{ $attributes->except('class') }}
 >
     {{-- Icon (if provided) --}}
