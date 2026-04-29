@@ -1,9 +1,6 @@
 <button
     type="button"
-    onclick="
-        document.documentElement.classList.toggle('sidebar-collapsed');
-        localStorage.setItem('zayne-sidebar', document.documentElement.classList.contains('sidebar-collapsed'));
-    "
+    onclick="window.Zayne?.Sidebar?.toggle()"
     {{ $attributes->merge([
         'class' => 'flex items-center justify-end p-2 rounded-md text-white hover:bg-white/10 transition-colors duration-150',
     ]) }}

@@ -3,17 +3,14 @@
     'label'   => '', 
 ])
 
-<div class="">
+<div class="flex flex-col gap-2 px-2 py-1 group-data-[sidebar=collapsed]:px-0">
     @if($label)
-            <span class="text-(--zayne-custom-sidebar-content) text-[12px] truncate text-ellipsis flex">
-                {{ $label }}
-            </span>
+        <span class="flex truncate text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--zayne-custom-sidebar-content)]/55 group-data-[sidebar=collapsed]:opacity-0 transition-opacity duration-200">
+            {{ $label }}
+        </span>
     @endif
 
-    {{-- Items — scrollable if max exceeded --}}
-    <div
-        class="flex flex-col" >
+    <div class="flex flex-col">
         {{ $slot }}
     </div>
-
 </div>

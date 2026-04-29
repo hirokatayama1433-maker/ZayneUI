@@ -28,6 +28,7 @@
             'text-[var(--zayne-custom-sidebar-item-content)]',
             'hover:bg-[var(--zayne-custom-sidebar-item-bg-hover)]',
             'hover:text-[var(--zayne-custom-sidebar-item-content-hover)]',
+            'group-data-[sidebar=collapsed]:justify-center group-data-[sidebar=collapsed]:gap-0 group-data-[sidebar=collapsed]:px-2',
             'hover:scale-102',
             'transition-all duration-150 cursor-pointer',
             $attributes->get('class'),
@@ -39,7 +40,7 @@
         @endif
 
         {{-- Label --}}
-        <span class="truncate opacity-100 flex-1 text-left transition-opacity duration-150">
+        <span class="truncate opacity-100 flex-1 text-left transition-all duration-200 group-data-[sidebar=collapsed]:w-0 group-data-[sidebar=collapsed]:overflow-hidden group-data-[sidebar=collapsed]:opacity-0">
             @if($label)
                 {{ $label }}
             @else
@@ -60,7 +61,7 @@
 
         {{-- Chevron --}}
         <svg
-            class="sidebar-tree-chevron shrink-0 size-[13px] opacity-50 transition-transform duration-200"
+            class="sidebar-tree-chevron shrink-0 size-[13px] opacity-50 transition-transform duration-200 group-data-[sidebar=collapsed]:hidden"
             viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2.5"
             stroke-linecap="round" stroke-linejoin="round"
@@ -92,5 +93,4 @@
     [data-sidebar-tree].open .sidebar-tree-chevron  { transform: rotate(90deg); }
     [data-sidebar-tree].open .sidebar-tree-badge    { display: none; }
     .sidebar-collapsed [data-sidebar-tree] [data-tree-children] { max-height: 0 !important; }
-    .sidebar-collapsed .sidebar-tree-chevron        { display: none; }
 </style>
