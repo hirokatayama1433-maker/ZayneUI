@@ -101,12 +101,13 @@ make_component() {
     USAGE_TAG="x-zayne"
     PHP_DISPLAY_PATH="stubs/app/View/Components/Zayne"
     BLADE_DISPLAY_PATH="stubs/resources/views/components/zayne"
+    BS='\'
 
     if [ "$SEGMENT_COUNT" -gt 1 ]; then
         for ((i=0; i<LAST_INDEX; i++)); do
             PHP_DIR="${PHP_DIR}/${PASCAL_SEGMENTS[$i]}"
             BLADE_DIR="${BLADE_DIR}/${KEBAB_SEGMENTS[$i]}"
-            NAMESPACE="${NAMESPACE}\\\\${PASCAL_SEGMENTS[$i]}"
+            NAMESPACE="${NAMESPACE}${BS}${PASCAL_SEGMENTS[$i]}"
             VIEW_PATH="${VIEW_PATH}.${KEBAB_SEGMENTS[$i]}"
             USAGE_TAG="${USAGE_TAG}.${KEBAB_SEGMENTS[$i]}"
             PHP_DISPLAY_PATH="${PHP_DISPLAY_PATH}/${PASCAL_SEGMENTS[$i]}"
@@ -132,31 +133,12 @@ make_component() {
     mkdir -p "$PHP_DIR"
     mkdir -p "$BLADE_DIR"
 
-    cat > "$PHP_FILE" <<PHP
-<?php
+    # Write PHP class — printf avoids heredoc escape issues
+    printf '<?php\n\nnamespace %s;\n\nclass %s extends \\App\\View\\Components\\Zayne\\ZayneComponent\n{\n    public function __construct(\n        //\n    ) {\n        //\n    }\n\n    public function render()\n    {\n        return view('"'"'%s'"'"');\n    }\n}\n' \
+        "$NAMESPACE" "$CLASS_NAME" "$VIEW_PATH" > "$PHP_FILE"
 
-namespace ${NAMESPACE};
-
-class ${CLASS_NAME} extends \App\View\Components\Zayne\ZayneComponent
-{
-    public function __construct(
-        //
-    ) {
-        //
-    }
-
-    public function render()
-    {
-        return view('${VIEW_PATH}');
-    }
-}
-PHP
-
-    cat > "$BLADE_FILE" <<BLADE
-<div {{ \$attributes }}>
-    {{ \$slot }}
-</div>
-BLADE
+    # Write Blade stub
+    printf '<div {{ $attributes }}>\n    {{ $slot }}\n</div>\n' > "$BLADE_FILE"
 
     echo ""
     echo "  ✔ Component created: ${COMPONENT_ARG}"

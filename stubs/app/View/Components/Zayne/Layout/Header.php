@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\Zayne;
+namespace App\View\Components\Zayne\Layout;
 
 use App\View\Components\Zayne\ZayneComponent;
 
-class Navbar extends ZayneComponent
+class Header extends ZayneComponent
 {
     public bool $sticky;
     public string $classes;
@@ -26,6 +26,6 @@ class Navbar extends ZayneComponent
 
     public function render()
     {
-        return view('components.zayne.navbar');
+        return view('components.zayne.layout.header');
     }
 }

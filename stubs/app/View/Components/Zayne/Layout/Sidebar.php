@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\Zayne;
+namespace App\View\Components\Zayne\Layout;
 
 use App\View\Components\Zayne\ZayneComponent;
 
 class Sidebar extends ZayneComponent
 {
-    public string $side;     // left | right
+    public string $side;
     public string $width;
     public bool $collapsed;
     public string $classes;
@@ -25,17 +25,17 @@ class Sidebar extends ZayneComponent
         ?string $sidebarradius = null,
         ?string $sidebarborder = null,
     ) {
-        $this->side      = $side;
-        $this->width     = $width;
-        $this->collapsed = $collapsed;
-        $this->state     = $collapsed ? 'collapsed' : 'expanded';
+        $this->side           = $side;
+        $this->width          = $width;
+        $this->collapsed      = $collapsed;
+        $this->state          = $collapsed ? 'collapsed' : 'expanded';
         $this->collapsedState = $this->normalizeCollapsedState($collapsedstate);
-        $this->shellStyles = $this->buildStyles([
+        $this->shellStyles    = $this->buildStyles([
             'padding' => $sidebarmargin,
         ]);
-        $this->frameStyles = $this->buildStyles([
-            'padding' => $sidebarpadding,
-            'border-width' => $sidebarborder,
+        $this->frameStyles    = $this->buildStyles([
+            'padding'       => $sidebarpadding,
+            'border-width'  => $sidebarborder,
             'border-radius' => $sidebarradius,
         ]);
 
@@ -48,39 +48,31 @@ class Sidebar extends ZayneComponent
 
     public function render()
     {
-        return view('components.zayne.sidebar');
+        return view('components.zayne.layout.sidebar');
     }
 
     protected function normalizeCollapsedState(string $value): string
     {
         $value = strtolower(trim($value));
-
         return $value === 'fullclosed' ? 'fullclosed' : 'visibleicons';
     }
 
     protected function buildStyles(array $styles): string
     {
         $declarations = [];
-
         foreach ($styles as $property => $value) {
-            if ($value === null || trim($value) === '') {
-                continue;
-            }
-
+            if ($value === null || trim($value) === '') continue;
             $declarations[] = $property . ': ' . $this->normalizeCssValue($value);
         }
-
         return implode('; ', $declarations);
     }
 
     protected function normalizeCssValue(string $value): string
     {
         $value = trim($value);
-
         if (str_starts_with($value, '[') && str_ends_with($value, ']')) {
             return substr($value, 1, -1);
         }
-
         return $value;
     }
 }

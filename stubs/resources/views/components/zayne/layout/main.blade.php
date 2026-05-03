@@ -2,8 +2,8 @@
     'classes' => '',
 ])
 
-<main {{ $attributes->except('class')->merge([
+<section {{ $attributes->except('class')->merge([
     'class' => trim('zaynemain ' . $classes),
 ]) }}>
     {{ $slot }}
-</main>
+</section>
