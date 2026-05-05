@@ -11,12 +11,12 @@
     scrollbar-width: none;
 }
 
-/* ── Dimension tokens ── */
+/* ── Layout tokens ── */
 :root {
-    --sidebar-w:           260px;
-    --sidebar-w-collapsed: 51px;
     --header-h:            50px;
     --layout-transition:   150ms ease-in-out;
+    --sidebar-expanded-w:  260px;
+    --sidebar-collapsed-w: 60px;
 }
 
 /* ── Root wrapper ── */
@@ -26,24 +26,10 @@
     width: 100vw;
     overflow: hidden;
     grid-template-areas:
-        "sidebar main"
+        "header header"
         "sidebar main";
-    grid-template-columns: var(--sidebar-w) 1fr;
-    grid-template-rows:    var(--header-h)  1fr;
-    transition: grid-template-columns var(--layout-transition);
-}
-.sidebar-collapsed .zaynemainlayout {
-    grid-template-columns: var(--sidebar-w-collapsed) 1fr;
-}
-
-/* ── Header ── */
-.zayneheader {
-    grid-area: header;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 1.5rem;
-    overflow: hidden;
+    grid-template-columns: auto 1fr;
+    grid-template-rows:    auto 1fr;
 }
 
 /* ── Sidebar ── */
@@ -51,16 +37,74 @@
     grid-area: sidebar;
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding: 8px;
-    width: 100%;
-    transition: padding var(--layout-transition);
-}
-.zaynemainlayout.sidebar-collapsed .zaynesidebar {
-    padding: 8px 4px;
 }
 
-/* ── Main (only scrollable region) ── */
+.zaynesidebar aside {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    width: var(--sidebar-expanded-w);
+    transition: width var(--layout-transition);
+}
+
+/* ── Collapsible: viewicons ── */
+html.sidebar-collapsed .zaynesidebar[data-collapse="viewicons"] aside {
+    width: var(--sidebar-collapsed-w);
+}
+
+/* ── Collapsible: full ── */
+html.sidebar-collapsed .zaynesidebar[data-collapse="full"] aside {
+    width: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    
+}
+
+/* ── Static: viewicons ── */
+.zaynesidebar[data-mode="static"][data-collapse="viewicons"] aside {
+    width: var(--sidebar-collapsed-w);
+}
+
+/* ── Static: full ── */
+.zaynesidebar[data-mode="static"][data-collapse="full"] aside {
+    width: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
+
+/* ── Kill transitions before sidebar-ready ── */
+html:not(.sidebar-ready) * {
+    transition: none !important;
+}
+
+/* ── Labels ── */
+.sidebar-label {
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 200px;
+    opacity: 1;
+    transition: max-width var(--layout-transition),
+                opacity var(--layout-transition);
+}
+html.sidebar-collapsed .sidebar-label {
+    max-width: 0;
+    opacity: 0;
+}
+
+/* ── Header ── */
+.zayneheader {
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    height: var(--header-h);
+    overflow: hidden;
+    background: var(--zayne-custom-header);
+}
+
+/* ── Main ── */
 .zaynemain {
     grid-area: main;
     overflow-y: auto;
@@ -68,35 +112,24 @@
     scroll-behavior: smooth;
 }
 
-/* ── Inner Content Layout ── */
-:root {
-    --subbar-w:        260px;
-    --rightbar-w:      auto;
-    --contentheader-h: 40px;
+/* ── Sidebar Toggle icons ── */
+html.sidebar-collapsed .sidebar-toggle-icon-collapsed {
+    opacity: 1 !important;
+}
+html.sidebar-collapsed .sidebar-toggle-icon-expanded {
+    opacity: 0 !important;
 }
 
-.Contentlayout {
-    display: grid;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    grid-template-areas:
-        "header      header       rightbar"
-        "subbar      maincontent  rightbar";
-    grid-template-columns: var(--subbar-w) 1fr var(--rightbar-w);
-    grid-template-rows:    var(--contentheader-h) 1fr;
-    transition: grid-template-columns var(--layout-transition);
+/* ── Navgroup divider — hidden by default, shown when sidebar collapsed ── */
+.sidebar-divider {
+    display: none;
 }
-.Contentlayout.subbar-collapsed {
-    grid-template-columns: 0px 1fr var(--rightbar-w);
+html.sidebar-collapsed .sidebar-divider {
+    display: block;
+}
+/* ── Navgroup title — hidden when sidebar collapsed ── */
+html.sidebar-collapsed .zaynenavgroup .sidebar-label {
+    max-width: 0;
+    opacity: 0;
 }
 
-.Contentlayout .header      { grid-area: header;     overflow: hidden; }
-.Contentlayout .rightbar    { grid-area: rightbar;    overflow-y: auto; }
-.Contentlayout .maincontent { grid-area: maincontent; overflow-y: auto; }
-.Contentlayout .subbar {
-    grid-area: subbar;
-    width: 100%;
-    overflow: hidden;
-    transition: padding var(--layout-transition);
-}

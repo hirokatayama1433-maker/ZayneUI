@@ -7,3 +7,42 @@
 import './zayne/theme.js';
 import './zayne/sidebar.js';
 import './zayne/subbar.js';
+
+
+// Auto-close navtrees on collapse, restore on expand
+const htmlEl = document.documentElement;
+let savedOpenTrees = new Set();
+
+const observer = new MutationObserver(() => {
+    if (htmlEl.classList.contains('sidebar-collapsed')) {
+        // Save which trees are open, then close them all
+        savedOpenTrees = new Set();
+        document.querySelectorAll('.zaynenavtree.navtree-open').forEach(tree => {
+            savedOpenTrees.add(tree);
+
+            const items   = tree.querySelector('.navtree-items');
+            const chevron = tree.querySelector('.navtree-chevron');
+
+            items.style.maxHeight   = '0px';
+            items.style.opacity     = '0';
+            chevron.style.transform = 'rotate(0deg)';
+            tree.classList.remove('navtree-open');
+        });
+    } else {
+        // Restore previously open trees
+        savedOpenTrees.forEach(tree => {
+            // Guard: tree might have been removed from DOM
+            if (!document.contains(tree)) return;
+
+            const items   = tree.querySelector('.navtree-items');
+            const chevron = tree.querySelector('.navtree-chevron');
+
+            items.style.maxHeight   = items.scrollHeight + 'px';
+            items.style.opacity     = '1';
+            chevron.style.transform = 'rotate(180deg)';
+            tree.classList.add('navtree-open');
+        });
+    }
+});
+
+observer.observe(htmlEl, { attributeFilter: ['class'] });

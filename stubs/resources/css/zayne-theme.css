@@ -30,7 +30,6 @@
 |  Light Theme — class="light" on <html>
 ================================================ */
 .light {
-    /* ── Base Colors ── */
     --zayne-color-base-100:           oklch(100% 0.00011 271.152);
     --zayne-color-base-200:           oklch(97.015% 0.00011 271.152);
     --zayne-color-base-300:           oklch(90.67% 0.0001 271.152);
@@ -39,15 +38,13 @@
     --zayne-color-base-border:        oklch(82% 0.004 271);
     --zayne-color-base-hover:         oklch(91% 0.003 271);
 
-    /* ── Brand Colors ── */
-    --zayne-color-primary:           oklch(28% 0.01 271);
-    --zayne-color-primary-content:   oklch(98% 0.002 271);
+    --zayne-color-primary:           oklch(98% 0.002 271);
+    --zayne-color-primary-content:   oklch(28% 0.01 271);
     --zayne-color-secondary:         oklch(85% 0.199 91.936);
     --zayne-color-secondary-content: oklch(25% 0.05 91);
     --zayne-color-accent:            oklch(87% 0.169 91.605);
     --zayne-color-accent-content:    oklch(38% 0.063 188.416);
 
-    /* ── Semantic Colors ── */
     --zayne-color-danger:          oklch(55% 0.237 25.331);
     --zayne-color-danger-content:  oklch(97% 0.01 25);
     --zayne-color-success:         oklch(48% 0.15 149.579);
@@ -57,19 +54,19 @@
     --zayne-color-info:            oklch(52% 0.14 232.661);
     --zayne-color-info-content:    oklch(97% 0.01 232);
 
-    /* ── Sidebar ── */
     --zayne-custom-header:                      oklch(100% 0.00011 271.152);
-    --zayne-custom-sidebar:                     #001b4a;
-    --zayne-custom-sidebar-content:             #ffffff;
-    --zayne-custom-sidebar-item-bg:             #ffffff00;
+    --zayne-custom-sidebar:                     #ffffff;
+    
+    --zayne-custom-sidebar-content:             #222222;
+    --zayne-custom-sidebar-item-bg:             #24242409;
     --zayne-custom-sidebar-item-bg-hover:       #ffbf00;
-    --zayne-custom-sidebar-item-bg-active:      rgba(235, 26, 26, 0.18);
+    --zayne-custom-sidebar-item-bg-active:      rgb(6, 27, 57);
     --zayne-custom-sidebar-item-content:        #ffffff;
     --zayne-custom-sidebar-item-content-hover:  #0f0f0f;
     --zayne-custom-sidebar-item-content-active: #ffffff;
 
-    /* ── Effects ── */
     --zayne-shadow: 0 8px 10px rgba(0, 0, 0, 0.08);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.08);   
 }
 
 /* ================================================
@@ -86,8 +83,8 @@
     --zayne-color-base-hover:         oklch(30% 0.005 271);
 
     /* ── Brand Colors ── */
-    --zayne-color-primary:           oklch(92% 0.005 271);
-    --zayne-color-primary-content:   oklch(14% 0.005 271);
+    --zayne-color-primary:           oklch(14% 0.005 271);
+    --zayne-color-primary-content:   oklch(92% 0.005 271);
     --zayne-color-secondary:         oklch(85% 0.199 91.936);
     --zayne-color-secondary-content: oklch(25% 0.05 91);
     --zayne-color-accent:            oklch(87% 0.169 91.605);
@@ -116,6 +113,7 @@
 
     /* ── Effects ── */
     --zayne-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.08);
 }
 
 /* ================================================
@@ -132,8 +130,8 @@
     --zayne-color-base-hover:         oklch(25% 0.08 209);
 
     /* ── Brand Colors ── */
-    --zayne-color-primary:           oklch(92% 0.2653 125);
-    --zayne-color-primary-content:   oklch(50% 0.2653 125);
+    --zayne-color-primary:           oklch(50% 0.2653 125);
+    --zayne-color-primary-content:   oklch(92% 0.2653 125);
     --zayne-color-secondary:         oklch(83.27% 0.0764 298.3);
     --zayne-color-secondary-content: oklch(43.27% 0.0764 298.3);
     --zayne-color-accent:            oklch(43% 0 0);
@@ -171,4 +169,5 @@
 
     /* ── Effects ── */
     --zayne-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
+    --zayne-custom-sidebar-shadow: 0 8px 10px rgba(0, 0, 0, 0.08);
 }

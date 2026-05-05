@@ -1,49 +1,33 @@
-@props([
-    'classes' => '',
-    'sticky'  => false,
-])
-
-<nav {{ $attributes->except('class')->merge(['class' => $classes]) }}>
-
-    {{-- Brand / Logo --}}
-    <div class="flex items-center gap-3 shrink-0">
-        @isset($brand)
-            {{ $brand }}
-        @endisset
-    </div>
-
-    {{-- Center nav links --}}
-    @isset($links)
-        <div class="hidden md:flex items-center gap-1">
-            {{ $links }}
-        </div>
+<header
+    class="zayneheader
+        border-{{ $bordercolor }}
+        "
+    style="
+        {{ $margin !== 'null'       ? 'margin: '        . $margin       . ';' : '' }}
+        {{ $margintop !== 'null'    ? 'margin-top: '    . $margintop    . ';' : '' }}
+        {{ $marginbottom !== 'null' ? 'margin-bottom: ' . $marginbottom . ';' : '' }}
+        {{ $marginleft !== 'null'   ? 'margin-left: '   . $marginleft   . ';' : '' }}
+        {{ $marginright !== 'null'  ? 'margin-right: '  . $marginright  . ';' : '' }}
+        {{ $border !== 'null'       ? 'border-width: '        . $border       . ';' : '' }}
+        {{ $bordertop !== 'null'    ? 'border-top-width: '    . $bordertop    . ';' : '' }}
+        {{ $borderbottom !== 'null' ? 'border-bottom-width: ' . $borderbottom . ';' : '' }}
+        {{ $borderleft !== 'null'   ? 'border-left-width: '   . $borderleft   . ';' : '' }}
+        {{ $borderright !== 'null'  ? 'border-right-width: '  . $borderright  . ';' : '' }}
+        padding: {{ $padding }};    
+        border-radius: {{ $radius }};
+        gap: {{ $gap }};
+        box-shadow: var(--zayne-custom-layout-shadow);
+    "
+>
+    @isset($left)
+        <div class="shrink-0 flex items-center">{{ $left }}</div>
     @endisset
 
-    {{-- Right side actions --}}
-    <div class="flex items-center gap-2">
-        @isset($actions)
-            {{ $actions }}
-        @endisset
-
-        @isset($mobileMenu)
-            <div class="md:hidden">
-                {{ $mobileMenu }}
-            </div>
-        @else
-            <x-zayne.action.button
-                class="md:hidden"
-                variant="ghost"
-                color="base"
-                size="sm"
-                :square="true"
-                @click="$dispatch('open-drawer-mobile-nav')"
-                aria-label="Open menu"
-            >
-                <x-slot:leftIcon>
-                    <x-zayne.ui.icon name="bars-3" class="size-5" />
-                </x-slot:leftIcon>
-            </x-zayne.action.button>
-        @endisset
+    <div class="flex-1 flex items-center justify-center min-w-0">
+        {{ $slot }}
     </div>
 
-</nav>
+    @isset($right)
+        <div class="shrink-0 flex items-center">{{ $right }}</div>
+    @endisset
+</header>
