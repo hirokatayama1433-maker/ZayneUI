@@ -198,33 +198,38 @@ class InstallCommand extends Command
     {
         $stubsPath = __DIR__ . '/../../stubs';
         $basePath  = base_path();
-
+    
+        // If force — wipe all existing zayne files first
+        if ($force) {
+            $this->wipeInstalledFiles($basePath);
+        }
+    
         $files = $this->files->allFiles($stubsPath);
-
+    
         $copied  = 0;
         $skipped = 0;
-
+    
         foreach ($files as $file) {
             $relativePath = $file->getRelativePathname();
             $destination  = $basePath . DIRECTORY_SEPARATOR . $relativePath;
-
+    
             if ($this->files->exists($destination) && ! $force) {
                 $skipped++;
                 continue;
             }
-
+    
             $this->files->ensureDirectoryExists(dirname($destination));
             $this->files->copy($file->getPathname(), $destination);
             $copied++;
         }
-
+    
         if ($copied > 0) {
             $this->components->twoColumnDetail(
                 "<fg=green>Copied</> {$copied} file(s)",
                 '<fg=gray>app/ + resources/</>',
             );
         }
-
+    
         if ($skipped > 0) {
             $this->components->twoColumnDetail(
                 "<fg=yellow>Skipped</> {$skipped} existing file(s)",
@@ -232,7 +237,58 @@ class InstallCommand extends Command
             );
         }
     }
-
+    
+    protected function wipeInstalledFiles(string $basePath): void
+    {
+        $zayneAppPath       = $basePath . '/app/View/Components/Zayne';
+        $zayneViewPath      = $basePath . '/resources/views/components/zayne';
+        $zayneProviderPath  = $basePath . '/app/Providers/ZayneServiceProvider.php';
+        $zayneCssFiles      = [
+            $basePath . '/resources/css/zayne-theme.css',
+            $basePath . '/resources/css/zayne-layout.css',
+            $basePath . '/resources/css/zayne-overlay.css',
+        ];
+        $zayneJsFiles       = [
+            $basePath . '/resources/js/zayne.js',
+            $basePath . '/resources/js/zayne',
+        ];
+    
+        // Wipe PHP component classes
+        if ($this->files->isDirectory($zayneAppPath)) {
+            $this->files->deleteDirectory($zayneAppPath);
+        }
+    
+        // Wipe Blade views
+        if ($this->files->isDirectory($zayneViewPath)) {
+            $this->files->deleteDirectory($zayneViewPath);
+        }
+    
+        // Wipe service provider
+        if ($this->files->exists($zayneProviderPath)) {
+            $this->files->delete($zayneProviderPath);
+        }
+    
+        // Wipe CSS files
+        foreach ($zayneCssFiles as $file) {
+            if ($this->files->exists($file)) {
+                $this->files->delete($file);
+            }
+        }
+    
+        // Wipe JS files
+        foreach ($zayneJsFiles as $path) {
+            if ($this->files->isDirectory($path)) {
+                $this->files->deleteDirectory($path);
+            } elseif ($this->files->exists($path)) {
+                $this->files->delete($path);
+            }
+        }
+    
+        $this->components->twoColumnDetail(
+            '<fg=yellow>Wiped</> existing ZayneUI files',
+            '<fg=gray>reinstalling fresh</>',
+        );
+    }
     // ─────────────────────────────────────────────────────────────────────────
     //  Service provider registration
     // ─────────────────────────────────────────────────────────────────────────
@@ -280,7 +336,7 @@ class InstallCommand extends Command
     protected function injectCssImports(): void
     {
         $cssPath = resource_path('css/app.css');
-
+    
         if (! $this->files->exists($cssPath)) {
             $this->components->warn('resources/css/app.css not found. Add these imports manually:');
             $this->line("  @import './zayne-theme.css';");
@@ -288,22 +344,21 @@ class InstallCommand extends Command
             $this->line("  @import './zayne-overlay.css';");
             return;
         }
-
+    
         $contents = $this->files->get($cssPath);
-
+    
         $imports = [
             "@import './zayne-theme.css';",
             "@import './zayne-layout.css';",
             "@import './zayne-overlay.css';",
         ];
-
-        $toAdd = [];
-        foreach ($imports as $import) {
-            if (! Str::contains($contents, $import)) {
-                $toAdd[] = $import;
-            }
-        }
-
+    
+        // Filter out imports already present
+        $toAdd = array_filter(
+            $imports,
+            fn($import) => ! Str::contains($contents, $import)
+        );
+    
         if (empty($toAdd)) {
             $this->components->twoColumnDetail(
                 '<fg=yellow>Skipped</> CSS imports',
@@ -311,13 +366,15 @@ class InstallCommand extends Command
             );
             return;
         }
-
-        $contents .= "\n" . implode("\n", $toAdd) . "\n";
+    
+        // Prepend to top of file — @imports must come before everything else
+        $contents = implode("\n", $toAdd) . "\n\n" . $contents;
+    
         $this->files->put($cssPath, $contents);
-
+    
         $this->components->twoColumnDetail(
             '<fg=green>Injected</> CSS imports',
-            '<fg=gray>resources/css/app.css</>',
+            '<fg=gray>resources/css/app.css (top)</>',
         );
     }
 

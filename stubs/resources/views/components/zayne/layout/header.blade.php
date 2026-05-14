@@ -1,21 +1,27 @@
 <header
-    class="zayneheader
-        border-{{ $bordercolor }}
-        "
+class="zayneheader"
     style="
-        {{ $margin !== 'null'       ? 'margin: '        . $margin       . ';' : '' }}
-        {{ $margintop !== 'null'    ? 'margin-top: '    . $margintop    . ';' : '' }}
-        {{ $marginbottom !== 'null' ? 'margin-bottom: ' . $marginbottom . ';' : '' }}
-        {{ $marginleft !== 'null'   ? 'margin-left: '   . $marginleft   . ';' : '' }}
-        {{ $marginright !== 'null'  ? 'margin-right: '  . $marginright  . ';' : '' }}
-        {{ $border !== 'null'       ? 'border-width: '        . $border       . ';' : '' }}
-        {{ $bordertop !== 'null'    ? 'border-top-width: '    . $bordertop    . ';' : '' }}
-        {{ $borderbottom !== 'null' ? 'border-bottom-width: ' . $borderbottom . ';' : '' }}
-        {{ $borderleft !== 'null'   ? 'border-left-width: '   . $borderleft   . ';' : '' }}
-        {{ $borderright !== 'null'  ? 'border-right-width: '  . $borderright  . ';' : '' }}
-        padding: {{ $padding }};    
+        display: flex;
+        flex-direction: row;
+
+        margin: {{ $margin }};
+        margin-top: {{ $margintop }};
+        margin-bottom: {{ $marginbottom }};
+        margin-left: {{ $marginleft }};
+        margin-right: {{ $marginright }};
+
+        border-width: {{ $border }};
+        border-top-width: {{ $bordertop }};
+        border-bottom-width: {{ $borderbottom }};
+        border-left-width: {{ $borderleft }};
+        border-right-width: {{ $borderright }};
+
+        border-color: {{ $bordercolor }};
+
+        padding: {{ $padding }};
         border-radius: {{ $radius }};
         gap: {{ $gap }};
+
         box-shadow: var(--zayne-custom-layout-shadow);
     "
 >
@@ -30,4 +36,4 @@
     @isset($right)
         <div class="shrink-0 flex items-center">{{ $right }}</div>
     @endisset
-</header>
+</header>   

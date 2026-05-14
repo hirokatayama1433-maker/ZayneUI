@@ -34,7 +34,7 @@
             </div>
         @endisset
 
-        <span class="sidebar-label text-sm flex-1 text-left">{{ $label }}</span>
+        <span class="sidebar-label text-sm flex-1 text-left h-9.5 flex items-center">{{ $label }}</span>
 
         <span class="sidebar-label flex items-center pr-3">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"

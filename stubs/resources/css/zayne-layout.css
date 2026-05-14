@@ -101,7 +101,6 @@ html.sidebar-collapsed .sidebar-label {
     align-items: center;
     height: var(--header-h);
     overflow: hidden;
-    background: var(--zayne-custom-header);
 }
 
 /* ── Main ── */

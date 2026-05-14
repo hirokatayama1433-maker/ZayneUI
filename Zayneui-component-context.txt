@@ -1,0 +1,287 @@
+# ZAYNE UI — COMPONENT CONTEXT FILE
+# Attach this file when asking the AI to build a new Zayne UI component.
+# ─────────────────────────────────────────────────────────────────────────────
+
+## SYSTEM
+
+Zayne UI is a CSS token-driven component engine built on:
+- Pure HTML / CSS / PHP (Laravel Blade)
+- CSS variables drive all theming (zayne-theme.css)
+- Alpine.js ONLY for Overlay DOM state
+- Zero Tailwind dependency
+
+
+## COMPONENT TYPES
+
+| Type    | Variants | Alpine | mount() | Examples                          |
+|---------|----------|--------|---------|-----------------------------------|
+| Layout  | ❌       | ❌     | ❌      | Header, Sidebar, Main             |
+| Visual  | ✅       | ❌     | ✅      | Badge, Avatar, Card               |
+| Action  | ✅       | ❌     | ✅      | Button, Toggle                    |
+| Overlay | ✅       | ✅     | ✅      | Modal, Drawer, Popover, Tooltip   |
+| Data    | ❌       | ❌     | ❌      | Table, List, Board                |
+| Feed    | ✅       | ❌     | ✅      | Alert, Toast, Progress            |
+| Form    | ✅       | ❌     | ✅      | Input, Select, Checkbox           |
+
+
+## BASE CLASS (ZayneComponent)
+
+namespace App\View\Components\Zayne;
+use Illuminate\View\Component;
+
+abstract class ZayneComponent extends Component
+{
+    protected string $style = '';
+
+    protected function mergeStyles(array ...$styles): array
+    {
+        return array_merge(...array_filter($styles));
+    }
+
+    protected function toStyleString(array $styles): string
+    {
+        return collect($styles)
+            ->filter()
+            ->map(fn($value, $key) => "{$key}: {$value}")
+            ->implode('; ');
+    }
+}
+
+
+## STYLE API — PROP RULES
+
+ALWAYS expose:      padding, margin, radius, shadow, gap
+EXPOSE if needed:   border, background, color
+NEVER expose:       font-size, line-height, icon-size, z-index, width, height
+
+Props WITH a Zayne default → use a token value:
+    public string $padding    = '0px 1rem',
+    public string $background = 'var(--zayne-custom-header)',
+    public string $radius     = 'var(--zayne-radius-field)',
+
+Props OFF by default → use CSS 'unset' (NOT null):
+    public string $border       = 'unset',
+    public string $margin       = 'unset',
+    public string $bordertop    = 'unset',
+    public string $borderbottom = 'unset',
+    public string $borderleft   = 'unset',
+    public string $borderright  = 'unset',
+    public string $bordercolor  = 'unset',
+
+REASON: 'unset' is a valid CSS keyword. PHP null and the string 'null' pollute the DOM.
+
+
+## THEME TOKENS — ALWAYS USE THESE, NEVER HARDCODE
+
+Colors:
+    var(--zayne-color-primary)           var(--zayne-color-primary-content)
+    var(--zayne-color-secondary)         var(--zayne-color-secondary-content)
+    var(--zayne-color-danger)            var(--zayne-color-danger-content)
+    var(--zayne-color-success)           var(--zayne-color-success-content)
+    var(--zayne-color-warning)           var(--zayne-color-warning-content)
+    var(--zayne-color-info)              var(--zayne-color-info-content)
+    var(--zayne-color-base-200)          var(--zayne-color-base-content)
+    var(--zayne-color-base-border)
+
+Layout tokens:
+    var(--zayne-custom-header)
+    var(--zayne-custom-sidebar)
+    var(--zayne-custom-layout-shadow)
+
+Misc:
+    var(--zayne-radius-field)
+    var(--zayne-radius-card)
+
+
+## VARIANT SYSTEM (Visual / Action / Overlay / Feed / Form only)
+
+Trait: HasColorVariants
+
+Variants:   solid | soft | outline | dashed | ghost | link
+Colors:     primary | secondary | danger | success | warning | info | base
+
+solid   → full background + content color
+soft    → 15% tinted background + color text
+outline → transparent + colored border + colored text
+dashed  → transparent + dashed border
+ghost   → transparent, subtle hover only
+link    → transparent, underline
+
+resolveVariantStyles() reads $this->variant and $this->color,
+returns the matching array from variantMap().
+
+
+## mount() PATTERN (for Action / Visual / Feed / Form / Overlay)
+
+public function mount(): void
+{
+    $base = [
+        'padding'       => $this->padding,
+        'gap'           => $this->gap,
+        'border-radius' => $this->radius,
+        'box-shadow'    => $this->shadow,
+        'margin'        => $this->margin,
+        'border-width'  => $this->border,
+        'border-color'  => $this->bordercolor,
+    ];
+
+    $variant = $this->resolveVariantStyles();
+
+    $this->style = $this->toStyleString(
+        $this->mergeStyles($base, $variant)
+    );
+}
+
+
+## BLADE PATTERNS
+
+### Layout / Data — direct prop output (no mount, no $style)
+<element class="zayne-{component}" style="
+    padding:             {{ $padding }};
+    background:          {{ $background }};
+    border-radius:       {{ $radius }};
+    gap:                 {{ $gap }};
+    box-shadow:          {{ $shadow }};
+    margin:              {{ $margin }};
+    margin-top:          {{ $margintop }};
+    margin-bottom:       {{ $marginbottom }};
+    border-width:        {{ $border }};
+    border-top-width:    {{ $bordertop }};
+    border-bottom-width: {{ $borderbottom }};
+    border-left-width:   {{ $borderleft }};
+    border-right-width:  {{ $borderright }};
+    border-color:        {{ $bordercolor }};
+" {{ $attributes }}>
+    {{ $slot }}
+</element>
+
+### Action / Visual / Feed / Form — compiled $style
+<element class="zayne-{component}" style="{{ $style }}" {{ $attributes }}>
+    @isset($iconslot)
+        <div class="zayne-icon-wrapper">{{ $iconslot }}</div>
+    @endisset
+    <span class="zayne-{component}-label">{{ $slot }}</span>
+    @isset($trailing)
+        <span class="zayne-{component}-trailing">{{ $trailing }}</span>
+    @endisset
+</element>
+
+### Overlay
+<div x-data="{ open: false }" class="zayne-{component}-root"
+     {{ $attributes->except(['class', 'style']) }}>
+    @isset($trigger)
+        <div x-on:click="open = true">{{ $trigger }}</div>
+    @endisset
+    <div x-show="open" x-cloak x-on:click="open = false"
+         x-bind:class="open ? 'zayne-backdrop-enter' : 'zayne-backdrop-leave'"
+         class="zayne-backdrop"
+         style="position: fixed; inset: 0; z-index: 40; background: rgba(0,0,0,0.5);">
+    </div>
+    <div x-show="open" x-cloak x-trap="open"
+         x-bind:class="open ? 'zayne-{component}-enter' : 'zayne-{component}-leave'"
+         class="zayne-{component}-panel"
+         style="{{ $style }}">
+        {{ $slot }}
+    </div>
+</div>
+
+
+## SLOT NAMES — FIXED, NEVER INVENT NEW ONES
+
+Layout slots:   $left, $slot, $right
+Content slots:  $header, $slot, $footer
+Icon slots:     $iconslot   ← always this exact name
+Action slots:   $action, $trailing
+Overlay slots:  $trigger, $slot
+
+
+## STRUCTURAL CSS — zayne-layout.css
+
+Pseudo-classes (:hover, :focus-visible, :active) → CSS only, never inline
+Transitions → CSS only
+Compound selectors (.zayne-button--md.zayne-button--square) → CSS only
+
+Rule: If it involves a selector → CSS file. If it involves a value → PHP/Blade.
+
+Animation classes (.zayne-modal-enter, .zayne-drawer-leave, etc.) → zayne-animations.css only
+
+
+## MOBILE LAYOUT
+
+Breakpoint: hardcoded 768px in zayne-layout.css. Never a variable. Never a prop.
+Mobile sidebar = same element as desktop, repositioned by CSS.
+Mobile toggle = raw HTML <button> in Blade, NOT a Zayne component.
+mobileOpen state lives on root layout x-data only.
+
+
+## HARD RULES — NEVER VIOLATE
+
+❌  No Tailwind classes anywhere
+❌  No hardcoded hex / rgb / hsl color values
+❌  No logic or calculations in Blade
+❌  No raw prop values in style= on variant components (always use $style)
+❌  No variants on Layout or Data components
+❌  No $tag prop  (href present = <a>,  no href = <button>)
+❌  No @if for slot checks  (always @isset)
+❌  No Alpine outside Overlay components or root layout wrapper
+❌  No x-data except on Overlay root and root layout wrapper
+❌  No 'null' string as prop default  (use 'unset')
+❌  No PHP null as prop default
+❌  No mount() on Layout or Data components
+❌  No configurable breakpoint  (hardcoded 768px only)
+
+✅  Every default prop references zayne-theme.css tokens
+✅  Off-by-default props default to CSS 'unset'
+✅  Layout / Data output props directly in Blade style=""
+✅  Action / Visual / Feed / Form / Overlay use mount() + $style
+✅  mount() is ONLY for variant resolution — nothing else
+✅  Every component passes $attributes through untouched
+✅  Slot names are always consistent
+✅  x-cloak on every Alpine-controlled element
+✅  x-trap on Modal and Drawer panels
+✅  One PHP class + one Blade file per component
+
+
+## USAGE EXAMPLES
+
+{{-- Zero config --}}
+<x-zayne.action.button />
+
+{{-- Variant --}}
+<x-zayne.action.button variant="outline" color="danger" />
+
+{{-- With icon slot --}}
+<x-zayne.action.button variant="solid" color="primary">
+    <x-slot:iconslot><svg .../></x-slot:iconslot>
+    Save changes
+</x-zayne.action.button>
+
+{{-- As link --}}
+<x-zayne.action.button href="/dashboard" variant="ghost" color="base">
+    Dashboard
+</x-zayne.action.button>
+
+{{-- Border on demand --}}
+<x-zayne.layout.header borderbottom="1px" bordercolor="var(--zayne-color-base-border)" />
+
+{{-- Overlay --}}
+<x-zayne.overlay.modal>
+    <x-slot:trigger>
+        <x-zayne.action.button>Open</x-zayne.action.button>
+    </x-slot:trigger>
+    Modal content here
+</x-zayne.overlay.modal>
+
+
+## CHECKLIST BEFORE SHIPPING ANY COMPONENT
+
+[ ] Answered: type / role / variants / Alpine?
+[ ] All defaults reference zayne-theme.css tokens
+[ ] Off-by-default props use 'unset', not null
+[ ] Layout/Data: no mount(), props straight to Blade style=""
+[ ] Variant component: has mount(), uses $style in Blade
+[ ] Slot names match the fixed names above
+[ ] Structural CSS (hover, transitions) is in zayne-layout.css
+[ ] No Tailwind, no hardcoded colors, no logic in Blade
+[ ] $attributes passed through untouched
+[ ] x-cloak on all Alpine-controlled elements

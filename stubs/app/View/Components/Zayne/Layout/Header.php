@@ -22,6 +22,7 @@ class Header extends ZayneComponent
         public string $marginleft   = 'null',
         public string $marginright  = 'null',
         public string $shadow       = 'null',
+        public string $background   = 'var(--zayne-custom-header)',
         
     ) {}
 
