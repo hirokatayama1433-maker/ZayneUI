@@ -1,5 +1,5 @@
 {
-    "name": "zayne/ui",
+    "name": "zayne/zayneui",
     "description": "CSS token-driven UI component engine for Laravel",
     "type": "library",
     "license": "MIT",
