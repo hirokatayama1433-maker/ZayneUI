@@ -61,9 +61,9 @@ class ZayneServiceProvider extends ServiceProvider
 
     protected function bootDirectives(): void
     {
-        Blade::directive('zayneStyles', fn () => '{!! app(\'zayne\')->renderStyles() !!}');
-        Blade::directive('zayneScripts', fn () => '{!! app(\'zayne\')->renderScripts() !!}');
-        Blade::directive('zayneAppearance', fn () => '{!! app(\'zayne\')->renderAppearance() !!}');
+        Blade::directive('zayneStyles', fn () => "<?php echo app('zayne')->renderStyles(); ?>");
+        Blade::directive('zayneScripts', fn () => "<?php echo app('zayne')->renderScripts(); ?>");
+        Blade::directive('zayneAppearance', fn () => "<?php echo app('zayne')->renderAppearance(); ?>");
     }
 
     protected function bootMacros(): void
