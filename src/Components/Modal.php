@@ -1,0 +1,44 @@
+<?php
+
+namespace Zayne\UI\Components;
+
+use Illuminate\View\Component;
+use Illuminate\View\View;
+use Zayne\UI\Zayne;
+
+class Modal extends Component
+{
+    public string $style = '';
+
+    public function __construct(
+        public string $width = 'min(90vw, 40rem)',
+        public string $padding = '1.5rem',
+        public string $radius = 'var(--zayne-radius-box)',
+        public string $shadow = 'var(--zayne-shadow)',
+        public string $background = 'var(--zayne-color-base-100)',
+        public string $margin = 'unset',
+        public string $border = 'unset',
+        public string $bordercolor = 'unset'
+    ) {
+    }
+
+    public function mount(): void
+    {
+        $this->style = Zayne::styleString([
+            'width' => $this->width,
+            'padding' => $this->padding,
+            'border-radius' => $this->radius,
+            'box-shadow' => $this->shadow,
+            'background' => $this->background,
+            'margin' => $this->margin,
+            'border-width' => $this->border,
+            'border-color' => $this->bordercolor,
+            'border-style' => 'solid',
+        ]);
+    }
+
+    public function render(): View
+    {
+        return view('zayne::modal');
+    }
+}
