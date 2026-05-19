@@ -5,13 +5,11 @@
         </aside>
     @endisset
 
-    <div class="zayne-main-wrapper">
-        @isset($header)
-            {{ $header }}
-        @endisset
+    @isset($header)
+        {{ $header }}
+    @endisset
 
-        <main class="zayne-main">{{ $slot }}</main>
-    </div>
+    <main class="zayne-main">{{ $slot }}</main>
 
     <div
         class="zayne-mobile-backdrop"
