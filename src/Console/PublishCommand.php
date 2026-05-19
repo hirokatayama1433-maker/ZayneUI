@@ -18,7 +18,7 @@ class PublishCommand extends Command
 
     protected Filesystem $files;
 
-    protected array $components = [
+    protected array $publishableComponents = [
         'button', 'badge', 'alert', 'avatar', 'card', 'progress',
         'modal', 'drawer', 'dropdown', 'tooltip', 'popover',
         'input', 'select', 'checkbox', 'toggle',
@@ -38,7 +38,7 @@ class PublishCommand extends Command
     public function handle(): int
     {
         $targets = $this->option('all')
-            ? $this->components
+            ? $this->publishableComponents
             : ($this->argument('components') ?: $this->askWhichComponent());
 
         foreach ($targets as $component) {
@@ -50,7 +50,7 @@ class PublishCommand extends Command
 
     protected function askWhichComponent(): array
     {
-        $choice = $this->choice('Which component would you like to publish?', $this->components);
+        $choice = $this->choice('Which component would you like to publish?', $this->publishableComponents);
 
         return [$choice];
     }
