@@ -32,11 +32,15 @@ class ZayneServiceProvider extends ServiceProvider
     {
         Blade::componentNamespace('Zayne\\UI\\Components', 'zayne');
 
+        $packageViewPath = __DIR__ . '/../stubs/resources/views';
+
+        $this->loadViewsFrom($packageViewPath, 'zayne');
+
         if (function_exists('resource_path') && file_exists(resource_path('views/components/zayne'))) {
             Blade::anonymousComponentPath(resource_path('views/components/zayne'), 'zayne');
         }
 
-        Blade::anonymousComponentPath(__DIR__ . '/../stubs/resources/views/components/zayne', 'zayne');
+        Blade::anonymousComponentPath($packageViewPath . '/components/zayne', 'zayne');
     }
 
     protected function bootTagCompiler(): void
