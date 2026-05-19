@@ -1,5 +1,5 @@
 <div class="zayne-navtree" {{ $attributes }}>
-    @if($title !== 'unset')
+    @if($title !== null)
         <div class="zayne-sidebar-label">{{ $title }}</div>
     @endif
 

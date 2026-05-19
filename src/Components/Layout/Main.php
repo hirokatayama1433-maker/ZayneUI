@@ -9,8 +9,8 @@ class Main extends Component
 {
     public function __construct(
         public string $background = 'var(--zayne-color-base-100)',
-        public string $padding = 'unset',
-        public string $margin = 'unset'
+        public ?string $padding = null,
+        public ?string $margin = null
     ) {
     }
 

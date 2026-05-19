@@ -14,16 +14,17 @@ class Checkbox extends Component
         public string $variant = 'outline',
         public string $color = 'primary',
         public bool $checked = false,
-        public string $padding = 'unset',
+        public ?string $padding = null,
         public string $radius = 'var(--zayne-radius-selector)',
-        public string $shadow = 'unset',
-        public string $margin = 'unset',
+        public ?string $shadow = null,
+        public ?string $margin = null,
         public string $border = 'var(--zayne-border-selector)',
         public string $bordercolor = 'var(--zayne-color-base-border)'
     ) {
+        $this->buildStyle();
     }
 
-    public function mount(): void
+    protected function buildStyle(): void
     {
         $variantStyles = [
             'outline' => [

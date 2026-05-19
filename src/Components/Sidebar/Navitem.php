@@ -8,7 +8,7 @@ use Illuminate\View\View;
 class Navitem extends Component
 {
     public function __construct(
-        public string $href = 'unset',
+        public ?string $href = null,
         public bool $active = false
     ) {
     }

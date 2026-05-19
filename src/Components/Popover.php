@@ -16,13 +16,14 @@ class Popover extends Component
         public string $shadow = 'var(--zayne-shadow)',
         public string $background = 'var(--zayne-color-base-100)',
         public string $minwidth = '16rem',
-        public string $margin = 'unset',
-        public string $border = 'unset',
-        public string $bordercolor = 'unset'
+        public ?string $margin = null,
+        public ?string $border = null,
+        public ?string $bordercolor = null
     ) {
+        $this->buildStyle();
     }
 
-    public function mount(): void
+    protected function buildStyle(): void
     {
         $this->style = Zayne::styleString([
             'padding' => $this->padding,

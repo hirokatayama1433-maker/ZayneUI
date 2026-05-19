@@ -1,7 +1,7 @@
-@php($tag = $href !== 'unset' ? 'a' : 'button')
+@php($tag = $href !== null ? 'a' : 'button')
 <{{ $tag }}
     class="zayne-navitem zayne-navtreeitem{{ $active ? ' active' : '' }}"
-    @if($href !== 'unset') href="{{ $href }}" @else type="button" @endif
+    @if($href !== null) href="{{ $href }}" @else type="button" @endif
     {{ $attributes }}
 >
     @isset($iconslot)

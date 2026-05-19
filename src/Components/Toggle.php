@@ -16,14 +16,15 @@ class Toggle extends Component
         public bool $checked = false,
         public string $padding = '0.125rem',
         public string $radius = '999px',
-        public string $shadow = 'unset',
-        public string $margin = 'unset',
-        public string $border = 'unset',
-        public string $bordercolor = 'unset'
+        public ?string $shadow = null,
+        public ?string $margin = null,
+        public ?string $border = null,
+        public ?string $bordercolor = null
     ) {
+        $this->buildStyle();
     }
 
-    public function mount(): void
+    protected function buildStyle(): void
     {
         $variantStyles = [
             'soft' => [

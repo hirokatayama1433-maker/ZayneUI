@@ -15,15 +15,16 @@ class Alert extends Component
         public string $color = 'info',
         public string $padding = '1rem',
         public string $radius = 'var(--zayne-radius-box)',
-        public string $shadow = 'unset',
+        public ?string $shadow = null,
         public string $gap = '0.75rem',
-        public string $margin = 'unset',
-        public string $border = 'unset',
-        public string $bordercolor = 'unset'
+        public ?string $margin = null,
+        public ?string $border = null,
+        public ?string $bordercolor = null
     ) {
+        $this->buildStyle();
     }
 
-    public function mount(): void
+    protected function buildStyle(): void
     {
         $variantStyles = [
             'solid' => [

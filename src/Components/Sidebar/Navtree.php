@@ -8,7 +8,7 @@ use Illuminate\View\View;
 class Navtree extends Component
 {
     public function __construct(
-        public string $title = 'unset'
+        public ?string $title = null
     ) {
     }
 

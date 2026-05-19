@@ -12,17 +12,17 @@ class Header extends Component
         public string $shadow = 'var(--zayne-shadow)',
         public string $padding = 'var(--zayne-padding-header)',
         public string $gap = 'var(--zayne-gap-header)',
-        public string $border = 'unset',
-        public string $bordertop = 'unset',
-        public string $borderbottom = 'unset',
-        public string $borderleft = 'unset',
-        public string $borderright = 'unset',
-        public string $bordercolor = 'unset',
-        public string $margin = 'unset',
-        public string $margintop = 'unset',
-        public string $marginbottom = 'unset',
-        public string $marginleft = 'unset',
-        public string $marginright = 'unset'
+        public ?string $border = null,
+        public ?string $bordertop = null,
+        public ?string $borderbottom = null,
+        public ?string $borderleft = null,
+        public ?string $borderright = null,
+        public ?string $bordercolor = null,
+        public ?string $margin = null,
+        public ?string $margintop = null,
+        public ?string $marginbottom = null,
+        public ?string $marginleft = null,
+        public ?string $marginright = null
     ) {
     }
 

@@ -18,12 +18,13 @@ class Progress extends Component
         public int|string $value = 0,
         public string $height = '8px',
         public string $radius = '999px',
-        public string $shadow = 'unset',
-        public string $margin = 'unset'
+        public ?string $shadow = null,
+        public ?string $margin = null
     ) {
+        $this->buildStyle();
     }
 
-    public function mount(): void
+    protected function buildStyle(): void
     {
         $variantStyles = [
             'solid' => [

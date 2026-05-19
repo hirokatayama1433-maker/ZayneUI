@@ -2,7 +2,7 @@
     class="zayne-input"
     style="{{ $style }}"
     type="{{ $type }}"
-    @if($value !== 'unset') value="{{ $value }}" @endif
-    @if($placeholder !== 'unset') placeholder="{{ $placeholder }}" @endif
+    @if($value !== null) value="{{ $value }}" @endif
+    @if($placeholder !== null) placeholder="{{ $placeholder }}" @endif
     {{ $attributes }}
 >

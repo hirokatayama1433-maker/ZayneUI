@@ -14,18 +14,19 @@ class Button extends Component
         public string $variant = 'solid',
         public string $color = 'primary',
         public string $size = 'md',
-        public string $href = 'unset',
-        public string $padding = 'unset',
+        public ?string $href = null,
+        public ?string $padding = null,
         public string $radius = 'var(--zayne-radius-field)',
-        public string $shadow = 'unset',
+        public ?string $shadow = null,
         public string $gap = 'var(--zayne-gap-button)',
-        public string $margin = 'unset',
-        public string $border = 'unset',
-        public string $bordercolor = 'unset'
+        public ?string $margin = null,
+        public ?string $border = null,
+        public ?string $bordercolor = null
     ) {
+        $this->buildStyle();
     }
 
-    public function mount(): void
+    protected function buildStyle(): void
     {
         $variantStyles = [
             'solid' => [

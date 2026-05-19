@@ -18,9 +18,10 @@ class Tooltip extends Component
         public string $background = 'var(--zayne-color-base-300)',
         public string $color = 'var(--zayne-color-base-content)'
     ) {
+        $this->buildStyle();
     }
 
-    public function mount(): void
+    protected function buildStyle(): void
     {
         $this->style = Zayne::styleString([
             'padding' => $this->padding,

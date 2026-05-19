@@ -11,19 +11,19 @@ class Sidebar extends Component
         public string $background = 'var(--zayne-custom-sidebar)',
         public string $padding = '1rem',
         public string $gap = '0.75rem',
-        public string $shadow = 'unset',
-        public string $radius = 'unset',
-        public string $border = 'unset',
-        public string $bordertop = 'unset',
-        public string $borderbottom = 'unset',
-        public string $borderleft = 'unset',
-        public string $borderright = 'unset',
-        public string $bordercolor = 'unset',
-        public string $margin = 'unset',
-        public string $margintop = 'unset',
-        public string $marginbottom = 'unset',
-        public string $marginleft = 'unset',
-        public string $marginright = 'unset'
+        public ?string $shadow = null,
+        public ?string $radius = null,
+        public ?string $border = null,
+        public ?string $bordertop = null,
+        public ?string $borderbottom = null,
+        public ?string $borderleft = null,
+        public ?string $borderright = null,
+        public ?string $bordercolor = null,
+        public ?string $margin = null,
+        public ?string $margintop = null,
+        public ?string $marginbottom = null,
+        public ?string $marginleft = null,
+        public ?string $marginright = null
     ) {
     }
 

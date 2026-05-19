@@ -8,9 +8,9 @@ use Illuminate\View\View;
 class Avatar extends Component
 {
     public function __construct(
-        public string $src = 'unset',
+        public ?string $src = null,
         public string $alt = 'Avatar',
-        public string $label = 'unset'
+        public ?string $label = null
     ) {
     }
 

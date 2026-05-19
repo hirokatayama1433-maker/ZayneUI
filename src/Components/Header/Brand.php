@@ -9,7 +9,7 @@ class Brand extends Component
 {
     public function __construct(
         public string $name = 'Zayne UI',
-        public string $href = 'unset'
+        public ?string $href = null
     ) {
     }
 

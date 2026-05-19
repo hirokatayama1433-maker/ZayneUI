@@ -1,9 +1,10 @@
-@php($tag = $href !== 'unset' ? 'a' : 'button')
+@php($tag = $href !== null ? 'a' : 'button')
+@php($computedStyle = $style)
 
 <{{ $tag }}
     class="zayne-button zayne-button--{{ $size }}"
-    style="{{ $style }}"
-    @if($href !== 'unset') href="{{ $href }}" @else type="button" @endif
+    style="{{ $computedStyle }}"
+    @if($href !== null) href="{{ $href }}" @else type="button" @endif
     {{ $attributes }}
 >
     @isset($iconslot)

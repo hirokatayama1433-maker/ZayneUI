@@ -15,14 +15,15 @@ class Select extends Component
         public string $color = 'base',
         public string $padding = '0 0.875rem',
         public string $radius = 'var(--zayne-radius-field)',
-        public string $shadow = 'unset',
-        public string $margin = 'unset',
+        public ?string $shadow = null,
+        public ?string $margin = null,
         public string $border = 'var(--zayne-border-field)',
         public string $bordercolor = 'var(--zayne-color-base-border)'
     ) {
+        $this->buildStyle();
     }
 
-    public function mount(): void
+    protected function buildStyle(): void
     {
         $variantStyles = [
             'outline' => [

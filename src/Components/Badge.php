@@ -14,17 +14,18 @@ class Badge extends Component
         public string $variant = 'soft',
         public string $color = 'base',
         public string $size = 'md',
-        public string $padding = 'unset',
+        public ?string $padding = null,
         public string $radius = 'var(--zayne-radius-selector)',
-        public string $shadow = 'unset',
+        public ?string $shadow = null,
         public string $gap = '0.25rem',
-        public string $margin = 'unset',
-        public string $border = 'unset',
-        public string $bordercolor = 'unset'
+        public ?string $margin = null,
+        public ?string $border = null,
+        public ?string $bordercolor = null
     ) {
+        $this->buildStyle();
     }
 
-    public function mount(): void
+    protected function buildStyle(): void
     {
         $variantStyles = [
             'solid' => [
