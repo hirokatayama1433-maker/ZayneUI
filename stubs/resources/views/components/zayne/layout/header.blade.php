@@ -1,21 +1,21 @@
 <header
-    class="zayne-header"
+    class="zayneheader"
     style="
         background: {{ $background }};
-        box-shadow: {{ $shadow }};
-        padding: {{ $padding }};
-        gap: {{ $gap }};
-        margin: {{ $margin }};
-        margin-top: {{ $margintop }};
-        margin-bottom: {{ $marginbottom }};
-        margin-left: {{ $marginleft }};
-        margin-right: {{ $marginright }};
-        border-width: {{ $border }};
-        border-top-width: {{ $bordertop }};
-        border-bottom-width: {{ $borderbottom }};
-        border-left-width: {{ $borderleft }};
-        border-right-width: {{ $borderright }};
-        border-color: {{ $bordercolor }};
+        {{ $shadow       ? 'box-shadow: '          . $shadow       . ';' : '' }}
+        {{ $padding      ? 'padding: '             . $padding      . ';' : '' }}
+        {{ $gap          ? 'gap: '                 . $gap          . ';' : '' }}
+        {{ $margin       ? 'margin: '              . $margin       . ';' : '' }}
+        {{ $margintop    ? 'margin-top: '          . $margintop    . ';' : '' }}
+        {{ $marginbottom ? 'margin-bottom: '       . $marginbottom . ';' : '' }}
+        {{ $marginleft   ? 'margin-left: '         . $marginleft   . ';' : '' }}
+        {{ $marginright  ? 'margin-right: '        . $marginright  . ';' : '' }}
+        {{ $border       ? 'border-width: '        . $border       . ';' : '' }}
+        {{ $bordertop    ? 'border-top-width: '    . $bordertop    . ';' : '' }}
+        {{ $borderbottom ? 'border-bottom-width: ' . $borderbottom . ';' : '' }}
+        {{ $borderleft   ? 'border-left-width: '   . $borderleft   . ';' : '' }}
+        {{ $borderright  ? 'border-right-width: '  . $borderright  . ';' : '' }}
+        {{ $bordercolor  ? 'border-color: '        . $bordercolor  . ';' : '' }}
     "
     {{ $attributes }}
 >

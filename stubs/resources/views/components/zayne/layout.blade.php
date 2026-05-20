@@ -1,15 +1,17 @@
-<div class="zayne-layout" x-data="zayneLayout()">
+<div
+    class="zaynemainlayout"
+    x-data="{ mobileOpen: false }"
+    {{ $attributes }}
+>
     @isset($sidebar)
-        <aside class="zayne-sidebar" x-bind:class="{ 'is-collapsed': sidebarCollapsed, 'is-open': mobileOpen }">
-            {{ $sidebar }}
-        </aside>
+        {{ $sidebar }}
     @endisset
 
     @isset($header)
         {{ $header }}
     @endisset
 
-    <main class="zayne-main">{{ $slot }}</main>
+    <div class="zaynemain">{{ $slot }}</div>
 
     <div
         class="zayne-mobile-backdrop"
