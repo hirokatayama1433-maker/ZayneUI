@@ -7,9 +7,9 @@ use Illuminate\View\View;
 
 class Label extends Component
 {
-    public function __construct()
-    {
-    }
+    public function __construct(
+        public string $title = '',
+    ) {}
 
     public function render(): View
     {

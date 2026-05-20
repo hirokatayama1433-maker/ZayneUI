@@ -5,15 +5,17 @@ namespace Zayne\UI\Components\Sidebar;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class Navitem extends Component
+class Brand extends Component
 {
     public function __construct(
+        public string  $name   = '',
+        public string  $src    = '',
+        public string  $alt    = '',
         public ?string $href   = null,
-        public bool    $active = false,
     ) {}
 
     public function render(): View
     {
-        return view('zayne::sidebar.navitem');
+        return view('zayne::sidebar.brand');
     }
 }

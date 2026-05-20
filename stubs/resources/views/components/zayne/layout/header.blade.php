@@ -1,31 +1,39 @@
 <header
-    class="zayneheader"
+class="zayneheader"
     style="
-        background: {{ $background }};
-        {{ $shadow       ? 'box-shadow: '          . $shadow       . ';' : '' }}
-        {{ $padding      ? 'padding: '             . $padding      . ';' : '' }}
-        {{ $gap          ? 'gap: '                 . $gap          . ';' : '' }}
-        {{ $margin       ? 'margin: '              . $margin       . ';' : '' }}
-        {{ $margintop    ? 'margin-top: '          . $margintop    . ';' : '' }}
-        {{ $marginbottom ? 'margin-bottom: '       . $marginbottom . ';' : '' }}
-        {{ $marginleft   ? 'margin-left: '         . $marginleft   . ';' : '' }}
-        {{ $marginright  ? 'margin-right: '        . $marginright  . ';' : '' }}
-        {{ $border       ? 'border-width: '        . $border       . ';' : '' }}
-        {{ $bordertop    ? 'border-top-width: '    . $bordertop    . ';' : '' }}
-        {{ $borderbottom ? 'border-bottom-width: ' . $borderbottom . ';' : '' }}
-        {{ $borderleft   ? 'border-left-width: '   . $borderleft   . ';' : '' }}
-        {{ $borderright  ? 'border-right-width: '  . $borderright  . ';' : '' }}
-        {{ $bordercolor  ? 'border-color: '        . $bordercolor  . ';' : '' }}
+        display: flex;
+        flex-direction: row;
+
+        margin: {{ $margin }};
+        margin-top: {{ $margintop }};
+        margin-bottom: {{ $marginbottom }};
+        margin-left: {{ $marginleft }};
+        margin-right: {{ $marginright }};
+
+        border-width: {{ $border }};
+        border-top-width: {{ $bordertop }};
+        border-bottom-width: {{ $borderbottom }};
+        border-left-width: {{ $borderleft }};
+        border-right-width: {{ $borderright }};
+
+        border-color: {{ $bordercolor }};
+
+        padding: {{ $padding }};
+        border-radius: {{ $radius }};
+        gap: {{ $gap }};
+
+        box-shadow: var(--zayne-custom-layout-shadow);
     "
-    {{ $attributes }}
 >
     @isset($left)
-        <div class="zayne-header-left">{{ $left }}</div>
+        <div class="shrink-0 flex items-center">{{ $left }}</div>
     @endisset
 
-    <div class="zayne-header-center">{{ $slot }}</div>
+    <div class="flex-1 flex items-center justify-center min-w-0">
+        {{ $slot }}
+    </div>
 
     @isset($right)
-        <div class="zayne-header-right">{{ $right }}</div>
+        <div class="shrink-0 flex items-center">{{ $right }}</div>
     @endisset
-</header>
+</header>   
