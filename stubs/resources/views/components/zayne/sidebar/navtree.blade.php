@@ -1,12 +1,12 @@
-@php
-    $tag = 'button';
-@endphp
-
 <div class="zaynenavtree flex flex-col">
 
     <button
         type="button"
-        class="{{ $classes }}"
+        class="h-[38px] flex items-center w-full rounded-(--zayne-radius-field) cursor-pointer transition-colors duration-150
+            {{ $active
+                ? 'bg-[var(--zayne-custom-sidebar-item-bg-active)] text-[var(--zayne-custom-sidebar-item-content-active)]'
+                : 'bg-[var(--zayne-custom-sidebar-item-bg)] text-(--zayne-custom-sidebar-content) hover:bg-[var(--zayne-custom-sidebar-item-bg-hover)] hover:text-[var(--zayne-custom-sidebar-item-content-hover)]'
+            }}"
         onclick="
             const tree = this.closest('.zaynenavtree');
             const items = tree.querySelector('.navtree-items');
@@ -33,21 +33,20 @@
 
         <span class="sidebar-label text-sm flex-1 text-left min-w-0 truncate">{{ $label }}</span>
 
-        <span class="sidebar-label w-[38px] h-[38px] flex justify-center items-center shrink-0">
+        <div class="w-[38px] h-[38px] flex justify-center items-center shrink-0 sidebar-label">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                 stroke-width="2" stroke="currentColor"
                 class="size-3 navtree-chevron"
                 style="transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1); transform: rotate(0deg);">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
             </svg>
-        </span>
+        </div>
     </button>
 
     <div
         class="navtree-items flex flex-col pl-[38px] overflow-hidden"
         style="max-height: 0; opacity: 0; transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1), opacity 150ms ease; position: relative;"
     >
-        {{-- left accent line --}}
         <span
             aria-hidden="true"
             style="
