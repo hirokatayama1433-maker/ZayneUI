@@ -1,5 +1,5 @@
 <?php
-namespace Zayne\UI\Components\Sidebar;
+namespace Zayne\UI\Components\Layout\Sidebar;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -21,6 +21,6 @@ class Navtreeitem extends Component
 
     public function render(): View
     {
-        return view('zayne::sidebar.navtreeitem');
+        return view('zayne::layout.sidebar.navtreeitem');
     }
 }

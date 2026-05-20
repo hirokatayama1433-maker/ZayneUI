@@ -1,15 +1,16 @@
 <?php
 
-namespace App\View\Components\Zayne\Layout\Header;
+namespace Zayne\UI\Components\Layout\Header;
+use Illuminate\View\Component;
+use Illuminate\View\View;
 
-use App\View\Components\Zayne\ZayneComponent;
 
-class Nav extends ZayneComponent
+class Nav extends Component
 {
     public function __construct() {}
 
-    public function render()
+    public function render(): View
     {
-        return view('components.zayne.layout.header.nav');
+        return view('zayne::layout.header.nav');
     }
 }

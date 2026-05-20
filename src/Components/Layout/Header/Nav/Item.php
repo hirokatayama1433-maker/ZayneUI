@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\Zayne\Layout\Header\Nav;
+namespace Zayne\UI\Components\Layout\Header\Nav;
+use Illuminate\View\Component;
+use Illuminate\View\View;
 
-use App\View\Components\Zayne\ZayneComponent;
-
-class Item extends ZayneComponent
+class Item extends Component
 {
     public string $classes;
 
@@ -19,8 +19,8 @@ class Item extends ZayneComponent
             );
     }
 
-    public function render()
+    public function render(): View
     {
-        return view('components.zayne.layout.header.nav.item');
+        return view('zayne::layout.header.nav.item');
     }
 }

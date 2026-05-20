@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\Zayne\Layout\Header;
+namespace Zayne\UI\Components\Layout\Header;
+use Illuminate\View\Component;
+use Illuminate\View\View;
 
-use App\View\Components\Zayne\ZayneComponent;
-
-class Avatar extends ZayneComponent
+class Avatar extends Component
 {
     public string $classes;
 
@@ -19,8 +19,8 @@ class Avatar extends ZayneComponent
             . 'text-(--zayne-color-base-content)';
     }
 
-    public function render()
+    public function render(): View
     {
-        return view('components.zayne.layout.header.avatar');
+        return view('zayne::layout.header.avatar');
     }
 }

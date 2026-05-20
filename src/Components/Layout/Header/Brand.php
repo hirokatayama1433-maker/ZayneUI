@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\Zayne\Layout\Header;
+namespace Zayne\UI\Components\Layout\Header;
+use Illuminate\View\Component;
+use Illuminate\View\View;
 
-use App\View\Components\Zayne\ZayneComponent;
-
-class Brand extends ZayneComponent
+class Brand extends Component
 {
     public function __construct(
         public string  $name  = '',
@@ -13,8 +13,8 @@ class Brand extends ZayneComponent
         public ?string $href  = null,
     ) {}
 
-    public function render()
+    public function render(): View
     {
-        return view('components.zayne.layout.header.brand');
+        return view('zayne::layout.header.brand');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Zayne\UI\Components\Sidebar;
+namespace Zayne\UI\Components\Layout\Sidebar;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -13,6 +13,6 @@ class Label extends Component
 
     public function render(): View
     {
-        return view('zayne::sidebar.label');
+        return view('zayne::layout.sidebar.label');
     }
 }
