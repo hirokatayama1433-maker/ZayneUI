@@ -6,7 +6,7 @@
     <div
         x-show="open"
         x-cloak
-        x-on:click="open = false"
+        x-on:click.self="open = false"
         x-bind:class="open ? 'zayne-backdrop-enter' : 'zayne-backdrop-leave'"
         class="zayne-backdrop"
     ></div>
@@ -14,9 +14,8 @@
     <div
         x-show="open"
         x-cloak
-        x-trap="open"
-        x-bind:class="open ? 'zayne-drawer-enter' : 'zayne-drawer-leave'"
-        class="zayne-drawer-panel"
+        x-on:click.stop
+        x-bind:class="open ? '{{ $enterClass }}' : '{{ $leaveClass }}'"
         style="{{ $style }}"
     >
         {{ $slot }}

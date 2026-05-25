@@ -8,54 +8,53 @@ use Zayne\UI\Zayne;
 
 class Toggle extends Component
 {
-    public string $style = '';
+    public string $trackStyle = '';
+    public string $thumbStyle = '';
 
     public function __construct(
-        public string $variant = 'soft',
-        public string $color = 'primary',
-        public bool $checked = false,
-        public string $padding = '0.125rem',
-        public string $radius = '999px',
-        public ?string $shadow = null,
-        public ?string $margin = null,
-        public ?string $border = null,
-        public ?string $bordercolor = null
+        public string $color    = 'primary',
+        public bool   $checked  = false,
+        public bool   $disabled = false,
     ) {
         $this->buildStyle();
     }
 
     protected function buildStyle(): void
     {
-        $variantStyles = [
-            'soft' => [
-                'primary' => ['background' => 'color-mix(in oklch, var(--zayne-color-primary) 18%, var(--zayne-color-base-300))', 'color' => 'var(--zayne-color-primary)'],
-                'success' => ['background' => 'color-mix(in oklch, var(--zayne-color-success) 18%, var(--zayne-color-base-300))', 'color' => 'var(--zayne-color-success)'],
-                'base' => ['background' => 'var(--zayne-color-base-300)', 'color' => 'var(--zayne-color-base-content)'],
-            ],
-            'solid' => [
-                'primary' => ['background' => 'var(--zayne-color-primary)', 'color' => 'var(--zayne-color-primary-content)'],
-                'success' => ['background' => 'var(--zayne-color-success)', 'color' => 'var(--zayne-color-success-content)'],
-                'base' => ['background' => 'var(--zayne-color-base-content)', 'color' => 'var(--zayne-color-base-100)'],
-            ],
+        $colors = [
+            'primary' => 'var(--zayne-color-primary)',
+            'success' => 'var(--zayne-color-success)',
+            'danger'  => 'var(--zayne-color-danger)',
+            'warning' => 'var(--zayne-color-warning)',
         ];
 
-        $resolved = $variantStyles[$this->variant][$this->color]
-            ?? $variantStyles[$this->variant]['base']
-            ?? $variantStyles['soft']['primary'];
+        $accent = $colors[$this->color] ?? $colors['primary'];
 
-        if (! $this->checked) {
-            $resolved['background'] = 'var(--zayne-color-base-300)';
-            $resolved['color'] = 'var(--zayne-color-base-content-muted)';
-        }
+        $this->trackStyle = Zayne::styleString([
+            'display'         => 'inline-flex',
+            'align-items'     => 'center',
+            'width'           => '44px',
+            'height'          => '24px',
+            'border-radius'   => '999px',
+            'position'        => 'relative',
+            'cursor'          => $this->disabled ? 'not-allowed' : 'pointer',
+            'opacity'         => $this->disabled ? '0.5' : '1',
+            'transition'      => 'background 200ms ease',
+            'background'      => $this->checked ? $accent : 'var(--zayne-color-base-300)',
+            'box-sizing'      => 'border-box',
+        ]);
 
-        $this->style = Zayne::styleString(array_merge([
-            'padding' => $this->padding,
-            'border-radius' => $this->radius,
-            'box-shadow' => $this->shadow,
-            'margin' => $this->margin,
-            'border-width' => $this->border,
-            'border-color' => $this->bordercolor,
-        ], $resolved));
+        $this->thumbStyle = Zayne::styleString([
+            'position'        => 'absolute',
+            'top'             => '3px',
+            'left'            => $this->checked ? '23px' : '3px',
+            'width'           => '18px',
+            'height'          => '18px',
+            'border-radius'   => '999px',
+            'background'      => '#ffffff',
+            'transition'      => 'left 180ms var(--ease-out-smooth)',
+            'pointer-events'  => 'none',
+        ]);
     }
 
     public function render(): View

@@ -8,59 +8,48 @@ use Zayne\UI\Zayne;
 
 class Progress extends Component
 {
-    public string $style = '';
-
+    public string $style    = '';
     public string $barStyle = '';
 
     public function __construct(
-        public string $variant = 'solid',
-        public string $color = 'primary',
-        public int|string $value = 0,
-        public string $height = '8px',
-        public string $radius = '999px',
-        public ?string $shadow = null,
-        public ?string $margin = null
+        public int    $value     = 0,
+        public string $color     = 'primary',
+        public bool   $showvalue = false,
+        public string $format    = 'percent',
     ) {
         $this->buildStyle();
     }
 
     protected function buildStyle(): void
     {
-        $variantStyles = [
-            'solid' => [
-                'primary' => ['background' => 'var(--zayne-color-primary)'],
-                'secondary' => ['background' => 'var(--zayne-color-secondary)'],
-                'danger' => ['background' => 'var(--zayne-color-danger)'],
-                'success' => ['background' => 'var(--zayne-color-success)'],
-                'warning' => ['background' => 'var(--zayne-color-warning)'],
-                'info' => ['background' => 'var(--zayne-color-info)'],
-                'base' => ['background' => 'var(--zayne-color-base-content)'],
-            ],
-            'soft' => [
-                'primary' => ['background' => 'color-mix(in oklch, var(--zayne-color-primary) 70%, white)'],
-                'secondary' => ['background' => 'color-mix(in oklch, var(--zayne-color-secondary) 70%, white)'],
-                'danger' => ['background' => 'color-mix(in oklch, var(--zayne-color-danger) 70%, white)'],
-                'success' => ['background' => 'color-mix(in oklch, var(--zayne-color-success) 70%, white)'],
-                'warning' => ['background' => 'color-mix(in oklch, var(--zayne-color-warning) 70%, white)'],
-                'info' => ['background' => 'color-mix(in oklch, var(--zayne-color-info) 70%, white)'],
-                'base' => ['background' => 'var(--zayne-color-base-content-muted)'],
-            ],
+        $colors = [
+            'primary'   => 'var(--zayne-color-primary)',
+            'secondary' => 'var(--zayne-color-secondary)',
+            'danger'    => 'var(--zayne-color-danger)',
+            'success'   => 'var(--zayne-color-success)',
+            'warning'   => 'var(--zayne-color-warning)',
+            'info'      => 'var(--zayne-color-info)',
+            'base'      => 'var(--zayne-color-base-content)',
         ];
 
-        $resolved = $variantStyles[$this->variant][$this->color]
-            ?? $variantStyles[$this->variant]['base']
-            ?? $variantStyles['solid']['primary'];
+        $barColor = $colors[$this->color] ?? $colors['primary'];
+        $width    = max(0, min(100, $this->value));
 
         $this->style = Zayne::styleString([
-            'height' => $this->height,
-            'border-radius' => $this->radius,
-            'box-shadow' => $this->shadow,
-            'margin' => $this->margin,
+            'width'         => '100%',
+            'height'        => '8px',
+            'border-radius' => '999px',
+            'background'    => 'var(--zayne-color-base-300)',
+            'overflow'      => 'hidden',
         ]);
 
-        $this->barStyle = Zayne::styleString(array_merge([
-            'width' => max(0, min(100, (int) $this->value)) . '%',
-        ], $resolved));
+        $this->barStyle = Zayne::styleString([
+            'height'        => '100%',
+            'width'         => $width . '%',
+            'border-radius' => '999px',
+            'background'    => $barColor,
+            'transition'    => 'width 300ms ease',
+        ]);
     }
 
     public function render(): View

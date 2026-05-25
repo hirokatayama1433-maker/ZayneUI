@@ -1,45 +1,39 @@
-@php
-    $tag = $href ? 'a' : 'div';
-@endphp
+@php($tag = $href !== null ? 'a' : 'div')
 
-<div class="flex items-center w-full">
+<div style="display:flex; align-items:center; width:100%;">
 
-    {{-- Brand link/div --}}
     <{{ $tag }}
         @if($href) href="{{ $href }}" @endif
-        class="flex items-center flex-1 min-w-0"
+        style="display:flex; align-items:center; flex:1; min-width:0; text-decoration:none; color:inherit;"
+        onclick="if (document.documentElement.classList.contains('sidebar-collapsed')) { event.preventDefault(); Zayne.Sidebar.expand(); }"
     >
-        {{-- Logo --}}
-        <div class="shrink-0 w-[38px] h-[38px] flex justify-center items-center">
+        <div style="flex-shrink:0; width:38px; height:38px; display:flex; justify-content:center; align-items:center;">
             @if($src)
-                <img
-                    src="{{ $src }}"
-                    alt="{{ $alt ?: $name }}"
-                    class="w-9.5 h-9.5 object-contain"
-                />
+                <img src="{{ $src }}" alt="{{ $alt ?: $name }}" style="width:38px; height:38px; object-fit:contain;" />
             @else
-                {{-- Fallback: first letter box --}}
-                <div class="w-9.5 h-9.5 rounded-(--zayne-radius-field) flex items-center justify-center text-sm font-bold bg-(--zayne-color-accent) text-white">
+                <div
+                    style="width:38px; height:38px; border-radius:var(--zayne-radius-field); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; background:var(--zayne-color-accent); color:#fff; cursor:pointer;"
+                >
                     {{ strtoupper($name[0] ?? 'Z') }}
                 </div>
             @endif
         </div>
 
-        {{-- Name --}}
-        <span class="sidebar-label pl-2 text-sm font-semibold truncate">
+        <span class="sidebar-label" style="padding-left:8px; font-size:14px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:inherit;">
             {{ $name }}
         </span>
-
     </{{ $tag }}>
 
-    {{-- Toggle button --}}
     <button
         type="button"
         onclick="Zayne.Sidebar.toggle()"
-        class="sidebar-label shrink-0 w-[30px] h-[30px] flex items-center justify-center rounded-(--zayne-radius-field) cursor-pointer transition-colors duration-150 text-(--zayne-custom-sidebar-content) hover:bg-(--zayne-custom-sidebar-item-bg-hover) opacity-40 hover:opacity-100"
+        class="sidebar-label"
+        style="flex-shrink:0; width:30px; height:30px; display:flex; align-items:center; justify-content:center; border-radius:var(--zayne-radius-field); border:none; background:transparent; cursor:pointer; color:var(--zayne-custom-sidebar-content); opacity:0.4; transition:background 150ms ease, opacity 150ms ease;"
+        onmouseover="this.style.background='var(--zayne-custom-sidebar-item-bg-hover)'; this.style.opacity='1';"
+        onmouseout="this.style.background='transparent'; this.style.opacity='0.4';"
     >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-            stroke-width="1.5" stroke="currentColor" class="size-4">
+            stroke-width="1.5" stroke="currentColor" style="width:16px; height:16px;">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
         </svg>
     </button>

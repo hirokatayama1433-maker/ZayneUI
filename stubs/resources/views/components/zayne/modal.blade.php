@@ -6,7 +6,7 @@
     <div
         x-show="open"
         x-cloak
-        x-on:click="open = false"
+        x-on:click.self="open = false"
         x-bind:class="open ? 'zayne-backdrop-enter' : 'zayne-backdrop-leave'"
         class="zayne-backdrop"
     ></div>
@@ -14,7 +14,7 @@
     <div
         x-show="open"
         x-cloak
-        x-trap="open"
+        x-on:click.stop
         x-bind:class="open ? 'zayne-modal-enter' : 'zayne-modal-leave'"
         class="zayne-modal-panel"
         style="{{ $style }}"

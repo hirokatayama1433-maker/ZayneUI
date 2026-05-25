@@ -1,15 +1,16 @@
 <div x-data="zayneDropdown()" class="zayne-dropdown-root" {{ $attributes->except(['class', 'style']) }}>
     @isset($trigger)
-        <div x-on:click="open = !open">{{ $trigger }}</div>
+        <div x-ref="trigger" x-on:click="toggle($refs.trigger, $refs.panel)">{{ $trigger }}</div>
     @endisset
 
     <div
         x-show="open"
         x-cloak
+        x-ref="panel"
         x-on:click.outside="open = false"
+        x-on:click.stop
         x-bind:class="open ? 'zayne-dropdown-enter' : 'zayne-dropdown-leave'"
-        class="zayne-dropdown-panel"
-        style="{{ $style }}"
+        style="position:fixed; z-index:var(--zayne-z-dropdown); {{ $style }}"
     >
         {{ $slot }}
     </div>

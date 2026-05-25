@@ -18,7 +18,7 @@ class Alert extends Component
         public ?string $shadow = null,
         public string $gap = '0.75rem',
         public ?string $margin = null,
-        public ?string $border = null,
+        public ?string $border = '1px',
         public ?string $bordercolor = null
     ) {
         $this->buildStyle();
@@ -28,11 +28,11 @@ class Alert extends Component
     {
         $variantStyles = [
             'solid' => [
-                'danger' => ['background' => 'var(--zayne-color-danger)', 'color' => 'var(--zayne-color-danger-content)'],
-                'success' => ['background' => 'var(--zayne-color-success)', 'color' => 'var(--zayne-color-success-content)'],
-                'warning' => ['background' => 'var(--zayne-color-warning)', 'color' => 'var(--zayne-color-warning-content)'],
-                'info' => ['background' => 'var(--zayne-color-info)', 'color' => 'var(--zayne-color-info-content)'],
-                'base' => ['background' => 'var(--zayne-color-base-200)', 'color' => 'var(--zayne-color-base-content)'],
+                'danger' => ['background' => 'var(--zayne-color-danger)', 'color' => 'var(--zayne-color-danger-content)', 'border' => '0px'],
+                'success' => ['background' => 'var(--zayne-color-success)', 'color' => 'var(--zayne-color-success-content)','border' => '0px'],
+                'warning' => ['background' => 'var(--zayne-color-warning)', 'color' => 'var(--zayne-color-warning-content)','border' => '0px'],
+                'info' => ['background' => 'var(--zayne-color-info)', 'color' => 'var(--zayne-color-info-content)','border' => '0px'],
+                'base' => ['background' => 'var(--zayne-color-base-200)', 'color' => 'var(--zayne-color-base-content)','border' => '0px'],
             ],
             'soft' => [
                 'danger' => ['background' => 'color-mix(in oklch, var(--zayne-color-danger) 14%, transparent)', 'color' => 'var(--zayne-color-danger)'],

@@ -1,16 +1,17 @@
 <?php
 
 namespace Zayne\UI\Components\Layout\Header;
+
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
 class Brand extends Component
 {
     public function __construct(
-        public string  $name  = '',
-        public string  $src   = '',
-        public string  $alt   = '',
-        public ?string $href  = null,
+        public string  $name = '',
+        public string  $src  = '',
+        public string  $alt  = '',
+        public ?string $href = null,
     ) {}
 
     public function render(): View

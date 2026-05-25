@@ -8,32 +8,44 @@ use Zayne\UI\Zayne;
 
 class Drawer extends Component
 {
-    public string $style = '';
+    public string $style         = '';
+    public string $enterClass    = '';
+    public string $leaveClass    = '';
 
     public function __construct(
-        public string $width = '22rem',
-        public string $padding = '1.5rem',
-        public string $shadow = 'var(--zayne-shadow)',
-        public string $background = 'var(--zayne-color-base-100)',
-        public ?string $margin = null,
-        public ?string $border = null,
-        public ?string $bordercolor = null
+        public string  $position = 'left',
+        public ?string $width    = null,
+        public ?string $height   = null,
+        public ?string $padding  = null,
+        public ?string $shadow   = null,
     ) {
         $this->buildStyle();
     }
 
     protected function buildStyle(): void
     {
-        $this->style = Zayne::styleString([
-            'width' => $this->width,
-            'padding' => $this->padding,
-            'box-shadow' => $this->shadow,
-            'background' => $this->background,
-            'margin' => $this->margin,
-            'border-width' => $this->border,
-            'border-color' => $this->bordercolor,
-            'border-style' => 'solid',
-        ]);
+        $isHorizontal = in_array($this->position, ['left', 'right']);
+
+        $positionStyles = match($this->position) {
+            'left'   => ['top' => '0', 'left'   => '0', 'height' => '100%', 'width'  => $this->width  ?? '320px'],
+            'right'  => ['top' => '0', 'right'  => '0', 'height' => '100%', 'width'  => $this->width  ?? '320px'],
+            'top'    => ['top' => '0', 'left'   => '0', 'width'  => '100%', 'height' => $this->height ?? '320px'],
+            'bottom' => ['bottom' => '0', 'left' => '0', 'width' => '100%', 'height' => $this->height ?? '320px'],
+            default  => ['top' => '0', 'left'   => '0', 'height' => '100%', 'width'  => $this->width  ?? '320px'],
+        };
+
+        $this->style = Zayne::styleString(array_merge([
+            'position'   => 'fixed',
+            'z-index'    => 'var(--zayne-z-drawer)',
+            'background' => 'var(--zayne-color-base-100)',
+            'overflow-y' => 'auto',
+            'box-sizing' => 'border-box',
+            'padding'    => $this->padding ?? '1.5rem',
+            'box-shadow' => $this->shadow  ?? 'var(--zayne-shadow)',
+        ], $positionStyles));
+
+        $this->enterClass = 'zayne-drawer-enter-' . $this->position;
+        $this->leaveClass = 'zayne-drawer-leave-' . $this->position;
     }
 
     public function render(): View

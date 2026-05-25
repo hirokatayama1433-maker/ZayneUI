@@ -1,9 +1,13 @@
-<div 
-    class="zaynemain"
+<div
+    class="zaynemain scrollbar-hide"
     style="
-            margin: {{ $margin }};
-            padding: {{ $padding }};
-            background: {{ $background }};
-            ">
+        overflow-y: auto;
+        overflow-x: hidden;
+        {{ $padding    ? 'padding: '    . $padding    . ';' : '' }}
+        {{ $margin     ? 'margin: '     . $margin     . ';' : '' }}
+        {{ $background ? 'background: ' . $background . ';' : '' }}
+    "
+    {{ $attributes }}
+>
     {{ $slot }}
 </div>

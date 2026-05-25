@@ -7,13 +7,26 @@ use Illuminate\View\View;
 
 class Toggle extends Component
 {
-    public string $classes;
+    public string $baseStyle;
 
     public function __construct(
         public string $label = 'Collapse',
     ) {
-        $this->classes = 'h-[38px] flex items-center w-full rounded-(--zayne-radius-field) cursor-pointer transition-colors duration-150 '
-            . 'bg-(--zayne-custom-sidebar-item-bg) text-(--zayne-custom-sidebar-content) hover:bg-(--zayne-custom-sidebar-item-bg-hover) hover:text-(--zayne-custom-sidebar-item-content-hover)';
+        $this->baseStyle = '
+            height: 38px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            border-radius: var(--zayne-radius-field);
+            cursor: pointer;
+            transition: background 150ms ease, color 150ms ease;
+            border: none;
+            box-sizing: border-box;
+            font-family: inherit;
+            padding: 0;
+            background: var(--zayne-custom-sidebar-item-bg);
+            color: var(--zayne-custom-sidebar-content);
+        ';
     }
 
     public function render(): View

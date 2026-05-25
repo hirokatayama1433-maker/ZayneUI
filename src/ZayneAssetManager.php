@@ -32,8 +32,10 @@ class ZayneAssetManager
     public static function renderStyles(): string
     {
         $version = filemtime(__DIR__ . '/../stubs/resources/css/zayne.css');
+        $appearance = static::appearanceScript();
+        $criticalTheme = static::criticalThemeStyles();
 
-        return '<link rel="stylesheet" href="' . url('/zayne/zayne.css?v=' . $version) . '">';
+        return $appearance . "\n" . $criticalTheme . "\n" . '<link rel="stylesheet" href="' . url('/zayne/zayne.css?v=' . $version) . '">';
     }
 
     public static function renderScripts(): string
@@ -45,13 +47,75 @@ class ZayneAssetManager
 
     public static function renderAppearance(): string
     {
+        return static::appearanceScript();
+    }
+
+    protected static function appearanceScript(): string
+    {
         return <<<HTML
-<script>
+<script data-zayne-appearance>
     (function() {
+        var root = document.documentElement;
+
+        if (root.hasAttribute('data-zayne-appearance-ready')) {
+            return;
+        }
+
+        root.setAttribute('data-zayne-appearance-ready', 'true');
+
         var saved = localStorage.getItem('zayne.theme') || 'light';
-        document.documentElement.className = saved;
+        root.className = saved;
+
+        if (localStorage.getItem('zayne-sidebar') === 'true') {
+            root.classList.add('sidebar-collapsed');
+        } else {
+            root.classList.remove('sidebar-collapsed');
+        }
     })();
 </script>
+HTML;
+    }
+
+    protected static function criticalThemeStyles(): string
+    {
+        return <<<'HTML'
+<style data-zayne-critical-theme>
+    html,
+    body {
+        background: #ffffff;
+        color: oklch(18% 0.005 271);
+    }
+
+    html.light,
+    html.light body,
+    html.light .zaynemainlayout,
+    html.light .zaynemain,
+    html.light .zayneheader,
+    html.light .zaynesidebar aside {
+        background: oklch(100% 0.00011 271.152);
+        color: oklch(18% 0.005 271);
+    }
+
+    html.dark,
+    html.dark body,
+    html.dark .zaynemainlayout,
+    html.dark .zaynemain,
+    html.dark .zayneheader,
+    html.dark .zaynesidebar aside {
+        background: oklch(0.34 0.0017 286.31);
+        color: oklch(1 0 none);
+    }
+
+    html.abyss,
+    html.abyss body,
+    html.abyss .zaynemainlayout,
+    html.abyss .zaynemain,
+    html.abyss .zayneheader,
+    html.abyss .zaynesidebar aside {
+        background: oklch(20% 0.08 209);
+        color: oklch(99.226% 0.00608 75.126);
+    }
+</style>
 HTML;
     }
 

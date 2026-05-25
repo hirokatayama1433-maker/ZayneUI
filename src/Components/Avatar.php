@@ -19,7 +19,7 @@ class Avatar extends Component
         public string $radius = '999px',
         public ?string $shadow = null,
         public ?string $margin = null,
-        public ?string $border = null,
+        public ?string $border = '0px',
         public ?string $bordercolor = null
     ) {
         $this->buildStyle();

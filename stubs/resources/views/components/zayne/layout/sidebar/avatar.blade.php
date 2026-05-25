@@ -1,50 +1,44 @@
-@php
-    use TailwindMerge\Laravel\Facades\TailwindMerge;
-    $finalClasses = TailwindMerge::merge($classes, $attributes->get('class', ''));
-    $tag = $href ? 'a' : 'button';
-@endphp
+@php($tag = $href ? 'a' : 'button')
 
 <{{ $tag }}
     @if($href) href="{{ $href }}" @endif
     @if($tag === 'button') type="button" @endif
     {{ $attributes->except('class') }}
-    class="{{ $finalClasses }}"
+    style="{{ $baseStyle }}"
+    onmouseover="this.style.color='var(--zayne-custom-sidebar-item-content-hover)';"
+    onmouseout="this.style.color='var(--zayne-custom-sidebar-content)';"
 >
-    {{-- Avatar image --}}
-    <div class="shrink-0 w-[38px] h-[38px] flex justify-center items-center">
+    <div style="flex-shrink:0; width:38px; height:38px; display:flex; justify-content:center; align-items:center;">
         @if($src)
             <img
                 src="{{ $src }}"
                 alt="{{ $alt ?: $name }}"
-                class="w-9.5 h-9.5 rounded-(--zayne-radius-field) object-cover"
+                style="width:34px; height:34px; border-radius:var(--zayne-radius-field); object-fit:cover;"
             />
         @else
-            {{-- Fallback initials --}}
-            <div class="w-9.5 h-9.5 rounded-(--zayne-radius-field) flex items-center justify-center text-xs font-semibold bg-(--zayne-color-accent) text-white">
+            <div style="width:34px; height:34px; border-radius:var(--zayne-radius-field); display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:600; background:var(--zayne-color-accent); color:#fff;">
                 {{ collect(explode(' ', trim($name)))->map(fn($w) => strtoupper($w[0] ?? ''))->take(2)->join('') }}
             </div>
         @endif
     </div>
 
-    {{-- Name + email --}}
-    <div class="sidebar-label flex flex-col min-w-0 flex-1 text-left pl-1 ">
-        <span class="text-sm font-medium leading-tight truncate">
+    <div class="sidebar-label" style="display:flex; flex-direction:column; min-width:0; flex:1; text-align:left; padding-left:0.25rem;">
+        <span style="font-size:0.875rem; font-weight:500; line-height:1.25; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
             {{ $name }}
         </span>
         @if($email)
-            <span class="text-xs opacity-50 leading-tight truncate">
+            <span style="font-size:0.75rem; opacity:0.5; line-height:1.25; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
                 {{ $email }}
             </span>
         @endif
     </div>
 
-    {{-- Actions slot or default ellipsis --}}
-    <div class="sidebar-label shrink-0 flex items-center pr-2 opacity-40">
+    <div class="sidebar-label" style="flex-shrink:0; display:flex; align-items:center; padding-right:0.5rem; opacity:0.4;">
         @isset($action)
             {{ $action }}
         @else
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                stroke-width="2" stroke="currentColor" class="size-4">
+                stroke-width="2" stroke="currentColor" style="width:1rem; height:1rem;">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
             </svg>
         @endisset

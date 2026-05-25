@@ -11,30 +11,31 @@ class Modal extends Component
     public string $style = '';
 
     public function __construct(
-        public string $width = 'min(90vw, 40rem)',
-        public string $padding = '1.5rem',
-        public string $radius = 'var(--zayne-radius-box)',
-        public string $shadow = 'var(--zayne-shadow)',
-        public string $background = 'var(--zayne-color-base-100)',
-        public ?string $margin = null,
-        public ?string $border = null,
-        public ?string $bordercolor = null
+        public string  $size    = 'md',
+        public ?string $padding = null,
+        public ?string $radius  = null,
+        public ?string $shadow  = null,
     ) {
         $this->buildStyle();
     }
 
     protected function buildStyle(): void
     {
+        $widths = [
+            'sm'   => '400px',
+            'md'   => '560px',
+            'lg'   => '720px',
+            'auto' => 'auto',
+        ];
+
+        $width = $widths[$this->size] ?? $widths['md'];
+
         $this->style = Zayne::styleString([
-            'width' => $this->width,
-            'padding' => $this->padding,
-            'border-radius' => $this->radius,
-            'box-shadow' => $this->shadow,
-            'background' => $this->background,
-            'margin' => $this->margin,
-            'border-width' => $this->border,
-            'border-color' => $this->bordercolor,
-            'border-style' => 'solid',
+            'width'         => $width,
+            'max-height'    => $this->size === 'auto' ? 'none' : '90dvh',
+            'padding'       => $this->padding ?? '1.5rem',
+            'border-radius' => $this->radius  ?? 'var(--zayne-radius-box)',
+            'box-shadow'    => $this->shadow   ?? 'var(--zayne-shadow)',
         ]);
     }
 
