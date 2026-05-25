@@ -63,8 +63,12 @@ class ZayneAssetManager
 
         root.setAttribute('data-zayne-appearance-ready', 'true');
 
-        var saved = localStorage.getItem('zayne.theme') || 'light';
-        root.className = saved;
+        var savedTheme = localStorage.getItem('zayne-theme')
+            || localStorage.getItem('zayne.theme')
+            || 'light';
+
+        root.classList.remove('light', 'dark', 'abyss');
+        root.classList.add(savedTheme);
 
         if (localStorage.getItem('zayne-sidebar') === 'true') {
             root.classList.add('sidebar-collapsed');
