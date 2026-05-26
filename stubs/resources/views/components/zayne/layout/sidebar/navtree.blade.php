@@ -95,6 +95,7 @@
         x-cloak
         x-ref="panel"
         data-zayne-placement="right-start"
+        data-zayne-hover-group="sidebar-navtree"
         x-on:mouseenter="cancelHide(); show($refs.trigger, $refs.panel)"
         x-on:mouseleave="hideSoon(220)"
         x-on:click.outside="open = false"
