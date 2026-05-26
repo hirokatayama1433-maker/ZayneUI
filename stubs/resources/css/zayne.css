@@ -508,9 +508,10 @@ html.sidebar-collapsed .sidebar-toggle-icon-expanded  { opacity: 0; }
     background: var(--zayne-color-base-100);
     border-radius: var(--zayne-radius-box);
     box-shadow: var(--zayne-shadow);
-    min-width: 320px;
-    max-width: 90vw;
-    max-height: 90dvh;
+    width: var(--zayne-modal-width, clamp(22rem, 56vw, 35rem));
+    min-width: min(20rem, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
+    max-height: var(--zayne-modal-max-height, min(80dvh, calc(100dvh - 2rem)));
     overflow-y: auto;
     box-sizing: border-box;
 }

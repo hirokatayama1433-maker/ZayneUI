@@ -22,20 +22,30 @@ class Modal extends Component
     protected function buildStyle(): void
     {
         $widths = [
-            'sm'   => '400px',
-            'md'   => '560px',
-            'lg'   => '720px',
-            'auto' => 'auto',
+            'sm'   => 'clamp(20rem, 42vw, 26rem)',
+            'md'   => 'clamp(22rem, 56vw, 35rem)',
+            'lg'   => 'clamp(24rem, 72vw, 45rem)',
+            'auto' => 'fit-content',
+        ];
+
+        $heights = [
+            'sm'   => 'min(70dvh, calc(100dvh - 2rem))',
+            'md'   => 'min(80dvh, calc(100dvh - 2rem))',
+            'lg'   => 'min(88dvh, calc(100dvh - 2rem))',
+            'auto' => 'calc(100dvh - 2rem)',
         ];
 
         $width = $widths[$this->size] ?? $widths['md'];
+        $maxHeight = $heights[$this->size] ?? $heights['md'];
 
         $this->style = Zayne::styleString([
-            'width'         => $width,
-            'max-height'    => $this->size === 'auto' ? 'none' : '90dvh',
-            'padding'       => $this->padding ?? '1.5rem',
-            'border-radius' => $this->radius  ?? 'var(--zayne-radius-box)',
-            'box-shadow'    => $this->shadow   ?? 'var(--zayne-shadow)',
+            '--zayne-modal-width'      => $width,
+            '--zayne-modal-max-height' => $maxHeight,
+            'width'                    => $width,
+            'max-height'               => $maxHeight,
+            'padding'                  => $this->padding ?? '1.5rem',
+            'border-radius'            => $this->radius  ?? 'var(--zayne-radius-box)',
+            'box-shadow'               => $this->shadow   ?? 'var(--zayne-shadow)',
         ]);
     }
 
