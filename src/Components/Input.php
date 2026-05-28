@@ -16,6 +16,7 @@ class Input extends Component
         public string $type = 'text',
         public ?string $value = null,
         public ?string $placeholder = null,
+        public bool $disabled = false,
         public string $padding = '0 0.875rem',
         public string $radius = 'var(--zayne-radius-field)',
         public ?string $shadow = null,
@@ -32,10 +33,14 @@ class Input extends Component
             'outline' => [
                 'base' => ['background' => 'var(--zayne-color-base-100)', 'color' => 'var(--zayne-color-base-content)'],
                 'primary' => ['background' => 'var(--zayne-color-base-100)', 'color' => 'var(--zayne-color-base-content)', 'border-color' => 'var(--zayne-color-primary)'],
+                'success' => ['background' => 'var(--zayne-color-base-100)', 'color' => 'var(--zayne-color-base-content)', 'border-color' => 'var(--zayne-color-success)'],
+                'danger' => ['background' => 'var(--zayne-color-base-100)', 'color' => 'var(--zayne-color-base-content)', 'border-color' => 'var(--zayne-color-danger)'],
             ],
             'soft' => [
                 'base' => ['background' => 'var(--zayne-color-base-200)', 'color' => 'var(--zayne-color-base-content)', 'border-color' => 'transparent'],
                 'primary' => ['background' => 'color-mix(in oklch, var(--zayne-color-primary) 10%, var(--zayne-color-base-100))', 'color' => 'var(--zayne-color-base-content)', 'border-color' => 'transparent'],
+                'success' => ['background' => 'color-mix(in oklch, var(--zayne-color-success) 10%, var(--zayne-color-base-100))', 'color' => 'var(--zayne-color-base-content)', 'border-color' => 'transparent'],
+                'danger' => ['background' => 'color-mix(in oklch, var(--zayne-color-danger) 10%, var(--zayne-color-base-100))', 'color' => 'var(--zayne-color-base-content)', 'border-color' => 'transparent'],
             ],
         ];
 
@@ -50,6 +55,9 @@ class Input extends Component
             'margin' => $this->margin,
             'border-width' => $this->border,
             'border-color' => $this->bordercolor,
+            '--zayne-input-focus-border' => $resolved['border-color'] ?? $this->bordercolor,
+            'opacity' => $this->disabled ? '0.5' : null,
+            'cursor' => $this->disabled ? 'not-allowed' : null,
         ], $resolved));
     }
 

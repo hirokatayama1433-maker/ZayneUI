@@ -1,3 +1,3 @@
-<select class="zayne-input zayne-select" style="{{ $style }}" {{ $attributes }}>
+<select class="zayne-input zayne-select" style="{{ $style }}" @disabled($disabled) {{ $attributes }}>
     {{ $slot }}
 </select>

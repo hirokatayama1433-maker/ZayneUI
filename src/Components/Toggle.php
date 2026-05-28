@@ -10,8 +10,11 @@ class Toggle extends Component
 {
     public string $trackStyle = '';
     public string $thumbStyle = '';
+    public string $trackInactiveBg = '';
+    public string $trackActiveBg = '';
 
     public function __construct(
+        public string $variant  = 'solid',
         public string $color    = 'primary',
         public bool   $checked  = false,
         public bool   $disabled = false,
@@ -29,6 +32,12 @@ class Toggle extends Component
         ];
 
         $accent = $colors[$this->color] ?? $colors['primary'];
+        $this->trackInactiveBg = $this->variant === 'soft'
+            ? 'color-mix(in oklch, ' . $accent . ' 14%, var(--zayne-color-base-300))'
+            : 'var(--zayne-color-base-300)';
+        $this->trackActiveBg = $this->variant === 'soft'
+            ? 'color-mix(in oklch, ' . $accent . ' 25%, var(--zayne-color-base-100))'
+            : $accent;
 
         $this->trackStyle = Zayne::styleString([
             'display'         => 'inline-flex',
@@ -40,19 +49,18 @@ class Toggle extends Component
             'cursor'          => $this->disabled ? 'not-allowed' : 'pointer',
             'opacity'         => $this->disabled ? '0.5' : '1',
             'transition'      => 'background 200ms ease',
-            'background'      => $this->checked ? $accent : 'var(--zayne-color-base-300)',
+            'background'      => $this->checked ? $this->trackActiveBg : $this->trackInactiveBg,
             'box-sizing'      => 'border-box',
         ]);
 
         $this->thumbStyle = Zayne::styleString([
             'position'        => 'absolute',
             'top'             => '3px',
-            'left'            => $this->checked ? '23px' : '3px',
             'width'           => '18px',
             'height'          => '18px',
             'border-radius'   => '999px',
             'background'      => '#ffffff',
-            'transition'      => 'left 180ms var(--ease-out-smooth)',
+            'transition'      => 'transform 180ms var(--ease-out-smooth)',
             'pointer-events'  => 'none',
         ]);
     }
