@@ -6,7 +6,9 @@
     <div
         x-show="open"
         x-cloak
-        x-on:click.self="open = false"
+        @if($closeOnOutside)
+            x-on:click.self="open = false"
+        @endif
         x-bind:class="open ? 'zayne-backdrop-enter' : 'zayne-backdrop-leave'"
         class="zayne-backdrop"
     ></div>
@@ -19,6 +21,32 @@
         class="zayne-modal-panel"
         style="{{ $style }}"
     >
+        <div style="display:flex; justify-content:flex-end; margin-bottom:0.75rem;">
+            @isset($closeTrigger)
+                <div x-on:click="open = false">{{ $closeTrigger }}</div>
+            @else
+                <button
+                    type="button"
+                    x-on:click="open = false"
+                    aria-label="Close modal"
+                    style="
+                        display:inline-flex;
+                        align-items:center;
+                        justify-content:center;
+                        width:2rem;
+                        height:2rem;
+                        border:none;
+                        border-radius:var(--zayne-radius-field);
+                        background:transparent;
+                        color:inherit;
+                        cursor:pointer;
+                    "
+                >
+                    ×
+                </button>
+            @endisset
+        </div>
+
         {{ $slot }}
     </div>
 </div>
