@@ -21,7 +21,7 @@ class PublishCommand extends Command
     protected array $publishableComponents = [
         'button', 'badge', 'alert', 'avatar', 'card', 'progress',
         'modal', 'drawer', 'dropdown', 'tooltip', 'popover',
-        'input', 'select', 'checkbox', 'toggle',
+        'input', 'textarea', 'select', 'checkbox', 'radio', 'range', 'file', 'toggle', 'fieldset',
         'layout/header', 'layout/main', 'layout/sidebar',
         'header/brand', 'header/avatar', 'header/nav',
         'sidebar/brand', 'sidebar/avatar', 'sidebar/label',

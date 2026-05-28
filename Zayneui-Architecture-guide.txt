@@ -98,8 +98,21 @@ Alpine must load AFTER @zayneScripts so the global functions are defined before 
 
 ### FORM — color + state, buildStyle() via Zayne::styleString()
 - `input`
+- `textarea`
 - `select`
 - `checkbox`
+- `radio`
+- `range`
+- `file`
+- `fieldset`
+
+`fieldset` is the wrapper component for labeled form groups:
+
+```blade
+<x-zayne.fieldset label="Email" :error="$errors->first('email')">
+    <x-zayne.input name="email" wire:model="email" />
+</x-zayne.fieldset>
+```
 
 ### OVERLAY — Alpine-powered open/close, smart auto-positioning
 - `modal` — sizes: sm, md, lg, auto
@@ -650,11 +663,16 @@ src/
     Avatar.php
     Card.php
     Input.php
+    Textarea.php
     Select.php
     Checkbox.php
+    Radio.php
+    Range.php
+    File.php
     Toggle.php
     Progress.php
     Modal.php
+    Fieldset.php
     Drawer.php
     Dropdown.php
     Tooltip.php
@@ -691,9 +709,14 @@ stubs/resources/
       avatar.blade.php
       card.blade.php
       input.blade.php
+      textarea.blade.php
       select.blade.php
       checkbox.blade.php
+      radio.blade.php
+      range.blade.php
+      file.blade.php
       toggle.blade.php
+      fieldset.blade.php
       progress.blade.php
       modal.blade.php
       drawer.blade.php

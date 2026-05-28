@@ -581,9 +581,56 @@ html.sidebar-collapsed .sidebar-toggle-icon-expanded  { opacity: 0; }
     appearance: none;
 }
 
+.zayne-textarea {
+    display: block;
+    min-height: 7rem;
+    height: auto;
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
+    line-height: 1.4;
+    resize: vertical;
+}
+
+.zayne-file {
+    display: block;
+    padding: 0.25rem;
+}
+
+.zayne-file::file-selector-button,
+.zayne-file::-webkit-file-upload-button {
+    background: var(--zayne-file-button-bg, var(--zayne-color-base-200));
+    color: var(--zayne-file-button-color, var(--zayne-color-base-content));
+    border: none;
+    border-right: var(--zayne-border-field) solid var(--zayne-file-button-border, var(--zayne-color-base-border));
+    padding: 0 0.875rem;
+    margin-right: 0.75rem;
+    height: 100%;
+    border-radius: var(--zayne-radius-field);
+    cursor: pointer;
+}
+
+.zayne-file:focus::file-selector-button,
+.zayne-file:focus::-webkit-file-upload-button {
+    outline: none;
+}
+
+.zayne-range {
+    display: block;
+    width: 100%;
+    accent-color: var(--zayne-color-primary);
+    cursor: pointer;
+    margin: 0;
+}
+
+.zayne-range:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
 /* ── Checkbox / Toggle ── */
 .zayne-checkbox,
-.zayne-toggle {
+.zayne-toggle,
+.zayne-radio {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
@@ -623,6 +670,34 @@ html.sidebar-collapsed .sidebar-toggle-icon-expanded  { opacity: 0; }
     transform: scale(1);
 }
 
+.zayne-radio-box {
+    width: var(--zayne-size-selector);
+    height: var(--zayne-size-selector);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-radius: 999px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.zayne-radio-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: 0;
+    transform: scale(0.65);
+    transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.zayne-radio-dot.is-on {
+    opacity: 1;
+    transform: scale(1);
+}
+
 .zayne-toggle-track {
     width: 44px;
     height: 24px;
@@ -643,6 +718,41 @@ html.sidebar-collapsed .sidebar-toggle-icon-expanded  { opacity: 0; }
 
 .zayne-toggle-thumb.is-on {
     transform: translateX(20px);
+}
+
+/* ── Fieldset ── */
+.zayne-fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+}
+
+.zayne-fieldset-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--zayne-color-base-content);
+    padding: 0;
+    margin: 0;
+}
+
+.zayne-fieldset-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.zayne-fieldset-hint {
+    font-size: 0.75rem;
+    color: var(--zayne-color-base-content-muted);
+}
+
+.zayne-fieldset-error {
+    font-size: 0.75rem;
+    color: var(--zayne-color-danger);
 }
 
 /* ── Avatar ── */
