@@ -14,11 +14,12 @@ class Modal extends Component
         public string  $size    = 'md',
         public ?string $width   = null,
         public ?string $height  = null,
-        public bool    $closeOnOutside = true,
+        public bool|string $closeOnOutside = true,
         public ?string $padding = null,
         public ?string $radius  = null,
         public ?string $shadow  = null,
     ) {
+        $this->closeOnOutside = filter_var($this->closeOnOutside, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) ?? true;
         $this->buildStyle();
     }
 
