@@ -433,6 +433,22 @@ html.sidebar-collapsed .sidebar-toggle-icon-expanded  { opacity: 0; }
     transition: width var(--layout-transition);
 }
 
+.zayne-button--icon-only {
+    padding: 0 !important;
+    min-width: 0;
+    aspect-ratio: 1 / 1;
+}
+
+.zayne-button--icon-only .zayne-button-icon,
+.zayne-button--icon-only .zayne-button-trailing {
+    margin: 0;
+}
+
+.zayne-icon-wrapper svg {
+    width: 100%;
+    height: 100%;
+}
+
 /* ── Badge ── */
 .zayne-badge {
     display: inline-flex;

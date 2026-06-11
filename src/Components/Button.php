@@ -11,19 +11,21 @@ class Button extends Component
     public string $style = '';
 
     public function __construct(
-        public string  $variant     = 'solid',
-        public string  $color       = 'primary',
-        public string  $size        = 'md',
-        public ?string $href        = null,
-        public ?string $padding     = null,
-        public string  $radius      = 'var(--zayne-radius-field)',
-        public ?string $shadow      = null,
-        public string  $gap         = 'var(--zayne-gap-button)',
-        public ?string $margin      = null,
-        public ?string $border      = null,
-        public ?string $bordercolor = null,
-        public ?string $background  = null,
-        public ?string $textcolor   = null,
+        public string  $variant       = 'solid',
+        public string  $color         = 'primary',
+        public string  $size          = 'md',
+        public ?string $href          = null,
+        public ?string $icon          = null,
+        public ?string $iconTrailing  = null,
+        public ?string $padding       = null,
+        public string  $radius        = 'var(--zayne-radius-field)',
+        public ?string $shadow        = null,
+        public string  $gap           = 'var(--zayne-gap-button)',
+        public ?string $margin        = null,
+        public ?string $border        = null,
+        public ?string $bordercolor   = null,
+        public ?string $background    = null,
+        public ?string $textcolor     = null,
     ) {
         $this->buildStyle();
     }
