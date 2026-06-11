@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @zayneStyles
 </head>
-<body>
+<body class="zaynemainlayout">
     @isset($header)
         {{ $header }}
     @endisset
-    {{ $slot }}
+
+    <zayne:layout.main>
+        {{ $slot }}
+    </zayne:layout.main>
+
     @zayneScripts
 </body>
 </html>

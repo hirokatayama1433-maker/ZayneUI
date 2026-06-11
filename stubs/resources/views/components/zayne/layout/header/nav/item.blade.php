@@ -1,17 +1,17 @@
 @php
-    use TailwindMerge\Laravel\Facades\TailwindMerge;
-    $finalClasses = TailwindMerge::merge($classes, $attributes->get('class', ''));
     $tag = $href ? 'a' : 'button';
+    $finalClasses = trim($attributes->get('class', ''));
 @endphp
 
 <{{ $tag }}
     @if($href) href="{{ $href }}" @endif
     @if($tag === 'button') type="button" @endif
     {{ $attributes->except('class') }}
-    class="{{ $finalClasses }}"
+    @if($finalClasses !== '') class="{{ $finalClasses }}" @endif
+    style="position:relative; display:flex; align-items:center; gap:0.5rem; padding:0 0.75rem; height:38px; cursor:pointer; transition:color 150ms ease; {{ $active ? 'color:var(--zayne-color-primary-content); font-weight:600; opacity:1;' : 'color:var(--zayne-color-primary-content); opacity:0.6;' }}"
 >
     @isset($iconslot)
-        <span class="shrink-0">{{ $iconslot }}</span>
+        <span style="flex-shrink:0;">{{ $iconslot }}</span>
     @endisset
 
     <span>{{ $slot }}</span>
@@ -21,15 +21,13 @@
     @endisset
 
     @isset($trailing)
-        <span class="shrink-0 opacity-50">{{ $trailing }}</span>
+        <span style="flex-shrink:0; opacity:0.5;">{{ $trailing }}</span>
     @endisset
 
-    {{-- Active underline --}}
     @if($active)
         <span
-            class="rounded-full w-5 opacity-50"
+            style="position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:20px; height:2px; border-radius:9999px; background-color:var(--zayne-color-primary-content);"
             aria-hidden="true"
-            style="position: absolute; bottom: 0; left: 50%; right: 50%; height: 2px; border-radius: 9999px; background-color: var(--zayne-color-primary-content);"
         ></span>
     @endif
 

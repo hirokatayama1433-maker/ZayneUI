@@ -1,3 +1,3 @@
-<nav class="flex items-center gap-1">
+<nav style="display:flex; align-items:center; gap:0.25rem;" {{ $attributes }}>
     {{ $slot }}
 </nav>

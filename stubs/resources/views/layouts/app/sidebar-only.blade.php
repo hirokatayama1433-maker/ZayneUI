@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @zayneStyles
 </head>
-<body>
-    <zayne:layout>
-        <x-slot:sidebar>{{ $sidebar ?? '' }}</x-slot:sidebar>
+<body class="zaynemainlayout">
+    @isset($sidebar)
+        {{ $sidebar }}
+    @endisset
+
+    <zayne:layout.main>
         {{ $slot }}
-    </zayne:layout>
+    </zayne:layout.main>
+
     @zayneScripts
 </body>
 </html>

@@ -1,39 +1,36 @@
 @php
-    use TailwindMerge\Laravel\Facades\TailwindMerge;
-    $finalClasses = TailwindMerge::merge($classes, $attributes->get('class', ''));
     $tag = $href ? 'a' : 'button';
-    $initials = collect(explode(' ', trim($name)))->map(fn($w) => strtoupper($w[0] ?? ''))->take(2)->join('');
+    $finalClasses = trim($attributes->get('class', ''));
 @endphp
 
 <{{ $tag }}
     @if($href) href="{{ $href }}" @endif
     @if($tag === 'button') type="button" @endif
     {{ $attributes->except('class') }}
-    class="{{ $finalClasses }}"
+    @if($finalClasses !== '') class="{{ $finalClasses }}" @endif
+    style="display:flex; align-items:center; gap:0.5rem; border:none; background:transparent; padding:0; cursor:pointer; color:inherit;"
 >
-    {{-- Avatar image --}}
-    <div class="shrink-0 w-[38px] h-[38px] flex justify-center items-center">
+    <div style="width:38px; height:38px; display:flex; justify-content:center; align-items:center; flex-shrink:0;">
         @if($src)
             <img
                 src="{{ $src }}"
                 alt="{{ $alt ?: $name }}"
-                class="w-9.5 h-9.5 rounded-(--zayne-radius-field) object-cover"
+                style="width:38px; height:38px; border-radius:var(--zayne-radius-field); object-fit:cover;"
             />
         @else
-            {{-- Fallback initials --}}
-            <div class="w-9.5 h-9.5 rounded-(--zayne-radius-field) flex items-center justify-center text-xs font-semibold bg-(--zayne-color-accent) text-white">
+            <div style="width:38px; height:38px; border-radius:var(--zayne-radius-field); display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:600; background:var(--zayne-color-accent); color:var(--zayne-color-primary-content);">
                 {{ collect(explode(' ', trim($name)))->map(fn($w) => strtoupper($w[0] ?? ''))->take(2)->join('') }}
             </div>
         @endif
     </div>
 
-    {{-- Caret --}}
     @if($caret)
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
             stroke-width="2" stroke="currentColor"
-            class="size-3 opacity-50">
+            style="width:1rem; height:1rem; opacity:0.5;"
+        >
             <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-        </svg>  
+        </svg>
     @endif
 
 </{{ $tag }}>
