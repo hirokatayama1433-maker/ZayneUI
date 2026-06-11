@@ -17,7 +17,7 @@
 >
     @if($icon !== null)
         <span class="zayne-button-icon">
-            <x-zayne.icon :name="$icon" />
+            <zayne:icon :name="$icon" />
         </span>
     @elseif(isset($iconslot))
         <span class="zayne-button-icon">{{ $iconslot }}</span>
@@ -29,7 +29,7 @@
 
     @if($iconTrailing !== null)
         <span class="zayne-button-trailing">
-            <x-zayne.icon :name="$iconTrailing" />
+            <zayne:icon :name="$iconTrailing" />
         </span>
     @elseif(isset($trailing))
         <span class="zayne-button-trailing">{{ $trailing }}</span>
