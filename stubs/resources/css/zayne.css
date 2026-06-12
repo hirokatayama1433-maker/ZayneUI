@@ -1064,6 +1064,45 @@ html.sidebar-collapsed .sidebar-toggle-icon-expanded  { opacity: 0; }
 }
 
 /* ============================================================
+|  FLOAT LABEL
+============================================================ */
+
+.zayne-input--float {
+    position: relative;
+}
+
+.zayne-input-float-label {
+    position: absolute;
+    left: 0.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: var(--zayne-color-base-content);
+    opacity: 0.6;
+    pointer-events: none;
+    background: var(--zayne-color-base-100);
+    padding: 0 0.25rem;
+    transition: top 0.15s ease, font-size 0.15s ease, opacity 0.15s ease, color 0.15s ease;
+}
+
+.zayne-input--float .zayne-input:focus ~ .zayne-input-float-label,
+.zayne-input--float .zayne-input:not(:placeholder-shown) ~ .zayne-input-float-label {
+    top: 0;
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+.zayne-input--float .zayne-input:focus ~ .zayne-input-float-label {
+    color: var(--zayne-input-focus-border, var(--zayne-color-primary));
+    opacity: 1;
+}
+
+/* When an icon is present, shift the float label right to clear it */
+.zayne-input--float:has(.zayne-input-icon--leading) .zayne-input-float-label {
+    left: 2rem;
+}
+
+/* ============================================================
 |  SIZE VARIANTS
 ============================================================ */
 

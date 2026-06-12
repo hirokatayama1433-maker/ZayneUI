@@ -22,6 +22,8 @@ class Input extends Component
         public bool    $invalid     = false,
         public ?string $icon        = null,
         public ?string $kbd         = null,
+        public ?string $label       = null,
+        public string  $labelposition = 'top',
         public bool    $clearable   = false,
         public bool    $copyable    = false,
         public bool    $viewable    = false,
@@ -57,11 +59,10 @@ class Input extends Component
             ?? $variantStyles['outline']['base'];
 
         $sizePadding = [
-                        'xs' => '0 0.5rem',
-                        'sm' => '0 0.625rem',
-                        'md' => '0 0.875rem',
-                        'lg' => '0 1rem',
-                    ];
+            'sm' => '0 0.625rem',
+            'md' => '0 0.875rem',
+            'lg' => '0 1rem',
+        ];
 
         if ($this->invalid) {
             $resolved['border-color'] = 'var(--zayne-color-danger)';
