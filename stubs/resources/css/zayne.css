@@ -944,7 +944,6 @@ html.sidebar-collapsed .sidebar-toggle-icon-expanded  { opacity: 0; }
     box-sizing: border-box;
 }
 
-
 /* ============================================================
 |  INPUT WRAPPER
 ============================================================ */
@@ -1068,18 +1067,27 @@ html.sidebar-collapsed .sidebar-toggle-icon-expanded  { opacity: 0; }
 |  SIZE VARIANTS
 ============================================================ */
 
+.zayne-input--xs {
+    font-size: 0.75rem;
+}
+
+.zayne-input--xs .zayne-input,
+.zayne-input--xs input.zayne-input {
+    height: 1.5rem; /* 24px */
+}
+
 .zayne-input--sm {
     font-size: 0.8125rem;
 }
 
 .zayne-input--sm .zayne-input,
 .zayne-input--sm input.zayne-input {
-    height: 1.75rem;
+    height: 2rem; /* 32px */
 }
 
 .zayne-input--md .zayne-input,
 .zayne-input--md input.zayne-input {
-    height: 2.25rem;
+    height: 2.5rem; /* 40px */
 }
 
 .zayne-input--lg {
