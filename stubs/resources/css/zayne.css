@@ -954,14 +954,18 @@ html.sidebar-collapsed .sidebar-toggle-icon-expanded  { opacity: 0; }
     align-items: center;
     gap: 0.5rem;
     border-style: solid;
-    transition: border-color 0.15s ease;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .zayne-input-wrapper:focus-within {
     border-color: var(--zayne-input-focus-border, var(--zayne-color-primary));
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--zayne-input-focus-border, var(--zayne-color-primary)) 25%, transparent);
 }
 
-.zayne-input-wrapper--invalid,
+.zayne-input-wrapper.zayne-input--invalid:focus-within {
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--zayne-color-danger) 25%, transparent);
+}
+
 .zayne-input-wrapper.zayne-input--invalid {
     border-color: var(--zayne-color-danger);
 }
@@ -975,7 +979,12 @@ html.sidebar-collapsed .sidebar-toggle-icon-expanded  { opacity: 0; }
     color: inherit;
     font: inherit;
     padding: 0;
+    height: 100%;
 }
+
+/* ============================================================
+|  ICONS & ACTIONS
+============================================================ */
 
 .zayne-input-icon {
     display: inline-flex;
@@ -1030,7 +1039,35 @@ html.sidebar-collapsed .sidebar-toggle-icon-expanded  { opacity: 0; }
     height: 100%;
 }
 
-/* Size variants — wrapper controls overall height/padding */
+/* ============================================================
+|  PREFIX / SUFFIX AFFIXES
+============================================================ */
+
+.zayne-input-affix {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    height: 60%;
+    font-size: 0.875rem;
+    color: var(--zayne-color-base-content);
+    opacity: 0.6;
+    white-space: nowrap;
+}
+
+.zayne-input-affix--prefix {
+    padding-right: 0.75rem;
+    border-right: 1px solid var(--zayne-color-base-border);
+}
+
+.zayne-input-affix--suffix {
+    padding-left: 0.75rem;
+    border-left: 1px solid var(--zayne-color-base-border);
+}
+
+/* ============================================================
+|  SIZE VARIANTS
+============================================================ */
+
 .zayne-input--sm {
     font-size: 0.8125rem;
 }

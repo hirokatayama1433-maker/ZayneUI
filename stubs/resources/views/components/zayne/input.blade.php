@@ -3,9 +3,6 @@
     $hasLeadingIcon = $icon !== null || isset($iconslot);
     $hasTrailingIcon = $iconTrailing !== null || isset($trailing);
 
-    // viewable forces a trailing eye toggle icon, copyable a copy icon,
-    // clearable a clear (x) icon — only one trailing control renders at a time,
-    // priority: explicit trailing > viewable > copyable > clearable
     $trailingControl = match (true) {
         $hasTrailingIcon => 'custom',
         $viewable        => 'viewable',
@@ -26,6 +23,12 @@
     @if($copyable) data-zayne-input-copyable @endif
     @if($viewable) data-zayne-input-viewable @endif
 >
+    @isset($prefix)
+        <div class="zayne-input-affix zayne-input-affix--prefix">
+            {{ $prefix }}
+        </div>
+    @endisset
+
     @if($icon !== null)
         <span class="zayne-input-icon zayne-input-icon--leading">
             <zayne:icon :name="$icon" />
@@ -81,4 +84,10 @@
     @if($trailingControl === null && isset($trailing))
         <span class="zayne-input-icon zayne-input-icon--trailing">{{ $trailing }}</span>
     @endif
+
+    @isset($suffix)
+        <div class="zayne-input-affix zayne-input-affix--suffix">
+            {{ $suffix }}
+        </div>
+    @endisset
 </div>
