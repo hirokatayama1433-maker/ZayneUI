@@ -346,3 +346,57 @@ Theme.set(Theme.current);
 ============================================================ */
 
 window.Zayne = { Sidebar, Subbar, Theme };
+
+
+/* ============================================================
+|  SECTION 6 - INPUT ACTIONS
+============================================================ */
+
+document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-zayne-input-action]');
+    if (!btn) return;
+
+    const wrapper = btn.closest('.zayne-input-wrapper');
+    const field = wrapper?.querySelector('[data-zayne-input-field]');
+    if (!field) return;
+
+    const action = btn.dataset.zayneInputAction;
+
+    if (action === 'clearable') {
+        field.value = '';
+        field.dispatchEvent(new Event('input', { bubbles: true }));
+        field.focus();
+        return;
+    }
+
+    if (action === 'copyable') {
+        navigator.clipboard?.writeText(field.value ?? '').then(() => {
+            const copyIcon   = btn.querySelector('[data-zayne-icon-copy]');
+            const copiedIcon = btn.querySelector('[data-zayne-icon-copied]');
+            if (!copyIcon || !copiedIcon) return;
+
+            copyIcon.style.display   = 'none';
+            copiedIcon.style.display = '';
+
+            setTimeout(() => {
+                copyIcon.style.display   = '';
+                copiedIcon.style.display = 'none';
+            }, 1500);
+        });
+        return;
+    }
+
+    if (action === 'viewable') {
+        const showIcon = btn.querySelector('[data-zayne-icon-show]');
+        const hideIcon = btn.querySelector('[data-zayne-icon-hide]');
+        const isPassword = field.type === 'password';
+
+        field.type = isPassword ? 'text' : 'password';
+
+        if (showIcon && hideIcon) {
+            showIcon.style.display = isPassword ? 'none' : '';
+            hideIcon.style.display = isPassword ? '' : 'none';
+        }
+        return;
+    }
+});
