@@ -12,12 +12,13 @@
     };
 
     $isPassword = $type === 'password';
+    $isFloat = $label !== null && $labelposition === 'float';
 
     $inputAttributes = $attributes->except(['class', 'icon', 'icon:trailing']);
 @endphp
 
 <div
-    class="zayne-input-wrapper zayne-input--{{ $size }}{{ $invalid ? ' zayne-input--invalid' : '' }}"
+    class="zayne-input-wrapper zayne-input--{{ $size }}{{ $invalid ? ' zayne-input--invalid' : '' }}{{ $isFloat ? ' zayne-input--float' : '' }}"
     style="{{ $style }}"
     @if($clearable) data-zayne-input-clearable @endif
     @if($copyable) data-zayne-input-copyable @endif
@@ -43,11 +44,19 @@
         @disabled($disabled)
         @if($readonly) readonly @endif
         @if($value !== null) value="{{ $value }}" @endif
-        @if($placeholder !== null) placeholder="{{ $placeholder }}" @endif
+        @if($isFloat)
+            placeholder=" "
+        @elseif($placeholder !== null)
+            placeholder="{{ $placeholder }}"
+        @endif
         @if($invalid) aria-invalid="true" @endif
         data-zayne-input-field
         {{ $inputAttributes }}
     >
+
+    @if($isFloat)
+        <label class="zayne-input-float-label">{{ $label }}</label>
+    @endif
 
     @if($kbd !== null)
         <kbd class="zayne-input-kbd">{{ $kbd }}</kbd>
