@@ -1137,3 +1137,27 @@ html.sidebar-collapsed .sidebar-toggle-icon-expanded  { opacity: 0; }
 .zayne-input--lg input.zayne-input {
     height: 2.75rem;
 }
+/* Table — structural only, visual styling is inline via $style */
+.zayne-table-container {
+    overflow-x: auto;
+}
+.zayne-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.zayne-table-head-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+.zayne-table-head[x-data] {
+    cursor: pointer;
+    user-select: none;
+}
+.zayne-table-sort-icon {
+    display: inline-flex;
+    transition: transform var(--layout-transition, 200ms);
+}
+.zayne-table-sort-icon[data-direction="asc"] {
+    transform: rotate(180deg);
+}

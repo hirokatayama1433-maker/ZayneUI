@@ -400,3 +400,19 @@ document.addEventListener('click', (e) => {
         return;
     }
 });
+function zayneTableSort() {
+    return {
+        toggle(column) {
+            if (!column) return;
+
+            this.$el.dispatchEvent(new CustomEvent('zayne-table-sort', {
+                bubbles: true,
+                detail: { column }
+            }));
+        }
+    };
+}
+
+document.addEventListener('alpine:init', () => {
+    window.Alpine.data('zayneTableSort', zayneTableSort);
+});
