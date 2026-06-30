@@ -14,7 +14,7 @@ class Head extends Component
         public string $align = 'start',
         public ?string $sort = null,
         public bool $pin = false,
-        public ?string $padding = null
+        public string $padding = '0.75rem 1.25rem'
     ) {
         $this->buildStyle();
     }
@@ -30,6 +30,10 @@ class Head extends Component
         $base = [
             'text-align' => $alignMap[$this->align] ?? 'left',
             'padding' => $this->padding,
+            'font-size' => '0.8rem',
+            'font-weight' => '600',
+            'border-bottom' => '1px solid var(--zayne-color-base-border)',
+            'white-space' => 'nowrap',
         ];
 
         if ($this->pin) {

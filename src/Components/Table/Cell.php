@@ -14,7 +14,7 @@ class Cell extends Component
         public string $align = 'start',
         public bool $emphasis = false,
         public bool $pin = false,
-        public ?string $padding = null
+        public string $padding = '0.75rem 1.25rem'
     ) {
         $this->buildStyle();
     }
@@ -30,7 +30,9 @@ class Cell extends Component
         $base = [
             'text-align' => $alignMap[$this->align] ?? 'left',
             'padding' => $this->padding,
-            'font-weight' => $this->emphasis ? '600' : null,
+            'font-size' => '0.85rem',
+            'font-weight' => $this->emphasis ? '600' : '400',
+            'border-bottom' => '1px solid var(--zayne-color-base-border)',
         ];
 
         if ($this->pin) {
