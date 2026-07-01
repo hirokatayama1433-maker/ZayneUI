@@ -14,7 +14,7 @@ class PublishCommand extends Command
                             {--all : Publish all components}
                             {--force : Overwrite existing files}';
 
-    protected $description = 'Publish Zayne UI components for customization.';
+    protected $description = 'Publish Zayne UI components and layouts for customization.';
 
     protected Filesystem $files;
 
@@ -28,6 +28,13 @@ class PublishCommand extends Command
         'sidebar/navitem', 'sidebar/navtree', 'sidebar/navtreeitem',
     ];
 
+    protected array $publishableLayouts = [
+        'app/header-only',
+        'app/sidebar-only',
+        'app/sidebar-header',
+        'auth/base',
+    ];
+
     public function __construct(Filesystem $files)
     {
         parent::__construct();
@@ -38,7 +45,7 @@ class PublishCommand extends Command
     public function handle(): int
     {
         $targets = $this->option('all')
-            ? $this->publishableComponents
+            ? array_merge($this->publishableComponents, $this->publishableLayouts)
             : ($this->argument('components') ?: $this->askWhichComponent());
 
         foreach ($targets as $component) {
@@ -50,7 +57,10 @@ class PublishCommand extends Command
 
     protected function askWhichComponent(): array
     {
-        $choice = $this->choice('Which component would you like to publish?', $this->publishableComponents);
+        $choice = $this->choice(
+            'Which component or layout would you like to publish?',
+            array_merge($this->publishableComponents, $this->publishableLayouts)
+        );
 
         return [$choice];
     }
@@ -59,8 +69,7 @@ class PublishCommand extends Command
     {
         $force = $this->option('force');
 
-        $bladeSrc = __DIR__ . '/../../stubs/resources/views/components/zayne/' . $component . '.blade.php';
-        $bladeDest = resource_path('views/components/zayne/' . $component . '.blade.php');
+        [$bladeSrc, $bladeDest, $publishLocation] = $this->resolveBladePath($component);
 
         if ($this->files->exists($bladeSrc)) {
             if ($this->files->exists($bladeDest) && ! $force) {
@@ -68,8 +77,15 @@ class PublishCommand extends Command
             } else {
                 $this->files->ensureDirectoryExists(dirname($bladeDest));
                 $this->files->copy($bladeSrc, $bladeDest);
-                $this->components->twoColumnDetail("<fg=green>Published</> {$component}.blade.php", '<fg=gray>resources/views/components/zayne/</>');
+                $this->components->twoColumnDetail(
+                    "<fg=green>Published</> {$component}.blade.php",
+                    "<fg=gray>{$publishLocation}</>"
+                );
             }
+        }
+
+        if ($this->isLayoutTarget($component)) {
+            return;
         }
 
         $className = $this->componentToClassName($component);
@@ -97,5 +113,25 @@ class PublishCommand extends Command
         return collect(explode('/', $component))
             ->map(fn ($part) => str($part)->studly())
             ->implode('/');
+    }
+
+    protected function resolveBladePath(string $component): array
+    {
+        $componentSrc = __DIR__ . '/../../stubs/resources/views/components/zayne/' . $component . '.blade.php';
+        $componentDest = resource_path('views/components/zayne/' . $component . '.blade.php');
+
+        if ($this->files->exists($componentSrc)) {
+            return [$componentSrc, $componentDest, 'resources/views/components/zayne/'];
+        }
+
+        $layoutSrc = __DIR__ . '/../../stubs/resources/views/layouts/' . $component . '.blade.php';
+        $layoutDest = resource_path('views/layouts/' . $component . '.blade.php');
+
+        return [$layoutSrc, $layoutDest, 'resources/views/layouts/'];
+    }
+
+    protected function isLayoutTarget(string $component): bool
+    {
+        return $this->files->exists(__DIR__ . '/../../stubs/resources/views/layouts/' . $component . '.blade.php');
     }
 }
