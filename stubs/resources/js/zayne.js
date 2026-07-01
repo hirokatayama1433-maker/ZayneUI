@@ -381,11 +381,20 @@ const Theme = {
         document.documentElement.classList.remove('light', 'dark', 'abyss');
         document.documentElement.classList.add(theme);
         localStorage.setItem('zayne-theme', theme);
+        document.dispatchEvent(new CustomEvent('zayne-theme-changed', {
+            detail: { theme }
+        }));
     },
 
     toggle() {
         if      (this.current === 'light') this.set('dark');
         else if (this.current === 'dark')  this.set('light');
+        else                               this.set('light');
+    },
+
+    next() {
+        if      (this.current === 'light') this.set('dark');
+        else if (this.current === 'dark')  this.set('abyss');
         else                               this.set('light');
     },
 

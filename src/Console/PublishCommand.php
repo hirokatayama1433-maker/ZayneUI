@@ -22,6 +22,7 @@ class PublishCommand extends Command
         'button', 'badge', 'alert', 'avatar', 'card', 'progress',
         'modal', 'drawer', 'dropdown', 'tooltip', 'popover',
         'input', 'textarea', 'select', 'checkbox', 'radio', 'range', 'file', 'toggle', 'fieldset',
+        'theme-toggle',
         'layout/header', 'layout/main', 'layout/sidebar',
         'header/brand', 'header/avatar', 'header/nav',
         'sidebar/brand', 'sidebar/avatar', 'sidebar/label',
