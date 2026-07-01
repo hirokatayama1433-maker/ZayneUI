@@ -20,6 +20,10 @@
 
     {{-- Code block --}}
     @isset($code)
+        @php
+            $codeContent = trim((string) $code);
+        @endphp
+
         <div
             x-data="{ copied: false }"
             style="
@@ -40,7 +44,7 @@
                     opacity: 0.85;
                     overflow-x: auto;
                     white-space: pre;
-                "><code>{{ $code }}</code></pre>
+                "><code>@php echo htmlspecialchars($codeContent, ENT_QUOTES, 'UTF-8'); @endphp</code></pre>
 
             <button
                 x-on:click="
