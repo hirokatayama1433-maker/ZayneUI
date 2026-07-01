@@ -6,6 +6,34 @@ use Illuminate\View\Compilers\ComponentTagCompiler;
 
 class ZayneTagCompiler extends ComponentTagCompiler
 {
+    public function compile(string $value): string
+    {
+        if (! str_contains($value, '@verbatim')) {
+            return parent::compile($value);
+        }
+
+        $segments = preg_split(
+            '/(@verbatim.*?@endverbatim)/s',
+            $value,
+            -1,
+            PREG_SPLIT_DELIM_CAPTURE
+        );
+
+        $compiled = '';
+
+        foreach ($segments as $segment) {
+            if ($segment === '') {
+                continue;
+            }
+
+            $compiled .= str_starts_with($segment, '@verbatim')
+                ? $segment
+                : parent::compile($segment);
+        }
+
+        return $compiled;
+    }
+
     protected function compileOpeningTags(string $value): string
     {
         $pattern = "/
