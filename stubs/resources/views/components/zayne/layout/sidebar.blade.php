@@ -2,7 +2,6 @@
     class="zaynesidebar"
     data-mode="{{ $mode }}"
     data-collapse="{{ $collapse }}"
-    x-bind:class="{ 'is-open': mobileOpen }"
     style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; overflow-y: auto;"
     onscroll="sidebarScrollCheck(this)" 
 >
@@ -86,3 +85,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     </aside>
 </div>
+
+<button
+    type="button"
+    class="zayne-mobile-toggle"
+    onclick="Zayne.Sidebar.toggle()"
+    aria-label="Toggle sidebar"
+>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+        stroke-width="1.5" stroke="currentColor" style="width:1.25rem;height:1.25rem;">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+    </svg>
+</button>
+
+<button
+    type="button"
+    class="zayne-mobile-backdrop"
+    onclick="Zayne.Sidebar.closeMobile()"
+    aria-label="Close sidebar"
+></button>

@@ -3,6 +3,7 @@
 <{{ $tag }}
     @if($href !== '') href="{{ $href }}" @endif
     @if($tag === 'button') type="button" @endif
+    onclick="Zayne.Sidebar.closeMobile()"
     {{ $attributes->except('class') }}
     style="{{ $baseStyle }}"
     @if(!$active)

@@ -204,8 +204,31 @@ const Sidebar = {
     scrollRegions:   [],
     savedOpenTrees:  new Set(),
 
+    mobileQuery: window.matchMedia('(max-width: 768px)'),
+
     get collapsed() {
         return document.documentElement.classList.contains('sidebar-collapsed');
+    },
+
+    get mobileOpen() {
+        return document.documentElement.classList.contains('sidebar-mobile-open');
+    },
+
+    isMobile() {
+        return this.mobileQuery.matches;
+    },
+
+    openMobile() {
+        if (!this.isMobile()) return;
+        document.documentElement.classList.add('sidebar-mobile-open');
+    },
+
+    closeMobile() {
+        document.documentElement.classList.remove('sidebar-mobile-open');
+    },
+
+    toggleMobile() {
+        this.mobileOpen ? this.closeMobile() : this.openMobile();
     },
 
     get mode() {
@@ -213,19 +236,50 @@ const Sidebar = {
     },
 
     collapse() {
+        if (this.isMobile()) {
+            this.closeMobile();
+            return;
+        }
+
         if (this.mode === 'static') return;
         document.documentElement.classList.add('sidebar-collapsed');
         localStorage.setItem('zayne-sidebar', 'true');
     },
 
     expand() {
+        if (this.isMobile()) {
+            this.openMobile();
+            return;
+        }
+
         if (this.mode === 'static') return;
         document.documentElement.classList.remove('sidebar-collapsed');
         localStorage.setItem('zayne-sidebar', 'false');
     },
 
     toggle() {
+        if (this.isMobile()) {
+            this.toggleMobile();
+            return;
+        }
+
         this.collapsed ? this.expand() : this.collapse();
+    },
+
+    syncMobileState() {
+        const closeIfDesktop = () => {
+            if (!this.isMobile()) {
+                this.closeMobile();
+            }
+        };
+
+        if (typeof this.mobileQuery.addEventListener === 'function') {
+            this.mobileQuery.addEventListener('change', closeIfDesktop);
+        } else if (typeof this.mobileQuery.addListener === 'function') {
+            this.mobileQuery.addListener(closeIfDesktop);
+        }
+
+        closeIfDesktop();
     },
 
     syncCollapseState() {
@@ -278,6 +332,7 @@ const Sidebar = {
         }
 
         this.syncCollapseState();
+        this.syncMobileState();
 
         document.addEventListener('DOMContentLoaded', () => {
             this.initScrollRegions();
