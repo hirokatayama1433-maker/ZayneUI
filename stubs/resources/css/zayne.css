@@ -897,8 +897,40 @@ html.sidebar-collapsed .sidebar-toggle-icon-expanded  { opacity: 0; }
         pointer-events: auto;
     }
 
+    html.sidebar-mobile-open .zaynesidebar aside,
+    html.sidebar-mobile-open .zaynesidebar[data-collapse="viewicons"] aside,
+    html.sidebar-mobile-open .zaynesidebar[data-collapse="full"] aside {
+        width: min(86vw, var(--sidebar-expanded-w)) !important;
+        padding: var(--zayne-sidebar-mobile-padding, 10px) !important;
+    }
+
     html.sidebar-mobile-open .zaynesidebar aside {
         transform: translateX(0);
+    }
+
+    html.sidebar-mobile-open .sidebar-label {
+        opacity: 1 !important;
+        max-width: none !important;
+        pointer-events: auto !important;
+    }
+
+    html.sidebar-mobile-open .sidebar-labelwrap {
+        padding: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    html.sidebar-mobile-open .sidebar-divider {
+        opacity: 0 !important;
+        max-height: 0 !important;
+    }
+
+    html.sidebar-mobile-open .sidebar-toggle-icon-collapsed {
+        opacity: 0 !important;
+    }
+
+    html.sidebar-mobile-open .sidebar-toggle-icon-expanded {
+        opacity: 1 !important;
     }
 
     .zayne-mobile-toggle {
