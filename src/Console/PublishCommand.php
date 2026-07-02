@@ -153,25 +153,31 @@ class PublishCommand extends Command
     }
 
     protected function resolveBladePath(string $component): array
-    {
-        // 1. zayne components → views/components/zayne/
-        $componentSrc  = __DIR__ . '/../../stubs/resources/views/components/zayne/' . $component . '.blade.php';
-        $componentDest = resource_path('views/components/zayne/' . $component . '.blade.php');
+        {
+            // 1. zayne components → views/components/zayne/
+            $componentSrc  = __DIR__ . '/../../stubs/resources/views/components/zayne/' . $component . '.blade.php';
+            $componentDest = resource_path('views/components/zayne/' . $component . '.blade.php');
 
-        if ($this->files->exists($componentSrc)) {
-            return [$componentSrc, $componentDest, 'resources/views/components/zayne/'];
+            if ($this->files->exists($componentSrc)) {
+                return [$componentSrc, $componentDest, 'resources/views/components/zayne/'];
+            }
+
+            // 2. layouts/* and auth/* → views/components/{layouts|auth}/
+            //    Source lives in stubs/resources/views/components/{layouts|auth}/
+            //    Destination goes to views/components/{layouts|auth}/
+            $viewSrc  = __DIR__ . '/../../stubs/resources/views/components/' . $component . '.blade.php';
+            $viewDest = resource_path('views/components/' . $component . '.blade.php');
+
+            if ($this->files->exists($viewSrc)) {
+                return [$viewSrc, $viewDest, 'resources/views/components/' . dirname($component) . '/'];
+            }
+
+            // 3. Legacy fallback for old stub locations (views/layouts/, views/auth/)
+            $legacySrc  = __DIR__ . '/../../stubs/resources/views/' . $component . '.blade.php';
+            $legacyDest = resource_path('views/components/' . $component . '.blade.php');
+
+            return [$legacySrc, $legacyDest, 'resources/views/components/' . dirname($component) . '/'];
         }
-
-        // 2. layouts/* and auth/* → views/components/{layouts|auth}/
-        //    Source lives in stubs/resources/views/{layouts|auth}/
-        //    Destination goes to views/components/{layouts|auth}/
-        //    so <x-layouts.layout> and <x-auth.guest> resolve via the
-        //    components/ auto-discovery path.
-        $viewSrc  = __DIR__ . '/../../stubs/resources/views/' . $component . '.blade.php';
-        $viewDest = resource_path('views/components/' . $component . '.blade.php');
-
-        return [$viewSrc, $viewDest, 'resources/views/components/' . dirname($component) . '/'];
-    }
 
     protected function isLayoutTarget(string $component): bool
     {
