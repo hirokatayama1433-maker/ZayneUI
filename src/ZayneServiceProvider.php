@@ -21,6 +21,7 @@ class ZayneServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->bootComponents();
+        $this->bootLayouts();
         $this->bootTagCompiler();
         $this->bootAssetManager();
         $this->bootDirectives();
@@ -41,6 +42,20 @@ class ZayneServiceProvider extends ServiceProvider
         }
 
         Blade::anonymousComponentPath($packageViewPath, 'zayne');
+    }
+
+    protected function bootLayouts(): void
+    {
+        // User-published layouts always win — registered first so Laravel
+        // resolves them before falling back to the package stubs.
+        if (function_exists('resource_path') && file_exists(resource_path('views/layouts'))) {
+            Blade::anonymousComponentPath(resource_path('views/layouts'), 'layouts');
+        }
+
+        // Auth layouts
+        if (function_exists('resource_path') && file_exists(resource_path('views/auth'))) {
+            Blade::anonymousComponentPath(resource_path('views/auth'), 'auth');
+        }
     }
 
     protected function bootTagCompiler(): void
