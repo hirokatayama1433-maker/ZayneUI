@@ -30,24 +30,45 @@ class PublishCommand extends Command
     ];
 
     protected array $publishableLayouts = [
-        'app/header-only',
-        'app/sidebar-only',
-        'app/sidebar-header',
-        'auth/base',
+        'layouts/layout',
+        'layouts/layout2',
+        'layouts/layout3',
+    ];
+
+    protected array $publishableAuthLayouts = [
+        'auth/guest',
+        'auth/guest2',
+    ];
+
+    protected array $layoutPartials = [
+        'layouts/partials/header',
+        'layouts/partials/sidebar',
+    ];
+
+    protected array $layoutPartialDependencies = [
+        'layouts/layout'  => ['layouts/partials/header', 'layouts/partials/sidebar'],
+        'layouts/layout2' => ['layouts/partials/sidebar'],
+        'layouts/layout3' => ['layouts/partials/header'],
     ];
 
     public function __construct(Filesystem $files)
     {
         parent::__construct();
-
         $this->files = $files;
     }
 
     public function handle(): int
     {
         $targets = $this->option('all')
-            ? array_merge($this->publishableComponents, $this->publishableLayouts)
+            ? array_merge(
+                $this->publishableComponents,
+                $this->publishableLayouts,
+                $this->publishableAuthLayouts,
+                $this->layoutPartials
+            )
             : ($this->argument('components') ?: $this->askWhichComponent());
+
+        $targets = $this->withPartialDependencies($targets);
 
         foreach ($targets as $component) {
             $this->publishComponent($component);
@@ -56,11 +77,26 @@ class PublishCommand extends Command
         return self::SUCCESS;
     }
 
+    protected function withPartialDependencies(array $targets): array
+    {
+        $withDependencies = $targets;
+
+        foreach ($targets as $target) {
+            foreach ($this->layoutPartialDependencies[$target] ?? [] as $partial) {
+                if (! in_array($partial, $withDependencies, true)) {
+                    $withDependencies[] = $partial;
+                }
+            }
+        }
+
+        return $withDependencies;
+    }
+
     protected function askWhichComponent(): array
     {
         $choice = $this->choice(
             'Which component or layout would you like to publish?',
-            array_merge($this->publishableComponents, $this->publishableLayouts)
+            array_merge($this->publishableComponents, $this->publishableLayouts, $this->publishableAuthLayouts)
         );
 
         return [$choice];
@@ -125,14 +161,15 @@ class PublishCommand extends Command
             return [$componentSrc, $componentDest, 'resources/views/components/zayne/'];
         }
 
-        $layoutSrc = __DIR__ . '/../../stubs/resources/views/layouts/' . $component . '.blade.php';
-        $layoutDest = resource_path('views/layouts/' . $component . '.blade.php');
+        $viewSrc = __DIR__ . '/../../stubs/resources/views/' . $component . '.blade.php';
+        $viewDest = resource_path('views/' . $component . '.blade.php');
 
-        return [$layoutSrc, $layoutDest, 'resources/views/layouts/'];
+        return [$viewSrc, $viewDest, 'resources/views/' . dirname($component) . '/'];
     }
 
     protected function isLayoutTarget(string $component): bool
     {
-        return $this->files->exists(__DIR__ . '/../../stubs/resources/views/layouts/' . $component . '.blade.php');
+        $componentSrc = __DIR__ . '/../../stubs/resources/views/components/zayne/' . $component . '.blade.php';
+        return ! $this->files->exists($componentSrc);
     }
 }
