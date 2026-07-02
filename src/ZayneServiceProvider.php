@@ -49,12 +49,12 @@ class ZayneServiceProvider extends ServiceProvider
         // User-published layouts — registered with no prefix so
         // <x-layouts.layout> resolves to resources/views/layouts/layout.blade.php
         // and <x-auth.guest> resolves to resources/views/auth/guest.blade.php
-        if (function_exists('resource_path') && file_exists(resource_path('views/layouts'))) {
-            Blade::anonymousComponentPath(resource_path('views/layouts'), 'layouts');
+        if (function_exists('resource_path') && file_exists(resource_path('views/components/layouts'))) {
+            Blade::anonymousComponentPath(resource_path('views/components/layouts'), 'layouts');
         }
 
-        if (function_exists('resource_path') && file_exists(resource_path('views/auth'))) {
-            Blade::anonymousComponentPath(resource_path('views/auth'), 'auth');
+        if (function_exists('resource_path') && file_exists(resource_path('views/components/auth'))) {
+            Blade::anonymousComponentPath(resource_path('views/components/auth'), 'auth');
         }
     }
 
