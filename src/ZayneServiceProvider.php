@@ -46,13 +46,13 @@ class ZayneServiceProvider extends ServiceProvider
 
     protected function bootLayouts(): void
     {
-        // User-published layouts always win — registered first so Laravel
-        // resolves them before falling back to the package stubs.
+        // User-published layouts — registered with no prefix so
+        // <x-layouts.layout> resolves to resources/views/layouts/layout.blade.php
+        // and <x-auth.guest> resolves to resources/views/auth/guest.blade.php
         if (function_exists('resource_path') && file_exists(resource_path('views/layouts'))) {
             Blade::anonymousComponentPath(resource_path('views/layouts'), 'layouts');
         }
 
-        // Auth layouts
         if (function_exists('resource_path') && file_exists(resource_path('views/auth'))) {
             Blade::anonymousComponentPath(resource_path('views/auth'), 'auth');
         }
