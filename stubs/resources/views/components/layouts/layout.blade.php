@@ -9,7 +9,8 @@
 </head>
 <body class="zaynemainlayout">
 
-    @include('layouts.partials.sidebar')
+    @include('components.layouts.partials.sidebar')
+    @include('components.layouts.partials.header')
 
     <zayne:layout.main>
         {{ $slot }}

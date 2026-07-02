@@ -9,7 +9,7 @@
 </head>
 <body class="zaynemainlayout">
 
-    @include('layouts.partials.header')
+    @include('components.layouts.partials.header')
 
     <zayne:layout.main>
         {{ $slot }}

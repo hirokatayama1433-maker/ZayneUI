@@ -126,8 +126,8 @@ class PublishCommand extends Command
         }
 
         $className = $this->componentToClassName($component);
-        $phpSrc = __DIR__ . '/../Components/' . $className . '.php';
-        $phpDest = app_path('View/Components/Zayne/' . $className . '.php');
+        $phpSrc    = __DIR__ . '/../Components/' . $className . '.php';
+        $phpDest   = app_path('View/Components/Zayne/' . $className . '.php');
 
         if ($this->files->exists($phpSrc)) {
             if ($this->files->exists($phpDest) && ! $force) {
@@ -154,22 +154,31 @@ class PublishCommand extends Command
 
     protected function resolveBladePath(string $component): array
     {
-        $componentSrc = __DIR__ . '/../../stubs/resources/views/components/zayne/' . $component . '.blade.php';
+        // 1. zayne components → views/components/zayne/
+        $componentSrc  = __DIR__ . '/../../stubs/resources/views/components/zayne/' . $component . '.blade.php';
         $componentDest = resource_path('views/components/zayne/' . $component . '.blade.php');
 
         if ($this->files->exists($componentSrc)) {
             return [$componentSrc, $componentDest, 'resources/views/components/zayne/'];
         }
 
-        $viewSrc = __DIR__ . '/../../stubs/resources/views/' . $component . '.blade.php';
-        $viewDest = resource_path('views/' . $component . '.blade.php');
+        // 2. layouts/* and auth/* → views/components/{layouts|auth}/
+        //    Source lives in stubs/resources/views/{layouts|auth}/
+        //    Destination goes to views/components/{layouts|auth}/
+        //    so <x-layouts.layout> and <x-auth.guest> resolve via the
+        //    components/ auto-discovery path.
+        $viewSrc  = __DIR__ . '/../../stubs/resources/views/' . $component . '.blade.php';
+        $viewDest = resource_path('views/components/' . $component . '.blade.php');
 
-        return [$viewSrc, $viewDest, 'resources/views/' . dirname($component) . '/'];
+        return [$viewSrc, $viewDest, 'resources/views/components/' . dirname($component) . '/'];
     }
 
     protected function isLayoutTarget(string $component): bool
     {
+        // Anything that is NOT a zayne component (layouts/*, auth/*) has no
+        // PHP class to publish alongside the Blade view.
         $componentSrc = __DIR__ . '/../../stubs/resources/views/components/zayne/' . $component . '.blade.php';
+
         return ! $this->files->exists($componentSrc);
     }
 }
