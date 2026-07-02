@@ -15,7 +15,7 @@ class Tooltip extends Component
         public string $padding = '0.5rem 0.75rem',
         public string $radius = 'var(--zayne-radius-selector)',
         public string $shadow = 'var(--zayne-shadow)',
-        public string $background = 'var(--zayne-color-base-300)',
+        public string $background = 'var(--zayne-color-base-100)',
         public string $color = 'var(--zayne-color-base-content)'
     ) {
         $this->buildStyle();

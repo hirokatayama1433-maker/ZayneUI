@@ -1153,7 +1153,7 @@ html.sidebar-collapsed .sidebar-toggle-icon-expanded  { opacity: 0; }
     white-space: nowrap;
 }
 
-.zayne-input-affix--prefix {
+.zayne-input-affix--prefix {    
     padding-right: 0.75rem;
     border-right: 1px solid var(--zayne-color-base-border);
 }
@@ -1287,4 +1287,13 @@ html.sidebar-collapsed .sidebar-toggle-icon-expanded  { opacity: 0; }
 }
 .zayne-table--striped tbody tr:nth-child(even):hover {
     background: var(--zayne-color-base-hover);
+}
+
+/* ── Auth split panel (auth/guest2.blade.php) ───────────────────────────────
+   Inline style cannot express a media query — the breakpoint lives here.
+   Same rule: selector → CSS, value → PHP/Blade.
+   ─────────────────────────────────────────────────────────────────────────── */
+.zayne-auth-split-panel { display: none; }
+@media (min-width: 768px) {
+    .zayne-auth-split-panel { display: flex; }
 }
