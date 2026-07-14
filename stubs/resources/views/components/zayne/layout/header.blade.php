@@ -3,6 +3,8 @@
     style="
         display: flex;
         flex-direction: row;
+        border-style: solid;
+        border-width: 0;
         background: {{ $background }};
         {{ $padding      ? 'padding: '             . $padding      . ';' : '' }}
         {{ $gap          ? 'gap: '                 . $gap          . ';' : '' }}

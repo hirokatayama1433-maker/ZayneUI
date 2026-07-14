@@ -15,7 +15,7 @@ class Main extends Component
         public ?string $margintop     = null,
         public ?string $marginbottom  = null,
         public string  $padding       = '50px',
-        public ?string $background    = null,
+        public ?string $background    = 'var(--zayne-color-base-300)',
     ) {}
     public function render(): View
     {

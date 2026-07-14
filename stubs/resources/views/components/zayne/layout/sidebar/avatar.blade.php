@@ -13,10 +13,10 @@
             <img
                 src="{{ $src }}"
                 alt="{{ $alt ?: $name }}"
-                style="width:34px; height:34px; border-radius:var(--zayne-radius-field); object-fit:cover;"
+                style="width:38px   ; height:38px; border-radius:var(--zayne-radius-field); object-fit:cover;"
             />
         @else
-            <div style="width:34px; height:34px; border-radius:var(--zayne-radius-field); display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:600; background:var(--zayne-color-accent); color:#fff;">
+            <div style="width:38px; height:38px; border-radius:var(--zayne-radius-field); display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:600; background:var(--zayne-color-accent); color:#fff;">
                 {{ collect(explode(' ', trim($name)))->map(fn($w) => strtoupper($w[0] ?? ''))->take(2)->join('') }}
             </div>
         @endif

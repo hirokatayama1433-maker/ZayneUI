@@ -1,5 +1,6 @@
 <div
     class="zaynesidebar"
+    {{-- style="background: var(--zayne-color-base-300);" --}}
     data-mode="{{ $mode }}"
     data-collapse="{{ $collapse }}"
     style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; overflow-y: auto;"
@@ -12,6 +13,8 @@
         min-height: 0;
         overflow: hidden;
         position: relative;
+        border-style: solid;
+        border-width: 0;
         background: {{ $background }};
         padding: {{ $padding }};
         {{ $gap          ? 'gap: '                 . $gap          . ';' : 'gap: 8px;' }}
@@ -31,8 +34,7 @@
         {{ $borderbottom ? 'border-bottom-width: ' . $borderbottom . ';' : '' }}
         {{ $borderleft   ? 'border-left-width: '   . $borderleft   . ';' : '' }}
         {{ $borderright  ? 'border-right-width: '  . $borderright  . ';' : '' }}
-        {{ $bordercolor  ? 'border-color: '        . $bordercolor  . ';' : '' }}
-    ">
+        {{ $bordercolor  ? 'border-color: '        . $bordercolor  . ';' : '' }}">
 
         @isset($header)
             <div style="flex-shrink: 0;">{{ $header }}</div>

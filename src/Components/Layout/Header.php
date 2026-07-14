@@ -16,7 +16,7 @@ class Header extends Component
         public ?string $borderbottom = null,
         public ?string $borderleft   = null,
         public ?string $borderright  = null,
-        public ?string $bordercolor  = null,
+        public ?string $bordercolor  = 'var(--zayne-color-base-border)',
         public ?string $margin       = null,
         public ?string $margintop    = null,
         public ?string $marginbottom = null,

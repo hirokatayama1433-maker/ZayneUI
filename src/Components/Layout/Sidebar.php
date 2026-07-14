@@ -22,7 +22,6 @@ class Sidebar extends Component
         public ?string $radiusleft       = null,
         public ?string $radiusright      = null,
         public ?string $border           = null,
-        public ?string $bordercolor      = null,
         public ?string $bordertop        = null,
         public ?string $borderbottom     = null,
         public ?string $borderleft       = null,
@@ -30,6 +29,7 @@ class Sidebar extends Component
         public ?string $gap      = null,
         public string $shadow           = 'var(--zayne-custom-layout-shadow)',
         public string $background       = 'var(--zayne-custom-sidebar)',
+        public ?string $bordercolor  = 'var(--zayne-color-base-border)',
         
     ) {}
 
