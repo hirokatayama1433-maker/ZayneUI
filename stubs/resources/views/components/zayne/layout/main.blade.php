@@ -1,6 +1,8 @@
 <div
     class="zaynemain scrollbar-hide"
     style="
+        position: relative;
+        z-index: var(--zayne-z-shell-base);
         overflow-y: auto;
         overflow-x: hidden;
         {{ $padding         ? 'padding: '       . $padding      . ';' : '' }}

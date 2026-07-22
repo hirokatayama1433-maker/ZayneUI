@@ -105,7 +105,7 @@
             position: fixed;
             z-index: var(--zayne-z-dropdown);
             min-width: 200px;
-            background: var(--zayne-color-base-200);
+            background: var(--zayne-color-base-100);
             border-radius: var(--zayne-radius-box);
             box-shadow: var(--zayne-shadow);
             overflow: hidden;

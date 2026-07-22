@@ -13,14 +13,16 @@ class Toggle extends Component
         public string $label = 'Collapse',
     ) {
         $this->baseStyle = '
-            height: 38px;
+            height: 32px;
             display: flex;
             align-items: center;
             width: 100%;
             border-radius: var(--zayne-radius-field);
             cursor: pointer;
             transition: background 150ms ease, color 150ms ease;
-            border: none;
+            border: 1px;
+            border-style: solid;
+            border-color: var(--zayne-color-base-border);
             box-sizing: border-box;
             font-family: inherit;
             padding: 0;

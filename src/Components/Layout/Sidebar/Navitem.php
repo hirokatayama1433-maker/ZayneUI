@@ -11,6 +11,7 @@ class Navitem extends Component
     public string $activeStyle;
     public string $hoverBg;
     public string $hoverColor;
+    public string $accentColor;
 
     public function __construct(
         public ?string $href       = null,
@@ -19,14 +20,17 @@ class Navitem extends Component
         public ?string $color      = null,
         public ?string $radius     = null,
         public ?string $padding    = null,
+        public ?string $accent     = null,
     ) {
         $bg     = $background ?? ($active ? 'var(--zayne-custom-sidebar-item-bg-active)' : 'var(--zayne-custom-sidebar-item-bg)');
         $fg     = $color      ?? ($active ? 'var(--zayne-custom-sidebar-item-content-active)' : 'var(--zayne-custom-sidebar-content)');
         $rad    = $radius     ?? 'var(--zayne-radius-field)';
         $pad    = $padding    ?? '0px';
 
+        $this->accentColor = $accent ?? 'var(--zayne-color-primary)';
+
         $this->baseStyle = "
-            height: 38px;
+            height: 36px;
             display: flex;
             align-items: center;
             width: 100%;

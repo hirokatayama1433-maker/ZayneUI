@@ -23,17 +23,17 @@
         @endif
     >
         @isset($lefticon)
-            <div style="width:38px; height:38px; display:flex; justify-content:center; align-items:center; flex-shrink:0;">
+            <div style="width:40px; height:40px; display:flex; justify-content:center; align-items:center; flex-shrink:0;">
                 {{ $lefticon }}
             </div>
         @endisset
 
-        <span class="sidebar-label" style="font-size:15px; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; text-align:start;">
+        <span class="sidebar-label" style="font-size:14px; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; text-align:start;">
             {{ $slot }}
         </span>
 
         @isset($righticon)
-            <div class="sidebar-label" style="width:38px; height:38px; display:flex; justify-content:center; align-items:center; flex-shrink:0;">
+            <div class="sidebar-label" style="width:40px; height:40px; display:flex; justify-content:center; align-items:center; flex-shrink:0;">
                 {{ $righticon }}
             </div>
         @endisset
@@ -48,7 +48,7 @@
         style="
             position: fixed;
             z-index: var(--zayne-z-tooltip);
-            background: var(--zayne-color-base-200);
+            background: var(--zayne-color-base-100);
             color: var(--zayne-color-base-content);
             padding: 0.25rem 0.625rem;
             border-radius: var(--zayne-radius-field);

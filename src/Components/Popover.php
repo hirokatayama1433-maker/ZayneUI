@@ -17,8 +17,8 @@ class Popover extends Component
         public string $background = 'var(--zayne-color-base-100)',
         public string $minwidth = '16rem',
         public ?string $margin = null,
-        public ?string $border = null,
-        public ?string $bordercolor = null
+        public ?string $border = '1px',
+        public ?string $bordercolor = 'var(--zayne-color-base-border)'
     ) {
         $this->buildStyle();
     }

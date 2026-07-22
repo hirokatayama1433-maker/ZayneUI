@@ -3,6 +3,8 @@
     style="
         display: flex;
         flex-direction: row;
+        position: relative;
+        z-index: var(--zayne-z-shell-elevated);
         border-style: solid;
         border-width: 0;
         background: {{ $background }};

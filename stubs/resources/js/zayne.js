@@ -158,6 +158,16 @@ function zayneDropdown() {
 function zayneTooltip() {
     return {
         open: false,
+        init() {
+            // Force-close if the sidebar's collapse state changes for ANY reason
+            // (toggle button, or a trigger's own click-to-expand handler) while
+            // this tooltip is still open — otherwise x-show never re-evaluates,
+            // since `document.documentElement.classList.contains(...)` isn't a
+            // reactive dependency Alpine can track, only `open` is.
+            window.addEventListener('zayne:sidebar-toggled', () => {
+                this.open = false;
+            });
+        },
         show(trigger, panel) {
             this.open = true;
             this.$nextTick(() => zaynePosition(trigger, panel));
@@ -186,6 +196,19 @@ function zayneLayout() {
     };
 }
 
+function zayneTab(initial) {
+    return {
+        active: initial,
+        setActive(value) {
+            this.active = value;
+        },
+        isActive(value) {
+            return this.active === value;
+        },
+    };
+}
+
+
 document.addEventListener('alpine:init', () => {
     if (typeof Alpine === 'undefined') return;
     Alpine.data('zayneModal',    zayneModal);
@@ -194,7 +217,9 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('zayneTooltip',  zayneTooltip);
     Alpine.data('zaynePopover',  zaynePopover);
     Alpine.data('zayneLayout',   zayneLayout);
+    Alpine.data('zayneTab',      zayneTab);
 });
+
 
 /* ============================================================
 |  SECTION 3 - SIDEBAR
@@ -284,6 +309,11 @@ const Sidebar = {
 
     syncCollapseState() {
         new MutationObserver(() => {
+            // Let every zayneTooltip() instance know the sidebar just changed
+            // state, so any tooltip left open from a previous hover force-closes
+            // instead of rendering stale at its old (pre-collapse/expand) position.
+            window.dispatchEvent(new Event('zayne:sidebar-toggled'));
+
             if (this.collapsed) {
                 this.savedOpenTrees = new Set();
                 document.querySelectorAll('.zaynenavtree.navtree-open').forEach(tree => {

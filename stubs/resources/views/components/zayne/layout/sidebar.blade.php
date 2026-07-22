@@ -1,6 +1,5 @@
 <div
     class="zaynesidebar"
-    {{-- style="background: var(--zayne-color-base-300);" --}}
     data-mode="{{ $mode }}"
     data-collapse="{{ $collapse }}"
     style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; overflow-y: auto;"
@@ -13,6 +12,7 @@
         min-height: 0;
         overflow: hidden;
         position: relative;
+        z-index: var(--zayne-z-shell-elevated);
         border-style: solid;
         border-width: 0;
         background: {{ $background }};
@@ -75,9 +75,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.scrollbar-hide').forEach(el => {
-        // Observe size changes on the scroll container itself
         new ResizeObserver(() => sidebarScrollCheck(el)).observe(el);
-        // Observe size changes on its content
         new ResizeObserver(() => sidebarScrollCheck(el)).observe(el.firstElementChild || el);
         el.addEventListener('scroll', () => sidebarScrollCheck(el));
     });

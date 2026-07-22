@@ -26,6 +26,7 @@ class Button extends Component
         public ?string $bordercolor   = null,
         public ?string $background    = null,
         public ?string $textcolor     = null,
+        public bool    $fullwidth     = false,
     ) {
         $this->buildStyle();
     }
@@ -97,13 +98,15 @@ class Button extends Component
         if ($this->textcolor)  $resolved['color']       = $this->textcolor;
 
         $this->style = Zayne::styleString(array_merge([
-            'padding'       => $this->padding,
-            'border-radius' => $this->radius,
-            'gap'           => $this->gap,
-            'box-shadow'    => $this->shadow,
-            'margin'        => $this->margin,
-            'border-width'  => $this->border,
-            'border-color'  => $this->bordercolor,
+            'padding'         => $this->padding,
+            'border-radius'   => $this->radius,
+            'gap'             => $this->gap,
+            'box-shadow'      => $this->shadow,
+            'margin'          => $this->margin,
+            'border-width'    => $this->border,
+            'border-color'    => $this->bordercolor,
+            'width'           => $this->fullwidth ? '100%' : null,
+            'justify-content' => $this->fullwidth ? 'flex-start' : null,
         ], $resolved));
     }
 

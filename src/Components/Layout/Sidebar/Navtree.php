@@ -23,7 +23,7 @@ class Navtree extends Component
         $rad = $radius     ?? 'var(--zayne-radius-field)';
 
         $this->baseStyle = "
-            height: 38px;
+            height: 36px;
             display: flex;
             align-items: center;
             width: 100%;

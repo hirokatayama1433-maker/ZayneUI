@@ -22,8 +22,8 @@ class Search extends Component
         public ?string $background  = 'var(--zayne-color-base-100)',
     ) {
         $this->style = Zayne::styleString([
-            'height'        => '38px',
-            'padding'       => '0 0.625rem',
+            'height'        => '34px',
+            'padding'       => '0 0.875rem',
             'border-radius' => $this->radius,
             'border-width'  => $this->border,
             'border-color'  => $this->bordercolor,
