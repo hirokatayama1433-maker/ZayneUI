@@ -510,3 +510,60 @@ function zayneTableSort() {
 document.addEventListener('alpine:init', () => {
     window.Alpine.data('zayneTableSort', zayneTableSort);
 });
+
+
+
+// ── Add to SECTION 2 - ALPINE DATA in zayne.js ──
+
+function zaynePanel(direction = 'horizontal') {
+    return {
+        direction,
+        dragging: false,
+        startPos: 0,
+        startSize: 0,
+
+        startDrag(event) {
+            this.dragging = true;
+
+            const primary = this.$refs.primary;
+            const container = this.$refs.container;
+            const isH = this.direction === 'horizontal';
+
+            const touch = event.touches?.[0] ?? event;
+            this.startPos = isH ? touch.clientX : touch.clientY;
+            this.startSize = isH ? primary.offsetWidth : primary.offsetHeight;
+
+            const onMove = (e) => {
+                if (!this.dragging) return;
+                const t = e.touches?.[0] ?? e;
+                const delta = (isH ? t.clientX : t.clientY) - this.startPos;
+                const containerSize = isH ? container.offsetWidth : container.offsetHeight;
+                let newSize = this.startSize + delta;
+                // Clamp: min 10%, max 90%
+                newSize = Math.max(containerSize * 0.1, Math.min(containerSize * 0.9, newSize));
+                primary.style[isH ? 'width' : 'height'] = newSize + 'px';
+            };
+
+            const onUp = () => {
+                this.dragging = false;
+                document.removeEventListener('mousemove', onMove);
+                document.removeEventListener('mouseup', onUp);
+                document.removeEventListener('touchmove', onMove);
+                document.removeEventListener('touchend', onUp);
+                document.body.style.cursor = '';
+                document.body.style.userSelect = '';
+            };
+
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('mouseup', onUp);
+            document.addEventListener('touchmove', onMove, { passive: false });
+            document.addEventListener('touchend', onUp);
+
+            document.body.style.cursor = isH ? 'col-resize' : 'row-resize';
+            document.body.style.userSelect = 'none';
+        },
+    };
+}
+
+// Register in alpine:init block alongside the others:
+// Alpine.data('zaynePanel', zaynePanel);

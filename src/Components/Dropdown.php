@@ -17,8 +17,8 @@ class Dropdown extends Component
         public string $background = 'var(--zayne-color-base-100)',
         public string $minwidth = '12rem',
         public ?string $margin = null,
-        public ?string $border = null,
-        public ?string $bordercolor = null
+        public ?string $border = '1px',
+        public ?string $bordercolor = null,
     ) {
         $this->buildStyle();
     }

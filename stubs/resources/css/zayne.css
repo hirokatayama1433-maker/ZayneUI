@@ -36,13 +36,252 @@
     --zayne-z-popover: 1040;
     --zayne-z-tooltip: 1050;
     --zayne-z-shell-base:     1;
-    --zayne-z-shell-elevated: 10;
+    --zayne-z-shell-elevated: 1;
+
+
+   /* ── Red ── hue 25 */
+    --zayne-color-red-50:  oklch(85% 0.199 25.331);
+    --zayne-color-red-100: oklch(75% 0.199 25.331);
+    --zayne-color-red-200: oklch(68% 0.199 25.331);
+    --zayne-color-red-300: oklch(61% 0.199 25.331);
+    --zayne-color-red-400: oklch(54% 0.199 25.331);
+    --zayne-color-red-500: oklch(47% 0.199 25.331);
+    --zayne-color-red-600: oklch(40% 0.199 25.331);
+    --zayne-color-red-700: oklch(33% 0.199 25.331);
+    --zayne-color-red-800: oklch(26% 0.199 25.331);
+    --zayne-color-red-900: oklch(19% 0.199 25.331);
+    --zayne-color-red-950: oklch(13% 0.199 25.331);
+
+    /* ── Orange ── hue 55 */
+    --zayne-color-orange-50:  oklch(85% 0.199 55);
+    --zayne-color-orange-100: oklch(75% 0.199 55);
+    --zayne-color-orange-200: oklch(68% 0.199 55);
+    --zayne-color-orange-300: oklch(61% 0.199 55);
+    --zayne-color-orange-400: oklch(54% 0.199 55);
+    --zayne-color-orange-500: oklch(47% 0.199 55);
+    --zayne-color-orange-600: oklch(40% 0.199 55);
+    --zayne-color-orange-700: oklch(33% 0.199 55);
+    --zayne-color-orange-800: oklch(26% 0.199 55);
+    --zayne-color-orange-900: oklch(19% 0.199 55);
+    --zayne-color-orange-950: oklch(13% 0.199 55);
+
+    /* ── Amber ── hue 75 */
+    --zayne-color-amber-50:  oklch(85% 0.199 75);
+    --zayne-color-amber-100: oklch(75% 0.199 75);
+    --zayne-color-amber-200: oklch(68% 0.199 75);
+    --zayne-color-amber-300: oklch(61% 0.199 75);
+    --zayne-color-amber-400: oklch(54% 0.199 75);
+    --zayne-color-amber-500: oklch(47% 0.199 75);
+    --zayne-color-amber-600: oklch(40% 0.199 75);
+    --zayne-color-amber-700: oklch(33% 0.199 75);
+    --zayne-color-amber-800: oklch(26% 0.199 75);
+    --zayne-color-amber-900: oklch(19% 0.199 75);
+    --zayne-color-amber-950: oklch(13% 0.199 75);
+
+    /* ── Yellow ── hue 95 */
+    --zayne-color-yellow-50:  oklch(85% 0.199 95);
+    --zayne-color-yellow-100: oklch(75% 0.199 95);
+    --zayne-color-yellow-200: oklch(68% 0.199 95);
+    --zayne-color-yellow-300: oklch(61% 0.199 95);
+    --zayne-color-yellow-400: oklch(54% 0.199 95);
+    --zayne-color-yellow-500: oklch(47% 0.199 95);
+    --zayne-color-yellow-600: oklch(40% 0.199 95);
+    --zayne-color-yellow-700: oklch(33% 0.199 95);
+    --zayne-color-yellow-800: oklch(26% 0.199 95);
+    --zayne-color-yellow-900: oklch(19% 0.199 95);
+    --zayne-color-yellow-950: oklch(13% 0.199 95);
+
+    /* ── Lime ── hue 120 */
+    --zayne-color-lime-50:  oklch(85% 0.199 120);
+    --zayne-color-lime-100: oklch(75% 0.199 120);
+    --zayne-color-lime-200: oklch(68% 0.199 120);
+    --zayne-color-lime-300: oklch(61% 0.199 120);
+    --zayne-color-lime-400: oklch(54% 0.199 120);
+    --zayne-color-lime-500: oklch(47% 0.199 120);
+    --zayne-color-lime-600: oklch(40% 0.199 120);
+    --zayne-color-lime-700: oklch(33% 0.199 120);
+    --zayne-color-lime-800: oklch(26% 0.199 120);
+    --zayne-color-lime-900: oklch(19% 0.199 120);
+    --zayne-color-lime-950: oklch(13% 0.199 120);
+
+    /* ── Green ── hue 145 */
+    --zayne-color-green-50:  oklch(85% 0.199 145);
+    --zayne-color-green-100: oklch(75% 0.199 145);
+    --zayne-color-green-200: oklch(68% 0.199 145);
+    --zayne-color-green-300: oklch(61% 0.199 145);
+    --zayne-color-green-400: oklch(54% 0.199 145);
+    --zayne-color-green-500: oklch(47% 0.199 145);
+    --zayne-color-green-600: oklch(40% 0.199 145);
+    --zayne-color-green-700: oklch(33% 0.199 145);
+    --zayne-color-green-800: oklch(26% 0.199 145);
+    --zayne-color-green-900: oklch(19% 0.199 145);
+    --zayne-color-green-950: oklch(13% 0.199 145);
+
+    /* ── Teal ── hue 175 */
+    --zayne-color-teal-50:  oklch(85% 0.199 175);
+    --zayne-color-teal-100: oklch(75% 0.199 175);
+    --zayne-color-teal-200: oklch(68% 0.199 175);
+    --zayne-color-teal-300: oklch(61% 0.199 175);
+    --zayne-color-teal-400: oklch(54% 0.199 175);
+    --zayne-color-teal-500: oklch(47% 0.199 175);
+    --zayne-color-teal-600: oklch(40% 0.199 175);
+    --zayne-color-teal-700: oklch(33% 0.199 175);
+    --zayne-color-teal-800: oklch(26% 0.199 175);
+    --zayne-color-teal-900: oklch(19% 0.199 175);
+    --zayne-color-teal-950: oklch(13% 0.199 175);
+
+    /* ── Cyan ── hue 200 */
+    --zayne-color-cyan-50:  oklch(85% 0.199 200);
+    --zayne-color-cyan-100: oklch(75% 0.199 200);
+    --zayne-color-cyan-200: oklch(68% 0.199 200);
+    --zayne-color-cyan-300: oklch(61% 0.199 200);
+    --zayne-color-cyan-400: oklch(54% 0.199 200);
+    --zayne-color-cyan-500: oklch(47% 0.199 200);
+    --zayne-color-cyan-600: oklch(40% 0.199 200);
+    --zayne-color-cyan-700: oklch(33% 0.199 200);
+    --zayne-color-cyan-800: oklch(26% 0.199 200);
+    --zayne-color-cyan-900: oklch(19% 0.199 200);
+    --zayne-color-cyan-950: oklch(13% 0.199 200);
+
+    /* ── Sky ── hue 220 */
+    --zayne-color-sky-50:  oklch(85% 0.199 220);
+    --zayne-color-sky-100: oklch(75% 0.199 220);
+    --zayne-color-sky-200: oklch(68% 0.199 220);
+    --zayne-color-sky-300: oklch(61% 0.199 220);
+    --zayne-color-sky-400: oklch(54% 0.199 220);
+    --zayne-color-sky-500: oklch(47% 0.199 220);
+    --zayne-color-sky-600: oklch(40% 0.199 220);
+    --zayne-color-sky-700: oklch(33% 0.199 220);
+    --zayne-color-sky-800: oklch(26% 0.199 220);
+    --zayne-color-sky-900: oklch(19% 0.199 220);
+    --zayne-color-sky-950: oklch(13% 0.199 220);
+
+    /* ── Blue ── hue 245 */
+    --zayne-color-blue-50:  oklch(85% 0.199 245);
+    --zayne-color-blue-100: oklch(75% 0.199 245);
+    --zayne-color-blue-200: oklch(68% 0.199 245);
+    --zayne-color-blue-300: oklch(61% 0.199 245);
+    --zayne-color-blue-400: oklch(54% 0.199 245);
+    --zayne-color-blue-500: oklch(47% 0.199 245);
+    --zayne-color-blue-600: oklch(40% 0.199 245);
+    --zayne-color-blue-700: oklch(33% 0.199 245);
+    --zayne-color-blue-800: oklch(26% 0.199 245);
+    --zayne-color-blue-900: oklch(19% 0.199 245);
+    --zayne-color-blue-950: oklch(13% 0.199 245);
+
+    /* ── Indigo ── hue 265 */
+    --zayne-color-indigo-50:  oklch(85% 0.199 265);
+    --zayne-color-indigo-100: oklch(75% 0.199 265);
+    --zayne-color-indigo-200: oklch(68% 0.199 265);
+    --zayne-color-indigo-300: oklch(61% 0.199 265);
+    --zayne-color-indigo-400: oklch(54% 0.199 265);
+    --zayne-color-indigo-500: oklch(47% 0.199 265);
+    --zayne-color-indigo-600: oklch(40% 0.199 265);
+    --zayne-color-indigo-700: oklch(33% 0.199 265);
+    --zayne-color-indigo-800: oklch(26% 0.199 265);
+    --zayne-color-indigo-900: oklch(19% 0.199 265);
+    --zayne-color-indigo-950: oklch(13% 0.199 265);
+
+    /* ── Violet ── hue 285 */
+    --zayne-color-violet-50:  oklch(85% 0.199 285);
+    --zayne-color-violet-100: oklch(75% 0.199 285);
+    --zayne-color-violet-200: oklch(68% 0.199 285);
+    --zayne-color-violet-300: oklch(61% 0.199 285);
+    --zayne-color-violet-400: oklch(54% 0.199 285);
+    --zayne-color-violet-500: oklch(47% 0.199 285);
+    --zayne-color-violet-600: oklch(40% 0.199 285);
+    --zayne-color-violet-700: oklch(33% 0.199 285);
+    --zayne-color-violet-800: oklch(26% 0.199 285);
+    --zayne-color-violet-900: oklch(19% 0.199 285);
+    --zayne-color-violet-950: oklch(13% 0.199 285);
+
+    /* ── Purple ── hue 305 */
+    --zayne-color-purple-50:  oklch(85% 0.199 305);
+    --zayne-color-purple-100: oklch(75% 0.199 305);
+    --zayne-color-purple-200: oklch(68% 0.199 305);
+    --zayne-color-purple-300: oklch(61% 0.199 305);
+    --zayne-color-purple-400: oklch(54% 0.199 305);
+    --zayne-color-purple-500: oklch(47% 0.199 305);
+    --zayne-color-purple-600: oklch(40% 0.199 305);
+    --zayne-color-purple-700: oklch(33% 0.199 305);
+    --zayne-color-purple-800: oklch(26% 0.199 305);
+    --zayne-color-purple-900: oklch(19% 0.199 305);
+    --zayne-color-purple-950: oklch(13% 0.199 305);
+
+    /* ── Fuchsia ── hue 325 */
+    --zayne-color-fuchsia-50:  oklch(85% 0.199 325);
+    --zayne-color-fuchsia-100: oklch(75% 0.199 325);
+    --zayne-color-fuchsia-200: oklch(68% 0.199 325);
+    --zayne-color-fuchsia-300: oklch(61% 0.199 325);
+    --zayne-color-fuchsia-400: oklch(54% 0.199 325);
+    --zayne-color-fuchsia-500: oklch(47% 0.199 325);
+    --zayne-color-fuchsia-600: oklch(40% 0.199 325);
+    --zayne-color-fuchsia-700: oklch(33% 0.199 325);
+    --zayne-color-fuchsia-800: oklch(26% 0.199 325);
+    --zayne-color-fuchsia-900: oklch(19% 0.199 325);
+    --zayne-color-fuchsia-950: oklch(13% 0.199 325);
+
+    /* ── Pink ── hue 350 */
+    --zayne-color-pink-50:  oklch(85% 0.199 350);
+    --zayne-color-pink-100: oklch(75% 0.199 350);
+    --zayne-color-pink-200: oklch(68% 0.199 350);
+    --zayne-color-pink-300: oklch(61% 0.199 350);
+    --zayne-color-pink-400: oklch(54% 0.199 350);
+    --zayne-color-pink-500: oklch(47% 0.199 350);
+    --zayne-color-pink-600: oklch(40% 0.199 350);
+    --zayne-color-pink-700: oklch(33% 0.199 350);
+    --zayne-color-pink-800: oklch(26% 0.199 350);
+    --zayne-color-pink-900: oklch(19% 0.199 350);
+    --zayne-color-pink-950: oklch(13% 0.199 350);
+
+    /* ── Rose ── hue 10 */
+    --zayne-color-rose-50:  oklch(85% 0.199 10);
+    --zayne-color-rose-100: oklch(75% 0.199 10);
+    --zayne-color-rose-200: oklch(68% 0.199 10);
+    --zayne-color-rose-300: oklch(61% 0.199 10);
+    --zayne-color-rose-400: oklch(54% 0.199 10);
+    --zayne-color-rose-500: oklch(47% 0.199 10);
+    --zayne-color-rose-600: oklch(40% 0.199 10);
+    --zayne-color-rose-700: oklch(33% 0.199 10);
+    --zayne-color-rose-800: oklch(26% 0.199 10);
+    --zayne-color-rose-900: oklch(19% 0.199 10);
+    --zayne-color-rose-950: oklch(13% 0.199 10);
+
+    /* ── Slate (neutral, low chroma) ── hue 240 */
+    --zayne-color-slate-50:  oklch(95% 0.012 240);
+    --zayne-color-slate-100: oklch(88% 0.012 240);
+    --zayne-color-slate-200: oklch(78% 0.012 240);
+    --zayne-color-slate-300: oklch(68% 0.012 240);
+    --zayne-color-slate-400: oklch(58% 0.012 240);
+    --zayne-color-slate-500: oklch(48% 0.012 240);
+    --zayne-color-slate-600: oklch(38% 0.012 240);
+    --zayne-color-slate-700: oklch(29% 0.012 240);
+    --zayne-color-slate-800: oklch(21% 0.012 240);
+    --zayne-color-slate-900: oklch(14% 0.012 240);
+    --zayne-color-slate-950: oklch(9%  0.012 240);
+
+    /* ── Gray (neutral, near-zero chroma) ── hue 0 */
+    --zayne-color-gray-50:  oklch(95% 0 0);
+    --zayne-color-gray-100: oklch(88% 0 0);
+    --zayne-color-gray-200: oklch(78% 0 0);
+    --zayne-color-gray-300: oklch(68% 0 0);
+    --zayne-color-gray-400: oklch(58% 0 0);
+    --zayne-color-gray-500: oklch(48% 0 0);
+    --zayne-color-gray-600: oklch(38% 0 0);
+    --zayne-color-gray-700: oklch(29% 0 0);
+    --zayne-color-gray-800: oklch(21% 0 0);
+    --zayne-color-gray-900: oklch(14% 0 0);
+    --zayne-color-gray-950: oklch(9%  0 0);
+
+
+
+
 }
 
 .light {
-    --zayne-color-base-100: oklch(94.007% 0.00011 271.152);
-    --zayne-color-base-200: oklch(97% 0.001 270);
-    --zayne-color-base-300: oklch(100% 0.00011 271.152);
+    --zayne-color-base-100: oklch(100% 0 0);
+    --zayne-color-base-200: oklch(98% 0 0);
+    --zayne-color-base-300: oklch(95% 0 0);
     --zayne-color-base-content: oklch(22% 0.01 270);
     --zayne-color-base-content-muted: oklch(55% 0.005 270);
     --zayne-color-base-border: oklch(91.052% 0.00106 11.805);
@@ -62,7 +301,7 @@
     --zayne-color-info: oklch(52% 0.14 232.661);
     --zayne-color-info-content: oklch(97% 0.01 232);
     --zayne-custom-header: oklch(100% 0.00011 271.152);
-    --zayne-custom-sidebar: #f0f0f0;
+    --zayne-custom-sidebar: #ffffff;
     --zayne-custom-sidebar-content: #333333;
     --zayne-custom-sidebar-item-bg: #141e5700;
     --zayne-custom-sidebar-item-bg-hover: #111f6d;
@@ -70,17 +309,17 @@
     --zayne-custom-sidebar-item-content: #ffffff;
     --zayne-custom-sidebar-item-content-hover: #ffffff;
     --zayne-custom-sidebar-item-content-active: #ffc400;
-    --zayne-shadow: 0 0px 5px rgba(0, 0, 0, 0.137);
+    --zayne-shadow: 0 0px 0px rgba(0, 0, 0, 0.137);
     --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.08);
 }
 
-.dark {
-    --zayne-color-base-100: oklch(0.34 0.0017 286.31);
-    --zayne-color-base-200: oklch(22% 0.005 271);
-    --zayne-color-base-300: oklch(27% 0.005 271);
+.dark { 
+    --zayne-color-base-100: oklch(25.33% 0.016 252.42);
+    --zayne-color-base-200: oklch(23.26% 0.014 253.1);
+    --zayne-color-base-300: oklch(21.15% 0.012 254.09);
     --zayne-color-base-content: oklch(1 0 none);
     --zayne-color-base-content-muted: oklch(55% 0.005 271);
-    --zayne-color-base-border: oklch(57.951% 0.00007 271.152);
+    --zayne-color-base-border: oklch(37.53% 0.00004 271.152);
     --zayne-color-base-hover: oklch(30% 0.005 271);
     --zayne-color-primary: oklch(0.71 0 none);
     --zayne-color-primary-content: oklch(92% 0.005 271);    
@@ -1462,4 +1701,47 @@ html.sidebar-collapsed .zaynesidebar[data-collapse="viewicons"] .zayne-sidebar-s
 .zayne-tab-panel { 
     width: 100%; 
     height: 100%;
+}
+
+
+
+/* ── Zayne:Panel ── */
+
+.zayne-panel {
+    box-sizing: border-box;
+}
+
+.zayne-panel-pane {
+    box-sizing: border-box;
+}
+
+/* Resizable handle — highlight on hover/drag */
+.zayne-panel--resizable .zayne-panel-handle:hover,
+.zayne-panel--resizable .zayne-panel-handle:active {
+    background: var(--zayne-color-primary) !important;
+    opacity: 0.35;
+    transition: opacity 150ms;
+}
+
+/* Toggleable — slide transition */
+.zayne-panel-pane-enter,
+.zayne-panel-pane-leave {
+    overflow: hidden;
+    transition: max-width 220ms ease, opacity 180ms ease;
+}
+.zayne-panel-pane-enter-start,
+.zayne-panel-pane-leave-end {
+    max-width: 0;
+    opacity: 0;
+}
+.zayne-panel-pane-enter-end,
+.zayne-panel-pane-leave-start {
+    max-width: 100%;
+    opacity: 1;
+}
+
+/* Toggle button hover */
+.zayne-panel-toggle-btn:hover {
+    background: var(--zayne-color-base-200);
+    border-color: var(--zayne-color-base-border);
 }

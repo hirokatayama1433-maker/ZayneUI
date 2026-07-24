@@ -36,6 +36,7 @@ class Button extends Component
         $variantStyles = [
             'solid' => [
                 'primary'   => ['background' => 'var(--zayne-color-primary)',   'color' => 'var(--zayne-color-primary-content)'],
+                'accent'    => ['background' => 'var(--zayne-color-accent)',    'color' => 'var(--zayne-color-accent-content)'],
                 'secondary' => ['background' => 'var(--zayne-color-secondary)', 'color' => 'var(--zayne-color-secondary-content)'],
                 'danger'    => ['background' => 'var(--zayne-color-danger)',    'color' => 'var(--zayne-color-danger-content)'],
                 'success'   => ['background' => 'var(--zayne-color-success)',   'color' => 'var(--zayne-color-success-content)'],
