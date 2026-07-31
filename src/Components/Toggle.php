@@ -33,8 +33,8 @@ class Toggle extends Component
 
         $accent = $colors[$this->color] ?? $colors['primary'];
         $this->trackInactiveBg = $this->variant === 'soft'
-            ? 'color-mix(in oklch, ' . $accent . ' 14%, var(--zayne-color-base-300))'
-            : 'var(--zayne-color-base-300)';
+            ? 'color-mix(in oklch, ' . $accent . ' 80%, var(--zayne-color-base-300))'
+            : 'var(--zayne-color-base-muted)';
         $this->trackActiveBg = $this->variant === 'soft'
             ? 'color-mix(in oklch, ' . $accent . ' 25%, var(--zayne-color-base-100))'
             : $accent;

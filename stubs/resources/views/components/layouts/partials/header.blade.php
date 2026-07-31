@@ -13,9 +13,9 @@
     </zayne:layout.header.nav>
 
     <x-slot:right>
+        <zayne:layout.header.search placeholder="Search..." />
         <zayne:layout.header.avatar
             name="{{ auth()->user()->name ?? 'Guest' }}"
-            :src="auth()->user()->avatar_url ?? null"
         />
     </x-slot:right>
 </zayne:layout.header>

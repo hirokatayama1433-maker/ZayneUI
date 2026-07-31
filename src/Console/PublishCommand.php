@@ -27,6 +27,23 @@ class PublishCommand extends Command
         'header/brand', 'header/avatar', 'header/nav',
         'sidebar/brand', 'sidebar/avatar', 'sidebar/label',
         'sidebar/navitem', 'sidebar/navtree', 'sidebar/navtreeitem',
+        'separator',
+        'heading',
+        'text',
+        'callout',
+        'skeleton',
+        'breadcrumbs',
+        'breadcrumb/item',
+        'accordion',
+        'accordion/item',
+        'toast',
+        'pagination',
+        'profile',
+        'timeline',
+        'timeline/item',
+        'carousel',
+        'carousel/slide',
+        'header/brand', 'header/avatar', 'header/nav', 'header/search',
     ];
 
     protected array $publishableLayouts = [

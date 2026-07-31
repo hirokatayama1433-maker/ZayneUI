@@ -10,13 +10,15 @@
         <div>{{ $trigger }}</div>
     @endisset
 
-    <div
-        x-show="open"
-        x-cloak
-        x-ref="panel"
-        x-bind:class="open ? 'zayne-dropdown-enter' : 'zayne-dropdown-leave'"
-        style="position:fixed; z-index:var(--zayne-z-tooltip); {{ $style }}"
-    >
-        {{ $slot->isNotEmpty() ? $slot : $text }}
-    </div>
+    <template x-teleport="body">
+        <div
+            x-show="open"
+            x-cloak
+            x-ref="panel"
+            x-bind:class="open ? 'zayne-dropdown-enter' : 'zayne-dropdown-leave'"
+            style="position:fixed; z-index:var(--zayne-z-tooltip); {{ $style }}"
+        >
+            {{ $slot->isNotEmpty() ? $slot : $text }}
+        </div>
+    </template>
 </div>

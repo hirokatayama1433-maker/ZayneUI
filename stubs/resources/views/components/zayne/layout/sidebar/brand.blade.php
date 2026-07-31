@@ -24,18 +24,4 @@
         </span>
     </{{ $tag }}>
 
-    <button
-        type="button"
-        onclick="Zayne.Sidebar.toggle()"
-        class="sidebar-label"
-        style="flex-shrink:0; width:30px; height:30px; display:flex; align-items:center; justify-content:center; border-radius:var(--zayne-radius-field); border:none; background:transparent; cursor:pointer; color:var(--zayne-custom-sidebar-content); opacity:0.4; transition:background 150ms ease, opacity 150ms ease;"
-        onmouseover="this.style.background='var(--zayne-custom-sidebar-item-bg-hover)'; this.style.opacity='1';"
-        onmouseout="this.style.background='transparent'; this.style.opacity='0.4';"
-    >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-            stroke-width="1.5" stroke="currentColor" style="width:16px; height:16px;">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
-        </svg>
-    </button>
-
 </div>

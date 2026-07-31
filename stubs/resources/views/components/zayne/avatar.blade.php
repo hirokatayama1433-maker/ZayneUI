@@ -1,7 +1,16 @@
+@php
+    $initials = collect(explode(' ', trim($alt ?: $name)))
+        ->filter()
+        ->map(fn($w) => strtoupper($w[0] ?? ''))
+        ->take(2)
+        ->join('');
+    if ($initials === '') $initials = '?';
+@endphp
+
 <div class="zayne-avatar zayne-avatar--{{ $size }}" style="{{ $style }}" {{ $attributes }}>
     @if($src !== null)
-        <img src="{{ $src }}" alt="{{ $alt }}">
+        <img src="{{ $src }}" alt="{{ $alt ?: $name }}">
     @else
-        <span>{{ strtoupper(substr($alt, 0, 1)) }}</span>
+        <span>{{ $initials }}</span>
     @endif
 </div>

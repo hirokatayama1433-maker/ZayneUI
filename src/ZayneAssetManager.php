@@ -84,41 +84,7 @@ HTML;
     {
         return <<<'HTML'
 <style data-zayne-critical-theme>
-    html,
-    body {
-        background: #ffffff;
-        color: oklch(18% 0.005 271);
-    }
-
-    html.light,
-    html.light body,
-    html.light .zaynemainlayout,
-    html.light .zaynemain,
-    html.light .zayneheader,
-    html.light .zaynesidebar aside {
-        background: oklch(100% 0.00011 271.152);
-        color: oklch(18% 0.005 271);
-    }
-
-    html.dark,
-    html.dark body,
-    html.dark .zaynemainlayout,
-    html.dark .zaynemain,
-    html.dark .zayneheader,
-    html.dark .zaynesidebar aside {
-        background: oklch(0.34 0.0017 286.31);
-        color: oklch(1 0 none);
-    }
-
-    html.abyss,
-    html.abyss body,
-    html.abyss .zaynemainlayout,
-    html.abyss .zaynemain,
-    html.abyss .zayneheader,
-    html.abyss .zaynesidebar aside {
-        background: oklch(20% 0.08 209);
-        color: oklch(99.226% 0.00608 75.126);
-    }
+    
 </style>
 HTML;
     }
