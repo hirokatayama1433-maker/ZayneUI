@@ -21,6 +21,7 @@ class Navitem extends Component
         public ?string $radius     = null,
         public ?string $padding    = null,
         public ?string $accent     = null,
+        public ?string $icon       = 'square-x',
     ) {
         $bg     = $background ?? ($active ? 'var(--zayne-custom-sidebar-item-bg-active)' : 'var(--zayne-custom-sidebar-item-bg)');
         $fg     = $color      ?? ($active ? 'var(--zayne-custom-sidebar-item-content-active)' : 'var(--zayne-custom-sidebar-content)');

@@ -65,123 +65,6 @@ function zaynePosition(trigger, panel) {
 |  SECTION 2 - ALPINE DATA
 ============================================================ */
 
-function zayneModal() {
-    return {
-        open: false,
-        show() { this.open = true; },
-        hide() { this.open = false; },
-    };
-}
-
-function zayneDrawer() {
-    return {
-        open: false,
-        show() { this.open = true; },
-        hide() { this.open = false; },
-    };
-}
-
-function zayneDropdown() {
-    return {
-        open: false,
-        hideTimeout: null,
-        hoverGroup: null,
-        cancelHide() {
-            if (this.hideTimeout) {
-                clearTimeout(this.hideTimeout);
-                this.hideTimeout = null;
-            }
-        },
-        syncHoverGroup(panel) {
-            this.hoverGroup = panel?.dataset?.zayneHoverGroup ?? null;
-        },
-        claimHoverGroup(panel) {
-            this.syncHoverGroup(panel);
-
-            if (!this.hoverGroup) return;
-
-            window.__zayneHoverGroups ??= {};
-
-            const active = window.__zayneHoverGroups[this.hoverGroup];
-            if (active && active !== this) {
-                active.hide();
-            }
-
-            window.__zayneHoverGroups[this.hoverGroup] = this;
-        },
-        releaseHoverGroup() {
-            if (!this.hoverGroup || !window.__zayneHoverGroups) return;
-            if (window.__zayneHoverGroups[this.hoverGroup] === this) {
-                delete window.__zayneHoverGroups[this.hoverGroup];
-            }
-        },
-        show(trigger, panel) {
-            this.cancelHide();
-            this.claimHoverGroup(panel);
-            this.open = true;
-            this.$nextTick(() => zaynePosition(trigger, panel));
-        },
-        toggle(trigger, panel) {
-            this.cancelHide();
-            this.syncHoverGroup(panel);
-            this.open = !this.open;
-            if (this.open) {
-                this.claimHoverGroup(panel);
-                this.$nextTick(() => zaynePosition(trigger, panel));
-            } else {
-                this.releaseHoverGroup();
-            }
-        },
-        hide() {
-            this.cancelHide();
-            this.open = false;
-            this.releaseHoverGroup();
-        },
-        hideSoon(delay = 180) {
-            this.cancelHide();
-            this.hideTimeout = setTimeout(() => {
-                this.open = false;
-                this.hideTimeout = null;
-                this.releaseHoverGroup();
-            }, delay);
-        },
-    };
-}
-
-function zayneTooltip() {
-    return {
-        open: false,
-        init() {
-            // Force-close if the sidebar's collapse state changes for ANY reason
-            // (toggle button, or a trigger's own click-to-expand handler) while
-            // this tooltip is still open — otherwise x-show never re-evaluates,
-            // since `document.documentElement.classList.contains(...)` isn't a
-            // reactive dependency Alpine can track, only `open` is.
-            window.addEventListener('zayne:sidebar-toggled', () => {
-                this.open = false;
-            });
-        },
-        show(trigger, panel) {
-            this.open = true;
-            this.$nextTick(() => zaynePosition(trigger, panel));
-        },
-        hide() { this.open = false; },
-    };
-}
-
-function zaynePopover() {
-    return {
-        open: false,
-        toggle(trigger, panel) {
-            this.open = !this.open;
-            if (this.open) {
-                this.$nextTick(() => zaynePosition(trigger, panel));
-            }
-        },
-        hide() { this.open = false; },
-    };
-}
-
 function zayneLayout() {
     return {
         sidebarCollapsed: false,
@@ -189,28 +72,9 @@ function zayneLayout() {
     };
 }
 
-function zayneTab(initial) {
-    return {
-        active: initial,
-        setActive(value) {
-            this.active = value;
-        },
-        isActive(value) {
-            return this.active === value;
-        },
-    };
-}
-
-
 document.addEventListener('alpine:init', () => {
     if (typeof Alpine === 'undefined') return;
-    Alpine.data('zayneModal',    zayneModal);
-    Alpine.data('zayneDrawer',   zayneDrawer);
-    Alpine.data('zayneDropdown', zayneDropdown);
-    Alpine.data('zayneTooltip',  zayneTooltip);
-    Alpine.data('zaynePopover',  zaynePopover);
-    Alpine.data('zayneLayout',   zayneLayout);
-    Alpine.data('zayneTab',      zayneTab);
+    Alpine.data('zayneLayout', zayneLayout);
 });
 
 
@@ -308,9 +172,6 @@ const Sidebar = {
 
     syncCollapseState() {
         new MutationObserver(() => {
-            // Let every zayneTooltip() instance know the sidebar just changed
-            // state, so any tooltip left open from a previous hover force-closes
-            // instead of rendering stale at its old (pre-collapse/expand) position.
             window.dispatchEvent(new Event('zayne:sidebar-toggled'));
 
             if (this.collapsed) {
@@ -493,6 +354,7 @@ document.addEventListener('click', (e) => {
         return;
     }
 });
+
 function zayneTableSort() {
     return {
         toggle(column) {
@@ -511,134 +373,12 @@ document.addEventListener('alpine:init', () => {
 });
 
 
-
-// ── Add to SECTION 2 - ALPINE DATA in zayne.js ──
-
-function zaynePanel(direction = 'horizontal') {
-    return {
-        direction,
-        dragging: false,
-        startPos: 0,
-        startSize: 0,
-
-        startDrag(event) {
-            this.dragging = true;
-
-            const primary = this.$refs.primary;
-            const container = this.$refs.container;
-            const isH = this.direction === 'horizontal';
-
-            const touch = event.touches?.[0] ?? event;
-            this.startPos = isH ? touch.clientX : touch.clientY;
-            this.startSize = isH ? primary.offsetWidth : primary.offsetHeight;
-
-            const onMove = (e) => {
-                if (!this.dragging) return;
-                const t = e.touches?.[0] ?? e;
-                const delta = (isH ? t.clientX : t.clientY) - this.startPos;
-                const containerSize = isH ? container.offsetWidth : container.offsetHeight;
-                let newSize = this.startSize + delta;
-                // Clamp: min 10%, max 90%
-                newSize = Math.max(containerSize * 0.1, Math.min(containerSize * 0.9, newSize));
-                primary.style[isH ? 'width' : 'height'] = newSize + 'px';
-            };
-
-            const onUp = () => {
-                this.dragging = false;
-                document.removeEventListener('mousemove', onMove);
-                document.removeEventListener('mouseup', onUp);
-                document.removeEventListener('touchmove', onMove);
-                document.removeEventListener('touchend', onUp);
-                document.body.style.cursor = '';
-                document.body.style.userSelect = '';
-            };
-
-            document.addEventListener('mousemove', onMove);
-            document.addEventListener('mouseup', onUp);
-            document.addEventListener('touchmove', onMove, { passive: false });
-            document.addEventListener('touchend', onUp);
-
-            document.body.style.cursor = isH ? 'col-resize' : 'row-resize';
-            document.body.style.userSelect = 'none';
-        },
-    };
-}
-
-// Register in alpine:init block alongside the others:
-// Alpine.data('zaynePanel', zaynePanel);
-
-
-
 /* ============================================================
-|  PHASE 2 JS — Add to zayne.js
-|  1. Accordion
-|  2. Toast
-|  3. Carousel
+|  TOAST GLOBALS
 ============================================================ */
 
-/* ── 1. Accordion ── */
-function zayneAccordion({ multiple = false, default: defaultOpen = '' } = {}) {
-    return {
-        openItems: defaultOpen ? [defaultOpen] : [],
-
-        toggle(value) {
-            if (this.isOpen(value)) {
-                this.openItems = this.openItems.filter(v => v !== value);
-            } else {
-                this.openItems = multiple
-                    ? [...this.openItems, value]
-                    : [value];
-            }
-        },
-
-        isOpen(value) {
-            return this.openItems.includes(value);
-        },
-    };
-}
-
-/* ── 2. Toast ── */
 let _toastId = 0;
 
-function zayneToast({ duration = 4000, limit = 5, isTop = false } = {}) {
-    return {
-        toasts: [],
-
-        add({ title, body, type = 'base', duration: d }) {
-            const id  = ++_toastId;
-            const dur = d ?? duration;
-
-            if (this.toasts.length >= limit) {
-                const oldest = isTop
-                    ? this.toasts[this.toasts.length - 1]
-                    : this.toasts[0];
-                if (oldest) this.dismiss(oldest.id);
-            }
-
-            const toast = { id, title, body, type, duration: dur, visible: true };
-
-            if (isTop) {
-                this.toasts.unshift(toast);
-            } else {
-                this.toasts.push(toast);
-            }
-
-            if (dur > 0) {
-                setTimeout(() => this.dismiss(id), dur);
-            }
-        },
-
-        dismiss(id) {
-            const toast = this.toasts.find(t => t.id === id);
-            if (toast) toast.visible = false;
-            setTimeout(() => {
-                this.toasts = this.toasts.filter(t => t.id !== id);
-            }, 400);
-        },
-    };
-}
-
-// Icon helper used in blade x-html
 function zayneToastIcon(type) {
     const icons = {
         success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1.125rem;height:1.125rem;"><path d="M20 6 9 17l-5-5"/></svg>',
@@ -649,7 +389,6 @@ function zayneToastIcon(type) {
     return icons[type] ?? '';
 }
 
-// Global dispatch helper — call from anywhere
 window.ZayneToast = {
     show(options) {
         if (typeof options === 'string') options = { body: options };
@@ -661,76 +400,13 @@ window.ZayneToast = {
     info(body, title)     { this.show({ body, title, type: 'info' });    },
 };
 
-/* ── 3. Carousel ── */
-function zayneCarousel({ loop = true, autoplay = false, interval = 4000, transition = 'slide' } = {}) {
-    return {
-        current: 0,
-        count: 0,
-        loop,
-        autoplay,
-        interval,
-        transition,
-        timer: null,
-
-        init() {
-            this.$nextTick(() => {
-                this.count = this.$refs.track?.children.length ?? 0;
-                if (this.autoplay) this.startAutoplay();
-            });
-        },
-
-        goTo(index) {
-            if (index < 0)           index = this.loop ? this.count - 1 : 0;
-            if (index >= this.count) index = this.loop ? 0 : this.count - 1;
-            this.current = index;
-        },
-
-        prev() { this.goTo(this.current - 1); },
-        next() { this.goTo(this.current + 1); },
-
-        startAutoplay() {
-            this.stopAutoplay();
-            this.timer = setInterval(() => this.next(), this.interval);
-        },
-
-        stopAutoplay() {
-            if (this.timer) { clearInterval(this.timer); this.timer = null; }
-        },
-    };
-}
-
-/* ── Register all in alpine:init ── */
-document.addEventListener('alpine:init', () => {
-    if (typeof Alpine === 'undefined') return;
-    Alpine.data('zayneAccordion', zayneAccordion);
-    Alpine.data('zayneToast',     zayneToast);
-    Alpine.data('zayneCarousel',  zayneCarousel);
-});
-
-// Expose toast icon globally for x-html
 window.zayneToastIcon = zayneToastIcon;
 
 
-function zayneAccordionAnimate(el, isOpen) {
-    const panel = el.querySelector('.zayne-accordion-panel');
-    if (!panel) return;
-    const inner = panel.firstElementChild;
-    if (!inner) return;
+/* ============================================================
+|  SIDEBAR SCROLL CHECK
+============================================================ */
 
-    if (isOpen) {
-        panel.style.maxHeight = inner.scrollHeight + 'px';
-        panel.style.opacity   = '1';
-        panel.style.borderTop = '1px solid var(--zayne-color-base-border)';
-    } else {
-        panel.style.maxHeight = '0px';
-        panel.style.opacity   = '0';
-        panel.style.borderTop = '0px solid transparent';
-    }
-}
-
-
-/* ── FIX 4: Sidebar scroll check — move inline <script> to zayne.js
-   Remove the <script> block from sidebar.blade.php and use this instead */
 function zayneSidebarScrollCheck(el) {
     const indicator = el.parentElement?.querySelector('.sidebar-scroll-indicator');
     if (!indicator) return;
@@ -749,20 +425,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-/* ── Expose globally ── */
-window.zayneAccordionAnimate = zayneAccordionAnimate;
 window.zayneSidebarScrollCheck = zayneSidebarScrollCheck;
 
 
 /* ============================================================
-|  PHASE 3 JS — Append to zayne.js
-|  1. Pillbox (Tag Input)
+|  SECTION 7 - FORM COMPONENTS
+|  1. Pillbox
 |  2. Autocomplete
 |  3. OTP Input
 |  4. Color Picker
-|  5. Date Picker (shared calendar engine)
+|  5. Date Picker
 |  6. Time Picker
-|  7. Calendar (standalone)
+|  7. Calendar
 ============================================================ */
 
 /* ── 1. Pillbox ── */
@@ -794,7 +468,6 @@ function zaynePillbox({ tags = [], max = null, disabled = false } = {}) {
 
         handlePaste(event) {
             const text = event.clipboardData.getData('text');
-            // Split on commas, semicolons, or newlines
             const parts = text.split(/[,;\n]+/).map(s => s.trim()).filter(Boolean);
             parts.forEach(p => this.addTag(p));
         },
@@ -813,7 +486,6 @@ function zayneAutocomplete({ options = [], selected = null, freetext = false, em
         emptytext,
 
         init() {
-            // Populate display query from initial selected value
             if (this.selected !== null) {
                 const opt = this.options.find(o => o.value === this.selected);
                 this.query = opt ? opt.label : this.selected;
@@ -888,7 +560,6 @@ function zayneAutocomplete({ options = [], selected = null, freetext = false, em
 
         close() {
             this.open = false;
-            // If not freetext and query doesn't match selection, revert
             if (!this.freetext && this.selected !== null) {
                 const opt = this.options.find(o => o.value === this.selected);
                 this.query = opt ? opt.label : '';
@@ -926,7 +597,6 @@ function zayneOtp({ length = 6, type = 'numeric', name = null } = {}) {
             this.digits[index] = char;
             event.target.value = char;
 
-            // Advance focus
             if (index < this.length - 1) {
                 this.$nextTick(() => this.$refs['box' + (index + 1)]?.focus());
             }
@@ -971,7 +641,6 @@ function zayneOtp({ length = 6, type = 'numeric', name = null } = {}) {
                     pos++;
                 }
             }
-            // Focus last filled box
             const lastFilled = Math.min(pos, this.length - 1);
             this.$nextTick(() => this.$refs['box' + lastFilled]?.focus());
         },
@@ -990,7 +659,6 @@ function zayneColorPicker({ value = '#6366f1' } = {}) {
         hexError: false,
 
         setColor(hex) {
-            // Normalise to 6-char lowercase hex
             hex = hex.trim().toLowerCase().replace(/^#/, '');
             if (!/^[0-9a-f]{3}([0-9a-f]{3})?$/.test(hex)) return;
             if (hex.length === 3) {
@@ -1017,7 +685,6 @@ function zayneColorPicker({ value = '#6366f1' } = {}) {
                 this.hexError = false;
             } else {
                 this.hexError = true;
-                // Revert to current color
                 this.hexInput = this.color.replace('#', '').toUpperCase();
                 setTimeout(() => { this.hexError = false; }, 1500);
             }
@@ -1025,7 +692,7 @@ function zayneColorPicker({ value = '#6366f1' } = {}) {
     };
 }
 
-/* ── Shared calendar engine (used by DatePicker, Calendar) ── */
+/* ── Shared calendar engine ── */
 const _MONTH_NAMES_LONG  = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const _MONTH_NAMES_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const _DAY_NAMES_SHORT   = ['Su','Mo','Tu','We','Th','Fr','Sa'];
@@ -1039,14 +706,12 @@ function _buildCalendarDays(year, month, min, max, firstDay = 0) {
 
     const days = [];
 
-    // Leading blanks from prev month
     for (let i = 0; i < offset; i++) {
         const d = new Date(year, month, 1 - (offset - i));
         const iso = d.toISOString().slice(0, 10);
         days.push({ iso, day: d.getDate(), inMonth: false, enabled: false, isToday: iso === today, isFirstOfWeek: days.length % 7 === 0, weekNum: _weekNum(d) });
     }
 
-    // Current month
     for (let d = 1; d <= lastDate.getDate(); d++) {
         const date = new Date(year, month, d);
         const iso  = date.toISOString().slice(0, 10);
@@ -1054,7 +719,6 @@ function _buildCalendarDays(year, month, min, max, firstDay = 0) {
         days.push({ iso, day: d, inMonth: true, enabled, isToday: iso === today, isFirstOfWeek: days.length % 7 === 0, weekNum: _weekNum(date) });
     }
 
-    // Trailing blanks to fill the grid to a multiple of 7
     while (days.length % 7 !== 0) {
         const trailing = new Date(year, month + 1, days.length - offset - lastDate.getDate() + 1);
         const iso = trailing.toISOString().slice(0, 10);
@@ -1131,9 +795,9 @@ function zayneDatePicker({ value = null, min = null, max = null, format = 'MMM D
         },
 
         cycleView() {
-            if (this.view === 'days')   this.view = 'months';
+            if (this.view === 'days')        this.view = 'months';
             else if (this.view === 'months') this.view = 'years';
-            else this.view = 'days';
+            else                             this.view = 'days';
         },
 
         selectMonth(m) { this.viewMonth = m; this.view = 'days'; },
@@ -1239,8 +903,7 @@ function zayneTimePicker({ value = null, showSeconds = false, meridiem = false, 
         },
 
         clear() {
-            const [h, m, s, p] = [12, 0, 0, 'AM'];
-            this.hours = h; this.minutes = m; this.seconds = s; this.period = p;
+            this.hours = 12; this.minutes = 0; this.seconds = 0; this.period = 'AM';
         },
     };
 }
@@ -1315,9 +978,9 @@ function zayneCalendar({ value = null, min = null, max = null, mode = 'single', 
         },
 
         cycleView() {
-            if (this.view === 'days')    this.view = 'months';
+            if (this.view === 'days')        this.view = 'months';
             else if (this.view === 'months') this.view = 'years';
-            else this.view = 'days';
+            else                             this.view = 'days';
         },
 
         selectMonth(m) { this.viewMonth = m; this.view = 'days'; },
@@ -1362,14 +1025,14 @@ function zayneCalendar({ value = null, min = null, max = null, mode = 'single', 
     };
 }
 
-/* ── Register in alpine:init ── */
+/* ── Register all form components ── */
 document.addEventListener('alpine:init', () => {
     if (typeof Alpine === 'undefined') return;
-    Alpine.data('zaynePillbox',    zaynePillbox);
+    Alpine.data('zaynePillbox',      zaynePillbox);
     Alpine.data('zayneAutocomplete', zayneAutocomplete);
-    Alpine.data('zayneOtp',        zayneOtp);
-    Alpine.data('zayneColorPicker', zayneColorPicker);
-    Alpine.data('zayneDatePicker', zayneDatePicker);
-    Alpine.data('zayneTimePicker', zayneTimePicker);
-    Alpine.data('zayneCalendar',   zayneCalendar);
+    Alpine.data('zayneOtp',          zayneOtp);
+    Alpine.data('zayneColorPicker',  zayneColorPicker);
+    Alpine.data('zayneDatePicker',   zayneDatePicker);
+    Alpine.data('zayneTimePicker',   zayneTimePicker);
+    Alpine.data('zayneCalendar',     zayneCalendar);
 });

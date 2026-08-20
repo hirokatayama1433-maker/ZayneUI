@@ -11,6 +11,17 @@
     $variantHover = 'background:var(--zayne-color-base-200);';
 @endphp
 
+@once
+<style>
+    .zayne-pagination {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        flex-wrap: wrap;
+    }
+</style>
+@endonce
+
 @if($total > 1)
 <nav
     aria-label="Pagination"
@@ -40,10 +51,10 @@
             <span style="{{ $btnBase }}; border:1px solid transparent; background:transparent; color:var(--zayne-color-base-content); opacity:0.4; cursor:default;">…</span>
         @else
             @php($isActive = $page === $current)
-            @php($pageUrl = $href ? $pageUrl($page) : '#')
+            @php($pageHref = $href ? $pageUrl($page) : '#')
 
             <{{ $href ? 'a' : 'button' }}
-                @if($href) href="{{ $pageUrl }}" @else type="button" @endif
+                @if($href) href="{{ $pageHref }}" @else type="button" @endif
                 @if(!$href) @click="current = {{ $page }}" @endif
                 aria-label="Page {{ $page }}"
                 aria-current="{{ $isActive ? 'page' : 'false' }}"

@@ -1,2215 +1,525 @@
-    /* ============================================================
-    |  zayne.css - ZayneUI Design System
-    |  1. TOKENS
-    |  2. STRUCTURE
-    |  3. ANIMATIONS
-    ============================================================ */
+/* ============================================================
+|  zayne.css - ZayneUI Design System
+|  1. TOKENS
+|  2. STRUCTURE
+|  3. ANIMATIONS
+============================================================ */
 
-    /* ============================================================
-    |  SECTION 1 - TOKENS
-    ============================================================ */
+/* ============================================================
+|  SECTION 1 - TOKENS
+============================================================ */
 
-    :root {
-        --zayne-color-white: oklch(100% 0.00011 271.152);
-        --zayne-radius-box: 10px;
-        --zayne-radius-field: 10px;
-        --zayne-radius-selector: 4px;
-        --zayne-border-box: 1px;
-        --zayne-border-field: 1px;
-        --zayne-border-selector: 2px;
-        --zayne-size-field: 40px;
-        --zayne-size-selector: 20px;
-        --zayne-shadow: 0 8px 10px rgba(0, 0, 0, 0.08);
-        --zayne-gap-button: 0.5rem;
-        --zayne-padding-header: 0 1rem;
-        --zayne-gap-header: 0;
-        --sidebar-expanded-w: 260px;
-        --sidebar-collapsed-w: 40px;
-        --header-h: 50px;
-        --layout-transition: 200ms ease-in-out;
-        --zayne-z-mobile-backdrop: 1005;
-        --zayne-z-mobile-toggle: 1015;
-        --zayne-z-overlay-backdrop: 1000;
-        --zayne-z-drawer: 1010;
-        --zayne-z-modal: 1020;
-        --zayne-z-dropdown: 1030;
-        --zayne-z-popover: 1040;
-        --zayne-z-tooltip: 1050;
-        --zayne-z-shell-base:     2;
-        --zayne-z-shell-elevated: 3;
-
+:root {
+    --zayne-color-white: oklch(100% 0.00011 271.152);
+    --zayne-radius-box: 10px;
+    --zayne-radius-field: 10px;
+    --zayne-radius-selector: 4px;
+    --zayne-border-box: 1px;
+    --zayne-border-field: 1px;
+    --zayne-border-selector: 2px;
+    --zayne-size-field: 40px;
+    --zayne-size-selector: 20px;
+    --zayne-shadow: 0 8px 10px rgba(0, 0, 0, 0.08);
+    --zayne-gap-button: 0.5rem;
+    --zayne-padding-header: 0 1rem;
+    --zayne-gap-header: 0;
+    --sidebar-expanded-w: 260px;
+    --sidebar-collapsed-w: 40px;
+    --header-h: 50px;
+    --layout-transition: 200ms ease-in-out;
+    --zayne-z-mobile-backdrop: 1005;
+    --zayne-z-mobile-toggle: 1015;
+    --zayne-z-overlay-backdrop: 1000;
+    --zayne-z-drawer: 1010;
+    --zayne-z-modal: 1020;
+    --zayne-z-dropdown: 1030;
+    --zayne-z-popover: 1040;
+    --zayne-z-tooltip: 1050;
+    --zayne-z-shell-base:     2;
+    --zayne-z-shell-elevated: 3;
 
     /* ── Red ── hue 25 */
-        --zayne-color-red-50:  oklch(85% 0.199 25.331);
-        --zayne-color-red-100: oklch(75% 0.199 25.331);
-        --zayne-color-red-200: oklch(68% 0.199 25.331);
-        --zayne-color-red-300: oklch(61% 0.199 25.331);
-        --zayne-color-red-400: oklch(54% 0.199 25.331);
-        --zayne-color-red-500: oklch(47% 0.199 25.331);
-        --zayne-color-red-600: oklch(40% 0.199 25.331);
-        --zayne-color-red-700: oklch(33% 0.199 25.331);
-        --zayne-color-red-800: oklch(26% 0.199 25.331);
-        --zayne-color-red-900: oklch(19% 0.199 25.331);
-        --zayne-color-red-950: oklch(13% 0.199 25.331);
+    --zayne-color-red-50:  oklch(85% 0.199 25.331);
+    --zayne-color-red-100: oklch(75% 0.199 25.331);
+    --zayne-color-red-200: oklch(68% 0.199 25.331);
+    --zayne-color-red-300: oklch(61% 0.199 25.331);
+    --zayne-color-red-400: oklch(54% 0.199 25.331);
+    --zayne-color-red-500: oklch(47% 0.199 25.331);
+    --zayne-color-red-600: oklch(40% 0.199 25.331);
+    --zayne-color-red-700: oklch(33% 0.199 25.331);
+    --zayne-color-red-800: oklch(26% 0.199 25.331);
+    --zayne-color-red-900: oklch(19% 0.199 25.331);
+    --zayne-color-red-950: oklch(13% 0.199 25.331);
 
-        /* ── Orange ── hue 55 */
-        --zayne-color-orange-50:  oklch(85% 0.199 55);
-        --zayne-color-orange-100: oklch(75% 0.199 55);
-        --zayne-color-orange-200: oklch(68% 0.199 55);
-        --zayne-color-orange-300: oklch(61% 0.199 55);
-        --zayne-color-orange-400: oklch(54% 0.199 55);
-        --zayne-color-orange-500: oklch(47% 0.199 55);
-        --zayne-color-orange-600: oklch(40% 0.199 55);
-        --zayne-color-orange-700: oklch(33% 0.199 55);
-        --zayne-color-orange-800: oklch(26% 0.199 55);
-        --zayne-color-orange-900: oklch(19% 0.199 55);
-        --zayne-color-orange-950: oklch(13% 0.199 55);
+    /* ── Orange ── hue 55 */
+    --zayne-color-orange-50:  oklch(85% 0.199 55);
+    --zayne-color-orange-100: oklch(75% 0.199 55);
+    --zayne-color-orange-200: oklch(68% 0.199 55);
+    --zayne-color-orange-300: oklch(61% 0.199 55);
+    --zayne-color-orange-400: oklch(54% 0.199 55);
+    --zayne-color-orange-500: oklch(47% 0.199 55);
+    --zayne-color-orange-600: oklch(40% 0.199 55);
+    --zayne-color-orange-700: oklch(33% 0.199 55);
+    --zayne-color-orange-800: oklch(26% 0.199 55);
+    --zayne-color-orange-900: oklch(19% 0.199 55);
+    --zayne-color-orange-950: oklch(13% 0.199 55);
 
-        /* ── Amber ── hue 75 */
-        --zayne-color-amber-50:  oklch(85% 0.199 75);
-        --zayne-color-amber-100: oklch(75% 0.199 75);
-        --zayne-color-amber-200: oklch(68% 0.199 75);
-        --zayne-color-amber-300: oklch(61% 0.199 75);
-        --zayne-color-amber-400: oklch(54% 0.199 75);
-        --zayne-color-amber-500: oklch(47% 0.199 75);
-        --zayne-color-amber-600: oklch(40% 0.199 75);
-        --zayne-color-amber-700: oklch(33% 0.199 75);
-        --zayne-color-amber-800: oklch(26% 0.199 75);
-        --zayne-color-amber-900: oklch(19% 0.199 75);
-        --zayne-color-amber-950: oklch(13% 0.199 75);
+    /* ── Amber ── hue 75 */
+    --zayne-color-amber-50:  oklch(85% 0.199 75);
+    --zayne-color-amber-100: oklch(75% 0.199 75);
+    --zayne-color-amber-200: oklch(68% 0.199 75);
+    --zayne-color-amber-300: oklch(61% 0.199 75);
+    --zayne-color-amber-400: oklch(54% 0.199 75);
+    --zayne-color-amber-500: oklch(47% 0.199 75);
+    --zayne-color-amber-600: oklch(40% 0.199 75);
+    --zayne-color-amber-700: oklch(33% 0.199 75);
+    --zayne-color-amber-800: oklch(26% 0.199 75);
+    --zayne-color-amber-900: oklch(19% 0.199 75);
+    --zayne-color-amber-950: oklch(13% 0.199 75);
 
-        /* ── Yellow ── hue 95 */
-        --zayne-color-yellow-50:  oklch(85% 0.199 95);
-        --zayne-color-yellow-100: oklch(75% 0.199 95);
-        --zayne-color-yellow-200: oklch(68% 0.199 95);
-        --zayne-color-yellow-300: oklch(61% 0.199 95);
-        --zayne-color-yellow-400: oklch(54% 0.199 95);
-        --zayne-color-yellow-500: oklch(47% 0.199 95);
-        --zayne-color-yellow-600: oklch(40% 0.199 95);
-        --zayne-color-yellow-700: oklch(33% 0.199 95);
-        --zayne-color-yellow-800: oklch(26% 0.199 95);
-        --zayne-color-yellow-900: oklch(19% 0.199 95);
-        --zayne-color-yellow-950: oklch(13% 0.199 95);
+    /* ── Yellow ── hue 95 */
+    --zayne-color-yellow-50:  oklch(85% 0.199 95);
+    --zayne-color-yellow-100: oklch(75% 0.199 95);
+    --zayne-color-yellow-200: oklch(68% 0.199 95);
+    --zayne-color-yellow-300: oklch(61% 0.199 95);
+    --zayne-color-yellow-400: oklch(54% 0.199 95);
+    --zayne-color-yellow-500: oklch(47% 0.199 95);
+    --zayne-color-yellow-600: oklch(40% 0.199 95);
+    --zayne-color-yellow-700: oklch(33% 0.199 95);
+    --zayne-color-yellow-800: oklch(26% 0.199 95);
+    --zayne-color-yellow-900: oklch(19% 0.199 95);
+    --zayne-color-yellow-950: oklch(13% 0.199 95);
 
-        /* ── Lime ── hue 120 */
-        --zayne-color-lime-50:  oklch(85% 0.199 120);
-        --zayne-color-lime-100: oklch(75% 0.199 120);
-        --zayne-color-lime-200: oklch(68% 0.199 120);
-        --zayne-color-lime-300: oklch(61% 0.199 120);
-        --zayne-color-lime-400: oklch(54% 0.199 120);
-        --zayne-color-lime-500: oklch(47% 0.199 120);
-        --zayne-color-lime-600: oklch(40% 0.199 120);
-        --zayne-color-lime-700: oklch(33% 0.199 120);
-        --zayne-color-lime-800: oklch(26% 0.199 120);
-        --zayne-color-lime-900: oklch(19% 0.199 120);
-        --zayne-color-lime-950: oklch(13% 0.199 120);
+    /* ── Lime ── hue 120 */
+    --zayne-color-lime-50:  oklch(85% 0.199 120);
+    --zayne-color-lime-100: oklch(75% 0.199 120);
+    --zayne-color-lime-200: oklch(68% 0.199 120);
+    --zayne-color-lime-300: oklch(61% 0.199 120);
+    --zayne-color-lime-400: oklch(54% 0.199 120);
+    --zayne-color-lime-500: oklch(47% 0.199 120);
+    --zayne-color-lime-600: oklch(40% 0.199 120);
+    --zayne-color-lime-700: oklch(33% 0.199 120);
+    --zayne-color-lime-800: oklch(26% 0.199 120);
+    --zayne-color-lime-900: oklch(19% 0.199 120);
+    --zayne-color-lime-950: oklch(13% 0.199 120);
 
-        /* ── Green ── hue 145 */
-        --zayne-color-green-50:  oklch(85% 0.199 145);
-        --zayne-color-green-100: oklch(75% 0.199 145);
-        --zayne-color-green-200: oklch(68% 0.199 145);
-        --zayne-color-green-300: oklch(61% 0.199 145);
-        --zayne-color-green-400: oklch(54% 0.199 145);
-        --zayne-color-green-500: oklch(47% 0.199 145);
-        --zayne-color-green-600: oklch(40% 0.199 145);
-        --zayne-color-green-700: oklch(33% 0.199 145);
-        --zayne-color-green-800: oklch(26% 0.199 145);
-        --zayne-color-green-900: oklch(19% 0.199 145);
-        --zayne-color-green-950: oklch(13% 0.199 145);
+    /* ── Green ── hue 145 */
+    --zayne-color-green-50:  oklch(85% 0.199 145);
+    --zayne-color-green-100: oklch(75% 0.199 145);
+    --zayne-color-green-200: oklch(68% 0.199 145);
+    --zayne-color-green-300: oklch(61% 0.199 145);
+    --zayne-color-green-400: oklch(54% 0.199 145);
+    --zayne-color-green-500: oklch(47% 0.199 145);
+    --zayne-color-green-600: oklch(40% 0.199 145);
+    --zayne-color-green-700: oklch(33% 0.199 145);
+    --zayne-color-green-800: oklch(26% 0.199 145);
+    --zayne-color-green-900: oklch(19% 0.199 145);
+    --zayne-color-green-950: oklch(13% 0.199 145);
 
-        /* ── Teal ── hue 175 */
-        --zayne-color-teal-50:  oklch(85% 0.199 175);
-        --zayne-color-teal-100: oklch(75% 0.199 175);
-        --zayne-color-teal-200: oklch(68% 0.199 175);
-        --zayne-color-teal-300: oklch(61% 0.199 175);
-        --zayne-color-teal-400: oklch(54% 0.199 175);
-        --zayne-color-teal-500: oklch(47% 0.199 175);
-        --zayne-color-teal-600: oklch(40% 0.199 175);
-        --zayne-color-teal-700: oklch(33% 0.199 175);
-        --zayne-color-teal-800: oklch(26% 0.199 175);
-        --zayne-color-teal-900: oklch(19% 0.199 175);
-        --zayne-color-teal-950: oklch(13% 0.199 175);
+    /* ── Teal ── hue 175 */
+    --zayne-color-teal-50:  oklch(85% 0.199 175);
+    --zayne-color-teal-100: oklch(75% 0.199 175);
+    --zayne-color-teal-200: oklch(68% 0.199 175);
+    --zayne-color-teal-300: oklch(61% 0.199 175);
+    --zayne-color-teal-400: oklch(54% 0.199 175);
+    --zayne-color-teal-500: oklch(47% 0.199 175);
+    --zayne-color-teal-600: oklch(40% 0.199 175);
+    --zayne-color-teal-700: oklch(33% 0.199 175);
+    --zayne-color-teal-800: oklch(26% 0.199 175);
+    --zayne-color-teal-900: oklch(19% 0.199 175);
+    --zayne-color-teal-950: oklch(13% 0.199 175);
 
-        /* ── Cyan ── hue 200 */
-        --zayne-color-cyan-50:  oklch(85% 0.199 200);
-        --zayne-color-cyan-100: oklch(75% 0.199 200);
-        --zayne-color-cyan-200: oklch(68% 0.199 200);
-        --zayne-color-cyan-300: oklch(61% 0.199 200);
-        --zayne-color-cyan-400: oklch(54% 0.199 200);
-        --zayne-color-cyan-500: oklch(47% 0.199 200);
-        --zayne-color-cyan-600: oklch(40% 0.199 200);
-        --zayne-color-cyan-700: oklch(33% 0.199 200);
-        --zayne-color-cyan-800: oklch(26% 0.199 200);
-        --zayne-color-cyan-900: oklch(19% 0.199 200);
-        --zayne-color-cyan-950: oklch(13% 0.199 200);
+    /* ── Cyan ── hue 200 */
+    --zayne-color-cyan-50:  oklch(85% 0.199 200);
+    --zayne-color-cyan-100: oklch(75% 0.199 200);
+    --zayne-color-cyan-200: oklch(68% 0.199 200);
+    --zayne-color-cyan-300: oklch(61% 0.199 200);
+    --zayne-color-cyan-400: oklch(54% 0.199 200);
+    --zayne-color-cyan-500: oklch(47% 0.199 200);
+    --zayne-color-cyan-600: oklch(40% 0.199 200);
+    --zayne-color-cyan-700: oklch(33% 0.199 200);
+    --zayne-color-cyan-800: oklch(26% 0.199 200);
+    --zayne-color-cyan-900: oklch(19% 0.199 200);
+    --zayne-color-cyan-950: oklch(13% 0.199 200);
 
-        /* ── Sky ── hue 220 */
-        --zayne-color-sky-50:  oklch(85% 0.199 220);
-        --zayne-color-sky-100: oklch(75% 0.199 220);
-        --zayne-color-sky-200: oklch(68% 0.199 220);
-        --zayne-color-sky-300: oklch(61% 0.199 220);
-        --zayne-color-sky-400: oklch(54% 0.199 220);
-        --zayne-color-sky-500: oklch(47% 0.199 220);
-        --zayne-color-sky-600: oklch(40% 0.199 220);
-        --zayne-color-sky-700: oklch(33% 0.199 220);
-        --zayne-color-sky-800: oklch(26% 0.199 220);
-        --zayne-color-sky-900: oklch(19% 0.199 220);
-        --zayne-color-sky-950: oklch(13% 0.199 220);
+    /* ── Sky ── hue 220 */
+    --zayne-color-sky-50:  oklch(85% 0.199 220);
+    --zayne-color-sky-100: oklch(75% 0.199 220);
+    --zayne-color-sky-200: oklch(68% 0.199 220);
+    --zayne-color-sky-300: oklch(61% 0.199 220);
+    --zayne-color-sky-400: oklch(54% 0.199 220);
+    --zayne-color-sky-500: oklch(47% 0.199 220);
+    --zayne-color-sky-600: oklch(40% 0.199 220);
+    --zayne-color-sky-700: oklch(33% 0.199 220);
+    --zayne-color-sky-800: oklch(26% 0.199 220);
+    --zayne-color-sky-900: oklch(19% 0.199 220);
+    --zayne-color-sky-950: oklch(13% 0.199 220);
 
-        /* ── Blue ── hue 245 */
-        --zayne-color-blue-50:  oklch(85% 0.199 245);
-        --zayne-color-blue-100: oklch(75% 0.199 245);
-        --zayne-color-blue-200: oklch(68% 0.199 245);
-        --zayne-color-blue-300: oklch(61% 0.199 245);
-        --zayne-color-blue-400: oklch(54% 0.199 245);
-        --zayne-color-blue-500: oklch(47% 0.199 245);
-        --zayne-color-blue-600: oklch(40% 0.199 245);
-        --zayne-color-blue-700: oklch(33% 0.199 245);
-        --zayne-color-blue-800: oklch(26% 0.199 245);
-        --zayne-color-blue-900: oklch(19% 0.199 245);
-        --zayne-color-blue-950: oklch(13% 0.199 245);
+    /* ── Blue ── hue 245 */
+    --zayne-color-blue-50:  oklch(85% 0.199 245);
+    --zayne-color-blue-100: oklch(75% 0.199 245);
+    --zayne-color-blue-200: oklch(68% 0.199 245);
+    --zayne-color-blue-300: oklch(61% 0.199 245);
+    --zayne-color-blue-400: oklch(54% 0.199 245);
+    --zayne-color-blue-500: oklch(47% 0.199 245);
+    --zayne-color-blue-600: oklch(40% 0.199 245);
+    --zayne-color-blue-700: oklch(33% 0.199 245);
+    --zayne-color-blue-800: oklch(26% 0.199 245);
+    --zayne-color-blue-900: oklch(19% 0.199 245);
+    --zayne-color-blue-950: oklch(13% 0.199 245);
 
-        /* ── Indigo ── hue 265 */
-        --zayne-color-indigo-50:  oklch(85% 0.199 265);
-        --zayne-color-indigo-100: oklch(75% 0.199 265);
-        --zayne-color-indigo-200: oklch(68% 0.199 265);
-        --zayne-color-indigo-300: oklch(61% 0.199 265);
-        --zayne-color-indigo-400: oklch(54% 0.199 265);
-        --zayne-color-indigo-500: oklch(47% 0.199 265);
-        --zayne-color-indigo-600: oklch(40% 0.199 265);
-        --zayne-color-indigo-700: oklch(33% 0.199 265);
-        --zayne-color-indigo-800: oklch(26% 0.199 265);
-        --zayne-color-indigo-900: oklch(19% 0.199 265);
-        --zayne-color-indigo-950: oklch(13% 0.199 265);
+    /* ── Indigo ── hue 265 */
+    --zayne-color-indigo-50:  oklch(85% 0.199 265);
+    --zayne-color-indigo-100: oklch(75% 0.199 265);
+    --zayne-color-indigo-200: oklch(68% 0.199 265);
+    --zayne-color-indigo-300: oklch(61% 0.199 265);
+    --zayne-color-indigo-400: oklch(54% 0.199 265);
+    --zayne-color-indigo-500: oklch(47% 0.199 265);
+    --zayne-color-indigo-600: oklch(40% 0.199 265);
+    --zayne-color-indigo-700: oklch(33% 0.199 265);
+    --zayne-color-indigo-800: oklch(26% 0.199 265);
+    --zayne-color-indigo-900: oklch(19% 0.199 265);
+    --zayne-color-indigo-950: oklch(13% 0.199 265);
 
-        /* ── Violet ── hue 285 */
-        --zayne-color-violet-50:  oklch(85% 0.199 285);
-        --zayne-color-violet-100: oklch(75% 0.199 285);
-        --zayne-color-violet-200: oklch(68% 0.199 285);
-        --zayne-color-violet-300: oklch(61% 0.199 285);
-        --zayne-color-violet-400: oklch(54% 0.199 285);
-        --zayne-color-violet-500: oklch(47% 0.199 285);
-        --zayne-color-violet-600: oklch(40% 0.199 285);
-        --zayne-color-violet-700: oklch(33% 0.199 285);
-        --zayne-color-violet-800: oklch(26% 0.199 285);
-        --zayne-color-violet-900: oklch(19% 0.199 285);
-        --zayne-color-violet-950: oklch(13% 0.199 285);
+    /* ── Violet ── hue 285 */
+    --zayne-color-violet-50:  oklch(85% 0.199 285);
+    --zayne-color-violet-100: oklch(75% 0.199 285);
+    --zayne-color-violet-200: oklch(68% 0.199 285);
+    --zayne-color-violet-300: oklch(61% 0.199 285);
+    --zayne-color-violet-400: oklch(54% 0.199 285);
+    --zayne-color-violet-500: oklch(47% 0.199 285);
+    --zayne-color-violet-600: oklch(40% 0.199 285);
+    --zayne-color-violet-700: oklch(33% 0.199 285);
+    --zayne-color-violet-800: oklch(26% 0.199 285);
+    --zayne-color-violet-900: oklch(19% 0.199 285);
+    --zayne-color-violet-950: oklch(13% 0.199 285);
 
-        /* ── Purple ── hue 305 */
-        --zayne-color-purple-50:  oklch(85% 0.199 305);
-        --zayne-color-purple-100: oklch(75% 0.199 305);
-        --zayne-color-purple-200: oklch(68% 0.199 305);
-        --zayne-color-purple-300: oklch(61% 0.199 305);
-        --zayne-color-purple-400: oklch(54% 0.199 305);
-        --zayne-color-purple-500: oklch(47% 0.199 305);
-        --zayne-color-purple-600: oklch(40% 0.199 305);
-        --zayne-color-purple-700: oklch(33% 0.199 305);
-        --zayne-color-purple-800: oklch(26% 0.199 305);
-        --zayne-color-purple-900: oklch(19% 0.199 305);
-        --zayne-color-purple-950: oklch(13% 0.199 305);
+    /* ── Purple ── hue 305 */
+    --zayne-color-purple-50:  oklch(85% 0.199 305);
+    --zayne-color-purple-100: oklch(75% 0.199 305);
+    --zayne-color-purple-200: oklch(68% 0.199 305);
+    --zayne-color-purple-300: oklch(61% 0.199 305);
+    --zayne-color-purple-400: oklch(54% 0.199 305);
+    --zayne-color-purple-500: oklch(47% 0.199 305);
+    --zayne-color-purple-600: oklch(40% 0.199 305);
+    --zayne-color-purple-700: oklch(33% 0.199 305);
+    --zayne-color-purple-800: oklch(26% 0.199 305);
+    --zayne-color-purple-900: oklch(19% 0.199 305);
+    --zayne-color-purple-950: oklch(13% 0.199 305);
 
-        /* ── Fuchsia ── hue 325 */
-        --zayne-color-fuchsia-50:  oklch(85% 0.199 325);
-        --zayne-color-fuchsia-100: oklch(75% 0.199 325);
-        --zayne-color-fuchsia-200: oklch(68% 0.199 325);
-        --zayne-color-fuchsia-300: oklch(61% 0.199 325);
-        --zayne-color-fuchsia-400: oklch(54% 0.199 325);
-        --zayne-color-fuchsia-500: oklch(47% 0.199 325);
-        --zayne-color-fuchsia-600: oklch(40% 0.199 325);
-        --zayne-color-fuchsia-700: oklch(33% 0.199 325);
-        --zayne-color-fuchsia-800: oklch(26% 0.199 325);
-        --zayne-color-fuchsia-900: oklch(19% 0.199 325);
-        --zayne-color-fuchsia-950: oklch(13% 0.199 325);
+    /* ── Fuchsia ── hue 325 */
+    --zayne-color-fuchsia-50:  oklch(85% 0.199 325);
+    --zayne-color-fuchsia-100: oklch(75% 0.199 325);
+    --zayne-color-fuchsia-200: oklch(68% 0.199 325);
+    --zayne-color-fuchsia-300: oklch(61% 0.199 325);
+    --zayne-color-fuchsia-400: oklch(54% 0.199 325);
+    --zayne-color-fuchsia-500: oklch(47% 0.199 325);
+    --zayne-color-fuchsia-600: oklch(40% 0.199 325);
+    --zayne-color-fuchsia-700: oklch(33% 0.199 325);
+    --zayne-color-fuchsia-800: oklch(26% 0.199 325);
+    --zayne-color-fuchsia-900: oklch(19% 0.199 325);
+    --zayne-color-fuchsia-950: oklch(13% 0.199 325);
 
-        /* ── Pink ── hue 350 */
-        --zayne-color-pink-50:  oklch(85% 0.199 350);
-        --zayne-color-pink-100: oklch(75% 0.199 350);
-        --zayne-color-pink-200: oklch(68% 0.199 350);
-        --zayne-color-pink-300: oklch(61% 0.199 350);
-        --zayne-color-pink-400: oklch(54% 0.199 350);
-        --zayne-color-pink-500: oklch(47% 0.199 350);
-        --zayne-color-pink-600: oklch(40% 0.199 350);
-        --zayne-color-pink-700: oklch(33% 0.199 350);
-        --zayne-color-pink-800: oklch(26% 0.199 350);
-        --zayne-color-pink-900: oklch(19% 0.199 350);
-        --zayne-color-pink-950: oklch(13% 0.199 350);
+    /* ── Pink ── hue 350 */
+    --zayne-color-pink-50:  oklch(85% 0.199 350);
+    --zayne-color-pink-100: oklch(75% 0.199 350);
+    --zayne-color-pink-200: oklch(68% 0.199 350);
+    --zayne-color-pink-300: oklch(61% 0.199 350);
+    --zayne-color-pink-400: oklch(54% 0.199 350);
+    --zayne-color-pink-500: oklch(47% 0.199 350);
+    --zayne-color-pink-600: oklch(40% 0.199 350);
+    --zayne-color-pink-700: oklch(33% 0.199 350);
+    --zayne-color-pink-800: oklch(26% 0.199 350);
+    --zayne-color-pink-900: oklch(19% 0.199 350);
+    --zayne-color-pink-950: oklch(13% 0.199 350);
 
-        /* ── Rose ── hue 10 */
-        --zayne-color-rose-50:  oklch(85% 0.199 10);
-        --zayne-color-rose-100: oklch(75% 0.199 10);
-        --zayne-color-rose-200: oklch(68% 0.199 10);
-        --zayne-color-rose-300: oklch(61% 0.199 10);
-        --zayne-color-rose-400: oklch(54% 0.199 10);
-        --zayne-color-rose-500: oklch(47% 0.199 10);
-        --zayne-color-rose-600: oklch(40% 0.199 10);
-        --zayne-color-rose-700: oklch(33% 0.199 10);
-        --zayne-color-rose-800: oklch(26% 0.199 10);
-        --zayne-color-rose-900: oklch(19% 0.199 10);
-        --zayne-color-rose-950: oklch(13% 0.199 10);
+    /* ── Rose ── hue 10 */
+    --zayne-color-rose-50:  oklch(85% 0.199 10);
+    --zayne-color-rose-100: oklch(75% 0.199 10);
+    --zayne-color-rose-200: oklch(68% 0.199 10);
+    --zayne-color-rose-300: oklch(61% 0.199 10);
+    --zayne-color-rose-400: oklch(54% 0.199 10);
+    --zayne-color-rose-500: oklch(47% 0.199 10);
+    --zayne-color-rose-600: oklch(40% 0.199 10);
+    --zayne-color-rose-700: oklch(33% 0.199 10);
+    --zayne-color-rose-800: oklch(26% 0.199 10);
+    --zayne-color-rose-900: oklch(19% 0.199 10);
+    --zayne-color-rose-950: oklch(13% 0.199 10);
 
-        /* ── Slate (neutral, low chroma) ── hue 240 */
-        --zayne-color-slate-50:  oklch(95% 0.012 240);
-        --zayne-color-slate-100: oklch(88% 0.012 240);
-        --zayne-color-slate-200: oklch(78% 0.012 240);
-        --zayne-color-slate-300: oklch(68% 0.012 240);
-        --zayne-color-slate-400: oklch(58% 0.012 240);
-        --zayne-color-slate-500: oklch(48% 0.012 240);
-        --zayne-color-slate-600: oklch(38% 0.012 240);
-        --zayne-color-slate-700: oklch(29% 0.012 240);
-        --zayne-color-slate-800: oklch(21% 0.012 240);
-        --zayne-color-slate-900: oklch(14% 0.012 240);
-        --zayne-color-slate-950: oklch(9%  0.012 240);
+    /* ── Slate ── hue 240 */
+    --zayne-color-slate-50:  oklch(95% 0.012 240);
+    --zayne-color-slate-100: oklch(88% 0.012 240);
+    --zayne-color-slate-200: oklch(78% 0.012 240);
+    --zayne-color-slate-300: oklch(68% 0.012 240);
+    --zayne-color-slate-400: oklch(58% 0.012 240);
+    --zayne-color-slate-500: oklch(48% 0.012 240);
+    --zayne-color-slate-600: oklch(38% 0.012 240);
+    --zayne-color-slate-700: oklch(29% 0.012 240);
+    --zayne-color-slate-800: oklch(21% 0.012 240);
+    --zayne-color-slate-900: oklch(14% 0.012 240);
+    --zayne-color-slate-950: oklch(9%  0.012 240);
 
-        /* ── Gray (neutral, near-zero chroma) ── hue 0 */
-        --zayne-color-gray-50:  oklch(95% 0 0);
-        --zayne-color-gray-100: oklch(88% 0 0);
-        --zayne-color-gray-200: oklch(78% 0 0);
-        --zayne-color-gray-300: oklch(68% 0 0);
-        --zayne-color-gray-400: oklch(58% 0 0);
-        --zayne-color-gray-500: oklch(48% 0 0);
-        --zayne-color-gray-600: oklch(38% 0 0);
-        --zayne-color-gray-700: oklch(29% 0 0);
-        --zayne-color-gray-800: oklch(21% 0 0);
-        --zayne-color-gray-900: oklch(14% 0 0);
-        --zayne-color-gray-950: oklch(9%  0 0);
-
-
-
-
-    }
-
-    .light {
-        --zayne-color-base-100: oklch(100% 0 0);
-        --zayne-color-base-200: oklch(98% 0 0);
-        --zayne-color-base-300: oklch(100% 0.00011 271.152);
-        --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
-        --zayne-color-base-content: oklch(22% 0.01 270);
-        --zayne-color-base-content-muted: oklch(55% 0.005 270);
-        --zayne-color-base-border: oklch(91.052% 0.00106 11.805);
-        --zayne-color-base-hover: oklch(94% 0.002 270);
-        --zayne-color-primary: oklch(23.929% 0.00003 271.152);
-        --zayne-color-primary-content: oklch(100% 0.00011 271.152);
-        --zayne-color-secondary: oklch(85% 0.199 91.936);
-        --zayne-color-secondary-content: oklch(25% 0.05 91);
-        --zayne-color-accent: oklch(87% 0.169 91.605);
-        --zayne-color-accent-content: oklch(38% 0.063 188.416);
-        --zayne-color-danger: oklch(55% 0.237 25.331);
-        --zayne-color-danger-content: oklch(97% 0.01 25);
-        --zayne-color-success: oklch(48% 0.15 149.579);
-        --zayne-color-success-content: oklch(97% 0.01 149);
-        --zayne-color-warning: oklch(81.79% 0.17046 77.947);
-        --zayne-color-warning-content: oklch(15% 0.05 84);
-        --zayne-color-info: oklch(52% 0.14 232.661);
-        --zayne-color-info-content: oklch(97% 0.01 232);
-        --zayne-custom-header: oklch(100% 0.00011 271.152);
-        --zayne-custom-sidebar: #ffffff;
-        --zayne-custom-sidebar-content: #333333;
-        --zayne-custom-sidebar-item-bg: #141e5700;
-        --zayne-custom-sidebar-item-bg-hover: #111f6d;
-        --zayne-custom-sidebar-item-bg-active: #111f6d;
-        --zayne-custom-sidebar-item-content: #ffffff;
-        --zayne-custom-sidebar-item-content-hover: #ffffff;
-        --zayne-custom-sidebar-item-content-active: #ffc400;
-        --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.137);
-        --zayne-custom-layout-shadow: 0 1px 8px rgba(0, 0, 0, 0.103);
-    }
-
-    .dark { 
-        --zayne-color-base-100: oklch(25.33% 0.016 252.42);
-        --zayne-color-base-200: oklch(23.26% 0.014 253.1);
-        --zayne-color-base-300: oklch(21.15% 0.012 254.09);
-        --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
-        --zayne-color-base-content: oklch(1 0 none);
-        --zayne-color-base-content-muted: oklch(55% 0.005 271);
-        --zayne-color-base-border: oklch(37.53% 0.00004 271.152);
-        --zayne-color-base-hover: oklch(30% 0.005 271);
-        --zayne-color-primary: oklch(0.71 0 none);
-        --zayne-color-primary-content: oklch(92% 0.005 271);    
-        --zayne-color-secondary: oklch(85% 0.199 91.936);
-        --zayne-color-secondary-content: oklch(25% 0.05 91);
-        --zayne-color-danger: oklch(63% 0.237 25.331);
-        --zayne-color-danger-content: oklch(96% 0.01 25);
-        --zayne-color-success: oklch(72% 0.219 149.579);
-        --zayne-color-success-content: oklch(96% 0.01 149);
-        --zayne-color-warning: oklch(82% 0.189 84.429);
-        --zayne-color-warning-content: oklch(25% 0.05 84);
-        --zayne-color-info: oklch(74% 0.16 232.661);
-        --zayne-color-info-content: oklch(96% 0.01 232);
-        --zayne-custom-header: oklch(22% 0.005 271);
-        --zayne-custom-sidebar: oklch(15% 0.005 271);
-        --zayne-custom-sidebar-content: oklch(88% 0.005 271);
-        --zayne-custom-sidebar-item-bg: rgba(255, 255, 255, 0.04);
-        --zayne-custom-sidebar-item-bg-hover: rgba(255, 255, 255, 0.08);
-        --zayne-custom-sidebar-item-bg-active: rgba(255, 255, 255, 0.12);
-        --zayne-custom-sidebar-item-content: oklch(70% 0.005 271);
-        --zayne-custom-sidebar-item-content-hover: oklch(95% 0.005 271);
-        --zayne-custom-sidebar-item-content-active: #ffffff;
-        --zayne-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
-        --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.08);
-    }
-
-    .abyss {
-        --zayne-color-base-100: oklch(20% 0.08 209);
-        --zayne-color-base-200: oklch(15% 0.08 209);
-        --zayne-color-base-300: oklch(10% 0.08 209);
-        --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
-        --zayne-color-base-content: oklch(99.226% 0.00608 75.126);
-        --zayne-color-base-content-muted: oklch(60.409% 0.0418 73.346);
-        --zayne-color-base-border: oklch(30% 0.08 209);
-        --zayne-color-base-hover: oklch(25% 0.08 209);
-        --zayne-color-primary: oklch(50% 0.2653 125);
-        --zayne-color-primary-content: oklch(92% 0.2653 125);
-        --zayne-color-secondary: oklch(83.27% 0.0764 298.3);
-        --zayne-color-secondary-content: oklch(43.27% 0.0764 298.3);
-        --zayne-color-danger: oklch(65% 0.1985 24.22);
-        --zayne-color-danger-content: oklch(27% 0.1985 24.22);
-        --zayne-color-success: oklch(79% 0.209 151.711);
-        --zayne-color-success-content: oklch(26% 0.065 152.934);
-        --zayne-color-warning: oklch(84.8% 0.1962 84.62);
-        --zayne-color-warning-content: oklch(44.8% 0.1962 84.62);
-        --zayne-color-info: oklch(74% 0.16 232.661);
-        --zayne-color-info-content: oklch(29% 0.066 243.157);
-        --zayne-custom-header: oklch(15% 0.08 209);
-        --zayne-custom-sidebar: oklch(8.392% 0.02461 251.3);
-        --zayne-custom-sidebar-content: oklch(99.226% 0.00608 75.126);
-        --zayne-custom-sidebar-item-bg: rgba(255, 255, 255, 0.04);
-        --zayne-custom-sidebar-item-bg-hover: rgba(255, 255, 255, 0.1);
-        --zayne-custom-sidebar-item-bg-active: rgba(255, 255, 255, 0.15);
-        --zayne-custom-sidebar-item-content: oklch(99.226% 0.00608 75.126);
-        --zayne-custom-sidebar-item-content-hover: #ffffff;
-        --zayne-custom-sidebar-item-content-active: #ffffff;
-        --zayne-radius-selector: 2rem;
-        --zayne-radius-field: 0.25rem;
-        --zayne-radius-box: 0.5rem;
-        --zayne-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
-        --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
-    }
-
-    /* ============================================================
-    |  SECTION 2 - STRUCTURE
-    ============================================================ */
-
-    :root {
-        --ease-out-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-        --ease-in-smooth: cubic-bezier(0.4, 0, 1, 1);
-        --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    html, body {
-        margin: 0;
-        min-height: 100%;
-        background: var(--zayne-color-base-300);
-        color: var(--zayne-color-base-content);
-        font-family: "Instrument Sans", "Segoe UI", sans-serif;
-    }
-
-    [x-cloak] {
-        display: none !important;
-    }
-
-    /* ── Scrollbar hide ── */
-    .scrollbar-hide::-webkit-scrollbar { display: none; }
-    .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-
-    /* ── Root Layout ── */
-    .zaynemainlayout {
-        display: grid;
-        height: 100dvh;
-        width: 100vw;
-        overflow: hidden;
-        isolation: isolate;
-        grid-template-areas:
-            "sidebar header"
-            "sidebar main";
-        grid-template-columns: auto 1fr;
-        grid-template-rows: auto 1fr;
-    }
-    /* layout 4 */
-    .zaynemainlayout2 {
-        display: grid;
-        height: 100dvh;
-        width: 100vw;
-        overflow: hidden;
-        isolation: isolate;
-        grid-template-areas:
-            "header header"
-            "sidebar main";
-        grid-template-columns: auto 1fr;
-        grid-template-rows: auto 1fr;
-    }
-
-
-
-
-    .zayneheader,
-    .zaynemain {
-        min-width: 0;
-    }
-
-    .zayne-theme-toggle {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.375rem;
-        width: 100%;
-        height: 28px;
-        padding: 0 0.75rem;
-        border-radius: var(--zayne-radius-field);
-        border: 1px solid var(--zayne-color-base-border);
-        background: var(--zayne-color-base-200);
-        color: var(--zayne-color-base-content);
-        font-size: 0.72rem;
-        cursor: pointer;
-        transition: filter 150ms ease, background 150ms ease, color 150ms ease;
-        appearance: none;
-    }
-
-    .zayne-theme-toggle:hover {
-        filter: brightness(1.12);
-    }
-
-    .zayne-theme-toggle-icon {
-        display: none;
-        width: 1rem;
-        height: 1rem;
-        flex-shrink: 0;
-    }
-
-    html.light .zayne-theme-toggle-icon--light,
-    html.dark .zayne-theme-toggle-icon--dark,
-    html.abyss .zayne-theme-toggle-icon--abyss {
-        display: inline-flex;
-    }
-
-    /* ── Sidebar ── */
-    .zaynesidebar {
-        grid-area: sidebar;
-        display: flex;
-        flex-direction: column;
-        min-height: 0;
-        overflow: visible;
-        position: relative;
-        z-index: var(--zayne-z-shell-elevated);
-    }
-
-    .zaynesidebar aside {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        min-height: 0;
-        width: var(--sidebar-expanded-w);
-        transition: none;
-        overflow: visible;
-    }
-
-    html.sidebar-ready .zaynesidebar aside {
-        transition: width var(--layout-transition);
-    }
-
-    html.sidebar-collapsed .zaynesidebar[data-collapse="viewicons"] aside {
-        width: var(--sidebar-collapsed-w);
-    }
-
-    html.sidebar-collapsed .zaynesidebar[data-collapse="full"] aside {
-        width: 0;
-        padding: 0 !important;
-        border: none !important;
-    }
-
-    .zayne-sidebar-section {
-        flex-shrink: 0;
-    }
-
-    .zayne-sidebar-body {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        gap: 0.25rem;
-        min-height: 0;
-        overflow-y: auto;
-    }
-
-    /* ── Header ── */
-    .zayneheader {
-        grid-area: header;
-        display: flex;
-        justify-content: center;
-        align-items: center;    
-        min-height: var(--header-h);
-        box-sizing: border-box;
-        z-index: var(--zayne-z-shell-base);
-    }
-
-    /* ── Main ── */
-    .zaynemain {
-        grid-area: main;
-        scroll-behavior: smooth;
-        background: var(--zayne-color-base-300);
-        overflow: auto; /* ← ADD THIS — main scrolls, not the grid */
-        min-height: 0;
-    }
-
-    /* ── Header slots ── */
-.zayne-header-left,
-.zayne-header-right {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
+    /* ── Gray ── hue 0 */
+    --zayne-color-gray-50:  oklch(95% 0 0);
+    --zayne-color-gray-100: oklch(88% 0 0);
+    --zayne-color-gray-200: oklch(78% 0 0);
+    --zayne-color-gray-300: oklch(68% 0 0);
+    --zayne-color-gray-400: oklch(58% 0 0);
+    --zayne-color-gray-500: oklch(48% 0 0);
+    --zayne-color-gray-600: oklch(38% 0 0);
+    --zayne-color-gray-700: oklch(29% 0 0);
+    --zayne-color-gray-800: oklch(21% 0 0);
+    --zayne-color-gray-900: oklch(14% 0 0);
+    --zayne-color-gray-950: oklch(9%  0 0);
 }
 
-.zayne-header-center {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 0;
+.light {
+    --zayne-color-base-100: oklch(100% 0 0);
+    --zayne-color-base-200: oklch(98% 0 0);
+    --zayne-color-base-300: oklch(100% 0.00011 271.152);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(22% 0.01 270);
+    --zayne-color-base-content-muted: oklch(55% 0.005 270);
+    --zayne-color-base-border: oklch(91.052% 0.00106 11.805);
+    --zayne-color-base-hover: oklch(94% 0.002 270);
+    --zayne-color-primary: oklch(23.929% 0.00003 271.152);
+    --zayne-color-primary-content: oklch(100% 0.00011 271.152);
+    --zayne-color-secondary: oklch(85% 0.199 91.936);
+    --zayne-color-secondary-content: oklch(25% 0.05 91);
+    --zayne-color-accent: oklch(87% 0.169 91.605);
+    --zayne-color-accent-content: oklch(38% 0.063 188.416);
+    --zayne-color-danger: oklch(55% 0.237 25.331);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 149.579);
+    --zayne-color-success-content: oklch(97% 0.01 149);
+    --zayne-color-warning: oklch(81.79% 0.17046 77.947);
+    --zayne-color-warning-content: oklch(15% 0.05 84);
+    --zayne-color-info: oklch(52% 0.14 232.661);
+    --zayne-color-info-content: oklch(97% 0.01 232);
+    --zayne-custom-header: oklch(100% 0.00011 271.152);
+    --zayne-custom-sidebar: #ffffff;
+    --zayne-custom-sidebar-content: #333333;
+    --zayne-custom-sidebar-item-bg: #141e5700;
+    --zayne-custom-sidebar-item-bg-hover: #111f6d;
+    --zayne-custom-sidebar-item-bg-active: #111f6d;
+    --zayne-custom-sidebar-item-content: #ffffff;
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #ffc400;
+    --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.205);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(138, 82, 82, 0.103);
+    --zayne-background-main: linear-gradient(135deg, #fcfcfd 0%, #dbeafe2a 50%, #bfdbfe6b 100%);
 }
 
-.zayne-header-center-track {
-    display: flex;
-    align-items: center;
+.dark {
+    --zayne-color-base-100: oklch(25.33% 0.016 252.42);
+    --zayne-color-base-200: oklch(23.26% 0.014 253.1);
+    --zayne-color-base-300: oklch(21.15% 0.012 254.09);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(1 0 none);
+    --zayne-color-base-content-muted: oklch(55% 0.005 271);
+    --zayne-color-base-border: oklch(37.53% 0.00004 271.152);
+    --zayne-color-base-hover: oklch(30% 0.005 271);
+    --zayne-color-primary: oklch(0.71 0 none);
+    --zayne-color-primary-content: oklch(92% 0.005 271);
+    --zayne-color-secondary: oklch(85% 0.199 91.936);
+    --zayne-color-secondary-content: oklch(25% 0.05 91);
+    --zayne-color-accent: oklch(87% 0.169 91.605);
+    --zayne-color-accent-content: oklch(38% 0.063 188.416);
+    --zayne-color-danger: oklch(63% 0.237 25.331);
+    --zayne-color-danger-content: oklch(96% 0.01 25);
+    --zayne-color-success: oklch(72% 0.219 149.579);
+    --zayne-color-success-content: oklch(96% 0.01 149);
+    --zayne-color-warning: oklch(82% 0.189 84.429);
+    --zayne-color-warning-content: oklch(25% 0.05 84);
+    --zayne-color-info: oklch(74% 0.16 232.661);
+    --zayne-color-info-content: oklch(96% 0.01 232);
+    --zayne-custom-header: oklch(22% 0.005 271);
+    --zayne-custom-sidebar: oklch(15% 0.005 271);
+    --zayne-custom-sidebar-content: oklch(88% 0.005 271);
+    --zayne-custom-sidebar-item-bg: rgba(255, 255, 255, 0.04);
+    --zayne-custom-sidebar-item-bg-hover: rgba(255, 255, 255, 0.08);
+    --zayne-custom-sidebar-item-bg-active: rgba(255, 255, 255, 0.12);
+    --zayne-custom-sidebar-item-content: oklch(70% 0.005 271);
+    --zayne-custom-sidebar-item-content-hover: oklch(95% 0.005 271);
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+    --zayne-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.08);
+    --zayne-background-main: linear-gradient(135deg, #333333 0%, #dbeafe2a 50%, #2c2c2c6b 100%);
 }
 
-.zayne-header-mobile-toggle {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border: none;
-    background: transparent;
-    color: var(--zayne-color-base-content);
-    cursor: pointer;
-    padding: 0;
-    flex-shrink: 0;
-    border-radius: var(--zayne-radius-field);
-    transition: background 150ms ease;
+.abyss {
+    --zayne-color-base-100: oklch(20% 0.08 209);
+    --zayne-color-base-200: oklch(15% 0.08 209);
+    --zayne-color-base-300: oklch(10% 0.08 209);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(99.226% 0.00608 75.126);
+    --zayne-color-base-content-muted: oklch(60.409% 0.0418 73.346);
+    --zayne-color-base-border: oklch(30% 0.08 209);
+    --zayne-color-base-hover: oklch(25% 0.08 209);
+    --zayne-color-primary: oklch(50% 0.2653 125);
+    --zayne-color-primary-content: oklch(92% 0.2653 125);
+    --zayne-color-secondary: oklch(83.27% 0.0764 298.3);
+    --zayne-color-secondary-content: oklch(43.27% 0.0764 298.3);
+    --zayne-color-danger: oklch(65% 0.1985 24.22);
+    --zayne-color-danger-content: oklch(27% 0.1985 24.22);
+    --zayne-color-success: oklch(79% 0.209 151.711);
+    --zayne-color-success-content: oklch(26% 0.065 152.934);
+    --zayne-color-warning: oklch(84.8% 0.1962 84.62);
+    --zayne-color-warning-content: oklch(44.8% 0.1962 84.62);
+    --zayne-color-info: oklch(74% 0.16 232.661);
+    --zayne-color-info-content: oklch(29% 0.066 243.157);
+    --zayne-custom-header: oklch(15% 0.08 209);
+    --zayne-custom-sidebar: oklch(8.392% 0.02461 251.3);
+    --zayne-custom-sidebar-content: oklch(99.226% 0.00608 75.126);
+    --zayne-custom-sidebar-item-bg: rgba(255, 255, 255, 0.04);
+    --zayne-custom-sidebar-item-bg-hover: rgba(255, 255, 255, 0.1);
+    --zayne-custom-sidebar-item-bg-active: rgba(255, 255, 255, 0.15);
+    --zayne-custom-sidebar-item-content: oklch(99.226% 0.00608 75.126);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+    --zayne-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
 }
 
-.zayne-header-mobile-toggle:hover {
-    background: var(--zayne-color-base-200);
-}
-
-@media (max-width: 768px) {
-    .zayneheader {
-        flex-wrap: wrap;
-        height: auto !important;
-        min-height: var(--header-h);
-        padding-top: 10px !important;
-        padding-bottom: 0;
-    }
-
-    .zayne-header-mobile-toggle {
-        display: inline-flex;
-    }
-
-    /* Row 1: toggle | left (expands) | right */
-    .zayne-header-left {
-        flex: 1;
-        min-width: 0;
-        padding-left: 0.25rem;
-    }
-
-    .zayne-header-right {
-        margin-left: 0;
-    }
-
-    /* Row 2: main slot — full width, scrollable, separated by border */
-    .zayne-header-center {
-        order: 3;
-        width: 100%;
-        flex: none;
-        justify-content: flex-start;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        border-top: 1px solid var(--zayne-color-base-border);
-        padding-top: 0.375rem;
-        padding-bottom: 0.375rem;
-        margin-top: 0.25rem;
-    }
-
-    .zayne-header-center::-webkit-scrollbar {
-        display: none;
-    }
-
-    .zayne-header-center-track {
-        gap: 0.5rem;
-        padding-right: 1rem;
-    }
-
-    /* Hide the old floating mobile toggle */
-    .zayne-mobile-toggle {
-        display: none !important;
-    }
-}
-    /* ── Brand ── */
-    .zayne-brand,
-    .zayne-sidebar-brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        color: inherit;
-        text-decoration: none;
-    }
-
-    .zayne-header-nav {
-        display: inline-flex;
-        align-items: center;
-    }
-
-    .zayne-header-avatar,
-    .zayne-sidebar-avatar {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-    }
-
-    /* ── Sidebar collapse: labels ── */
-    .sidebar-label {
-        white-space: nowrap;
-        overflow: hidden;
-        transition: none;
-    }
-
-    html.sidebar-ready .sidebar-label {
-        transition: opacity var(--layout-transition), max-width var(--layout-transition);
-    }
-
-    /* ── Sidebar divider ── */
-    .sidebar-divider {
-        opacity: 0;
-        max-height: 0;
-        width: 100%;
-        overflow: hidden;
-        transition: opacity 200ms ease, max-height 200ms ease;
-    }
-
-    html.sidebar-collapsed .sidebar-divider {
-        opacity: 1;
-        max-height: 1px;
-    }
-
-    html.sidebar-collapsed .sidebar-labelwrap{
-        padding: 0px;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-
-    html.sidebar-collapsed .sidebar-label {
-        opacity: 0;
-        max-width: 0;
-        pointer-events: none;
-    }
-
-    .zayne-sidebar-section-label {
-        font-size: 0.625rem;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        opacity: 0.5;
-        color: var(--zayne-custom-sidebar-content);
-    }
-
-    .sidebar-divider {
-        display: none;
-    }
-
-    html.sidebar-collapsed .sidebar-divider {
-        display: block;
-    }
-
-    /* ── Sidebar toggle icons ── */
-    .sidebar-toggle-icon-collapsed,
-    .sidebar-toggle-icon-expanded {
-        position: absolute;
-        transition: none;
-    }
-
-    html.sidebar-ready .sidebar-toggle-icon-collapsed,
-    html.sidebar-ready .sidebar-toggle-icon-expanded {
-        transition: opacity var(--layout-transition);
-    }
-
-    .sidebar-toggle-icon-collapsed { opacity: 0; }
-    .sidebar-toggle-icon-expanded  { opacity: 1; }
-
-    html.sidebar-collapsed .sidebar-toggle-icon-collapsed { opacity: 1; }
-    html.sidebar-collapsed .sidebar-toggle-icon-expanded  { opacity: 0; }
-
-    /* ── Navtree ── */
-    .zaynenavtree {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .navtree-items {
-        position: relative;
-        overflow: hidden;
-        opacity: 0;
-        transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1), opacity 150ms ease;
-    }
-
-    .zaynenavtree.navtree-open .navtree-items {
-        opacity: 1;
-    }
-
-    .zaynenavtree.navtree-open .navtree-chevron {
-        transform: rotate(180deg);
-    }
-
-    /* ── Button ── */
-    .zayne-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 500;
-        cursor: pointer;
-        border: none;
-        text-decoration: none;
-        flex-shrink: 0;
-        transition: filter 150ms ease, transform 100ms ease, box-shadow 150ms ease;
-        white-space: nowrap;
-        border-style: solid;
-        border-width: 0;
-        box-sizing: border-box;
-    }
-
-    .zayne-button:focus-visible {
-        outline: 2px solid currentColor;
-        outline-offset: 2px;
-    }
-
-    .zayne-button:not([disabled]):hover {
-        filter: brightness(1.08);
-    }
-
-    .zayne-button:not([disabled]):active {
-        transform: translateY(1px);
-        filter: brightness(0.95);
-    }
-
-    .zayne-button[disabled] {
-        opacity: 0.5;
-        cursor: not-allowed;
-        pointer-events: none;
-    }
-
-    .zayne-button--xs { height: 1.5rem;  font-size: 0.75rem;  padding: 0 0.5rem;  border-radius: var(--zayne-radius-selector); }
-    .zayne-button--sm { height: 2rem;    font-size: 0.875rem; padding: 0 0.75rem; border-radius: var(--zayne-radius-field); }
-    .zayne-button--md { height: 2.5rem;  font-size: 0.875rem; padding: 0 1rem;    border-radius: var(--zayne-radius-field); }
-    .zayne-button--lg { height: 3rem;    font-size: 1rem;     padding: 0 1.25rem; border-radius: var(--zayne-radius-field); }
-    .zayne-button--xl { height: 3.5rem;  font-size: 1.125rem; padding: 0 1.5rem;  border-radius: var(--zayne-radius-box); }
-
-    .zayne-button-icon,
-    .zayne-button-label,
-    .zayne-button-trailing {
-        display: inline-flex;
-        align-items: center;
-        transition: width var(--layout-transition);
-    }
-
-    .zayne-button--icon-only {
-        padding: 0 !important;
-        min-width: 0;
-        aspect-ratio: 1 / 1;
-    }
-
-    .zayne-button--icon-only .zayne-button-icon,
-    .zayne-button--icon-only .zayne-button-trailing {
-        margin: 0;
-    }
-
-    .zayne-icon-wrapper svg {
-        width: 100%;
-        height: 100%;
-    }
-
-    /* ── Badge ── */
-    .zayne-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.25rem;
-        font-weight: 500;
-        white-space: nowrap;
-        border-style: solid;
-        border-width: 0;
-        box-sizing: border-box;
-    }
-
-    .zayne-badge--sm { height: 1.25rem; font-size: 0.7rem;  padding: 0 0.4rem;   border-radius: var(--zayne-radius-selector); }
-    .zayne-badge--md { height: 1.5rem;  font-size: 0.75rem; padding: 0 0.5rem;   border-radius: var(--zayne-radius-selector); }
-    .zayne-badge--lg { height: 1.75rem; font-size: 0.8rem;  padding: 0 0.625rem; border-radius: var(--zayne-radius-selector); }
-
-    /* ── Alert ── */
-    .zayne-alert {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.75rem;
-        border-style: solid;
-        box-sizing: border-box;
-    }
-
-    .zayne-alert-content {
-        flex: 1;
-        min-width: 0;
-    }
-
-    /* ── Icon Wrapper ── */
-    .zayne-icon-wrapper {
-        width: 38px;
-        height: 38px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-
-    /* ── Backdrop ── */
-    .zayne-backdrop {
-        position: fixed;
-        inset: 0;
-        z-index: var(--zayne-z-overlay-backdrop);
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-    }
-
-    .zayne-overlay-wrapper {
-            position: fixed;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            box-sizing: border-box;
-        }
-
-    /* ── Overlay roots ── */
-    .zayne-modal-root,
-    .zayne-drawer-root,
-    .zayne-dropdown-root,
-    .zayne-tooltip-root,
-    .zayne-popover-root {
-        position: relative;
-    }
-
-    .zayne-dropdown-panel,
-    .zayne-tooltip-panel,
-    .zayne-popover-panel {
-        box-sizing: border-box;
-    }
-
-        /* ── Modal ── */
-        .zayne-modal-panel {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            z-index: 1;
-            background: var(--zayne-color-base-100);
-            border-radius: var(--zayne-radius-box);
-            box-shadow: var(--zayne-shadow);
-            overflow-y: auto;
-            box-sizing: border-box;
-            max-width: calc(100vw - 2rem);
-            max-height: calc(100dvh - 2rem);
-        }
-
-        @keyframes zayne-modal-in    { from { opacity: 0; transform: translate(-50%, -55%) scale(0.97); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
-        @keyframes zayne-modal-out   { from { opacity: 1; transform: translate(-50%, -50%) scale(1);    } to { opacity: 0; transform: translate(-50%, -45%) scale(0.97); } }
-
-        .zayne-modal-enter    { animation: zayne-modal-in   260ms var(--ease-out-smooth) forwards; }
-        .zayne-modal-leave    { animation: zayne-modal-out  300ms var(--ease-in-smooth)  backwards; }
-
-    /* ── Drawer ── */
-    .zayne-drawer-panel {
-            position: absolute;  /* was fixed — now absolute inside the fixed wrapper */
-            z-index: 1;
-            background: var(--zayne-color-base-100);
-            overflow-y: auto;
-            box-sizing: border-box;
-        }
-    
-    .zayne-drawer-panel--left   { top: 0; left: 0;   height: 100%; }
-    .zayne-drawer-panel--right  { top: 0; right: 0;  height: 100%; }
-    .zayne-drawer-panel--top    { top: 0; left: 0;   width: 100%;  }
-    .zayne-drawer-panel--bottom { bottom: 0; left: 0; width: 100%; }
-
-    /* ── Dropdown / Tooltip / Popover ── */
-    
-    .zayne-dropdown-panel,
-    .zayne-tooltip-panel,
-    .zayne-popover-panel {
-        position: absolute;
-        top: calc(100% + 0.5rem);
-        left: 0;
-        box-sizing: border-box;
-    }
-
-    /* ── Card ── */
-    .zayne-card {
-        background: var(--zayne-color-base-100);
-        border-radius: var(--zayne-radius-box);
-        border: var(--zayne-border-box) solid var(--zayne-color-base-border);
-        box-sizing: border-box;
-    }
-
-    .zayne-card-header,
-    .zayne-card-footer {
-        margin-bottom: 1rem;
-    }
-
-    .zayne-card-footer {
-        margin-bottom: 0;
-        margin-top: 1rem;
-    }
-
-    /* ── Input ── */
-    .zayne-input {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        height: var(--zayne-size-field);
-        border: var(--zayne-border-field) solid var(--zayne-color-base-border);
-        border-radius: var(--zayne-radius-field);
-        background: var(--zayne-color-base-100);
-        color: var(--zayne-color-base-content);
-        transition: border-color 150ms ease, box-shadow 150ms ease;
-        box-sizing: border-box;
-    }
-
-    .zayne-input:focus,
-    .zayne-input:focus-within {
-        border-color: var(--zayne-input-focus-border, var(--zayne-color-primary));
-        outline: none;
-    }
-
-    .zayne-select {
-        appearance: none;
-    }
-
-    .zayne-textarea {
-        display: block;
-        min-height: 7rem;
-        height: auto;
-        padding-top: 0.875rem;
-        padding-bottom: 0.875rem;
-        line-height: 1.4;
-        resize: vertical;
-    }
-
-    .zayne-file {
-        display: block;
-        padding: 0.25rem;
-    }
-
-    .zayne-file::file-selector-button,
-    .zayne-file::-webkit-file-upload-button {
-        background: var(--zayne-file-button-bg, var(--zayne-color-base-200));
-        color: var(--zayne-file-button-color, var(--zayne-color-base-content));
-        border: none;
-        border-right: var(--zayne-border-field) solid var(--zayne-file-button-border, var(--zayne-color-base-border));
-        padding: 0 0.875rem;
-        margin-right: 0.75rem;
-        height: 100%;
-        border-radius: var(--zayne-radius-field);
-        cursor: pointer;
-    }
-
-    .zayne-file:focus::file-selector-button,
-    .zayne-file:focus::-webkit-file-upload-button {
-        outline: none;
-    }
-
-    .zayne-range {
-        display: block;
-        width: 100%;
-        accent-color: var(--zayne-color-primary);
-        cursor: pointer;
-        margin: 0;
-    }
-
-    .zayne-range:disabled {
-        cursor: not-allowed;
-        opacity: 0.5;
-    }
-
-    /* ── Checkbox / Toggle ── */
-    .zayne-checkbox,
-    .zayne-toggle,
-    .zayne-radio {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-        cursor: pointer;
-    }
-
-    .zayne-checkbox-box {
-        width: var(--zayne-size-selector);
-        height: var(--zayne-size-selector);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-style: solid;
-        box-sizing: border-box;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .zayne-checkbox-box input,
-    .zayne-toggle-track input {
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-        cursor: pointer;
-    }
-
-    .zayne-checkbox-box svg {
-        width: 14px;
-        height: 14px;
-        opacity: 0;
-        transform: scale(0.65);
-        transition: opacity 150ms ease, transform 150ms ease;
-    }
-
-    .zayne-checkbox-box svg.is-on {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    .zayne-radio-box {
-        width: var(--zayne-size-selector);
-        height: var(--zayne-size-selector);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-style: solid;
-        border-radius: 999px;
-        box-sizing: border-box;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .zayne-radio-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 999px;
-        background: currentColor;
-        opacity: 0;
-        transform: scale(0.65);
-        transition: opacity 150ms ease, transform 150ms ease;
-    }
-
-    .zayne-radio-dot.is-on {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    .zayne-toggle-track {
-        width: 44px;
-        height: 24px;
-        display: inline-flex;
-        align-items: center;
-        position: relative;
-        box-sizing: border-box;
-    }
-
-    .zayne-toggle-thumb {
-        width: 18px;
-        height: 18px;
-        border-radius: 999px;
-        background: currentColor;
-        transform: translateX(0);
-        transition: transform 180ms var(--ease-out-smooth);
-    }
-
-    .zayne-toggle-thumb.is-on {
-        transform: translateX(20px);
-    }
-
-    /* ── Fieldset ── */
-    .zayne-fieldset {
-        display: flex;
-        flex-direction: column;
-        gap: 0.375rem;
-        border: 0;
-        padding: 0;
-        margin: 0;
-        min-width: 0;
-    }
-
-    .zayne-fieldset-label {
-        font-size: 0.875rem;
-        font-weight: 600;
-        color: var(--zayne-color-base-content);
-        padding: 0;
-        margin: 0;
-    }
-
-    .zayne-fieldset-body {
-        display: flex;
-        flex-direction: column;
-        min-width: 0;
-    }
-
-    .zayne-fieldset-hint {
-        font-size: 0.75rem;
-        color: var(--zayne-color-base-content-muted);
-    }
-
-    .zayne-fieldset-error {
-        font-size: 0.75rem;
-        color: var(--zayne-color-danger);
-    }
-
-    /* ── Avatar ── */
-    .zayne-avatar {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        flex-shrink: 0;
-        border-style: solid;
-        box-sizing: border-box;
-    }
-
-    .zayne-avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .zayne-avatar--sm { width: 2rem;   height: 2rem;   font-size: 0.75rem; }
-    .zayne-avatar--md { width: 2.5rem; height: 2.5rem; font-size: 0.875rem; }
-    .zayne-avatar--lg { width: 3rem;   height: 3rem;   font-size: 1rem; }
-    .zayne-avatar--xl { width: 4rem;   height: 4rem;   font-size: 1.25rem; }
-
-    /* ── Progress ── */
-    .zayne-progress {
-        width: 100%;
-        height: 8px;
-        border-radius: 999px;
-        background: var(--zayne-color-base-300);
-        overflow: hidden;
-    }
-
-    .zayne-progress-bar {
-        height: 100%;
-        border-radius: 999px;
-        transition: width 300ms ease;
-    }
-
-    /* ── Auth Shell ── */
-    .zayne-auth-shell {
-        min-height: 100dvh;
-        display: grid;
-        place-items: center;
-        padding: 2rem;
-        box-sizing: border-box;
-    }
-
-    /* ── Mobile ── */
-    @media (max-width: 768px) {
-        html.sidebar-mobile-open,
-        html.sidebar-mobile-open body {
-            overflow: hidden;
-        }
-
-        .zaynemainlayout {
-            grid-template-areas:
-                "header"
-                "main";
-            grid-template-columns: 1fr;
-            grid-template-rows: auto minmax(0, 1fr);
-        }
-
-        .zaynesidebar {
-            grid-area: auto;
-            position: fixed;
-            inset: 0 auto 0 0;
-            width: min(86vw, var(--sidebar-expanded-w)) !important;
-            height: 100dvh;
-            z-index: var(--zayne-z-drawer);
-            flex: none !important;
-            min-height: auto !important;
-            overflow: visible !important;
-            gap: 0 !important;
-            border:0 !important;
-            box-shadow:0px 0px !important;
-            pointer-events: none;
-        }
-
-        .zaynesidebar aside {
-            width: 100%;
-            height: 100%;
-            transform: translateX(-100%);
-            transition: transform 260ms var(--ease-out-smooth);
-        }
-
-        html.sidebar-mobile-open .zaynesidebar {
-            pointer-events: auto;
-        }
-
-        html.sidebar-mobile-open .zaynesidebar aside,
-        html.sidebar-mobile-open .zaynesidebar[data-collapse="viewicons"] aside,
-        html.sidebar-mobile-open .zaynesidebar[data-collapse="full"] aside {
-            width: min(86vw, var(--sidebar-expanded-w)) !important;
-            padding: var(--zayne-sidebar-mobile-padding, 10px) !important;
-        }
-
-        html.sidebar-mobile-open .zaynesidebar aside {
-            transform: translateX(0);
-        }
-
-        html.sidebar-mobile-open .sidebar-label {
-            opacity: 1 !important;
-            max-width: none !important;
-            pointer-events: auto !important;
-        }
-
-        html.sidebar-mobile-open .sidebar-labelwrap {
-            padding: 0 !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-        }
-
-        html.sidebar-mobile-open .sidebar-divider {
-            opacity: 0 !important;
-            max-height: 0 !important;
-        }
-
-        html.sidebar-mobile-open .sidebar-toggle-icon-collapsed {
-            opacity: 0 !important;
-        }
-
-        html.sidebar-mobile-open .sidebar-toggle-icon-expanded {
-            opacity: 1 !important;
-        }
-
-        .zayne-mobile-toggle {
-            display: flex;
-            position: fixed;
-            bottom: 1.5rem;
-            left: 1.5rem;
-            z-index: var(--zayne-z-mobile-toggle);
-            width: 48px;
-            height: 48px;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            border: none;
-            padding: 0;
-            appearance: none;
-            cursor: pointer;
-            box-shadow: var(--zayne-custom-layout-shadow);
-            background: var(--zayne-color-primary);
-            color: var(--zayne-color-primary-content);
-        }
-
-        .zayne-mobile-backdrop {
-            position: fixed;
-            inset: 0;
-            z-index: 2;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border: 0;
-            padding: 0;
-            appearance: none;
-        }
-
-        html:not(.sidebar-mobile-open) .zayne-mobile-backdrop {
-            display: none;
-        }
-    }
-
-    @media (min-width: 769px) {
-        .zayne-mobile-toggle,
-        .zayne-mobile-backdrop {
-            display: none;
-        }
-    }
-
-    /* ============================================================
-    |  SECTION 3 - ANIMATIONS
-    ============================================================ */
-
-    @keyframes zayne-modal-in    { from { opacity: 0; transform: translate(-50%, -48%) scale(0.97); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
-    @keyframes zayne-modal-out   { from { opacity: 1; transform: translate(-50%, -50%) scale(1);    } to { opacity: 0; transform: translate(-50%, -52%) scale(0.97); } }
-    @keyframes zayne-fade-in     { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes zayne-fade-out    { from { opacity: 1; } to { opacity: 0; } }
-    @keyframes zayne-drawer-in   { from { transform: translateX(-100%); } to { transform: translateX(0); } }
-    @keyframes zayne-drawer-out  { from { transform: translateX(0);     } to { transform: translateX(-100%); } }
-    @keyframes zayne-slide-down  { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes zayne-slide-up    { from { opacity: 1; transform: translateY(0);    } to { opacity: 0; transform: translateY(-6px); } }
-    @keyframes zayne-bounce {
-        0%, 100% {
-            transform: translateY(0);
-            animation-timing-function: ease-in-out;
-        }
-        
-        25% {
-            transform: translateY(-4px);
-            animation-timing-function: ease-out;
-        }
-        
-        50% {
-            transform: translateY(0);
-            animation-timing-function: ease-in;
-        }
-        
-        75% {
-            transform: translateY(-3px);
-            animation-timing-function: ease-out;}
-    }
-
-    .zayne-modal-enter    { animation: zayne-modal-in   260ms var(--ease-out-smooth) forwards; }
-    .zayne-modal-leave    { animation: zayne-modal-out  140ms var(--ease-in-smooth)  backwards; }
-    .zayne-backdrop-enter { animation: zayne-fade-in    180ms var(--ease-out-smooth) forwards; }
-    .zayne-backdrop-leave { animation: zayne-fade-out   120ms var(--ease-in-smooth)  backwards; }
-    .zayne-drawer-enter   { animation: zayne-drawer-in  300ms var(--ease-out-smooth) forwards; }
-    .zayne-drawer-leave   { animation: zayne-drawer-out 300ms var(--ease-in-smooth)  backwards; }
-    .zayne-dropdown-enter { animation: zayne-slide-down 180ms var(--ease-out-smooth) forwards; }
-    .zayne-dropdown-leave { animation: zayne-slide-up   120ms var(--ease-in-smooth)  backwards; }
-    /* ── Drawer direction animations ── */
-    @keyframes zayne-drawer-in-left   { from { transform: translateX(-100%); } to { transform: translateX(0); } }
-    @keyframes zayne-drawer-out-left  { from { transform: translateX(0); }     to { transform: translateX(-100%); } }
-    @keyframes zayne-drawer-in-right  { from { transform: translateX(100%); }  to { transform: translateX(0); } }
-    @keyframes zayne-drawer-out-right { from { transform: translateX(0); }     to { transform: translateX(100%); } }
-    @keyframes zayne-drawer-in-top    { from { transform: translateY(-100%); } to { transform: translateY(0); } }
-    @keyframes zayne-drawer-out-top   { from { transform: translateY(0); }     to { transform: translateY(-100%); } }
-    @keyframes zayne-drawer-in-bottom { from { transform: translateY(100%); }  to { transform: translateY(0); } }
-    @keyframes zayne-drawer-out-bottom{ from { transform: translateY(0); }     to { transform: translateY(100%); } }
-
-    .zayne-drawer-enter-left   { animation: zayne-drawer-in-left    260ms var(--ease-out-smooth) forwards; }
-    .zayne-drawer-leave-left   { animation: zayne-drawer-out-left   200ms var(--ease-in-smooth)  backwards; }
-    .zayne-drawer-enter-right  { animation: zayne-drawer-in-right   260ms var(--ease-out-smooth) forwards; }
-    .zayne-drawer-leave-right  { animation: zayne-drawer-out-right  200ms var(--ease-in-smooth)  backwards; }
-    .zayne-drawer-enter-top    { animation: zayne-drawer-in-top     260ms var(--ease-out-smooth) forwards; }
-    .zayne-drawer-leave-top    { animation: zayne-drawer-out-top    200ms var(--ease-in-smooth)  backwards; }
-    .zayne-drawer-enter-bottom { animation: zayne-drawer-in-bottom  260ms var(--ease-out-smooth) forwards; }
-    .zayne-drawer-leave-bottom { animation: zayne-drawer-out-bottom 200ms var(--ease-in-smooth)  backwards; }
-
-    /* ── Tooltip / Dropdown / Popover panels ── */
-    .zayne-dropdown-panel,
-    .zayne-tooltip-panel,
-    .zayne-popover-panel {
-        box-sizing: border-box;
-    }
-
-    /* ============================================================
-    |  INPUT WRAPPER
-    ============================================================ */
-
-    .zayne-input-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        border-style: solid;
-        transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .zayne-input-wrapper:focus-within {
-        border-color: var(--zayne-input-focus-border, var(--zayne-color-primary));
-        box-shadow: 0 0 0 3px color-mix(in oklch, var(--zayne-input-focus-border, var(--zayne-color-primary)) 25%, transparent);
-    }
-
-    .zayne-input-wrapper.zayne-input--invalid:focus-within {
-        box-shadow: 0 0 0 3px color-mix(in oklch, var(--zayne-color-danger) 25%, transparent);
-    }
-
-    .zayne-input-wrapper.zayne-input--invalid {
-        border-color: var(--zayne-color-danger);
-    }
-
-    .zayne-input {
-        flex: 1 1 auto;
-        min-width: 0;
-        border: none;
-        outline: none;
-        background: transparent;
-        color: inherit;
-        font: inherit;
-        padding: 0;
-        height: 100%;
-    }
-
-    /* ============================================================
-    |  ICONS & ACTIONS
-    ============================================================ */
-
-    .zayne-input-icon {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        width: 1.25rem;
-        height: 1.25rem;
-        color: var(--zayne-color-base-content);
-        opacity: 0.6;
-    }
-
-    .zayne-input-icon svg {
-        width: 100%;
-        height: 100%;
-    }
-
-    .zayne-input-kbd {
-        flex-shrink: 0;
-        font-size: 0.75rem;
-        line-height: 1;
-        padding: 0.125rem 0.375rem;
-        border-radius: 0.25rem;
-        border: 1px solid var(--zayne-color-base-border);
-        color: var(--zayne-color-base-content);
-        opacity: 0.6;
-        font-family: inherit;
-    }
-
-    .zayne-input-action {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        width: 1.25rem;
-        height: 1.25rem;
-        border: none;
-        background: transparent;
-        padding: 0;
-        cursor: pointer;
-        color: var(--zayne-color-base-content);
-        opacity: 0.6;
-        transition: opacity 0.15s ease;
-    }
-
-    .zayne-input-action:hover {
-        opacity: 1;
-    }
-
-    .zayne-input-action svg {
-        width: 100%;
-        height: 100%;
-    }
-
-    /* ============================================================
-    |  PREFIX / SUFFIX AFFIXES
-    ============================================================ */
-
-    .zayne-input-affix {
-        display: flex;
-        align-items: center;
-        flex-shrink: 0;
-        height: 60%;
-        font-size: 0.875rem;
-        color: var(--zayne-color-base-content);
-        opacity: 0.6;
-        white-space: nowrap;
-    }
-
-    .zayne-input-affix--prefix {    
-        padding-right: 0.75rem;
-        border-right: 1px solid var(--zayne-color-base-border);
-    }
-
-    .zayne-input-affix--suffix {
-        padding-left: 0.75rem;
-        border-left: 1px solid var(--zayne-color-base-border);
-    }
-
-    /* ============================================================
-    |  FLOAT LABEL
-    ============================================================ */
-
-    .zayne-input--float {
-        position: relative;
-    }
-
-    .zayne-input-float-label {
-        position: absolute;
-        left: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 1rem;
-        color: var(--zayne-color-base-content);
-        opacity: 0.6;
-        pointer-events: none;
-        background: var(--zayne-color-base-100);
-        padding: 0 0.25rem;
-        transition: top 0.15s ease, font-size 0.15s ease, opacity 0.15s ease, color 0.15s ease;
-    }
-
-    .zayne-input--float .zayne-input:focus ~ .zayne-input-float-label,
-    .zayne-input--float .zayne-input:not(:placeholder-shown) ~ .zayne-input-float-label {
-        top: 0;
-        font-size: 0.75rem;
-        opacity: 0.8;
-    }
-
-    .zayne-input--float .zayne-input:focus ~ .zayne-input-float-label {
-        color: var(--zayne-input-focus-border, var(--zayne-color-primary));
-        opacity: 1;
-    }
-
-    /* When an icon is present, shift the float label right to clear it */
-    .zayne-input--float:has(.zayne-input-icon--leading) .zayne-input-float-label {
-        left: 2rem;
-    }
-
-    /* ============================================================
-    |  SIZE VARIANTS
-    ============================================================ */
-
-    .zayne-input--xs {
-        font-size: 0.75rem;
-    }
-
-    .zayne-input--xs .zayne-input,
-    .zayne-input--xs input.zayne-input {
-        height: 1.5rem; /* 24px */
-    }
-
-    .zayne-input--sm {
-        font-size: 0.8125rem;
-    }
-
-    .zayne-input--sm .zayne-input,
-    .zayne-input--sm input.zayne-input {
-        height: 2rem; /* 32px */
-    }
-
-    .zayne-input--md .zayne-input,
-    .zayne-input--md input.zayne-input {
-        height: 2.5rem; /* 40px */
-    }
-
-    .zayne-input--lg {
-        font-size: 1rem;
-    }
-
-    .zayne-input--lg .zayne-input,
-    .zayne-input--lg input.zayne-input {
-        height: 2.75rem;
-    }
-    /* Table — structural only, visual styling is inline via $style */
-    .zayne-table-container {
-        overflow-x: auto;
-        border: var(--zayne-border-box) solid var(--zayne-color-base-border);
-        border-radius: var(--zayne-radius-box);
-    }
-    .zayne-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    .zayne-table-head-inner {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.375rem;
-    }
-    .zayne-table-head {
-        color: var(--zayne-color-base-content-muted);
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        font-size: 0.7rem !important;
-    }
-    .zayne-table-head[x-data] {
-        cursor: pointer;
-        user-select: none;
-        transition: color 150ms ease;
-    }
-    .zayne-table-head[x-data]:hover {
-        color: var(--zayne-color-base-content);
-    }
-    .zayne-table-sort-icon {
-        display: inline-flex;
-        transition: transform var(--layout-transition, 200ms);
-    }
-    .zayne-table-sort-icon[data-direction="asc"] {
-        transform: rotate(180deg);
-    }
-    .zayne-table-tbody tr {
-        transition: background-color 120ms ease;
-    }
-    .zayne-table-tbody tr:hover {
-        background: var(--zayne-color-base-hover);
-    }
-    .zayne-table-tbody tr:last-child .zayne-table-cell {
-        border-bottom: none;
-    }
-    .zayne-table--striped tbody tr:nth-child(even) {
-        background: var(--zayne-color-base-200);
-    }
-    .zayne-table--striped tbody tr:nth-child(even):hover {
-        background: var(--zayne-color-base-hover);
-    }
-
-    /* ── Auth split panel (auth/guest2.blade.php) ───────────────────────────────
-    Inline style cannot express a media query — the breakpoint lives here.
-    Same rule: selector → CSS, value → PHP/Blade.
-    ─────────────────────────────────────────────────────────────────────────── */
-    .zayne-auth-split-panel { display: none; }
-    @media (min-width: 768px) {
-        .zayne-auth-split-panel { display: flex; }
-    }
-
-
-    /* ── Sidebar Search ── */
-    .zayne-sidebar-search:focus-within {
-        border-color: var(--zayne-color-primary);
-    }
-
-    .zayne-sidebar-search input::placeholder {
-        font-size: 0.75rem; /* 12px */
-        color: var(--zayne-custom-sidebar-content);
-        opacity: 0.5;
-    }
-
-    html.sidebar-collapsed .zaynesidebar[data-collapse="viewicons"] .zayne-sidebar-search {
-        height: 36px !important; 
-        cursor: pointer;
-    }
-
-    .zaynesidebar .zayne-sidebar-item-height {
-    height: 36px;
-}
-
-    html.sidebar-collapsed .zaynesidebar[data-collapse="viewicons"] .zayne-sidebar-search:hover {
-        background: var(--zayne-custom-sidebar-item-bg-hover) !important;
-    }
-
-
-    /* ── Tab ── */
-    .zayne-tab-list {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        position: relative;
-    }
-
-    .zayne-tab--vertical .zayne-tab-list {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.125rem;
-        padding-right: 0.75rem;
-        margin-right: 1rem;
-        flex-shrink: 0;
-    }
-
-    .zayne-tab-item {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        font-family: inherit;
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: var(--zayne-color-base-content-muted);
-        padding: 0.5rem 0.25rem;
-        transition: color 150ms ease, background 150ms ease, border-color 150ms ease;
-        white-space: nowrap;
-    }
-
-    .zayne-tab-item:hover { color: var(--zayne-color-base-content); }
-    .zayne-tab-item[disabled] { opacity: 0.5; cursor: not-allowed; }
-    .zayne-tab-item.is-active { color: var(--zayne-tab-accent, var(--zayne-color-accent)); }
-
-    /* underline */
-    .zayne-tab-list--underline { border-bottom: 1px solid var(--zayne-color-base-border); }
-    .zayne-tab-list--underline .zayne-tab-item {
-        padding-bottom: 0.75rem;
-        border-bottom: 2px solid transparent;
-        margin-bottom: -1px;
-    }
-    .zayne-tab-list--underline .zayne-tab-item.is-active {
-        border-bottom-color: var(--zayne-tab-accent, var(--zayne-color-accent));
-    }
-    .zayne-tab--vertical .zayne-tab-list--underline {
-        border-bottom: none;
-        border-right: 1px solid var(--zayne-color-base-border);
-    }
-    .zayne-tab--vertical .zayne-tab-list--underline .zayne-tab-item {
-        border-bottom: none;
-        border-right: 2px solid transparent;
-        margin-bottom: 0;
-        margin-right: -1px;
-        padding: 0.5rem 0.75rem;
-    }
-    .zayne-tab--vertical .zayne-tab-list--underline .zayne-tab-item.is-active {
-        border-right-color: var(--zayne-tab-accent, var(--zayne-color-accent));
-    }
-
-    /* pill (outline) */
-    .zayne-tab-list--pill .zayne-tab-item {
-        border: 1.5px solid transparent;
-        border-radius: var(--zayne-radius-selector);
-        padding: 0.375rem 0.875rem;
-    }
-    .zayne-tab-list--pill .zayne-tab-item.is-active {
-        border-color: var(--zayne-tab-accent, var(--zayne-color-accent));
-    }
-    .zayne-tab-list--pill.zayne-tab-list--muted .zayne-tab-item:not(.is-active) {
-        background: var(--zayne-color-base-200);
-    }
-
-    /* soft */
-    .zayne-tab-list--soft .zayne-tab-item {
-        border-radius: var(--zayne-radius-selector);
-        padding: 0.375rem 0.875rem;
-    }
-    .zayne-tab-list--soft .zayne-tab-item.is-active {
-        background: color-mix(in oklch, var(--zayne-tab-accent, var(--zayne-color-accent)) 15%, transparent);
-    }
-    .zayne-tab-list--soft.zayne-tab-list--muted .zayne-tab-item:not(.is-active) {
-        background: var(--zayne-color-base-200);
-    }
-
-    /* solid */
-    .zayne-tab-list--solid .zayne-tab-item {
-        border-radius: var(--zayne-radius-selector);
-        padding: 0.375rem 0.875rem;
-    }
-    .zayne-tab-list--solid .zayne-tab-item.is-active {
-        background: var(--zayne-tab-accent, var(--zayne-color-accent));
-        color: var(--zayne-color-accent-content);
-    }
-    .zayne-tab-list--solid.zayne-tab-list--muted .zayne-tab-item:not(.is-active) {
-        background: var(--zayne-color-base-200);
-        color: var(--zayne-color-base-content-muted);
-    }
-
-    /* segmented (grouped container, e.g. iOS-style switch) */
-    .zayne-tab-list--segmented {
-        background: var(--zayne-color-base-200);
-        padding: 0.25rem;
-        gap: 0.125rem;
-        width: fit-content;
-    }
-    .zayne-tab-list--segmented .zayne-tab-item {
-        border-radius: calc(var(--zayne-radius-field) - 2px);
-        padding: 0.375rem 0.875rem;
-    }
-    .zayne-tab-list--segmented .zayne-tab-item.is-active {
-        background: var(--zayne-color-base-100);
-        color: var(--zayne-color-base-content);
-        box-shadow: var(--zayne-shadow);
-    }
-    .zayne-tab--vertical .zayne-tab-list--segmented { flex-direction: column; }
-
-    /* panels */
-    .zayne-tab-panels { flex: 1; min-width: 0; min-height: 0; }
-    .zayne-tab-panel { 
-        width: 100%; 
-        height: 100%;
-    }
-
-
-
-    /* ── Zayne:Panel ── */
-
-    .zayne-panel {
-        box-sizing: border-box;
-    }
-
-    .zayne-panel-pane {
-        box-sizing: border-box;
-    }
-
-    /* Resizable handle — highlight on hover/drag */
-    .zayne-panel--resizable .zayne-panel-handle:hover,
-    .zayne-panel--resizable .zayne-panel-handle:active {
-        background: var(--zayne-color-primary) !important;
-        opacity: 0.35;
-        transition: opacity 150ms;
-    }
-
-    /* Toggleable — slide transition */
-    .zayne-panel-pane-enter,
-    .zayne-panel-pane-leave {
-        overflow: hidden;
-        transition: max-width 220ms ease, opacity 180ms ease;
-    }
-    .zayne-panel-pane-enter-start,
-    .zayne-panel-pane-leave-end {
-        max-width: 0;
-        opacity: 0;
-    }
-    .zayne-panel-pane-enter-end,
-    .zayne-panel-pane-leave-start {
-        max-width: 100%;
-        opacity: 1;
-    }
-
-    /* Toggle button hover */
-    .zayne-panel-toggle-btn:hover {
-        background: var(--zayne-color-base-200);
-        border-color: var(--zayne-color-base-border);
-    }
-
-
-
-    /* ============================================================
-|  PHASE 1 COMPONENTS
-|  Add to SECTION 2 - STRUCTURE in zayne.css
+/* ============================================================
+|  SECTION 2 - STRUCTURE
 ============================================================ */
 
-/* ── Separator ── */
-.zayne-separator {
-    box-sizing: border-box;
+:root {
+    --ease-out-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-smooth: cubic-bezier(0.4, 0, 1, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.zayne-separator--horizontal {
-    width: 100%;
+html, body {
+    margin: 0;
+    min-height: 100%;
+    background: var(--zayne-color-base-300);
+    color: var(--zayne-color-base-content);
+    font-family: "Instrument Sans", "Segoe UI", sans-serif;
 }
 
-.zayne-separator--vertical {
-    height: 100%;
-    align-self: stretch;
+[x-cloak] {
+    display: none !important;
 }
 
-/* ── Heading ── */
-.zayne-heading {
-    font-family: inherit;
-    padding: 0;
+/* ── Scrollbar hide ── */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
-/* ── Text ── */
-.zayne-text {
-    font-family: inherit;
-}
-
-.zayne-text--code {
-    display: inline;
-}
-
-/* ── Callout ── */
-.zayne-callout {
-    display: block;
-    box-sizing: border-box;
-}
-
-/* ── Skeleton ── */
-.zayne-skeleton {
-    display: block;
-    background: var(--zayne-color-base-200);
-    position: relative;
+/* ── Root Layout ── */
+.zaynemainlayout {
+    display: grid;
+    height: 100dvh;
+    width: 100vw;
     overflow: hidden;
-    flex-shrink: 0;
+    isolation: isolate;
+    grid-template-areas:
+        "sidebar header"
+        "sidebar main";
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
 }
 
-.zayne-skeleton::after {
-    content: '';
-    position: absolute;
+.zaynemainlayout2 {
+    display: grid;
+    height: 100dvh;
+    width: 100vw;
+    overflow: hidden;
+    isolation: isolate;
+    grid-template-areas:
+        "header header"
+        "sidebar main";
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+}
+
+
+/* ── Backdrop ── */
+.zayne-backdrop {
+    position: fixed;
     inset: 0;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        color-mix(in oklch, var(--zayne-color-base-100) 60%, transparent) 50%,
-        transparent 100%
-    );
-    animation: zayne-skeleton-shimmer 1.6s ease-in-out infinite;
+    z-index: var(--zayne-z-overlay-backdrop);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
-@keyframes zayne-skeleton-shimmer {
-    0%   { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-/* ── Breadcrumbs ── */
-.zayne-breadcrumbs {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.25rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-
-
-/* ============================================================
-|  PHASE 2 COMPONENTS
-|  Add to SECTION 2 - STRUCTURE in zayne.css
-============================================================ */
-
-/* ── Accordion ── */
-.zayne-accordion {
-    width: 100%;
-}
-
-.zayne-accordion > .zayne-accordion-item:first-child {
-    border-top: none !important;
-}
-
-.zayne-accordion--separated > .zayne-accordion-item {
-    border: 1px solid var(--zayne-color-base-border) !important;
-    border-radius: var(--zayne-radius-box) !important;
-    overflow: hidden !important;
-    border-top: 1px solid var(--zayne-color-base-border) !important;
-}
-
-.zayne-accordion-panel {
-    overflow: hidden;
-    transition: max-height 280ms cubic-bezier(0.4, 0, 0.2, 1), opacity 200ms ease;
-}
-
-.zayne-accordion--separated .zayne-accordion-item {
-    border-top: none !important;
-}
-
-.zayne-accordion-item:first-child {
-    border-top: none !important;
-}
-
-.zayne-accordion-trigger:focus-visible {
-    outline: 2px solid var(--zayne-color-primary);
-    outline-offset: -2px;
-}
-
-/* ── Toast ── */
-.zayne-toast {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.625rem;
-    padding: 0.75rem 1rem;
-    border-radius: var(--zayne-radius-box);
-    background: var(--zayne-color-base-100);
-    color: var(--zayne-color-base-content);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15), 0 1px 4px rgba(0,0,0,0.08);
-    border: 1px solid var(--zayne-color-base-border);
-    min-width: 18rem;
-    max-width: 22rem;
-    position: relative;
-    overflow: hidden;
-    box-sizing: border-box;
-}
-
-.zayne-toast-portal:empty {
-    pointer-events: none;
-}
-
-.zayne-toast--success { border-left: 3px solid var(--zayne-color-success); }
-.zayne-toast--danger  { border-left: 3px solid var(--zayne-color-danger);  }
-.zayne-toast--warning { border-left: 3px solid var(--zayne-color-warning); }
-.zayne-toast--info    { border-left: 3px solid var(--zayne-color-info);    }
-
-.zayne-toast-icon {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    margin-top: 0.125rem;
-}
-
-.zayne-toast--success .zayne-toast-icon { color: var(--zayne-color-success); }
-.zayne-toast--danger  .zayne-toast-icon { color: var(--zayne-color-danger);  }
-.zayne-toast--warning .zayne-toast-icon { color: var(--zayne-color-warning); }
-.zayne-toast--info    .zayne-toast-icon { color: var(--zayne-color-info);    }
-
-.zayne-toast-content {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.125rem;
-}
-
-.zayne-toast-title {
-    margin: 0;
-    font-size: 0.875rem;
-    font-weight: 600;
-    line-height: 1.3;
-    color: var(--zayne-color-base-content);
-}
-
-.zayne-toast-body {
-    margin: 0;
-    font-size: 0.8125rem;
-    line-height: 1.5;
-    color: var(--zayne-color-base-content-muted);
-}
-
-.zayne-toast-close {
-    flex-shrink: 0;
+.zayne-overlay-wrapper {
+    position: fixed;
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 1.25rem;
-    height: 1.25rem;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    color: var(--zayne-color-base-content);
-    opacity: 0.4;
-    padding: 0;
-    border-radius: var(--zayne-radius-selector);
-    transition: opacity 150ms ease;
-    margin-left: auto;
-}
-
-.zayne-toast-close:hover { opacity: 1; }
-
-.zayne-toast-progress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    background: var(--zayne-color-primary);
-    animation: zayne-toast-progress linear forwards;
-    width: 100%;
-    transform-origin: left;
-}
-
-.zayne-toast--success .zayne-toast-progress { background: var(--zayne-color-success); }
-.zayne-toast--danger  .zayne-toast-progress { background: var(--zayne-color-danger);  }
-.zayne-toast--warning .zayne-toast-progress { background: var(--zayne-color-warning); }
-.zayne-toast--info    .zayne-toast-progress { background: var(--zayne-color-info);    }
-
-/* ── Pagination ── */
-.zayne-pagination {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    flex-wrap: wrap;
-}
-
-/* ── Profile ── */
-.zayne-profile {
+    padding: 1rem;
     box-sizing: border-box;
 }
 
-/* ── Timeline ── */
-.zayne-timeline {
+/* ── Auth Shell ── */
+.zayne-auth-shell {
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
     box-sizing: border-box;
 }
 
-/* ── Carousel ── */
-.zayne-carousel {
-    user-select: none;
-}
-
-.zayne-carousel-track {
-    height: 100%;
-}
-
-.zayne-carousel-slide {
-    flex: 0 0 100%;
-    width: 100%;
-    height: 100%;
+.zayne-auth-split-panel { display: none; }
+@media (min-width: 768px) {
+    .zayne-auth-split-panel { display: flex; }
 }
 
 /* ============================================================
-|  PHASE 2 ANIMATIONS — Add to SECTION 3 in zayne.css
+|  SECTION 3 - ANIMATIONS
 ============================================================ */
 
-/* Toast enter/leave */
-@keyframes zayne-toast-progress {
-    from { transform: scaleX(1); }
-    to   { transform: scaleX(0); }
+@keyframes zayne-modal-in    { from { opacity: 0; transform: translate(-50%, -48%) scale(0.97); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+@keyframes zayne-modal-out   { from { opacity: 1; transform: translate(-50%, -50%) scale(1);    } to { opacity: 0; transform: translate(-50%, -52%) scale(0.97); } }
+@keyframes zayne-fade-in     { from { opacity: 0; } to { opacity: 1; } }
+@keyframes zayne-fade-out    { from { opacity: 1; } to { opacity: 0; } }
+@keyframes zayne-slide-down  { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes zayne-slide-up    { from { opacity: 1; transform: translateY(0);    } to { opacity: 0; transform: translateY(-6px); } }
+@keyframes zayne-bounce {
+    0%, 100% { transform: translateY(0);    animation-timing-function: ease-in-out; }
+    25%       { transform: translateY(-4px); animation-timing-function: ease-out; }
+    50%       { transform: translateY(0);    animation-timing-function: ease-in; }
+    75%       { transform: translateY(-3px); animation-timing-function: ease-out; }
 }
 
+/* ── Drawer direction keyframes ── */
+@keyframes zayne-drawer-in-left   { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+@keyframes zayne-drawer-out-left  { from { transform: translateX(0); }     to { transform: translateX(-100%); } }
+@keyframes zayne-drawer-in-right  { from { transform: translateX(100%); }  to { transform: translateX(0); } }
+@keyframes zayne-drawer-out-right { from { transform: translateX(0); }     to { transform: translateX(100%); } }
+@keyframes zayne-drawer-in-top    { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+@keyframes zayne-drawer-out-top   { from { transform: translateY(0); }     to { transform: translateY(-100%); } }
+@keyframes zayne-drawer-in-bottom { from { transform: translateY(100%); }  to { transform: translateY(0); } }
+@keyframes zayne-drawer-out-bottom{ from { transform: translateY(0); }     to { transform: translateY(100%); } }
+
+/* ── Animation utility classes ── */
+.zayne-modal-enter    { animation: zayne-modal-in   260ms var(--ease-out-smooth) forwards; }
+.zayne-modal-leave    { animation: zayne-modal-out  140ms var(--ease-in-smooth)  backwards; }
+.zayne-backdrop-enter { animation: zayne-fade-in    180ms var(--ease-out-smooth) forwards; }
+.zayne-backdrop-leave { animation: zayne-fade-out   120ms var(--ease-in-smooth)  backwards; }
+.zayne-drawer-enter-left   { animation: zayne-drawer-in-left    260ms var(--ease-out-smooth) forwards; }
+.zayne-drawer-leave-left   { animation: zayne-drawer-out-left   200ms var(--ease-in-smooth)  backwards; }
+.zayne-drawer-enter-right  { animation: zayne-drawer-in-right   260ms var(--ease-out-smooth) forwards; }
+.zayne-drawer-leave-right  { animation: zayne-drawer-out-right  200ms var(--ease-in-smooth)  backwards; }
+.zayne-drawer-enter-top    { animation: zayne-drawer-in-top     260ms var(--ease-out-smooth) forwards; }
+.zayne-drawer-leave-top    { animation: zayne-drawer-out-top    200ms var(--ease-in-smooth)  backwards; }
+.zayne-drawer-enter-bottom { animation: zayne-drawer-in-bottom  260ms var(--ease-out-smooth) forwards; }
+.zayne-drawer-leave-bottom { animation: zayne-drawer-out-bottom 200ms var(--ease-in-smooth)  backwards; }
+.zayne-dropdown-enter { animation: zayne-slide-down 180ms var(--ease-out-smooth) forwards; }
+.zayne-dropdown-leave { animation: zayne-slide-up   120ms var(--ease-in-smooth)  backwards; }
 .zayne-toast-enter       { animation: zayne-slide-down 200ms var(--ease-out-smooth) forwards; }
 .zayne-toast-leave       { animation: zayne-fade-out   200ms var(--ease-in-smooth)  forwards; }
 .zayne-toast-enter-start { opacity: 0; transform: translateY(0.5rem); }
 .zayne-toast-enter-end   { opacity: 1; transform: translateY(0); }
 .zayne-toast-leave-start { opacity: 1; transform: scale(1); }
 .zayne-toast-leave-end   { opacity: 0; transform: scale(0.95); }
-
-.zayne-icon-wrapper {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-/* ── Sidebar edge toggle ── */
-.zayne-sidebar-edge-toggle {
-    position: absolute;
-    right: -13px;
-    top: 13px;
-    width: 25px;
-    height: 25px;
-    border-radius: 25%;
-    background: var(--zayne-color-base-100);
-    border: 1px solid var(--zayne-color-base-border);
-    color: var(--zayne-color-base-content);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    box-shadow: var(--zayne-shadow);
-    transition: right var(--layout-transition), background 150ms ease;
-    padding: 0;
-    appearance: none;
-}
-
-.zayne-sidebar-edge-toggle:hover {
-    background: var(--zayne-color-base-200);
-    border-color: var(--zayne-color-primary);
-    color: var(--zayne-color-primary);
-}
-
-.zayne-sidebar-edge-toggle-icon {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-    transition: transform var(--layout-transition);
-}
-
-/* Expanded = chevron points left (<) */
-html:not(.sidebar-collapsed) .zayne-sidebar-edge-toggle-icon {
-    transform: rotate(180deg);
-}
-
-/* Collapsed = chevron points right (>) — default */
-
-@media (max-width: 768px) {
-    .zayne-sidebar-edge-toggle {
-        display: none;
-    }
-}
-
-.zayne-header-center-track {
-    gap: 0.25rem;
-}
-
-@media (max-width: 768px) {
-    .zayne-header-center {
-        justify-content: flex-start !important;
-    }
-    .zayne-header-center-track {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        justify-content: flex-start !important;
-        width: 100%;
-        padding-right: 0.5rem;
-    }
-    .zayne-header-center-track::-webkit-scrollbar {
-        display: none;
-    }
-}
-
-    /* Ensure the backdrop is clearly clickable */
-    .zayne-mobile-backdrop {
-        cursor: pointer;
-    }
-
-    /* Reset sidebar search to its normal expanded height on mobile */
-    html.sidebar-mobile-open .zayne-sidebar-search {
-        height: 34px !important;
-        cursor: text !important;
-    }
-
-    /* Make sure navtree items expand/collapse normally (not dropdowns) */
-    html.sidebar-mobile-open .zaynenavtree button {
-        pointer-events: auto !important;
-    }

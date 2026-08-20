@@ -1,5 +1,14 @@
+@php $uid = 'zayne-main-' . uniqid(); @endphp
+
+<style>
+    #{{ $uid }}-inner { width: {{ $width }}; height: 100%; }
+    @media (max-width: 768px) {
+        #{{ $uid }}-inner { width: {{ $mobileWidth }} !important; }
+    }
+</style>
+
 <div
-    class="zaynemain scrollbar-hide"
+    class="zaynemain"
     style="
         display: flex;
         flex-direction: column;
@@ -8,20 +17,16 @@
         z-index: var(--zayne-z-shell-base);
         overflow-y: auto;
         overflow-x: hidden;
-        {{ $padding         ? 'padding: '       . $padding      . ';' : '' }}
-        {{ $margin          ? 'margin: '        . $margin       . ';' : '' }}
-        {{ $background      ? 'background: '    . $background   . ';' : '' }}
-        {{ $marginleft      ? 'margin-left: '   . $marginleft   . ';' : '' }}
-        {{ $marginright     ? 'margin-right: '  . $marginright  . ';' : '' }}
-        {{ $margintop       ? 'margin-top: '    . $margintop    . ';' : '' }}
-        {{ $marginbottom    ? 'margin-bottom: ' . $marginbottom . ';' : '' }}
-        
+        {{ $padding      ? 'padding: '       . $padding      . ';' : '' }}
+        {{ $margin       ? 'margin: '        . $margin       . ';' : '' }}
+        {{ $marginleft   ? 'margin-left: '   . $marginleft   . ';' : '' }}
+        {{ $marginright  ? 'margin-right: '  . $marginright  . ';' : '' }}
+        {{ $margintop    ? 'margin-top: '    . $margintop    . ';' : '' }}
+        {{ $marginbottom ? 'margin-bottom: ' . $marginbottom . ';' : '' }}
     "
     {{ $attributes }}
 >
-<div 
-style="
-width: {{ $width }}; height: 100%;">
-    {{ $slot }}
-</div>
+    <div id="{{ $uid }}-inner">
+        {{ $slot }}
+    </div>
 </div>

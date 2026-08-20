@@ -11,6 +11,147 @@
     $isTop = str_starts_with($position, 'top');
 @endphp
 
+@once
+<style>
+    .zayne-toast-portal:empty {
+        display: none;
+    }
+
+    .zayne-toast {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.625rem;
+        padding: 0.75rem 1rem;
+        background: var(--zayne-color-base-100);
+        border: var(--zayne-border-box) solid var(--zayne-color-base-border);
+        border-radius: var(--zayne-radius-box);
+        box-shadow: var(--zayne-shadow);
+        min-width: 280px;
+        max-width: 420px;
+        box-sizing: border-box;
+        pointer-events: all;
+    }
+
+    .zayne-toast--success { border-left: 3px solid var(--zayne-color-success); }
+    .zayne-toast--danger  { border-left: 3px solid var(--zayne-color-danger);  }
+    .zayne-toast--warning { border-left: 3px solid var(--zayne-color-warning); }
+    .zayne-toast--info    { border-left: 3px solid var(--zayne-color-info);    }
+
+    .zayne-toast-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 0.125rem;
+    }
+
+    .zayne-toast--success .zayne-toast-icon { color: var(--zayne-color-success); }
+    .zayne-toast--danger  .zayne-toast-icon { color: var(--zayne-color-danger);  }
+    .zayne-toast--warning .zayne-toast-icon { color: var(--zayne-color-warning); }
+    .zayne-toast--info    .zayne-toast-icon { color: var(--zayne-color-info);    }
+
+    .zayne-toast-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .zayne-toast-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--zayne-color-base-content);
+        line-height: 1.4;
+    }
+
+    .zayne-toast-body {
+        font-size: 0.8125rem;
+        color: var(--zayne-color-base-content);
+        opacity: 0.75;
+        line-height: 1.5;
+    }
+
+    .zayne-toast-close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 1.25rem;
+        height: 1.25rem;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        opacity: 0.4;
+        color: var(--zayne-color-base-content);
+        transition: opacity 150ms ease;
+        padding: 0;
+    }
+
+    .zayne-toast-close:hover { opacity: 1; }
+
+    .zayne-toast-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        background: var(--zayne-color-base-content);
+        opacity: 0.15;
+        animation: zayne-toast-progress linear forwards;
+        border-radius: 0 0 var(--zayne-radius-box) var(--zayne-radius-box);
+    }
+
+    .zayne-toast--success .zayne-toast-progress { background: var(--zayne-color-success); }
+    .zayne-toast--danger  .zayne-toast-progress { background: var(--zayne-color-danger);  }
+    .zayne-toast--warning .zayne-toast-progress { background: var(--zayne-color-warning); }
+    .zayne-toast--info    .zayne-toast-progress { background: var(--zayne-color-info);    }
+
+    @keyframes zayne-toast-progress {
+        from { width: 100%; }
+        to   { width: 0%; }
+    }
+</style>
+@endonce
+
+@once
+<script>
+    function zayneToast({ duration = 4000, limit = 5, isTop = false } = {}) {
+        return {
+            toasts: [],
+
+            add({ title, body, type = 'base', duration: d }) {
+                const id  = ++_toastId;
+                const dur = d ?? duration;
+
+                if (this.toasts.length >= limit) {
+                    const oldest = isTop
+                        ? this.toasts[this.toasts.length - 1]
+                        : this.toasts[0];
+                    if (oldest) this.dismiss(oldest.id);
+                }
+
+                const toast = { id, title, body, type, duration: dur, visible: true };
+                isTop ? this.toasts.unshift(toast) : this.toasts.push(toast);
+
+                if (dur > 0) setTimeout(() => this.dismiss(id), dur);
+            },
+
+            dismiss(id) {
+                const toast = this.toasts.find(t => t.id === id);
+                if (toast) toast.visible = false;
+                setTimeout(() => {
+                    this.toasts = this.toasts.filter(t => t.id !== id);
+                }, 400);
+            },
+        };
+    }
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('zayneToast', zayneToast);
+    });
+</script>
+@endonce
+
 <div
     x-data="zayneToast({ duration: {{ $duration }}, limit: {{ $limit }}, isTop: {{ $isTop ? 'true' : 'false' }} })"
     @zayne-toast.window="add($event.detail)"

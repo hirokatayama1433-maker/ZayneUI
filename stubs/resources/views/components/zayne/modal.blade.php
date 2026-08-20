@@ -1,3 +1,34 @@
+@once
+<style>
+    .zayne-modal-panel {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        background: var(--zayne-color-base-100);
+        overflow-y: auto;
+        box-sizing: border-box;
+        max-width: calc(100vw - 2rem);
+    }
+</style>
+@endonce
+
+@once
+<script>
+    function zayneModal() {
+        return {
+            open: false,
+            show() { this.open = true; },
+            hide() { this.open = false; },
+        };
+    }
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('zayneModal', zayneModal);
+    });
+</script>
+@endonce
+
 <div
     x-data="zayneModal()"
     class="zayne-modal-root"

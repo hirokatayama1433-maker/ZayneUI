@@ -56,11 +56,9 @@
             }
         "
     >
-        @isset($iconslot)
-            <div style="flex-shrink:0; width:38px; height:38px; display:flex; justify-content:center; align-items:center;">
-                {{ $iconslot }}
-            </div>
-        @endisset
+        <div style="flex-shrink:0; width:38px; height:38px; display:flex; justify-content:center; align-items:center;">
+            <zayne:icon name="{{ $icon }}" size="18px"/>
+        </div>
 
         <span class="sidebar-label" style="font-size:0.875rem; flex:1; text-align:left; display:flex; align-items:center; min-width:0;">
             {{ $label }}

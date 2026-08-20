@@ -1,3 +1,52 @@
+@once
+<style>
+    .zayne-checkbox {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .zayne-checkbox-box {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--zayne-size-selector);
+        height: var(--zayne-size-selector);
+        border-radius: var(--zayne-radius-selector);
+        border: var(--zayne-border-selector) solid transparent;
+        flex-shrink: 0;
+        transition: background 120ms ease, border-color 120ms ease;
+    }
+
+    .zayne-checkbox-box input {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    .zayne-checkbox-box svg {
+        width: 65%;
+        height: 65%;
+        opacity: 0;
+        transform: scale(0.6);
+        transition: opacity 120ms ease, transform 120ms ease;
+        pointer-events: none;
+    }
+
+    .zayne-checkbox-box svg.is-on {
+        opacity: 1;
+        transform: scale(1);
+    }
+</style>
+@endonce
+
 <label class="zayne-checkbox" {{ $attributes->except(['class', 'style']) }}>
     <span
         class="zayne-checkbox-box"

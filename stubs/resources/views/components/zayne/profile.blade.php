@@ -1,4 +1,13 @@
 @php($tag = $href ? 'a' : 'div')
+@once
+<style>
+    .zayne-profile {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+    }
+</style>
+@endonce
 
 <{{ $tag }}
     @if($href) href="{{ $href }}" @endif

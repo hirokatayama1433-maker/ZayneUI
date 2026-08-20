@@ -8,6 +8,7 @@
     class="zayne-date-picker"
     style="position: relative; width: 100%;"
     x-on:click.outside="close()"
+    x-on:scroll.window="close()"
     {{ $attributes->except(['class', 'style']) }}
 >
     {{-- Hidden input for form --}}
@@ -108,7 +109,7 @@
             x-cloak
             x-ref="panel"
             x-bind:class="open ? 'zayne-dropdown-enter' : 'zayne-dropdown-leave'"
-            style="position:fixed; z-index:var(--zayne-z-dropdown); {{ $panelStyle }}"
+            style="position:absolute; z-index:var(--zayne-z-dropdown); {{ $panelStyle }}"
         >
             {{-- Month/Year header --}}
             <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.625rem;">

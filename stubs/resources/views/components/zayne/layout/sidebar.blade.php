@@ -2,7 +2,7 @@
     class="zaynesidebar"
     data-mode="{{ $mode }}"
     data-collapse="{{ $collapse }}"
-    style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; overflow: visible; border-style: solid;
+    style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; overflow: visible; border-style: solid; 
         {{ $shadow       ? 'box-shadow: '          . $shadow       . ';' : '' }}
         {{ $radius       ? 'border-radius: '       . $radius       . ';' : '' }}
         {{ $radiustop    ? 'border-top-left-radius: '     . $radiustop    . '; border-top-right-radius: '    . $radiustop    . ';' : '' }}
@@ -34,7 +34,8 @@
         border-width: 0;
         background: {{ $background }};
         padding: {{ $padding }};
-        {{ $gap ? 'gap: ' . $gap . ';' : 'gap: 8px;' }}">
+        {{ $gap ? 'gap: ' . $gap . ';' : 'gap: 8px;' }}
+        {{ $radius       ? 'border-radius: '       . $radius       . ';' : '' }}">
 
         @isset($header)
             <div style="flex-shrink: 0;">{{ $header }}</div>

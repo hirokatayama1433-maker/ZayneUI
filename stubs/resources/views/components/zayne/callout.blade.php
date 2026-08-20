@@ -1,3 +1,18 @@
+@once
+<style>
+    .zayne-callout {
+        display: flex;
+        gap: 0.75rem;
+        padding: 1rem 1.25rem;
+        border-radius: var(--zayne-radius-box);
+        border-left: 3px solid currentColor;
+        font-size: 0.875rem;
+        line-height: 1.6;
+    }
+</style>
+@endonce
+
+{{-- existing blade HTML below --}}
 <div class="zayne-callout zayne-callout--{{ $variant }} zayne-callout--{{ $color }}" style="{{ $style }}" {{ $attributes }}>
     <div style="display:flex; gap:0.75rem; align-items:flex-start;">
 

@@ -17,6 +17,170 @@
     $inputAttributes = $attributes->except(['class', 'icon', 'icon:trailing']);
 @endphp
 
+@once
+    <style>
+        .zayne-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-style: solid;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .zayne-input-wrapper:focus-within {
+            border-color: var(--zayne-input-focus-border, var(--zayne-color-primary));
+            box-shadow: 0 0 0 3px color-mix(in oklch, var(--zayne-input-focus-border, var(--zayne-color-primary)) 25%, transparent);
+        }
+
+        .zayne-input-wrapper.zayne-input--invalid {
+            border-color: var(--zayne-color-danger);
+        }
+
+        .zayne-input-wrapper.zayne-input--invalid:focus-within {
+            box-shadow: 0 0 0 3px color-mix(in oklch, var(--zayne-color-danger) 25%, transparent);
+        }
+
+        .zayne-input {
+            flex: 1 1 auto;
+            min-width: 0;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: inherit;
+            font: inherit;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* ── Input icons & actions ── */
+        .zayne-input-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 1.25rem;
+            height: 1.25rem;
+            color: var(--zayne-color-base-content);
+            opacity: 0.6;
+        }
+
+        .zayne-input-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .zayne-input-kbd {
+            flex-shrink: 0;
+            font-size: 0.75rem;
+            line-height: 1;
+            padding: 0.125rem 0.375rem;
+            border-radius: 0.25rem;
+            border: 1px solid var(--zayne-color-base-border);
+            color: var(--zayne-color-base-content);
+            opacity: 0.6;
+            font-family: inherit;
+        }
+
+        .zayne-input-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: none;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
+            color: var(--zayne-color-base-content);
+            opacity: 0.6;
+            transition: opacity 0.15s ease;
+        }
+
+        .zayne-input-action:hover {
+            opacity: 1;
+        }
+
+        .zayne-input-action svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ── Affixes ── */
+        .zayne-input-affix {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            height: 60%;
+            font-size: 0.875rem;
+            color: var(--zayne-color-base-content);
+            opacity: 0.6;
+            white-space: nowrap;
+        }
+
+        .zayne-input-affix--prefix {
+            padding-right: 0.75rem;
+            border-right: 1px solid var(--zayne-color-base-border);
+        }
+
+        .zayne-input-affix--suffix {
+            padding-left: 0.75rem;
+            border-left: 1px solid var(--zayne-color-base-border);
+        }
+
+        /* ── Float label ── */
+        .zayne-input--float {
+            position: relative;
+        }
+
+        .zayne-input-float-label {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: var(--zayne-color-base-content);
+            opacity: 0.6;
+            pointer-events: none;
+            background: var(--zayne-color-base-100);
+            padding: 0 0.25rem;
+            transition: top 0.15s ease, font-size 0.15s ease, opacity 0.15s ease, color 0.15s ease;
+        }
+
+        .zayne-input--float .zayne-input:focus ~ .zayne-input-float-label,
+        .zayne-input--float .zayne-input:not(:placeholder-shown) ~ .zayne-input-float-label {
+            top: 0;
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .zayne-input--float .zayne-input:focus ~ .zayne-input-float-label {
+            color: var(--zayne-input-focus-border, var(--zayne-color-primary));
+            opacity: 1;
+        }
+
+        .zayne-input--float:has(.zayne-input-icon--leading) .zayne-input-float-label {
+            left: 2rem;
+        }
+
+        /* ── Input size variants ── */
+        .zayne-input--xs { font-size: 0.75rem; }
+        .zayne-input--xs .zayne-input,
+        .zayne-input--xs input.zayne-input { height: 1.5rem; }
+
+        .zayne-input--sm { font-size: 0.8125rem; }
+        .zayne-input--sm .zayne-input,
+        .zayne-input--sm input.zayne-input { height: 2rem; }
+
+        .zayne-input--md .zayne-input,
+        .zayne-input--md input.zayne-input { height: 2.5rem; }
+
+        .zayne-input--lg { font-size: 1rem; }
+        .zayne-input--lg .zayne-input,
+        .zayne-input--lg input.zayne-input { height: 2.75rem; }
+        </style>
+@endonce
+
 <div
     class="zayne-input-wrapper zayne-input--{{ $size }}{{ $invalid ? ' zayne-input--invalid' : '' }}{{ $isFloat ? ' zayne-input--float' : '' }}"
     style="{{ $style }}"

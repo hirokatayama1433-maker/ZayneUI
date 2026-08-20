@@ -1,3 +1,69 @@
+@once
+<style>
+    .zayne-carousel {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .zayne-carousel-track {
+        display: flex;
+        transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
+    }
+
+    .zayne-carousel-slide {
+        flex-shrink: 0;
+        width: 100%;
+    }
+</style>
+@endonce
+
+@once
+<script>
+    function zayneCarousel({ loop = true, autoplay = false, interval = 4000, transition = 'slide' } = {}) {
+        return {
+            current: 0,
+            count: 0,
+            loop,
+            autoplay,
+            interval,
+            transition,
+            timer: null,
+
+            init() {
+                this.$nextTick(() => {
+                    this.count = this.$refs.track?.children.length ?? 0;
+                    if (this.autoplay) this.startAutoplay();
+                });
+            },
+
+            goTo(index) {
+                if (index < 0)           index = this.loop ? this.count - 1 : 0;
+                if (index >= this.count) index = this.loop ? 0 : this.count - 1;
+                this.current = index;
+            },
+
+            prev() { this.goTo(this.current - 1); },
+            next() { this.goTo(this.current + 1); },
+
+            startAutoplay() {
+                this.stopAutoplay();
+                this.timer = setInterval(() => this.next(), this.interval);
+            },
+
+            stopAutoplay() {
+                if (this.timer) { clearInterval(this.timer); this.timer = null; }
+            },
+        };
+    }
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('zayneCarousel', zayneCarousel);
+    });
+</script>
+@endonce
+
 <div
     x-data="zayneCarousel({
         loop: {{ $loop ? 'true' : 'false' }},

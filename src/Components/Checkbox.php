@@ -34,17 +34,21 @@ class Checkbox extends Component
         $variantStyles = [
             'outline' => [
                 'primary' => ['background' => 'var(--zayne-color-base-100)', 'color' => 'var(--zayne-color-primary)', 'border-color' => 'var(--zayne-color-primary)'],
+                'secondary' => ['background' => 'var(--zayne-color-base-100)', 'color' => 'var(--zayne-color-secondary)', 'border-color' => 'var(--zayne-color-secondary)'],
                 'base' => ['background' => 'var(--zayne-color-base-100)', 'color' => 'var(--zayne-color-base-content)', 'border-color' => 'var(--zayne-color-base-border)'],
                 'success' => ['background' => 'var(--zayne-color-base-100)', 'color' => 'var(--zayne-color-success)', 'border-color' => 'var(--zayne-color-success)'],
                 'danger' => ['background' => 'var(--zayne-color-base-100)', 'color' => 'var(--zayne-color-danger)', 'border-color' => 'var(--zayne-color-danger)'],
                 'warning' => ['background' => 'var(--zayne-color-base-100)', 'color' => 'var(--zayne-color-warning)', 'border-color' => 'var(--zayne-color-warning)'],
+                'info' => ['background' => 'var(--zayne-color-base-100)', 'color' => 'var(--zayne-color-info)', 'border-color' => 'var(--zayne-color-info)'],
             ],
             'soft' => [
                 'primary' => ['background' => 'color-mix(in oklch, var(--zayne-color-primary) 20%, transparent)', 'color' => 'var(--zayne-color-primary)', 'border-color' => 'transparent'],
+                'secondary' => ['background' => 'color-mix(in oklch, var(--zayne-color-secondary) 20%, transparent)', 'color' => 'var(--zayne-color-secondary)', 'border-color' => 'transparent'],
                 'base' => ['background' => 'var(--zayne-color-base-200)', 'color' => 'var(--zayne-color-base-content)', 'border-color' => 'transparent'],
                 'success' => ['background' => 'color-mix(in oklch, var(--zayne-color-success) 20%, transparent)', 'color' => 'var(--zayne-color-success)', 'border-color' => 'transparent'],
                 'danger' => ['background' => 'color-mix(in oklch, var(--zayne-color-danger) 20%, transparent)', 'color' => 'var(--zayne-color-danger)', 'border-color' => 'transparent'],
                 'warning' => ['background' => 'color-mix(in oklch, var(--zayne-color-warning) 20%, transparent)', 'color' => 'var(--zayne-color-warning)', 'border-color' => 'transparent'],
+                'info' => ['background' => 'color-mix(in oklch, var(--zayne-color-info) 20%, transparent)', 'color' => 'var(--zayne-color-info)', 'border-color' => 'transparent'],
             ],
         ];
 
@@ -55,9 +59,11 @@ class Checkbox extends Component
         $activeColors = [
             'base' => ['background' => 'var(--zayne-color-base-content)', 'color' => 'var(--zayne-color-base-100)'],
             'primary' => ['background' => 'var(--zayne-color-primary)', 'color' => 'var(--zayne-color-primary-content)'],
+            'secondary' => ['background' => 'var(--zayne-color-secondary)', 'color' => 'var(--zayne-color-secondary-content)'],
             'success' => ['background' => 'var(--zayne-color-success)', 'color' => 'var(--zayne-color-success-content)'],
             'danger' => ['background' => 'var(--zayne-color-danger)', 'color' => 'var(--zayne-color-danger-content)'],
             'warning' => ['background' => 'var(--zayne-color-warning)', 'color' => 'var(--zayne-color-warning-content)'],
+            'info' => ['background' => 'var(--zayne-color-info)', 'color' => 'var(--zayne-color-info-content)'],
         ];
 
         $checkedState = $activeColors[$this->color] ?? $activeColors['primary'];

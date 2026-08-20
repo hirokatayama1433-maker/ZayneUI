@@ -1,3 +1,47 @@
+@once
+<style>
+    .zayne-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .zayne-toggle-track {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        border-radius: 9999px;
+        flex-shrink: 0;
+        transition: background 150ms ease;
+    }
+
+    .zayne-toggle-track input {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    .zayne-toggle-thumb {
+        position: relative;
+        border-radius: 50%;
+        background: currentColor;
+        transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1), background 150ms ease;
+        pointer-events: none;
+        flex-shrink: 0;
+    }
+
+    .zayne-toggle-thumb.is-on {
+        transform: translateX(var(--zayne-toggle-travel, 100%));
+    }
+</style>
+@endonce
+
 <label style="display:inline-flex; align-items:center; gap:0.75rem; cursor:{{ $disabled ? 'not-allowed' : 'pointer' }}; {{ $disabled ? 'opacity:0.5;' : '' }}" {{ $attributes->except('class') }}>
     <span
         class="zayne-toggle-track {{ $checked ? 'is-on' : '' }}"

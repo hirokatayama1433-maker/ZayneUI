@@ -26,9 +26,11 @@ class Toggle extends Component
     {
         $colors = [
             'primary' => 'var(--zayne-color-primary)',
+            'secondary' => 'var(--zayne-color-secondary)',
             'success' => 'var(--zayne-color-success)',
             'danger'  => 'var(--zayne-color-danger)',
             'warning' => 'var(--zayne-color-warning)',
+            'info'    => 'var(--zayne-color-info)',
         ];
 
         $accent = $colors[$this->color] ?? $colors['primary'];

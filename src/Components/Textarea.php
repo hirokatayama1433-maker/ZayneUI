@@ -51,6 +51,7 @@ class Textarea extends Component
         $this->style = Zayne::styleString(array_merge([
             'padding' => $this->padding,
             'border-radius' => $this->radius,
+            'border' => $this->border ? 'solid' : null,
             'box-shadow' => $this->shadow,
             'margin' => $this->margin,
             'border-width' => $this->border,

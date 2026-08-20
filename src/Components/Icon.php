@@ -8,14 +8,14 @@ use Zayne\UI\Icons\IconMap;
 
 class Icon extends Component
 {
-    public ?string $svg;
+    public ?string $paths;
 
     public function __construct(
         public ?string $name = null,
         public ?string $color = null,
         public string  $size  = '1em',
     ) {
-        $this->svg = $name ? IconMap::get($name) : null;
+        $this->paths = $name ? IconMap::get($name) : null;
     }
 
     public function render(): View

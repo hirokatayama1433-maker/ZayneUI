@@ -17,6 +17,7 @@ class Navtree extends Component
         public ?string $background = null,
         public ?string $color      = null,
         public ?string $radius     = null,
+        public ?string $icon       = 'square-x',
     ) {
         $bg  = $background ?? ($active ? 'var(--zayne-custom-sidebar-item-bg-active)' : 'var(--zayne-custom-sidebar-item-bg)');
         $fg  = $color      ?? ($active ? 'var(--zayne-custom-sidebar-item-content-active)' : 'var(--zayne-custom-sidebar-content)');

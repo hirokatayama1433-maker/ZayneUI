@@ -8,58 +8,111 @@ use Zayne\UI\Zayne;
 
 class ColorPicker extends Component
 {
-    public string $style       = '';
-    public string $swatchStyle = '';
+    public string $pickerId;
+    public ?string $style;
+    public array $defaultSwatches;
+    public array $expandedSwatches;
 
     public function __construct(
-        public ?string $name      = null,
-        public string  $value     = '#6366f1',
-        public array   $swatches  = [],         // custom swatch palette, empty = built-in palette
-        public bool    $showhex   = true,       // show hex input
-        public bool    $showswatch = true,      // show swatch grid
-        public bool    $shownative = false,     // also show native <input type="color">
-        public bool    $disabled  = false,
-        public string  $radius    = 'var(--zayne-radius-field)',
-        public ?string $margin    = null,
+        public ?string $value       = null,
+        public string  $name        = 'color',
+        public string  $format      = 'hex',
+        public bool    $alpha       = false,
+        public array   $swatches    = [],
+        public ?bool   $closeButton = null,
+        public ?bool   $clearButton = null,
+        public string  $mode        = 'popover',
+        public string  $layout      = 'vertical',
+        public ?string $placeholder = null,
+        public string  $theme       = 'light',
     ) {
-        $this->buildStyle();
+        $this->pickerId = 'zayne_clr_' . uniqid();
+        $this->style    = Zayne::styleString([
+            '--zayne-picker-value' => $this->value ?? 'transparent',
+            'display' => $this->mode === 'popover' ? 'inline-block' : 'block',
+            'position' => 'relative',
+        ]);
+
+        $this->defaultSwatches  = $this->buildDefaultSwatches();
+        $this->expandedSwatches = $this->buildExpandedSwatches();
     }
 
-    public function resolvedSwatches(): array
+    protected function buildDefaultSwatches(): array
     {
         if (!empty($this->swatches)) {
             return $this->swatches;
         }
 
-        // Default 24-color palette — HSL-sampled across hue wheel, two lightness steps
         return [
-            '#ef4444','#f97316','#eab308','#22c55e','#06b6d4','#3b82f6',
-            '#8b5cf6','#ec4899','#f43f5e','#84cc16','#10b981','#14b8a6',
-            '#6366f1','#a855f7','#d946ef','#fb923c','#facc15','#4ade80',
-            '#ffffff','#e5e7eb','#9ca3af','#6b7280','#374151','#000000',
+            '#ffb3ba','#ffdfba','#ffffba','#baffc9','#bae1ff','#c9baff','#ffbaff',
+            '#ff5252','#ff9800','#ffeb3b','#76ff03','#18ffff','#448aff','#e040fb',
+            '#b71c1c','#e65100','#f57f17','#33691e','#00695c','#1a237e','#4a148c',
+            '#ffffff','#e0e0e0','#bdbdbd','#9e9e9e','#757575','#616161','#000000'
         ];
     }
 
-    protected function buildStyle(): void
+    protected function buildExpandedSwatches(): array
     {
-        $this->style = Zayne::styleString([
-            'display'         => 'flex',
-            'flex-direction'  => 'column',
-            'gap'             => '0.75rem',
-            'margin'          => $this->margin,
-            'opacity'         => $this->disabled ? '0.5' : null,
-            'pointer-events'  => $this->disabled ? 'none' : null,
-        ]);
+        $colors = [];
+        $hues   = [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340];
+        $rows   = [
+            ['l' => 95, 's' => 90], ['l' => 85, 's' => 95], ['l' => 72, 's' => 100],
+            ['l' => 58, 's' => 100], ['l' => 48, 's' => 100], ['l' => 38, 's' => 90],
+            ['l' => 28, 's' => 80],  ['l' => 15, 's' => 70],
+        ];
 
-        $this->swatchStyle = Zayne::styleString([
-            'display'               => 'grid',
-            'grid-template-columns' => 'repeat(8, 1fr)',
-            'gap'                   => '0.375rem',
-        ]);
+        foreach ($rows as $row) {
+            $rowColors = [];
+            foreach ($hues as $h) {
+                $rowColors[] = $this->hslToHex($h, $row['s'], $row['l']);
+            }
+            $rowColors[] = $this->hslToHex(0, 0, $row['l']);
+            $colors = array_merge($colors, $rowColors);
+        }
+
+        return $colors;
+    }
+
+    protected function hslToHex(int $h, int $s, int $l): string
+    {
+        $l /= 100;
+        $a  = $s * min($l, 1 - $l) / 100;
+
+        $f = function (int $n) use ($h, $l, $a): string {
+            $k     = ($n + (int) round($h / 30)) % 12;
+            $color = $l - $a * max(min($k - 3, 9 - $k, 1), -1);
+
+            return str_pad(
+                dechex(max(0, min(255, (int) round(255 * $color)))),
+                2,
+                '0',
+                STR_PAD_LEFT
+            );
+        };
+
+        return '#' . $f(0) . $f(8) . $f(4);
     }
 
     public function render(): View
     {
-        return view('zayne::color-picker');
+        // Explicitly expose every variable the Blade view expects.
+        // This guarantees $defaultSwatches and $expandedSwatches are
+        // always defined, even if Laravel's automatic extraction hiccups.
+        return view('zayne::color-picker', [
+            'pickerId'         => $this->pickerId,
+            'style'            => $this->style,
+            'defaultSwatches'  => $this->defaultSwatches,
+            'expandedSwatches' => $this->expandedSwatches,
+            'value'            => $this->value,
+            'name'             => $this->name,
+            'format'           => $this->format,
+            'alpha'            => $this->alpha,
+            'closeButton'      => $this->closeButton,
+            'clearButton'      => $this->clearButton,
+            'mode'             => $this->mode,
+            'layout'           => $this->layout,
+            'placeholder'      => $this->placeholder,
+            'theme'            => $this->theme,
+        ]);
     }
 }

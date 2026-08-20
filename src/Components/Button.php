@@ -11,28 +11,37 @@ class Button extends Component
     public string $style = '';
 
     public function __construct(
-        public string  $variant       = 'solid',
-        public string  $color         = 'primary',
-        public string  $size          = 'md',
-        public ?string $href          = null,
-        public ?string $icon          = null,
-        public ?string $iconTrailing  = null,
-        public ?string $padding       = null,
-        public string  $radius        = 'var(--zayne-radius-field)',
-        public ?string $shadow        = null,
-        public string  $gap           = 'var(--zayne-gap-button)',
-        public ?string $margin        = null,
-        public ?string $border        = null,
-        public ?string $bordercolor   = null,
-        public ?string $background    = null,
-        public ?string $textcolor     = null,
-        public bool    $fullwidth     = false,
+        public string  $variant      = 'solid',
+        public string  $color        = 'primary',
+        public string  $size         = 'md',
+        public ?string $href         = null,
+        public ?string $icon         = null,
+        public ?string $iconTrailing = null,
+        public ?string $padding      = null,
+        public ?string $radius       = null,
+        public ?string $shadow       = null,
+        public string  $gap          = 'var(--zayne-gap-button)',
+        public ?string $margin       = null,
+        public ?string $border       = null,
+        public ?string $bordercolor  = null,
+        public ?string $background   = null,
+        public ?string $textcolor    = null,
+        public bool    $fullwidth    = false,
     ) {
         $this->buildStyle();
     }
 
     protected function buildStyle(): void
     {
+        $sizeStyles = match($this->size) {
+            'xs'    => ['height' => '1.5rem',  'font-size' => '0.75rem',  'padding' => '0 0.5rem',  'border-radius' => 'var(--zayne-radius-selector)'],
+            'sm'    => ['height' => '2rem',    'font-size' => '0.875rem', 'padding' => '0 0.75rem', 'border-radius' => 'var(--zayne-radius-field)'],
+            'md'    => ['height' => '2.5rem',  'font-size' => '0.875rem', 'padding' => '0 1rem',    'border-radius' => 'var(--zayne-radius-field)'],
+            'lg'    => ['height' => '3rem',    'font-size' => '1rem',     'padding' => '0 1.25rem', 'border-radius' => 'var(--zayne-radius-field)'],
+            'xl'    => ['height' => '3.5rem',  'font-size' => '1.125rem', 'padding' => '0 1.5rem',  'border-radius' => 'var(--zayne-radius-box)'],
+            default => ['height' => '2.5rem',  'font-size' => '0.875rem', 'padding' => '0 1rem',    'border-radius' => 'var(--zayne-radius-field)'],
+        };
+
         $variantStyles = [
             'solid' => [
                 'primary'   => ['background' => 'var(--zayne-color-primary)',   'color' => 'var(--zayne-color-primary-content)'],
@@ -54,12 +63,12 @@ class Button extends Component
                 'base'      => ['background' => 'var(--zayne-color-base-200)',                                        'color' => 'var(--zayne-color-base-content)'],
             ],
             'outline' => [
-                'primary'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-primary)',   'border' => '1px solid var(--zayne-color-primary)'],
-                'secondary' => ['background' => 'transparent', 'color' => 'var(--zayne-color-secondary)', 'border' => '1px solid var(--zayne-color-secondary)'],
-                'danger'    => ['background' => 'transparent', 'color' => 'var(--zayne-color-danger)',    'border' => '1px solid var(--zayne-color-danger)'],
-                'success'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-success)',   'border' => '1px solid var(--zayne-color-success)'],
-                'warning'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-warning)',   'border' => '1px solid var(--zayne-color-warning)'],
-                'info'      => ['background' => 'transparent', 'color' => 'var(--zayne-color-info)',      'border' => '1px solid var(--zayne-color-info)'],
+                'primary'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-primary)',      'border' => '1px solid var(--zayne-color-primary)'],
+                'secondary' => ['background' => 'transparent', 'color' => 'var(--zayne-color-secondary)',    'border' => '1px solid var(--zayne-color-secondary)'],
+                'danger'    => ['background' => 'transparent', 'color' => 'var(--zayne-color-danger)',       'border' => '1px solid var(--zayne-color-danger)'],
+                'success'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-success)',      'border' => '1px solid var(--zayne-color-success)'],
+                'warning'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-warning)',      'border' => '1px solid var(--zayne-color-warning)'],
+                'info'      => ['background' => 'transparent', 'color' => 'var(--zayne-color-info)',         'border' => '1px solid var(--zayne-color-info)'],
                 'base'      => ['background' => 'transparent', 'color' => 'var(--zayne-color-base-content)', 'border' => '1px solid var(--zayne-color-base-border)'],
             ],
             'ghost' => [
@@ -72,21 +81,21 @@ class Button extends Component
                 'base'      => ['background' => 'transparent', 'color' => 'var(--zayne-color-base-content)'],
             ],
             'link' => [
-                'primary'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-primary)',   'text-decoration' => 'underline'],
-                'secondary' => ['background' => 'transparent', 'color' => 'var(--zayne-color-secondary)', 'text-decoration' => 'underline'],
-                'danger'    => ['background' => 'transparent', 'color' => 'var(--zayne-color-danger)',    'text-decoration' => 'underline'],
-                'success'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-success)',   'text-decoration' => 'underline'],
-                'warning'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-warning)',   'text-decoration' => 'underline'],
-                'info'      => ['background' => 'transparent', 'color' => 'var(--zayne-color-info)',      'text-decoration' => 'underline'],
+                'primary'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-primary)',      'text-decoration' => 'underline'],
+                'secondary' => ['background' => 'transparent', 'color' => 'var(--zayne-color-secondary)',    'text-decoration' => 'underline'],
+                'danger'    => ['background' => 'transparent', 'color' => 'var(--zayne-color-danger)',       'text-decoration' => 'underline'],
+                'success'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-success)',      'text-decoration' => 'underline'],
+                'warning'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-warning)',      'text-decoration' => 'underline'],
+                'info'      => ['background' => 'transparent', 'color' => 'var(--zayne-color-info)',         'text-decoration' => 'underline'],
                 'base'      => ['background' => 'transparent', 'color' => 'var(--zayne-color-base-content)', 'text-decoration' => 'underline'],
             ],
             'dashed' => [
-                'primary'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-primary)',   'border' => '1.5px dashed var(--zayne-color-primary)'],
-                'secondary' => ['background' => 'transparent', 'color' => 'var(--zayne-color-secondary)', 'border' => '1.5px dashed var(--zayne-color-secondary)'],
-                'danger'    => ['background' => 'transparent', 'color' => 'var(--zayne-color-danger)',    'border' => '1.5px dashed var(--zayne-color-danger)'],
-                'success'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-success)',   'border' => '1.5px dashed var(--zayne-color-success)'],
-                'warning'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-warning)',   'border' => '1.5px dashed var(--zayne-color-warning)'],
-                'info'      => ['background' => 'transparent', 'color' => 'var(--zayne-color-info)',      'border' => '1.5px dashed var(--zayne-color-info)'],
+                'primary'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-primary)',      'border' => '1.5px dashed var(--zayne-color-primary)'],
+                'secondary' => ['background' => 'transparent', 'color' => 'var(--zayne-color-secondary)',    'border' => '1.5px dashed var(--zayne-color-secondary)'],
+                'danger'    => ['background' => 'transparent', 'color' => 'var(--zayne-color-danger)',       'border' => '1.5px dashed var(--zayne-color-danger)'],
+                'success'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-success)',      'border' => '1.5px dashed var(--zayne-color-success)'],
+                'warning'   => ['background' => 'transparent', 'color' => 'var(--zayne-color-warning)',      'border' => '1.5px dashed var(--zayne-color-warning)'],
+                'info'      => ['background' => 'transparent', 'color' => 'var(--zayne-color-info)',         'border' => '1.5px dashed var(--zayne-color-info)'],
                 'base'      => ['background' => 'transparent', 'color' => 'var(--zayne-color-base-content)', 'border' => '1.5px dashed var(--zayne-color-base-border)'],
             ],
         ];
@@ -96,19 +105,23 @@ class Button extends Component
             ?? $variantStyles['solid']['primary'];
 
         if ($this->background) $resolved['background'] = $this->background;
-        if ($this->textcolor)  $resolved['color']       = $this->textcolor;
+        if ($this->textcolor)  $resolved['color']      = $this->textcolor;
 
-        $this->style = Zayne::styleString(array_merge([
-            'padding'         => $this->padding,
-            'border-radius'   => $this->radius,
-            'gap'             => $this->gap,
-            'box-shadow'      => $this->shadow,
-            'margin'          => $this->margin,
-            'border-width'    => $this->border,
-            'border-color'    => $this->bordercolor,
-            'width'           => $this->fullwidth ? '100%' : null,
-            'justify-content' => $this->fullwidth ? 'flex-start' : null,
-        ], $resolved));
+        // Padding: prop override wins, then size default
+        if ($this->padding) $sizeStyles['padding'] = $this->padding;
+        if ($this->radius)  $sizeStyles['border-radius'] = $this->radius;
+
+        $this->style = Zayne::styleString(array_merge(
+            $sizeStyles,
+            $resolved,
+            [
+                'gap'        => $this->gap,
+                'box-shadow' => $this->shadow,
+                'margin'     => $this->margin,
+                'border'     => $this->border ?? ($resolved['border'] ?? null),
+                'width'      => $this->fullwidth ? '100%' : null,
+            ]
+        ));
     }
 
     public function render(): View

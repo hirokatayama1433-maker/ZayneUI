@@ -4,6 +4,109 @@
     $panelId = 'zayne-panel-' . uniqid();
 @endphp
 
+@once
+<style>
+    .zayne-panel {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .zayne-panel-pane {
+        overflow: auto;
+        flex-shrink: 0;
+        position: relative;
+        min-width: 0;
+        min-height: 0;
+    }
+
+    .zayne-panel--resizable .zayne-panel-handle:hover {
+        background: color-mix(in oklch, var(--zayne-color-primary) 30%, transparent);
+    }
+
+    .zayne-panel--resizable .zayne-panel-handle:active {
+        background: color-mix(in oklch, var(--zayne-color-primary) 50%, transparent);
+    }
+
+    .zayne-panel-toggle-btn:hover {
+        background: color-mix(in oklch, var(--zayne-color-base-content) 8%, transparent);
+    }
+
+    .zayne-panel-pane-enter-start { opacity: 0; }
+    .zayne-panel-pane-enter-end   { opacity: 1; }
+    .zayne-panel-pane-leave-start { opacity: 1; }
+    .zayne-panel-pane-leave-end   { opacity: 0; }
+
+    .zayne-panel-pane-enter {
+        transition: opacity 200ms ease;
+    }
+
+    .zayne-panel-pane-leave {
+        transition: opacity 150ms ease;
+    }
+</style>
+@endonce
+
+@once
+<script>
+    function zaynePanel(direction = 'horizontal') {
+        return {
+            direction,
+            dragging: false,
+            startPos: 0,
+            startSize: 0,
+
+            startDrag(event) {
+                this.dragging = true;
+
+                const primary   = this.$refs.primary;
+                const container = this.$refs.container;
+                const isH       = this.direction === 'horizontal';
+
+                const touch = event.touches?.[0] ?? event;
+                this.startPos  = isH ? touch.clientX : touch.clientY;
+                this.startSize = isH ? primary.offsetWidth : primary.offsetHeight;
+
+                const onMove = (e) => {
+                    if (!this.dragging) return;
+                    const t     = e.touches?.[0] ?? e;
+                    const delta = (isH ? t.clientX : t.clientY) - this.startPos;
+                    const containerSize = isH ? container.offsetWidth : container.offsetHeight;
+                    let newSize = this.startSize + delta;
+                    newSize = Math.max(containerSize * 0.1, Math.min(containerSize * 0.9, newSize));
+                    primary.style[isH ? 'width' : 'height'] = newSize + 'px';
+                };
+
+                const onUp = () => {
+                    this.dragging = false;
+                    document.removeEventListener('mousemove', onMove);
+                    document.removeEventListener('mouseup', onUp);
+                    document.removeEventListener('touchmove', onMove);
+                    document.removeEventListener('touchend', onUp);
+                    document.body.style.cursor     = '';
+                    document.body.style.userSelect = '';
+                };
+
+                document.addEventListener('mousemove', onMove);
+                document.addEventListener('mouseup', onUp);
+                document.addEventListener('touchmove', onMove, { passive: false });
+                document.addEventListener('touchend', onUp);
+
+                document.body.style.cursor     = isH ? 'col-resize' : 'row-resize';
+                document.body.style.userSelect = 'none';
+            },
+        };
+    }
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('zaynePanel', zaynePanel);
+    });
+</script>
+@endonce
+
+
 @if($division === 'none')
 
     {{-- ── Default: single pane ── --}}
