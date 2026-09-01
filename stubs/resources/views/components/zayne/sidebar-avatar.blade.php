@@ -3,11 +3,11 @@
 @once
     <style>
         .zayne-sidebar-avatar {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.75rem;
-            }
-        </style>
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+    </style>
 @endonce
 
 <{{ $tag }}
@@ -23,7 +23,7 @@
             <img
                 src="{{ $src }}"
                 alt="{{ $alt ?: $name }}"
-                style="width:38px   ; height:38px; border-radius:var(--zayne-radius-field); object-fit:cover;"
+                style="width:38px; height:38px; border-radius:var(--zayne-radius-field); object-fit:cover;"
             />
         @else
             <div style="width:38px; height:38px; border-radius:var(--zayne-radius-field); display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:600; background:var(--zayne-color-accent); color:#fff;">
@@ -32,7 +32,8 @@
         @endif
     </div>
 
-    <div class="sidebar-label" style="display:flex; flex-direction:column; min-width:0; flex:1; text-align:left; padding-left:0.25rem;">
+    {{-- Name + email — hide on collapse --}}
+    <div class="zayne-sb-text" style="display:flex; flex-direction:column; min-width:0; flex:1; text-align:left; padding-left:0.25rem;">
         <span style="font-size:0.875rem; font-weight:500; line-height:1.25; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
             {{ $name }}
         </span>
@@ -43,7 +44,8 @@
         @endif
     </div>
 
-    <div class="sidebar-label" style="flex-shrink:0; display:flex; align-items:center; padding-right:0.5rem; opacity:0.4;">
+    {{-- Action icon — hide on collapse --}}
+    <div class="zayne-sb-text" style="flex-shrink:0; display:flex; align-items:center; padding-right:0.5rem; opacity:0.4;">
         @isset($action)
             {{ $action }}
         @else

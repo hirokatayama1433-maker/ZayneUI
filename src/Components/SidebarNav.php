@@ -5,16 +5,14 @@ namespace Zayne\UI\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class TabItem extends Component
+class SidebarNav extends Component
 {
     public function __construct(
-        public string $value,
-        public ?string $icon = null,
-        public bool   $disabled = false,
+        public ?string $label = null,
     ) {}
 
     public function render(): View
     {
-        return view('zayne::tab-item');
+        return view('zayne::sidebar-nav');
     }
 }

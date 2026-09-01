@@ -1,18 +1,17 @@
 @php
     $iconTrailing = $attributes->get('icon:trailing');
     $hasLeadingIcon = $icon !== null || isset($iconslot);
-    $hasTrailingIcon = $iconTrailing !== null || isset($trailing);
 
     $trailingControl = match (true) {
-        $hasTrailingIcon => 'custom',
-        $viewable        => 'viewable',
-        $copyable        => 'copyable',
-        $clearable       => 'clearable',
-        default          => null,
+        isset($trailing) || $iconTrailing !== null => 'custom',
+        $viewable  => 'viewable',
+        $copyable  => 'copyable',
+        $clearable => 'clearable',
+        default    => null,
     };
 
     $isPassword = $type === 'password';
-    $isFloat = $label !== null && $labelposition === 'float';
+    $isFloat    = $holderposition === 'float' && $placeholder !== null;
 
     $inputAttributes = $attributes->except(['class', 'icon', 'icon:trailing']);
 @endphp
@@ -97,9 +96,7 @@
             transition: opacity 0.15s ease;
         }
 
-        .zayne-input-action:hover {
-            opacity: 1;
-        }
+        .zayne-input-action:hover { opacity: 1; }
 
         .zayne-input-action svg {
             width: 100%;
@@ -128,12 +125,12 @@
             border-left: 1px solid var(--zayne-color-base-border);
         }
 
-        /* ── Float label ── */
+        /* ── Float placeholder ── */
         .zayne-input--float {
             position: relative;
         }
 
-        .zayne-input-float-label {
+        .zayne-input-float-placeholder {
             position: absolute;
             left: 1rem;
             top: 50%;
@@ -147,23 +144,18 @@
             transition: top 0.15s ease, font-size 0.15s ease, opacity 0.15s ease, color 0.15s ease;
         }
 
-        .zayne-input--float .zayne-input:focus ~ .zayne-input-float-label,
-        .zayne-input--float .zayne-input:not(:placeholder-shown) ~ .zayne-input-float-label {
+        .zayne-input--float .zayne-input:focus ~ .zayne-input-float-placeholder,
+        .zayne-input--float .zayne-input:not(:placeholder-shown) ~ .zayne-input-float-placeholder {
             top: 0;
             font-size: 0.75rem;
             opacity: 0.8;
         }
 
-        .zayne-input--float .zayne-input:focus ~ .zayne-input-float-label {
-            color: var(--zayne-input-focus-border, var(--zayne-color-primary));
-            opacity: 1;
-        }
-
-        .zayne-input--float:has(.zayne-input-icon--leading) .zayne-input-float-label {
+        .zayne-input--float:has(.zayne-input-icon--leading) .zayne-input-float-placeholder {
             left: 2rem;
         }
 
-        /* ── Input size variants ── */
+        /* ── Size variants ── */
         .zayne-input--xs { font-size: 0.75rem; }
         .zayne-input--xs .zayne-input,
         .zayne-input--xs input.zayne-input { height: 1.5rem; }
@@ -178,25 +170,24 @@
         .zayne-input--lg { font-size: 1rem; }
         .zayne-input--lg .zayne-input,
         .zayne-input--lg input.zayne-input { height: 2.75rem; }
-        </style>
+    </style>
 @endonce
 
 <div
     class="zayne-input-wrapper zayne-input--{{ $size }}{{ $invalid ? ' zayne-input--invalid' : '' }}{{ $isFloat ? ' zayne-input--float' : '' }}"
     style="{{ $style }}"
     @if($clearable) data-zayne-input-clearable @endif
-    @if($copyable) data-zayne-input-copyable @endif
-    @if($viewable) data-zayne-input-viewable @endif
+    @if($copyable)  data-zayne-input-copyable  @endif
+    @if($viewable)  data-zayne-input-viewable  @endif
 >
     @isset($prefix)
-        <div class="zayne-input-affix zayne-input-affix--prefix">
-            {{ $prefix }}
-        </div>
+        <div class="zayne-input-affix zayne-input-affix--prefix">{{ $prefix }}</div>
     @endisset
 
+    {{-- Leading icon --}}
     @if($icon !== null)
         <span class="zayne-input-icon zayne-input-icon--leading">
-            <zayne:icon :name="$icon" />
+            <zayne:icon name="{{ $icon }}" />
         </span>
     @elseif(isset($iconslot))
         <span class="zayne-input-icon zayne-input-icon--leading">{{ $iconslot }}</span>
@@ -218,8 +209,9 @@
         {{ $inputAttributes }}
     >
 
+    {{-- Float placeholder label --}}
     @if($isFloat)
-        <label class="zayne-input-float-label">{{ $label }}</label>
+        <span class="zayne-input-float-placeholder">{{ $placeholder }}</span>
     @endif
 
     @if($kbd !== null)
@@ -229,14 +221,18 @@
     @switch($trailingControl)
         @case('custom')
             <span class="zayne-input-icon zayne-input-icon--trailing">
-                <zayne:icon :name="$iconTrailing" />
+                @if($iconTrailing !== null)
+                    <zayne:icon name="{{ $iconTrailing }}" />
+                @else
+                    {{ $trailing }}
+                @endif
             </span>
             @break
 
         @case('viewable')
             <button type="button" class="zayne-input-action" data-zayne-input-action="viewable" aria-label="Toggle password visibility">
                 <zayne:icon name="eye" data-zayne-icon-show />
-                <zayne:icon name="eye-slash" data-zayne-icon-hide style="display:none" />
+                <zayne:icon name="eye-off" data-zayne-icon-hide style="display:none" />
             </button>
             @break
 
@@ -254,13 +250,7 @@
             @break
     @endswitch
 
-    @if($trailingControl === null && isset($trailing))
-        <span class="zayne-input-icon zayne-input-icon--trailing">{{ $trailing }}</span>
-    @endif
-
     @isset($suffix)
-        <div class="zayne-input-affix zayne-input-affix--suffix">
-            {{ $suffix }}
-        </div>
+        <div class="zayne-input-affix zayne-input-affix--suffix">{{ $suffix }}</div>
     @endisset
 </div>

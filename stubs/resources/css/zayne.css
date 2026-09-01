@@ -35,6 +35,7 @@
     --zayne-z-dropdown: 1030;
     --zayne-z-popover: 1040;
     --zayne-z-tooltip: 1050;
+    --zayne-z-toast: 1060;
     --zayne-z-shell-base:     2;
     --zayne-z-shell-elevated: 3;
 
@@ -273,115 +274,2501 @@
     --zayne-color-gray-950: oklch(9%  0 0);
 }
 
-.light {
-    --zayne-color-base-100: oklch(100% 0 0);
-    --zayne-color-base-200: oklch(98% 0 0);
-    --zayne-color-base-300: oklch(100% 0.00011 271.152);
+/* ============================================================
+   ZayneUI Themes
+   14 colors × 2 modes × 2 styles = 56 themes
+
+   Naming:
+   zaynetheme-(color)-(light/dark)-(minimalist/maximalist)
+
+   Minimalist:
+   - Neutral surfaces with a subtle hue
+   - Color concentrated on primary/accent states
+   - Neutral shadows and restrained borders
+
+   Maximalist:
+   - Hue carried into surfaces, borders, sidebar and shadows
+   - Stronger atmospheric backgrounds
+   - More expressive visual treatment
+   ============================================================ */
+
+/* ============================================================
+   ZayneUI Themes — 56 Themes
+
+   14 colors × 2 modes × 2 styles
+
+   Naming:
+   zaynetheme-(color)-(light/dark)-(minimalist/maximalist)
+
+   Sidebar rule:
+   - Light themes: sidebar is derived from the light base scale.
+   - Dark themes: sidebar is derived from the dark base scale.
+   - No theme forces a dark sidebar in light mode.
+   ============================================================ */
+
+/* zaynetheme-neutral-light-minimalist */
+.zaynetheme-neutral-light-minimalist {
+    --zayne-color-base:oklch(100.00% 0.0000 0);
+    --zayne-color-base-100: oklch(98.511% 0.00011 271.152);
+    --zayne-color-base-200: oklch(96.946% 0.00318 15.308);
+    --zayne-color-base-300: oklch(95.00% 0.0000 0);
     --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
-    --zayne-color-base-content: oklch(22% 0.01 270);
-    --zayne-color-base-content-muted: oklch(55% 0.005 270);
-    --zayne-color-base-border: oklch(91.052% 0.00106 11.805);
-    --zayne-color-base-hover: oklch(94% 0.002 270);
-    --zayne-color-primary: oklch(23.929% 0.00003 271.152);
-    --zayne-color-primary-content: oklch(100% 0.00011 271.152);
-    --zayne-color-secondary: oklch(85% 0.199 91.936);
-    --zayne-color-secondary-content: oklch(25% 0.05 91);
-    --zayne-color-accent: oklch(87% 0.169 91.605);
-    --zayne-color-accent-content: oklch(38% 0.063 188.416);
-    --zayne-color-danger: oklch(55% 0.237 25.331);
+    --zayne-color-base-content: oklch(18.00% 0.0000 0);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0000 0);
+    --zayne-color-base-border: oklch(88.00% 0.0000 0);
+    --zayne-color-base-hover: oklch(93.00% 0.0000 0);
+
+    --zayne-color-primary: oklch(24% 0 0);
+    --zayne-color-primary-content: oklch(98% 0 0);
+    --zayne-color-secondary: oklch(78% 0 0);
+    --zayne-color-secondary-content: oklch(20% 0 0);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
     --zayne-color-danger-content: oklch(97% 0.01 25);
-    --zayne-color-success: oklch(48% 0.15 149.579);
-    --zayne-color-success-content: oklch(97% 0.01 149);
-    --zayne-color-warning: oklch(81.79% 0.17046 77.947);
-    --zayne-color-warning-content: oklch(15% 0.05 84);
-    --zayne-color-info: oklch(52% 0.14 232.661);
-    --zayne-color-info-content: oklch(97% 0.01 232);
-    --zayne-custom-header: oklch(100% 0.00011 271.152);
-    --zayne-custom-sidebar: #ffffff;
-    --zayne-custom-sidebar-content: #333333;
-    --zayne-custom-sidebar-item-bg: #141e5700;
-    --zayne-custom-sidebar-item-bg-hover: #111f6d;
-    --zayne-custom-sidebar-item-bg-active: #111f6d;
-    --zayne-custom-sidebar-item-content: #ffffff;
-    --zayne-custom-sidebar-item-content-hover: #ffffff;
-    --zayne-custom-sidebar-item-content-active: #ffc400;
-    --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.205);
-    --zayne-custom-layout-shadow: 0 8px 10px rgba(138, 82, 82, 0.103);
-    --zayne-background-main: linear-gradient(135deg, #fcfcfd 0%, #dbeafe2a 50%, #bfdbfe6b 100%);
-}
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
 
-.dark {
-    --zayne-color-base-100: oklch(25.33% 0.016 252.42);
-    --zayne-color-base-200: oklch(23.26% 0.014 253.1);
-    --zayne-color-base-300: oklch(21.15% 0.012 254.09);
-    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
-    --zayne-color-base-content: oklch(1 0 none);
-    --zayne-color-base-content-muted: oklch(55% 0.005 271);
-    --zayne-color-base-border: oklch(37.53% 0.00004 271.152);
-    --zayne-color-base-hover: oklch(30% 0.005 271);
-    --zayne-color-primary: oklch(0.71 0 none);
-    --zayne-color-primary-content: oklch(92% 0.005 271);
-    --zayne-color-secondary: oklch(85% 0.199 91.936);
-    --zayne-color-secondary-content: oklch(25% 0.05 91);
-    --zayne-color-accent: oklch(87% 0.169 91.605);
-    --zayne-color-accent-content: oklch(38% 0.063 188.416);
-    --zayne-color-danger: oklch(63% 0.237 25.331);
-    --zayne-color-danger-content: oklch(96% 0.01 25);
-    --zayne-color-success: oklch(72% 0.219 149.579);
-    --zayne-color-success-content: oklch(96% 0.01 149);
-    --zayne-color-warning: oklch(82% 0.189 84.429);
-    --zayne-color-warning-content: oklch(25% 0.05 84);
-    --zayne-color-info: oklch(74% 0.16 232.661);
-    --zayne-color-info-content: oklch(96% 0.01 232);
-    --zayne-custom-header: oklch(22% 0.005 271);
-    --zayne-custom-sidebar: oklch(15% 0.005 271);
-    --zayne-custom-sidebar-content: oklch(88% 0.005 271);
-    --zayne-custom-sidebar-item-bg: rgba(255, 255, 255, 0.04);
-    --zayne-custom-sidebar-item-bg-hover: rgba(255, 255, 255, 0.08);
-    --zayne-custom-sidebar-item-bg-active: rgba(255, 255, 255, 0.12);
-    --zayne-custom-sidebar-item-content: oklch(70% 0.005 271);
-    --zayne-custom-sidebar-item-content-hover: oklch(95% 0.005 271);
+    --zayne-custom-header: oklch(100.00% 0.0000 0);
+    --zayne-custom-sidebar: oklch(100.00% 0.0000 0);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0000 0);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(24% 0 0);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0000 0);
+    --zayne-custom-sidebar-item-content-hover: #111111;
     --zayne-custom-sidebar-item-content-active: #ffffff;
-    --zayne-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
-    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.08);
-    --zayne-background-main: linear-gradient(135deg, #333333 0%, #dbeafe2a 50%, #2c2c2c6b 100%);
-}
 
-.abyss {
-    --zayne-color-base-100: oklch(20% 0.08 209);
-    --zayne-color-base-200: oklch(15% 0.08 209);
-    --zayne-color-base-300: oklch(10% 0.08 209);
-    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
-    --zayne-color-base-content: oklch(99.226% 0.00608 75.126);
-    --zayne-color-base-content-muted: oklch(60.409% 0.0418 73.346);
-    --zayne-color-base-border: oklch(30% 0.08 209);
-    --zayne-color-base-hover: oklch(25% 0.08 209);
-    --zayne-color-primary: oklch(50% 0.2653 125);
-    --zayne-color-primary-content: oklch(92% 0.2653 125);
-    --zayne-color-secondary: oklch(83.27% 0.0764 298.3);
-    --zayne-color-secondary-content: oklch(43.27% 0.0764 298.3);
-    --zayne-color-danger: oklch(65% 0.1985 24.22);
-    --zayne-color-danger-content: oklch(27% 0.1985 24.22);
-    --zayne-color-success: oklch(79% 0.209 151.711);
-    --zayne-color-success-content: oklch(26% 0.065 152.934);
-    --zayne-color-warning: oklch(84.8% 0.1962 84.62);
-    --zayne-color-warning-content: oklch(44.8% 0.1962 84.62);
-    --zayne-color-info: oklch(74% 0.16 232.661);
-    --zayne-color-info-content: oklch(29% 0.066 243.157);
-    --zayne-custom-header: oklch(15% 0.08 209);
-    --zayne-custom-sidebar: oklch(8.392% 0.02461 251.3);
-    --zayne-custom-sidebar-content: oklch(99.226% 0.00608 75.126);
-    --zayne-custom-sidebar-item-bg: rgba(255, 255, 255, 0.04);
-    --zayne-custom-sidebar-item-bg-hover: rgba(255, 255, 255, 0.1);
-    --zayne-custom-sidebar-item-bg-active: rgba(255, 255, 255, 0.15);
-    --zayne-custom-sidebar-item-content: oklch(99.226% 0.00608 75.126);
-    --zayne-custom-sidebar-item-content-hover: #ffffff;
-    --zayne-custom-sidebar-item-content-active: #ffffff;
     --zayne-radius-selector: 2rem;
     --zayne-radius-field: 0.25rem;
     --zayne-radius-box: 0.5rem;
-    --zayne-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
-    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
+
+    --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.07);
+    --zayne-background-main: linear-gradient(135deg, oklch(100.00% 0.0000 0) 0%, oklch(98.00% 0.0000 0) 55%, oklch(95.00% 0.0000 0) 100%);
+}
+
+/* zaynetheme-neutral-light-maximalist */
+.zaynetheme-neutral-light-maximalist {
+    --zayne-color-base-100: oklch(97.00% 0.0040 0);
+    --zayne-color-base-200: oklch(93.00% 0.0060 0);
+    --zayne-color-base-300: oklch(88.00% 0.0100 0);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0000 0);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0000 0);
+    --zayne-color-base-border: oklch(79.00% 0.0120 0);
+    --zayne-color-base-hover: oklch(91.00% 0.0080 0);
+
+    --zayne-color-primary: oklch(24% 0 0);
+    --zayne-color-primary-content: oklch(98% 0 0);
+    --zayne-color-secondary: oklch(78% 0 0);
+    --zayne-color-secondary-content: oklch(20% 0 0);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(97.00% 0.0040 0);
+    --zayne-custom-sidebar: oklch(93.00% 0.0060 0);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0000 0);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(24% 0 0);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0000 0);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 8px 14px oklch(35.00% 0.0100 0)33;
+    --zayne-custom-layout-shadow: 0 10px 24px oklch(30.00% 0.0100 0)38;
+    --zayne-background-main: linear-gradient(135deg, oklch(97.00% 0.0040 0) 0%, oklch(98.00% 0.0000 0) 55%, oklch(88.00% 0.0100 0) 100%);
+}
+
+/* zaynetheme-neutral-dark-minimalist */
+.zaynetheme-neutral-dark-minimalist {
+    --zayne-color-base-100: oklch(20.00% 0.0060 0);
+    --zayne-color-base-200: oklch(16.00% 0.0050 0);
+    --zayne-color-base-300: oklch(12.00% 0.0040 0);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0030 0);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0040 0);
+    --zayne-color-base-border: oklch(29.00% 0.0060 0);
+    --zayne-color-base-hover: oklch(24.00% 0.0050 0);
+
+    --zayne-color-primary: oklch(82% 0 0);
+    --zayne-color-primary-content: oklch(18% 0 0);
+    --zayne-color-secondary: oklch(72% 0 0);
+    --zayne-color-secondary-content: oklch(18% 0 0);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(16.00% 0.0050 0);
+    --zayne-custom-sidebar: oklch(12.00% 0.0040 0);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0030 0);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(82% 0 0);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0030 0);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 4px 10px rgba(0, 0, 0, 0.30);
+    --zayne-custom-layout-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0040 0) 0%, oklch(16.00% 0.0050 0) 55%, oklch(20.00% 0.0060 0) 100%);
+}
+
+/* zaynetheme-neutral-dark-maximalist */
+.zaynetheme-neutral-dark-maximalist {
+    --zayne-color-base-100: oklch(22.00% 0.0120 0);
+    --zayne-color-base-200: oklch(17.00% 0.0140 0);
+    --zayne-color-base-300: oklch(12.00% 0.0160 0);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0030 0);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0040 0);
+    --zayne-color-base-border: oklch(34.00% 0.0180 0);
+    --zayne-color-base-hover: oklch(27.00% 0.0140 0);
+
+    --zayne-color-primary: oklch(82% 0 0);
+    --zayne-color-primary-content: oklch(18% 0 0);
+    --zayne-color-secondary: oklch(72% 0 0);
+    --zayne-color-secondary-content: oklch(18% 0 0);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(17.00% 0.0140 0);
+    --zayne-custom-sidebar: oklch(12.00% 0.0160 0);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0030 0);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(82% 0 0);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0030 0);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 10px 20px oklch(5.00% 0.0080 0)99;
+    --zayne-custom-layout-shadow: 0 12px 28px oklch(5.00% 0.0080 0)aa;
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0160 0) 0%, oklch(17.00% 0.0140 0) 55%, oklch(22.00% 0.0120 0) 100%);
+}
+
+/* zaynetheme-red-light-minimalist */
+.zaynetheme-red-light-minimalist {
+    --zayne-color-base-100: oklch(100.00% 0.0020 25);
+    --zayne-color-base-200: oklch(98.00% 0.0040 25);
+    --zayne-color-base-300: oklch(95.00% 0.0070 25);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 25);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 25);
+    --zayne-color-base-border: oklch(88.00% 0.0100 25);
+    --zayne-color-base-hover: oklch(93.00% 0.0070 25);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 25);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 25);
+    --zayne-color-secondary: oklch(72.00% 0.1400 25);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 25);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(100.00% 0.0020 25);
+    --zayne-custom-sidebar: oklch(100.00% 0.0020 25);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 25);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 25);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 25);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.07);
+    --zayne-background-main: linear-gradient(135deg, oklch(100.00% 0.0020 25) 0%, oklch(98.00% 0.0060 25) 55%, oklch(95.00% 0.0070 25) 100%);
+}
+
+/* zaynetheme-red-light-maximalist */
+.zaynetheme-red-light-maximalist {
+    --zayne-color-base-100: oklch(97.00% 0.0180 25);
+    --zayne-color-base-200: oklch(93.00% 0.0320 25);
+    --zayne-color-base-300: oklch(88.00% 0.0500 25);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 25);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 25);
+    --zayne-color-base-border: oklch(79.00% 0.0750 25);
+    --zayne-color-base-hover: oklch(91.00% 0.0420 25);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 25);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 25);
+    --zayne-color-secondary: oklch(72.00% 0.1400 25);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 25);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(97.00% 0.0180 25);
+    --zayne-custom-sidebar: oklch(93.00% 0.0320 25);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 25);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 25);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 25);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 8px 14px oklch(35.00% 0.0800 25)33;
+    --zayne-custom-layout-shadow: 0 10px 24px oklch(30.00% 0.0700 25)38;
+    --zayne-background-main: linear-gradient(135deg, oklch(97.00% 0.0180 25) 0%, oklch(98.00% 0.0060 25) 55%, oklch(88.00% 0.0500 25) 100%);
+}
+
+/* zaynetheme-red-dark-minimalist */
+.zaynetheme-red-dark-minimalist {
+    --zayne-color-base-100: oklch(20.00% 0.0180 25);
+    --zayne-color-base-200: oklch(16.00% 0.0160 25);
+    --zayne-color-base-300: oklch(12.00% 0.0140 25);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 25);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 25);
+    --zayne-color-base-border: oklch(29.00% 0.0200 25);
+    --zayne-color-base-hover: oklch(24.00% 0.0180 25);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 25);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 25);
+    --zayne-color-secondary: oklch(74.00% 0.1500 25);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 25);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(16.00% 0.0160 25);
+    --zayne-custom-sidebar: oklch(12.00% 0.0140 25);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 25);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 25);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 25);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 4px 10px rgba(0, 0, 0, 0.30);
+    --zayne-custom-layout-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0140 25) 0%, oklch(16.00% 0.0160 25) 55%, oklch(20.00% 0.0180 25) 100%);
+}
+
+/* zaynetheme-red-dark-maximalist */
+.zaynetheme-red-dark-maximalist {
+    --zayne-color-base-100: oklch(22.00% 0.0700 25);
+    --zayne-color-base-200: oklch(17.00% 0.0700 25);
+    --zayne-color-base-300: oklch(12.00% 0.0700 25);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 25);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 25);
+    --zayne-color-base-border: oklch(34.00% 0.0750 25);
+    --zayne-color-base-hover: oklch(27.00% 0.0700 25);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 25);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 25);
+    --zayne-color-secondary: oklch(74.00% 0.1500 25);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 25);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(17.00% 0.0700 25);
+    --zayne-custom-sidebar: oklch(12.00% 0.0700 25);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 25);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 25);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 25);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 10px 20px oklch(5.00% 0.0600 25)99;
+    --zayne-custom-layout-shadow: 0 12px 28px oklch(5.00% 0.0600 25)aa;
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0700 25) 0%, oklch(17.00% 0.0700 25) 55%, oklch(22.00% 0.0700 25) 100%);
+}
+
+/* zaynetheme-orange-light-minimalist */
+.zaynetheme-orange-light-minimalist {
+    --zayne-color-base-100: oklch(100.00% 0.0020 50);
+    --zayne-color-base-200: oklch(98.00% 0.0040 50);
+    --zayne-color-base-300: oklch(95.00% 0.0070 50);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 50);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 50);
+    --zayne-color-base-border: oklch(88.00% 0.0100 50);
+    --zayne-color-base-hover: oklch(93.00% 0.0070 50);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 50);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 50);
+    --zayne-color-secondary: oklch(72.00% 0.1400 50);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 50);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(100.00% 0.0020 50);
+    --zayne-custom-sidebar: oklch(100.00% 0.0020 50);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 50);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 50);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 50);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.07);
+    --zayne-background-main: linear-gradient(135deg, oklch(100.00% 0.0020 50) 0%, oklch(98.00% 0.0060 50) 55%, oklch(95.00% 0.0070 50) 100%);
+}
+
+/* zaynetheme-orange-light-maximalist */
+.zaynetheme-orange-light-maximalist {
+    --zayne-color-base-100: oklch(97.00% 0.0180 50);
+    --zayne-color-base-200: oklch(93.00% 0.0320 50);
+    --zayne-color-base-300: oklch(88.00% 0.0500 50);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 50);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 50);
+    --zayne-color-base-border: oklch(79.00% 0.0750 50);
+    --zayne-color-base-hover: oklch(91.00% 0.0420 50);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 50);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 50);
+    --zayne-color-secondary: oklch(72.00% 0.1400 50);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 50);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(97.00% 0.0180 50);
+    --zayne-custom-sidebar: oklch(93.00% 0.0320 50);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 50);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 50);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 50);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 8px 14px oklch(35.00% 0.0800 50)33;
+    --zayne-custom-layout-shadow: 0 10px 24px oklch(30.00% 0.0700 50)38;
+    --zayne-background-main: linear-gradient(135deg, oklch(97.00% 0.0180 50) 0%, oklch(98.00% 0.0060 50) 55%, oklch(88.00% 0.0500 50) 100%);
+}
+
+/* zaynetheme-orange-dark-minimalist */
+.zaynetheme-orange-dark-minimalist {
+    --zayne-color-base-100: oklch(20.00% 0.0180 50);
+    --zayne-color-base-200: oklch(16.00% 0.0160 50);
+    --zayne-color-base-300: oklch(12.00% 0.0140 50);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 50);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 50);
+    --zayne-color-base-border: oklch(29.00% 0.0200 50);
+    --zayne-color-base-hover: oklch(24.00% 0.0180 50);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 50);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 50);
+    --zayne-color-secondary: oklch(74.00% 0.1500 50);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 50);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(16.00% 0.0160 50);
+    --zayne-custom-sidebar: oklch(12.00% 0.0140 50);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 50);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 50);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 50);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 4px 10px rgba(0, 0, 0, 0.30);
+    --zayne-custom-layout-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0140 50) 0%, oklch(16.00% 0.0160 50) 55%, oklch(20.00% 0.0180 50) 100%);
+}
+
+/* zaynetheme-orange-dark-maximalist */
+.zaynetheme-orange-dark-maximalist {
+    --zayne-color-base-100: oklch(22.00% 0.0700 50);
+    --zayne-color-base-200: oklch(17.00% 0.0700 50);
+    --zayne-color-base-300: oklch(12.00% 0.0700 50);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 50);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 50);
+    --zayne-color-base-border: oklch(34.00% 0.0750 50);
+    --zayne-color-base-hover: oklch(27.00% 0.0700 50);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 50);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 50);
+    --zayne-color-secondary: oklch(74.00% 0.1500 50);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 50);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(17.00% 0.0700 50);
+    --zayne-custom-sidebar: oklch(12.00% 0.0700 50);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 50);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 50);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 50);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 10px 20px oklch(5.00% 0.0600 50)99;
+    --zayne-custom-layout-shadow: 0 12px 28px oklch(5.00% 0.0600 50)aa;
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0700 50) 0%, oklch(17.00% 0.0700 50) 55%, oklch(22.00% 0.0700 50) 100%);
+}
+
+/* zaynetheme-yellow-light-minimalist */
+.zaynetheme-yellow-light-minimalist {
+    --zayne-color-base-100: oklch(100.00% 0.0020 85);
+    --zayne-color-base-200: oklch(98.00% 0.0040 85);
+    --zayne-color-base-300: oklch(95.00% 0.0070 85);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 85);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 85);
+    --zayne-color-base-border: oklch(88.00% 0.0100 85);
+    --zayne-color-base-hover: oklch(93.00% 0.0070 85);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 85);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 85);
+    --zayne-color-secondary: oklch(72.00% 0.1400 85);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 85);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(100.00% 0.0020 85);
+    --zayne-custom-sidebar: oklch(100.00% 0.0020 85);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 85);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 85);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 85);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.07);
+    --zayne-background-main: linear-gradient(135deg, oklch(100.00% 0.0020 85) 0%, oklch(98.00% 0.0060 85) 55%, oklch(95.00% 0.0070 85) 100%);
+}
+
+/* zaynetheme-yellow-light-maximalist */
+.zaynetheme-yellow-light-maximalist {
+    --zayne-color-base-100: oklch(97.00% 0.0180 85);
+    --zayne-color-base-200: oklch(93.00% 0.0320 85);
+    --zayne-color-base-300: oklch(88.00% 0.0500 85);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 85);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 85);
+    --zayne-color-base-border: oklch(79.00% 0.0750 85);
+    --zayne-color-base-hover: oklch(91.00% 0.0420 85);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 85);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 85);
+    --zayne-color-secondary: oklch(72.00% 0.1400 85);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 85);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(97.00% 0.0180 85);
+    --zayne-custom-sidebar: oklch(93.00% 0.0320 85);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 85);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 85);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 85);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 8px 14px oklch(35.00% 0.0800 85)33;
+    --zayne-custom-layout-shadow: 0 10px 24px oklch(30.00% 0.0700 85)38;
+    --zayne-background-main: linear-gradient(135deg, oklch(97.00% 0.0180 85) 0%, oklch(98.00% 0.0060 85) 55%, oklch(88.00% 0.0500 85) 100%);
+}
+
+/* zaynetheme-yellow-dark-minimalist */
+.zaynetheme-yellow-dark-minimalist {
+    --zayne-color-base-100: oklch(20.00% 0.0180 85);
+    --zayne-color-base-200: oklch(16.00% 0.0160 85);
+    --zayne-color-base-300: oklch(12.00% 0.0140 85);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 85);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 85);
+    --zayne-color-base-border: oklch(29.00% 0.0200 85);
+    --zayne-color-base-hover: oklch(24.00% 0.0180 85);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 85);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 85);
+    --zayne-color-secondary: oklch(74.00% 0.1500 85);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 85);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(16.00% 0.0160 85);
+    --zayne-custom-sidebar: oklch(12.00% 0.0140 85);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 85);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 85);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 85);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 4px 10px rgba(0, 0, 0, 0.30);
+    --zayne-custom-layout-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0140 85) 0%, oklch(16.00% 0.0160 85) 55%, oklch(20.00% 0.0180 85) 100%);
+}
+
+/* zaynetheme-yellow-dark-maximalist */
+.zaynetheme-yellow-dark-maximalist {
+    --zayne-color-base-100: oklch(22.00% 0.0700 85);
+    --zayne-color-base-200: oklch(17.00% 0.0700 85);
+    --zayne-color-base-300: oklch(12.00% 0.0700 85);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 85);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 85);
+    --zayne-color-base-border: oklch(34.00% 0.0750 85);
+    --zayne-color-base-hover: oklch(27.00% 0.0700 85);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 85);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 85);
+    --zayne-color-secondary: oklch(74.00% 0.1500 85);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 85);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(17.00% 0.0700 85);
+    --zayne-custom-sidebar: oklch(12.00% 0.0700 85);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 85);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 85);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 85);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 10px 20px oklch(5.00% 0.0600 85)99;
+    --zayne-custom-layout-shadow: 0 12px 28px oklch(5.00% 0.0600 85)aa;
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0700 85) 0%, oklch(17.00% 0.0700 85) 55%, oklch(22.00% 0.0700 85) 100%);
+}
+
+/* zaynetheme-lime-light-minimalist */
+.zaynetheme-lime-light-minimalist {
+    --zayne-color-base-100: oklch(100.00% 0.0020 110);
+    --zayne-color-base-200: oklch(98.00% 0.0040 110);
+    --zayne-color-base-300: oklch(95.00% 0.0070 110);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 110);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 110);
+    --zayne-color-base-border: oklch(88.00% 0.0100 110);
+    --zayne-color-base-hover: oklch(93.00% 0.0070 110);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 110);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 110);
+    --zayne-color-secondary: oklch(72.00% 0.1400 110);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 110);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(100.00% 0.0020 110);
+    --zayne-custom-sidebar: oklch(100.00% 0.0020 110);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 110);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 110);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 110);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.07);
+    --zayne-background-main: linear-gradient(135deg, oklch(100.00% 0.0020 110) 0%, oklch(98.00% 0.0060 110) 55%, oklch(95.00% 0.0070 110) 100%);
+}
+
+/* zaynetheme-lime-light-maximalist */
+.zaynetheme-lime-light-maximalist {
+    --zayne-color-base-100: oklch(97.00% 0.0180 110);
+    --zayne-color-base-200: oklch(93.00% 0.0320 110);
+    --zayne-color-base-300: oklch(88.00% 0.0500 110);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 110);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 110);
+    --zayne-color-base-border: oklch(79.00% 0.0750 110);
+    --zayne-color-base-hover: oklch(91.00% 0.0420 110);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 110);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 110);
+    --zayne-color-secondary: oklch(72.00% 0.1400 110);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 110);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(97.00% 0.0180 110);
+    --zayne-custom-sidebar: oklch(93.00% 0.0320 110);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 110);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 110);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 110);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 8px 14px oklch(35.00% 0.0800 110)33;
+    --zayne-custom-layout-shadow: 0 10px 24px oklch(30.00% 0.0700 110)38;
+    --zayne-background-main: linear-gradient(135deg, oklch(97.00% 0.0180 110) 0%, oklch(98.00% 0.0060 110) 55%, oklch(88.00% 0.0500 110) 100%);
+}
+
+/* zaynetheme-lime-dark-minimalist */
+.zaynetheme-lime-dark-minimalist {
+    --zayne-color-base-100: oklch(20.00% 0.0180 110);
+    --zayne-color-base-200: oklch(16.00% 0.0160 110);
+    --zayne-color-base-300: oklch(12.00% 0.0140 110);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 110);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 110);
+    --zayne-color-base-border: oklch(29.00% 0.0200 110);
+    --zayne-color-base-hover: oklch(24.00% 0.0180 110);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 110);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 110);
+    --zayne-color-secondary: oklch(74.00% 0.1500 110);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 110);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(16.00% 0.0160 110);
+    --zayne-custom-sidebar: oklch(12.00% 0.0140 110);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 110);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 110);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 110);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 4px 10px rgba(0, 0, 0, 0.30);
+    --zayne-custom-layout-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0140 110) 0%, oklch(16.00% 0.0160 110) 55%, oklch(20.00% 0.0180 110) 100%);
+}
+
+/* zaynetheme-lime-dark-maximalist */
+.zaynetheme-lime-dark-maximalist {
+    --zayne-color-base-100: oklch(22.00% 0.0700 110);
+    --zayne-color-base-200: oklch(17.00% 0.0700 110);
+    --zayne-color-base-300: oklch(12.00% 0.0700 110);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 110);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 110);
+    --zayne-color-base-border: oklch(34.00% 0.0750 110);
+    --zayne-color-base-hover: oklch(27.00% 0.0700 110);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 110);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 110);
+    --zayne-color-secondary: oklch(74.00% 0.1500 110);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 110);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(17.00% 0.0700 110);
+    --zayne-custom-sidebar: oklch(12.00% 0.0700 110);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 110);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 110);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 110);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 10px 20px oklch(5.00% 0.0600 110)99;
+    --zayne-custom-layout-shadow: 0 12px 28px oklch(5.00% 0.0600 110)aa;
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0700 110) 0%, oklch(17.00% 0.0700 110) 55%, oklch(22.00% 0.0700 110) 100%);
+}
+
+/* zaynetheme-green-light-minimalist */
+.zaynetheme-green-light-minimalist {
+    --zayne-color-base-100: oklch(100.00% 0.0020 145);
+    --zayne-color-base-200: oklch(98.00% 0.0040 145);
+    --zayne-color-base-300: oklch(95.00% 0.0070 145);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 145);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 145);
+    --zayne-color-base-border: oklch(88.00% 0.0100 145);
+    --zayne-color-base-hover: oklch(93.00% 0.0070 145);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 145);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 145);
+    --zayne-color-secondary: oklch(72.00% 0.1400 145);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 145);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(100.00% 0.0020 145);
+    --zayne-custom-sidebar: oklch(100.00% 0.0020 145);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 145);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 145);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 145);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.07);
+    --zayne-background-main: linear-gradient(135deg, oklch(100.00% 0.0020 145) 0%, oklch(98.00% 0.0060 145) 55%, oklch(95.00% 0.0070 145) 100%);
+}
+
+/* zaynetheme-green-light-maximalist */
+.zaynetheme-green-light-maximalist {
+    --zayne-color-base-100: oklch(97.00% 0.0180 145);
+    --zayne-color-base-200: oklch(93.00% 0.0320 145);
+    --zayne-color-base-300: oklch(88.00% 0.0500 145);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 145);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 145);
+    --zayne-color-base-border: oklch(79.00% 0.0750 145);
+    --zayne-color-base-hover: oklch(91.00% 0.0420 145);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 145);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 145);
+    --zayne-color-secondary: oklch(72.00% 0.1400 145);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 145);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(97.00% 0.0180 145);
+    --zayne-custom-sidebar: oklch(93.00% 0.0320 145);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 145);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 145);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 145);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 8px 14px oklch(35.00% 0.0800 145)33;
+    --zayne-custom-layout-shadow: 0 10px 24px oklch(30.00% 0.0700 145)38;
+    --zayne-background-main: linear-gradient(135deg, oklch(97.00% 0.0180 145) 0%, oklch(98.00% 0.0060 145) 55%, oklch(88.00% 0.0500 145) 100%);
+}
+
+/* zaynetheme-green-dark-minimalist */
+.zaynetheme-green-dark-minimalist {
+    --zayne-color-base-100: oklch(20.00% 0.0180 145);
+    --zayne-color-base-200: oklch(16.00% 0.0160 145);
+    --zayne-color-base-300: oklch(12.00% 0.0140 145);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 145);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 145);
+    --zayne-color-base-border: oklch(29.00% 0.0200 145);
+    --zayne-color-base-hover: oklch(24.00% 0.0180 145);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 145);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 145);
+    --zayne-color-secondary: oklch(74.00% 0.1500 145);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 145);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(16.00% 0.0160 145);
+    --zayne-custom-sidebar: oklch(12.00% 0.0140 145);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 145);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 145);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 145);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 4px 10px rgba(0, 0, 0, 0.30);
+    --zayne-custom-layout-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0140 145) 0%, oklch(16.00% 0.0160 145) 55%, oklch(20.00% 0.0180 145) 100%);
+}
+
+/* zaynetheme-green-dark-maximalist */
+.zaynetheme-green-dark-maximalist {
+    --zayne-color-base-100: oklch(22.00% 0.0700 145);
+    --zayne-color-base-200: oklch(17.00% 0.0700 145);
+    --zayne-color-base-300: oklch(12.00% 0.0700 145);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 145);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 145);
+    --zayne-color-base-border: oklch(34.00% 0.0750 145);
+    --zayne-color-base-hover: oklch(27.00% 0.0700 145);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 145);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 145);
+    --zayne-color-secondary: oklch(74.00% 0.1500 145);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 145);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(17.00% 0.0700 145);
+    --zayne-custom-sidebar: oklch(12.00% 0.0700 145);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 145);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 145);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 145);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 10px 20px oklch(5.00% 0.0600 145)99;
+    --zayne-custom-layout-shadow: 0 12px 28px oklch(5.00% 0.0600 145)aa;
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0700 145) 0%, oklch(17.00% 0.0700 145) 55%, oklch(22.00% 0.0700 145) 100%);
+}
+
+/* zaynetheme-teal-light-minimalist */
+.zaynetheme-teal-light-minimalist {
+    --zayne-color-base-100: oklch(100.00% 0.0020 175);
+    --zayne-color-base-200: oklch(98.00% 0.0040 175);
+    --zayne-color-base-300: oklch(95.00% 0.0070 175);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 175);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 175);
+    --zayne-color-base-border: oklch(88.00% 0.0100 175);
+    --zayne-color-base-hover: oklch(93.00% 0.0070 175);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 175);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 175);
+    --zayne-color-secondary: oklch(72.00% 0.1400 175);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 175);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(100.00% 0.0020 175);
+    --zayne-custom-sidebar: oklch(100.00% 0.0020 175);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 175);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 175);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 175);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.07);
+    --zayne-background-main: linear-gradient(135deg, oklch(100.00% 0.0020 175) 0%, oklch(98.00% 0.0060 175) 55%, oklch(95.00% 0.0070 175) 100%);
+}
+
+/* zaynetheme-teal-light-maximalist */
+.zaynetheme-teal-light-maximalist {
+    --zayne-color-base-100: oklch(97.00% 0.0180 175);
+    --zayne-color-base-200: oklch(93.00% 0.0320 175);
+    --zayne-color-base-300: oklch(88.00% 0.0500 175);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 175);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 175);
+    --zayne-color-base-border: oklch(79.00% 0.0750 175);
+    --zayne-color-base-hover: oklch(91.00% 0.0420 175);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 175);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 175);
+    --zayne-color-secondary: oklch(72.00% 0.1400 175);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 175);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(97.00% 0.0180 175);
+    --zayne-custom-sidebar: oklch(93.00% 0.0320 175);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 175);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 175);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 175);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 8px 14px oklch(35.00% 0.0800 175)33;
+    --zayne-custom-layout-shadow: 0 10px 24px oklch(30.00% 0.0700 175)38;
+    --zayne-background-main: linear-gradient(135deg, oklch(97.00% 0.0180 175) 0%, oklch(98.00% 0.0060 175) 55%, oklch(88.00% 0.0500 175) 100%);
+}
+
+/* zaynetheme-teal-dark-minimalist */
+.zaynetheme-teal-dark-minimalist {
+    --zayne-color-base-100: oklch(20.00% 0.0180 175);
+    --zayne-color-base-200: oklch(16.00% 0.0160 175);
+    --zayne-color-base-300: oklch(12.00% 0.0140 175);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 175);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 175);
+    --zayne-color-base-border: oklch(29.00% 0.0200 175);
+    --zayne-color-base-hover: oklch(24.00% 0.0180 175);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 175);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 175);
+    --zayne-color-secondary: oklch(74.00% 0.1500 175);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 175);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(16.00% 0.0160 175);
+    --zayne-custom-sidebar: oklch(12.00% 0.0140 175);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 175);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 175);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 175);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 4px 10px rgba(0, 0, 0, 0.30);
+    --zayne-custom-layout-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0140 175) 0%, oklch(16.00% 0.0160 175) 55%, oklch(20.00% 0.0180 175) 100%);
+}
+
+/* zaynetheme-teal-dark-maximalist */
+.zaynetheme-teal-dark-maximalist {
+    --zayne-color-base-100: oklch(22.00% 0.0700 175);
+    --zayne-color-base-200: oklch(17.00% 0.0700 175);
+    --zayne-color-base-300: oklch(12.00% 0.0700 175);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 175);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 175);
+    --zayne-color-base-border: oklch(34.00% 0.0750 175);
+    --zayne-color-base-hover: oklch(27.00% 0.0700 175);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 175);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 175);
+    --zayne-color-secondary: oklch(74.00% 0.1500 175);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 175);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(17.00% 0.0700 175);
+    --zayne-custom-sidebar: oklch(12.00% 0.0700 175);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 175);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 175);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 175);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 10px 20px oklch(5.00% 0.0600 175)99;
+    --zayne-custom-layout-shadow: 0 12px 28px oklch(5.00% 0.0600 175)aa;
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0700 175) 0%, oklch(17.00% 0.0700 175) 55%, oklch(22.00% 0.0700 175) 100%);
+}
+
+/* zaynetheme-cyan-light-minimalist */
+.zaynetheme-cyan-light-minimalist {
+    --zayne-color-base-100: oklch(100.00% 0.0020 195);
+    --zayne-color-base-200: oklch(98.00% 0.0040 195);
+    --zayne-color-base-300: oklch(95.00% 0.0070 195);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 195);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 195);
+    --zayne-color-base-border: oklch(88.00% 0.0100 195);
+    --zayne-color-base-hover: oklch(93.00% 0.0070 195);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 195);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 195);
+    --zayne-color-secondary: oklch(72.00% 0.1400 195);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 195);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(100.00% 0.0020 195);
+    --zayne-custom-sidebar: oklch(100.00% 0.0020 195);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 195);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 195);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 195);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.07);
+    --zayne-background-main: linear-gradient(135deg, oklch(100.00% 0.0020 195) 0%, oklch(98.00% 0.0060 195) 55%, oklch(95.00% 0.0070 195) 100%);
+}
+
+/* zaynetheme-cyan-light-maximalist */
+.zaynetheme-cyan-light-maximalist {
+    --zayne-color-base-100: oklch(97.00% 0.0180 195);
+    --zayne-color-base-200: oklch(93.00% 0.0320 195);
+    --zayne-color-base-300: oklch(88.00% 0.0500 195);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 195);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 195);
+    --zayne-color-base-border: oklch(79.00% 0.0750 195);
+    --zayne-color-base-hover: oklch(91.00% 0.0420 195);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 195);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 195);
+    --zayne-color-secondary: oklch(72.00% 0.1400 195);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 195);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(97.00% 0.0180 195);
+    --zayne-custom-sidebar: oklch(93.00% 0.0320 195);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 195);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 195);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 195);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 8px 14px oklch(35.00% 0.0800 195)33;
+    --zayne-custom-layout-shadow: 0 10px 24px oklch(30.00% 0.0700 195)38;
+    --zayne-background-main: linear-gradient(135deg, oklch(97.00% 0.0180 195) 0%, oklch(98.00% 0.0060 195) 55%, oklch(88.00% 0.0500 195) 100%);
+}
+
+/* zaynetheme-cyan-dark-minimalist */
+.zaynetheme-cyan-dark-minimalist {
+    --zayne-color-base-100: oklch(20.00% 0.0180 195);
+    --zayne-color-base-200: oklch(16.00% 0.0160 195);
+    --zayne-color-base-300: oklch(12.00% 0.0140 195);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 195);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 195);
+    --zayne-color-base-border: oklch(29.00% 0.0200 195);
+    --zayne-color-base-hover: oklch(24.00% 0.0180 195);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 195);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 195);
+    --zayne-color-secondary: oklch(74.00% 0.1500 195);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 195);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(16.00% 0.0160 195);
+    --zayne-custom-sidebar: oklch(12.00% 0.0140 195);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 195);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 195);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 195);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 4px 10px rgba(0, 0, 0, 0.30);
+    --zayne-custom-layout-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0140 195) 0%, oklch(16.00% 0.0160 195) 55%, oklch(20.00% 0.0180 195) 100%);
+}
+
+/* zaynetheme-cyan-dark-maximalist */
+.zaynetheme-cyan-dark-maximalist {
+    --zayne-color-base-100: oklch(22.00% 0.0700 195);
+    --zayne-color-base-200: oklch(17.00% 0.0700 195);
+    --zayne-color-base-300: oklch(12.00% 0.0700 195);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 195);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 195);
+    --zayne-color-base-border: oklch(34.00% 0.0750 195);
+    --zayne-color-base-hover: oklch(27.00% 0.0700 195);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 195);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 195);
+    --zayne-color-secondary: oklch(74.00% 0.1500 195);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 195);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(17.00% 0.0700 195);
+    --zayne-custom-sidebar: oklch(12.00% 0.0700 195);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 195);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 195);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 195);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 10px 20px oklch(5.00% 0.0600 195)99;
+    --zayne-custom-layout-shadow: 0 12px 28px oklch(5.00% 0.0600 195)aa;
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0700 195) 0%, oklch(17.00% 0.0700 195) 55%, oklch(22.00% 0.0700 195) 100%);
+}
+
+/* zaynetheme-sky-light-minimalist */
+.zaynetheme-sky-light-minimalist {
+    --zayne-color-base-100: oklch(100.00% 0.0020 225);
+    --zayne-color-base-200: oklch(98.00% 0.0040 225);
+    --zayne-color-base-300: oklch(95.00% 0.0070 225);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 225);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 225);
+    --zayne-color-base-border: oklch(88.00% 0.0100 225);
+    --zayne-color-base-hover: oklch(93.00% 0.0070 225);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 225);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 225);
+    --zayne-color-secondary: oklch(72.00% 0.1400 225);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 225);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(100.00% 0.0020 225);
+    --zayne-custom-sidebar: oklch(100.00% 0.0020 225);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 225);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 225);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 225);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.07);
+    --zayne-background-main: linear-gradient(135deg, oklch(100.00% 0.0020 225) 0%, oklch(98.00% 0.0060 225) 55%, oklch(95.00% 0.0070 225) 100%);
+}
+
+/* zaynetheme-sky-light-maximalist */
+.zaynetheme-sky-light-maximalist {
+    --zayne-color-base-100: oklch(97.00% 0.0180 225);
+    --zayne-color-base-200: oklch(93.00% 0.0320 225);
+    --zayne-color-base-300: oklch(88.00% 0.0500 225);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 225);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 225);
+    --zayne-color-base-border: oklch(79.00% 0.0750 225);
+    --zayne-color-base-hover: oklch(91.00% 0.0420 225);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 225);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 225);
+    --zayne-color-secondary: oklch(72.00% 0.1400 225);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 225);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(97.00% 0.0180 225);
+    --zayne-custom-sidebar: oklch(93.00% 0.0320 225);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 225);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 225);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 225);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 8px 14px oklch(35.00% 0.0800 225)33;
+    --zayne-custom-layout-shadow: 0 10px 24px oklch(30.00% 0.0700 225)38;
+    --zayne-background-main: linear-gradient(135deg, oklch(97.00% 0.0180 225) 0%, oklch(98.00% 0.0060 225) 55%, oklch(88.00% 0.0500 225) 100%);
+}
+
+/* zaynetheme-sky-dark-minimalist */
+.zaynetheme-sky-dark-minimalist {
+    --zayne-color-base-100: oklch(20.00% 0.0180 225);
+    --zayne-color-base-200: oklch(16.00% 0.0160 225);
+    --zayne-color-base-300: oklch(12.00% 0.0140 225);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 225);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 225);
+    --zayne-color-base-border: oklch(29.00% 0.0200 225);
+    --zayne-color-base-hover: oklch(24.00% 0.0180 225);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 225);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 225);
+    --zayne-color-secondary: oklch(74.00% 0.1500 225);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 225);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(16.00% 0.0160 225);
+    --zayne-custom-sidebar: oklch(12.00% 0.0140 225);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 225);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 225);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 225);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 4px 10px rgba(0, 0, 0, 0.30);
+    --zayne-custom-layout-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0140 225) 0%, oklch(16.00% 0.0160 225) 55%, oklch(20.00% 0.0180 225) 100%);
+}
+
+/* zaynetheme-sky-dark-maximalist */
+.zaynetheme-sky-dark-maximalist {
+    --zayne-color-base-100: oklch(22.00% 0.0700 225);
+    --zayne-color-base-200: oklch(17.00% 0.0700 225);
+    --zayne-color-base-300: oklch(12.00% 0.0700 225);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 225);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 225);
+    --zayne-color-base-border: oklch(34.00% 0.0750 225);
+    --zayne-color-base-hover: oklch(27.00% 0.0700 225);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 225);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 225);
+    --zayne-color-secondary: oklch(74.00% 0.1500 225);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 225);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(17.00% 0.0700 225);
+    --zayne-custom-sidebar: oklch(12.00% 0.0700 225);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 225);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 225);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 225);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 10px 20px oklch(5.00% 0.0600 225)99;
+    --zayne-custom-layout-shadow: 0 12px 28px oklch(5.00% 0.0600 225)aa;
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0700 225) 0%, oklch(17.00% 0.0700 225) 55%, oklch(22.00% 0.0700 225) 100%);
+}
+
+/* zaynetheme-blue-light-minimalist */
+.zaynetheme-blue-light-minimalist {
+    --zayne-color-base-100: oklch(100.00% 0.0020 255);
+    --zayne-color-base-200: oklch(98.00% 0.0040 255);
+    --zayne-color-base-300: oklch(95.00% 0.0070 255);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 255);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 255);
+    --zayne-color-base-border: oklch(88.00% 0.0100 255);
+    --zayne-color-base-hover: oklch(93.00% 0.0070 255);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 255);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 255);
+    --zayne-color-secondary: oklch(72.00% 0.1400 255);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 255);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(100.00% 0.0020 255);
+    --zayne-custom-sidebar: oklch(100.00% 0.0020 255);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 255);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 255);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 255);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.07);
+    --zayne-background-main: linear-gradient(135deg, oklch(100.00% 0.0020 255) 0%, oklch(98.00% 0.0060 255) 55%, oklch(95.00% 0.0070 255) 100%);
+}
+
+/* zaynetheme-blue-light-maximalist */
+.zaynetheme-blue-light-maximalist {
+    --zayne-color-base-100: oklch(97.00% 0.0180 255);
+    --zayne-color-base-200: oklch(93.00% 0.0320 255);
+    --zayne-color-base-300: oklch(88.00% 0.0500 255);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 255);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 255);
+    --zayne-color-base-border: oklch(79.00% 0.0750 255);
+    --zayne-color-base-hover: oklch(91.00% 0.0420 255);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 255);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 255);
+    --zayne-color-secondary: oklch(72.00% 0.1400 255);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 255);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(97.00% 0.0180 255);
+    --zayne-custom-sidebar: oklch(93.00% 0.0320 255);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 255);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 255);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 255);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 8px 14px oklch(35.00% 0.0800 255)33;
+    --zayne-custom-layout-shadow: 0 10px 24px oklch(30.00% 0.0700 255)38;
+    --zayne-background-main: linear-gradient(135deg, oklch(97.00% 0.0180 255) 0%, oklch(98.00% 0.0060 255) 55%, oklch(88.00% 0.0500 255) 100%);
+}
+
+/* zaynetheme-blue-dark-minimalist */
+.zaynetheme-blue-dark-minimalist {
+    --zayne-color-base-100: oklch(20.00% 0.0180 255);
+    --zayne-color-base-200: oklch(16.00% 0.0160 255);
+    --zayne-color-base-300: oklch(12.00% 0.0140 255);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 255);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 255);
+    --zayne-color-base-border: oklch(29.00% 0.0200 255);
+    --zayne-color-base-hover: oklch(24.00% 0.0180 255);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 255);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 255);
+    --zayne-color-secondary: oklch(74.00% 0.1500 255);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 255);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(16.00% 0.0160 255);
+    --zayne-custom-sidebar: oklch(12.00% 0.0140 255);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 255);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 255);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 255);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 4px 10px rgba(0, 0, 0, 0.30);
+    --zayne-custom-layout-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0140 255) 0%, oklch(16.00% 0.0160 255) 55%, oklch(20.00% 0.0180 255) 100%);
+}
+
+/* zaynetheme-blue-dark-maximalist */
+.zaynetheme-blue-dark-maximalist {
+    --zayne-color-base-100: oklch(22.00% 0.0700 255);
+    --zayne-color-base-200: oklch(17.00% 0.0700 255);
+    --zayne-color-base-300: oklch(12.00% 0.0700 255);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 255);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 255);
+    --zayne-color-base-border: oklch(34.00% 0.0750 255);
+    --zayne-color-base-hover: oklch(27.00% 0.0700 255);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 255);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 255);
+    --zayne-color-secondary: oklch(74.00% 0.1500 255);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 255);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(17.00% 0.0700 255);
+    --zayne-custom-sidebar: oklch(12.00% 0.0700 255);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 255);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 255);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 255);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 10px 20px oklch(5.00% 0.0600 255)99;
+    --zayne-custom-layout-shadow: 0 12px 28px oklch(5.00% 0.0600 255)aa;
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0700 255) 0%, oklch(17.00% 0.0700 255) 55%, oklch(22.00% 0.0700 255) 100%);
+}
+
+/* zaynetheme-violet-light-minimalist */
+.zaynetheme-violet-light-minimalist {
+    --zayne-color-base-100: oklch(100.00% 0.0020 285);
+    --zayne-color-base-200: oklch(98.00% 0.0040 285);
+    --zayne-color-base-300: oklch(95.00% 0.0070 285);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 285);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 285);
+    --zayne-color-base-border: oklch(88.00% 0.0100 285);
+    --zayne-color-base-hover: oklch(93.00% 0.0070 285);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 285);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 285);
+    --zayne-color-secondary: oklch(72.00% 0.1400 285);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 285);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(100.00% 0.0020 285);
+    --zayne-custom-sidebar: oklch(100.00% 0.0020 285);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 285);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 285);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 285);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.07);
+    --zayne-background-main: linear-gradient(135deg, oklch(100.00% 0.0020 285) 0%, oklch(98.00% 0.0060 285) 55%, oklch(95.00% 0.0070 285) 100%);
+}
+
+/* zaynetheme-violet-light-maximalist */
+.zaynetheme-violet-light-maximalist {
+    --zayne-color-base-100: oklch(97.00% 0.0180 285);
+    --zayne-color-base-200: oklch(93.00% 0.0320 285);
+    --zayne-color-base-300: oklch(88.00% 0.0500 285);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 285);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 285);
+    --zayne-color-base-border: oklch(79.00% 0.0750 285);
+    --zayne-color-base-hover: oklch(91.00% 0.0420 285);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 285);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 285);
+    --zayne-color-secondary: oklch(72.00% 0.1400 285);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 285);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(97.00% 0.0180 285);
+    --zayne-custom-sidebar: oklch(93.00% 0.0320 285);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 285);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 285);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 285);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 8px 14px oklch(35.00% 0.0800 285)33;
+    --zayne-custom-layout-shadow: 0 10px 24px oklch(30.00% 0.0700 285)38;
+    --zayne-background-main: linear-gradient(135deg, oklch(97.00% 0.0180 285) 0%, oklch(98.00% 0.0060 285) 55%, oklch(88.00% 0.0500 285) 100%);
+}
+
+/* zaynetheme-violet-dark-minimalist */
+.zaynetheme-violet-dark-minimalist {
+    --zayne-color-base-100: oklch(20.00% 0.0180 285);
+    --zayne-color-base-200: oklch(16.00% 0.0160 285);
+    --zayne-color-base-300: oklch(12.00% 0.0140 285);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 285);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 285);
+    --zayne-color-base-border: oklch(29.00% 0.0200 285);
+    --zayne-color-base-hover: oklch(24.00% 0.0180 285);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 285);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 285);
+    --zayne-color-secondary: oklch(74.00% 0.1500 285);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 285);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(16.00% 0.0160 285);
+    --zayne-custom-sidebar: oklch(12.00% 0.0140 285);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 285);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 285);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 285);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 4px 10px rgba(0, 0, 0, 0.30);
+    --zayne-custom-layout-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0140 285) 0%, oklch(16.00% 0.0160 285) 55%, oklch(20.00% 0.0180 285) 100%);
+}
+
+/* zaynetheme-violet-dark-maximalist */
+.zaynetheme-violet-dark-maximalist {
+    --zayne-color-base-100: oklch(22.00% 0.0700 285);
+    --zayne-color-base-200: oklch(17.00% 0.0700 285);
+    --zayne-color-base-300: oklch(12.00% 0.0700 285);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 285);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 285);
+    --zayne-color-base-border: oklch(34.00% 0.0750 285);
+    --zayne-color-base-hover: oklch(27.00% 0.0700 285);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 285);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 285);
+    --zayne-color-secondary: oklch(74.00% 0.1500 285);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 285);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(17.00% 0.0700 285);
+    --zayne-custom-sidebar: oklch(12.00% 0.0700 285);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 285);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 285);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 285);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 10px 20px oklch(5.00% 0.0600 285)99;
+    --zayne-custom-layout-shadow: 0 12px 28px oklch(5.00% 0.0600 285)aa;
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0700 285) 0%, oklch(17.00% 0.0700 285) 55%, oklch(22.00% 0.0700 285) 100%);
+}
+
+/* zaynetheme-purple-light-minimalist */
+.zaynetheme-purple-light-minimalist {
+    --zayne-color-base-100: oklch(100.00% 0.0020 305);
+    --zayne-color-base-200: oklch(98.00% 0.0040 305);
+    --zayne-color-base-300: oklch(95.00% 0.0070 305);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 305);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 305);
+    --zayne-color-base-border: oklch(88.00% 0.0100 305);
+    --zayne-color-base-hover: oklch(93.00% 0.0070 305);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 305);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 305);
+    --zayne-color-secondary: oklch(72.00% 0.1400 305);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 305);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(100.00% 0.0020 305);
+    --zayne-custom-sidebar: oklch(100.00% 0.0020 305);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 305);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 305);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 305);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.07);
+    --zayne-background-main: linear-gradient(135deg, oklch(100.00% 0.0020 305) 0%, oklch(98.00% 0.0060 305) 55%, oklch(95.00% 0.0070 305) 100%);
+}
+
+/* zaynetheme-purple-light-maximalist */
+.zaynetheme-purple-light-maximalist {
+    --zayne-color-base-100: oklch(97.00% 0.0180 305);
+    --zayne-color-base-200: oklch(93.00% 0.0320 305);
+    --zayne-color-base-300: oklch(88.00% 0.0500 305);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 305);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 305);
+    --zayne-color-base-border: oklch(79.00% 0.0750 305);
+    --zayne-color-base-hover: oklch(91.00% 0.0420 305);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 305);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 305);
+    --zayne-color-secondary: oklch(72.00% 0.1400 305);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 305);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(97.00% 0.0180 305);
+    --zayne-custom-sidebar: oklch(93.00% 0.0320 305);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 305);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 305);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 305);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 8px 14px oklch(35.00% 0.0800 305)33;
+    --zayne-custom-layout-shadow: 0 10px 24px oklch(30.00% 0.0700 305)38;
+    --zayne-background-main: linear-gradient(135deg, oklch(97.00% 0.0180 305) 0%, oklch(98.00% 0.0060 305) 55%, oklch(88.00% 0.0500 305) 100%);
+}
+
+/* zaynetheme-purple-dark-minimalist */
+.zaynetheme-purple-dark-minimalist {
+    --zayne-color-base-100: oklch(20.00% 0.0180 305);
+    --zayne-color-base-200: oklch(16.00% 0.0160 305);
+    --zayne-color-base-300: oklch(12.00% 0.0140 305);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 305);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 305);
+    --zayne-color-base-border: oklch(29.00% 0.0200 305);
+    --zayne-color-base-hover: oklch(24.00% 0.0180 305);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 305);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 305);
+    --zayne-color-secondary: oklch(74.00% 0.1500 305);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 305);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(16.00% 0.0160 305);
+    --zayne-custom-sidebar: oklch(12.00% 0.0140 305);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 305);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 305);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 305);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 4px 10px rgba(0, 0, 0, 0.30);
+    --zayne-custom-layout-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0140 305) 0%, oklch(16.00% 0.0160 305) 55%, oklch(20.00% 0.0180 305) 100%);
+}
+
+/* zaynetheme-purple-dark-maximalist */
+.zaynetheme-purple-dark-maximalist {
+    --zayne-color-base-100: oklch(22.00% 0.0700 305);
+    --zayne-color-base-200: oklch(17.00% 0.0700 305);
+    --zayne-color-base-300: oklch(12.00% 0.0700 305);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 305);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 305);
+    --zayne-color-base-border: oklch(34.00% 0.0750 305);
+    --zayne-color-base-hover: oklch(27.00% 0.0700 305);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 305);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 305);
+    --zayne-color-secondary: oklch(74.00% 0.1500 305);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 305);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(17.00% 0.0700 305);
+    --zayne-custom-sidebar: oklch(12.00% 0.0700 305);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 305);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 305);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 305);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 10px 20px oklch(5.00% 0.0600 305)99;
+    --zayne-custom-layout-shadow: 0 12px 28px oklch(5.00% 0.0600 305)aa;
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0700 305) 0%, oklch(17.00% 0.0700 305) 55%, oklch(22.00% 0.0700 305) 100%);
+}
+
+/* zaynetheme-magenta-light-minimalist */
+.zaynetheme-magenta-light-minimalist {
+    --zayne-color-base-100: oklch(100.00% 0.0020 330);
+    --zayne-color-base-200: oklch(98.00% 0.0040 330);
+    --zayne-color-base-300: oklch(95.00% 0.0070 330);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 330);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 330);
+    --zayne-color-base-border: oklch(88.00% 0.0100 330);
+    --zayne-color-base-hover: oklch(93.00% 0.0070 330);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 330);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 330);
+    --zayne-color-secondary: oklch(72.00% 0.1400 330);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 330);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(100.00% 0.0020 330);
+    --zayne-custom-sidebar: oklch(100.00% 0.0020 330);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 330);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 330);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 330);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.07);
+    --zayne-background-main: linear-gradient(135deg, oklch(100.00% 0.0020 330) 0%, oklch(98.00% 0.0060 330) 55%, oklch(95.00% 0.0070 330) 100%);
+}
+
+/* zaynetheme-magenta-light-maximalist */
+.zaynetheme-magenta-light-maximalist {
+    --zayne-color-base-100: oklch(97.00% 0.0180 330);
+    --zayne-color-base-200: oklch(93.00% 0.0320 330);
+    --zayne-color-base-300: oklch(88.00% 0.0500 330);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 330);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 330);
+    --zayne-color-base-border: oklch(79.00% 0.0750 330);
+    --zayne-color-base-hover: oklch(91.00% 0.0420 330);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 330);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 330);
+    --zayne-color-secondary: oklch(72.00% 0.1400 330);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 330);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(97.00% 0.0180 330);
+    --zayne-custom-sidebar: oklch(93.00% 0.0320 330);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 330);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 330);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 330);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 8px 14px oklch(35.00% 0.0800 330)33;
+    --zayne-custom-layout-shadow: 0 10px 24px oklch(30.00% 0.0700 330)38;
+    --zayne-background-main: linear-gradient(135deg, oklch(97.00% 0.0180 330) 0%, oklch(98.00% 0.0060 330) 55%, oklch(88.00% 0.0500 330) 100%);
+}
+
+/* zaynetheme-magenta-dark-minimalist */
+.zaynetheme-magenta-dark-minimalist {
+    --zayne-color-base-100: oklch(20.00% 0.0180 330);
+    --zayne-color-base-200: oklch(16.00% 0.0160 330);
+    --zayne-color-base-300: oklch(12.00% 0.0140 330);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 330);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 330);
+    --zayne-color-base-border: oklch(29.00% 0.0200 330);
+    --zayne-color-base-hover: oklch(24.00% 0.0180 330);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 330);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 330);
+    --zayne-color-secondary: oklch(74.00% 0.1500 330);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 330);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(16.00% 0.0160 330);
+    --zayne-custom-sidebar: oklch(12.00% 0.0140 330);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 330);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 330);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 330);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 4px 10px rgba(0, 0, 0, 0.30);
+    --zayne-custom-layout-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0140 330) 0%, oklch(16.00% 0.0160 330) 55%, oklch(20.00% 0.0180 330) 100%);
+}
+
+/* zaynetheme-magenta-dark-maximalist */
+.zaynetheme-magenta-dark-maximalist {
+    --zayne-color-base-100: oklch(22.00% 0.0700 330);
+    --zayne-color-base-200: oklch(17.00% 0.0700 330);
+    --zayne-color-base-300: oklch(12.00% 0.0700 330);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 330);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 330);
+    --zayne-color-base-border: oklch(34.00% 0.0750 330);
+    --zayne-color-base-hover: oklch(27.00% 0.0700 330);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 330);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 330);
+    --zayne-color-secondary: oklch(74.00% 0.1500 330);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 330);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(17.00% 0.0700 330);
+    --zayne-custom-sidebar: oklch(12.00% 0.0700 330);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 330);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 330);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 330);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 10px 20px oklch(5.00% 0.0600 330)99;
+    --zayne-custom-layout-shadow: 0 12px 28px oklch(5.00% 0.0600 330)aa;
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0700 330) 0%, oklch(17.00% 0.0700 330) 55%, oklch(22.00% 0.0700 330) 100%);
+}
+
+/* zaynetheme-pink-light-minimalist */
+.zaynetheme-pink-light-minimalist {
+    --zayne-color-base-100: oklch(100.00% 0.0020 350);
+    --zayne-color-base-200: oklch(98.00% 0.0040 350);
+    --zayne-color-base-300: oklch(95.00% 0.0070 350);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 350);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 350);
+    --zayne-color-base-border: oklch(88.00% 0.0100 350);
+    --zayne-color-base-hover: oklch(93.00% 0.0070 350);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 350);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 350);
+    --zayne-color-secondary: oklch(72.00% 0.1400 350);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 350);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(100.00% 0.0020 350);
+    --zayne-custom-sidebar: oklch(100.00% 0.0020 350);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 350);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 350);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 350);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    --zayne-custom-layout-shadow: 0 8px 10px rgba(0, 0, 0, 0.07);
+    --zayne-background-main: linear-gradient(135deg, oklch(100.00% 0.0020 350) 0%, oklch(98.00% 0.0060 350) 55%, oklch(95.00% 0.0070 350) 100%);
+}
+
+/* zaynetheme-pink-light-maximalist */
+.zaynetheme-pink-light-maximalist {
+    --zayne-color-base-100: oklch(97.00% 0.0180 350);
+    --zayne-color-base-200: oklch(93.00% 0.0320 350);
+    --zayne-color-base-300: oklch(88.00% 0.0500 350);
+    --zayne-color-base-muted: oklch(54.874% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(18.00% 0.0100 350);
+    --zayne-color-base-content-muted: oklch(52.00% 0.0060 350);
+    --zayne-color-base-border: oklch(79.00% 0.0750 350);
+    --zayne-color-base-hover: oklch(91.00% 0.0420 350);
+
+    --zayne-color-primary: oklch(48.00% 0.2000 350);
+    --zayne-color-primary-content: oklch(98.00% 0.0060 350);
+    --zayne-color-secondary: oklch(72.00% 0.1400 350);
+    --zayne-color-secondary-content: oklch(24.00% 0.0350 350);
+
+    --zayne-color-danger: oklch(55% 0.237 25);
+    --zayne-color-danger-content: oklch(97% 0.01 25);
+    --zayne-color-success: oklch(48% 0.15 150);
+    --zayne-color-success-content: oklch(97% 0.01 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(15% 0.05 85);
+    --zayne-color-info: oklch(52% 0.14 233);
+    --zayne-color-info-content: oklch(97% 0.01 233);
+
+    --zayne-custom-header: oklch(97.00% 0.0180 350);
+    --zayne-custom-sidebar: oklch(93.00% 0.0320 350);
+    --zayne-custom-sidebar-content: oklch(20.00% 0.0100 350);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(48.00% 0.2000 350);
+    --zayne-custom-sidebar-item-content: oklch(20.00% 0.0100 350);
+    --zayne-custom-sidebar-item-content-hover: #111111;
+    --zayne-custom-sidebar-item-content-active: #ffffff;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 8px 14px oklch(35.00% 0.0800 350)33;
+    --zayne-custom-layout-shadow: 0 10px 24px oklch(30.00% 0.0700 350)38;
+    --zayne-background-main: linear-gradient(135deg, oklch(97.00% 0.0180 350) 0%, oklch(98.00% 0.0060 350) 55%, oklch(88.00% 0.0500 350) 100%);
+}
+
+/* zaynetheme-pink-dark-minimalist */
+.zaynetheme-pink-dark-minimalist {
+    --zayne-color-base-100: oklch(20.00% 0.0180 350);
+    --zayne-color-base-200: oklch(16.00% 0.0160 350);
+    --zayne-color-base-300: oklch(12.00% 0.0140 350);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 350);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 350);
+    --zayne-color-base-border: oklch(29.00% 0.0200 350);
+    --zayne-color-base-hover: oklch(24.00% 0.0180 350);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 350);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 350);
+    --zayne-color-secondary: oklch(74.00% 0.1500 350);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 350);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(16.00% 0.0160 350);
+    --zayne-custom-sidebar: oklch(12.00% 0.0140 350);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 350);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 350);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 350);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 4px 10px rgba(0, 0, 0, 0.30);
+    --zayne-custom-layout-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0140 350) 0%, oklch(16.00% 0.0160 350) 55%, oklch(20.00% 0.0180 350) 100%);
+}
+
+/* zaynetheme-pink-dark-maximalist */
+.zaynetheme-pink-dark-maximalist {
+    --zayne-color-base-100: oklch(22.00% 0.0700 350);
+    --zayne-color-base-200: oklch(17.00% 0.0700 350);
+    --zayne-color-base-300: oklch(12.00% 0.0700 350);
+    --zayne-color-base-muted: oklch(60% 0.00484 271.332 / 0.329);
+    --zayne-color-base-content: oklch(95.00% 0.0100 350);
+    --zayne-color-base-content-muted: oklch(66.00% 0.0100 350);
+    --zayne-color-base-border: oklch(34.00% 0.0750 350);
+    --zayne-color-base-hover: oklch(27.00% 0.0700 350);
+
+    --zayne-color-primary: oklch(67.00% 0.1900 350);
+    --zayne-color-primary-content: oklch(20.00% 0.0350 350);
+    --zayne-color-secondary: oklch(74.00% 0.1500 350);
+    --zayne-color-secondary-content: oklch(20.00% 0.0350 350);
+
+    --zayne-color-danger: oklch(62% 0.205 25);
+    --zayne-color-danger-content: oklch(25% 0.12 25);
+    --zayne-color-success: oklch(72% 0.18 150);
+    --zayne-color-success-content: oklch(20% 0.06 150);
+    --zayne-color-warning: oklch(82% 0.18 85);
+    --zayne-color-warning-content: oklch(22% 0.06 85);
+    --zayne-color-info: oklch(74% 0.16 233);
+    --zayne-color-info-content: oklch(22% 0.06 233);
+
+    --zayne-custom-header: oklch(17.00% 0.0700 350);
+    --zayne-custom-sidebar: oklch(12.00% 0.0700 350);
+    --zayne-custom-sidebar-content: oklch(95.00% 0.0100 350);
+    --zayne-custom-sidebar-item-bg: rgba(127, 127, 127, 0);
+    --zayne-custom-sidebar-item-bg-hover: rgba(127, 127, 127, 0.10);
+    --zayne-custom-sidebar-item-bg-active: oklch(67.00% 0.1900 350);
+    --zayne-custom-sidebar-item-content: oklch(95.00% 0.0100 350);
+    --zayne-custom-sidebar-item-content-hover: #ffffff;
+    --zayne-custom-sidebar-item-content-active: #111111;
+
+    --zayne-radius-selector: 2rem;
+    --zayne-radius-field: 0.25rem;
+    --zayne-radius-box: 0.5rem;
+
+    --zayne-shadow: 0 10px 20px oklch(5.00% 0.0600 350)99;
+    --zayne-custom-layout-shadow: 0 12px 28px oklch(5.00% 0.0600 350)aa;
+    --zayne-background-main: linear-gradient(135deg, oklch(12.00% 0.0700 350) 0%, oklch(17.00% 0.0700 350) 55%, oklch(22.00% 0.0700 350) 100%);
 }
 
 /* ============================================================
@@ -399,7 +2786,7 @@ html, body {
     min-height: 100%;
     background: var(--zayne-color-base-300);
     color: var(--zayne-color-base-content);
-    font-family: "Instrument Sans", "Segoe UI", sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
 }
 
 [x-cloak] {
@@ -411,6 +2798,38 @@ html, body {
 .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+/* ── Scrollbar styled (global ZayneUI) ── */
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--zayne-color-primary) transparent;
+}
+
+/* Chromium / Safari */
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--zayne-color-base-border);
+    border-radius: 9999px;
+    transition: background 150ms ease;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: var(--zayne-color-base-content-muted);
+}
+
+*::-webkit-scrollbar-corner {
+    background: transparent;
 }
 
 /* ── Root Layout ── */

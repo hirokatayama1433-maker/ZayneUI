@@ -1,21 +1,37 @@
 @once
     <style>
-        /* ── Navtree ── */
-            .zaynenavtree {
-                display: flex;
-                flex-direction: column;
-            }
-            .zaynenavtree.navtree-open .navtree-chevron {
-                transform: rotate(180deg);
-            }
+        .zaynenavtree {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .zaynenavtree .navtree-items .zayne-navitem-no-icon > a,
+        .zaynenavtree .navtree-items .zayne-navitem-no-icon > button,
+        .zayne-navtree-flyout .zayne-navitem-no-icon > a,
+        .zayne-navtree-flyout .zayne-navitem-no-icon > button {
+            padding-left: 10px !important;
+        }
+
+        .zaynenavtree.navtree-open .navtree-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Flyout is teleported outside the sidebar but still matches collapsed text-hide rules */
+        html.sidebar-collapsed .zayne-navtree-flyout .zayne-sb-text {
+            opacity: 1;
+            max-width: none;
+            pointer-events: auto;
+        }
     </style>
 @endonce
+
+@include('zayne::_zayne-dropdown-alpine')
+
 <div
     x-data="zayneDropdown()"
     class="zaynenavtree"
     style="display:flex; flex-direction:column; position:relative; overflow:visible;"
 >
-
     <button
         type="button"
         {{ $attributes->except('class') }}
@@ -24,7 +40,7 @@
         x-on:mouseenter="
             if (document.documentElement.classList.contains('sidebar-collapsed')) {
                 cancelHide();
-                show($refs.trigger, $refs.panel);
+                show($refs.trigger, _panel);
             }
         "
         x-on:mouseleave="
@@ -44,27 +60,26 @@
         @endif
         x-on:click="
             if (document.documentElement.classList.contains('sidebar-collapsed')) {
-                show($refs.trigger, $refs.panel);
+                show($refs.trigger, _panel);
                 return;
             }
-
-            open = false;
 
             const tree = $el.closest('.zaynenavtree');
             const items = tree.querySelector('.navtree-items');
             const chevron = tree.querySelector('.navtree-chevron');
             const isOpen = tree.classList.contains('navtree-open');
+            const nextOpen = !isOpen;
 
-            if (isOpen) {
-                items.style.maxHeight = '0px';
-                items.style.opacity = '0';
-                chevron.style.transform = 'rotate(0deg)';
-                tree.classList.remove('navtree-open');
-            } else {
+            if (nextOpen) {
                 items.style.maxHeight = items.scrollHeight + 'px';
                 items.style.opacity = '1';
                 chevron.style.transform = 'rotate(180deg)';
                 tree.classList.add('navtree-open');
+            } else {
+                items.style.maxHeight = '0px';
+                items.style.opacity = '0';
+                chevron.style.transform = 'rotate(0deg)';
+                tree.classList.remove('navtree-open');
             }
         "
     >
@@ -72,11 +87,11 @@
             <zayne:icon name="{{ $icon }}" size="18px"/>
         </div>
 
-        <span class="sidebar-label" style="font-size:0.875rem; flex:1; text-align:left; display:flex; align-items:center; min-width:0;">
-            {{ $label }}
+        <span class="zayne-sb-text" style="font-size:0.875rem; flex:1; text-align:left; display:flex; align-items:center; min-width:0;">
+            {{ $resolvedLabel }}
         </span>
 
-        <span class="sidebar-label" style="display:flex; align-items:center; padding-right:0.75rem;">
+        <span class="zayne-sb-text" style="display:flex; align-items:center; padding-right:0.75rem;">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                 stroke-width="2" stroke="currentColor"
                 class="navtree-chevron"
@@ -86,7 +101,7 @@
         </span>
     </button>
 
-    {{-- Normal expanded children --}}
+    {{-- Expanded in-place children --}}
     <div
         class="navtree-items"
         style="display:flex; flex-direction:column; gap:4px; padding-left:38px; overflow:hidden; max-height:0; opacity:0; transition:max-height 150ms cubic-bezier(0.4,0,0.2,1), opacity 150ms ease; position:relative;"
@@ -99,37 +114,43 @@
         {{ $slot }}
     </div>
 
-    {{-- Collapse dropdown — shown when sidebar is collapsed --}}
-    <div
-        x-show="open && document.documentElement.classList.contains('sidebar-collapsed')"
-        x-cloak
-        x-ref="panel"
-        data-zayne-placement="right-start"
-        data-zayne-hover-group="sidebar-navtree"
-        x-on:mouseenter="cancelHide(); show($refs.trigger, $refs.panel)"
-        x-on:mouseleave="hideSoon(220)"
-        x-on:click.outside="open = false"
-        x-on:click.stop
-        x-bind:class="open ? 'zayne-dropdown-enter' : 'zayne-dropdown-leave'"
-        style="
-            position: fixed;
-            z-index: var(--zayne-z-dropdown);
-            min-width: 200px;
-            background: var(--zayne-color-base-100);
-            border-radius: var(--zayne-radius-box);
-            box-shadow: var(--zayne-shadow);
-            overflow: hidden;
-        "
-    >
-        <div style="padding: 0.5rem 0.75rem; font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--zayne-color-base-content); opacity:0.5; border-bottom: 1px solid var(--zayne-color-base-border);">
-            {{ $label }}
-        </div>
+    {{--
+        Collapsed flyout — teleported to <body> to escape sidebar overflow clipping.
+        registerPanel() hands the DOM node back because $refs don't cross teleport boundaries.
+    --}}
+    <template x-teleport="body">
         <div
-            style="padding:0.375rem; display:flex; flex-direction:column; gap:4px;"
-            x-on:click="open = false"
+            x-init="registerPanel($el)"
+            class="zayne-navtree-flyout"
+            x-show="open && document.documentElement.classList.contains('sidebar-collapsed')"
+            x-cloak
+            data-zayne-placement="right-start"
+            data-zayne-hover-group="sidebar-navtree"
+            x-on:mouseenter="cancelHide(); show($refs.trigger, _panel)"
+            x-on:mouseleave="hideSoon(220)"
+            x-on:click.outside="hide()"
+            x-on:click.stop
+            x-bind:class="open ? 'zayne-dropdown-enter' : 'zayne-dropdown-leave'"
+            style="
+                position: fixed;
+                z-index: var(--zayne-z-dropdown);
+                min-width: 200px;
+                background: var(--zayne-color-base-100);
+                border-radius: var(--zayne-radius-box);
+                border: 1px solid var(--zayne-color-base-border);
+                box-shadow: var(--zayne-shadow);
+                overflow: hidden;
+            "
         >
-            {{ $slot }}
+            <div style="padding:0.5rem 0.75rem; font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--zayne-color-base-content); opacity:0.5; border-bottom:1px solid var(--zayne-color-base-border);">
+                {{ $resolvedLabel }}
+            </div>
+            <div
+                style="padding:0.375rem; display:flex; flex-direction:column; gap:4px;"
+                x-on:click="hide()"
+            >
+                {{ $slot }}
+            </div>
         </div>
-    </div>
-
+    </template>
 </div>

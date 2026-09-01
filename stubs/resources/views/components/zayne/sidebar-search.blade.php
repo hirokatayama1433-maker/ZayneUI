@@ -1,3 +1,30 @@
+@once
+<script>
+    window.zayneTooltip ??= function zayneTooltip() {
+        return {
+            open: false,
+            init() {
+                window.addEventListener('zayne:sidebar-toggled', () => {
+                    this.open = false;
+                });
+            },
+            show(trigger, panel) {
+                this.open = true;
+                this.$nextTick(() => zaynePosition(trigger, panel));
+            },
+            hide() {
+                this.open = false;
+            },
+        };
+    };
+
+    document.addEventListener('alpine:init', () => {
+        if (typeof Alpine === 'undefined') return;
+        Alpine.data('zayneTooltip', window.zayneTooltip);
+    });
+</script>
+@endonce
+
 @props([
     'placeholder' => 'Search...',
     'kbd'         => null,
@@ -7,32 +34,33 @@
 @php
     $tooltipLabel = $kbd ? $placeholder . ' (' . $kbd . ')' : $placeholder;
 @endphp
+
 @once
     <style>
-        /* ── Sidebar Search ── */
-            .zayne-sidebar-search:focus-within {
-                border-color: var(--zayne-color-primary);
-            }
+        .zayne-sidebar-search:focus-within {
+            border-color: var(--zayne-color-primary);
+        }
 
-            .zayne-sidebar-search input::placeholder {
-                font-size: 0.75rem;
-                color: var(--zayne-custom-sidebar-content);
-                opacity: 0.5;
-            }
+        .zayne-sidebar-search input::placeholder {
+            font-size: 0.75rem;
+            color: var(--zayne-custom-sidebar-content);
+            opacity: 0.5;
+        }
 
-            html.sidebar-collapsed .zaynesidebar[data-collapse="viewicons"] .zayne-sidebar-search {
-                height: 36px !important;
-                cursor: pointer;
-            }
+        html.sidebar-collapsed .zaynesidebar[data-collapse="viewicons"] .zayne-sidebar-search {
+            height: 36px !important;
+            cursor: pointer;
+        }
 
-            html.sidebar-collapsed .zaynesidebar[data-collapse="viewicons"] .zayne-sidebar-search:hover {
-                background: var(--zayne-custom-sidebar-item-bg-hover) !important;
-            }
-            html.sidebar-mobile-open .zayne-sidebar-search {
-                height: 34px !important;
-                cursor: text !important;
-            }
-        </style>
+        html.sidebar-collapsed .zaynesidebar[data-collapse="viewicons"] .zayne-sidebar-search:hover {
+            background: var(--zayne-custom-sidebar-item-bg-hover) !important;
+        }
+
+        html.sidebar-mobile-open .zayne-sidebar-search {
+            height: 34px !important;
+            cursor: text !important;
+        }
+    </style>
 @endonce
 
 <div
@@ -80,18 +108,17 @@
 
         <input
             type="text"
-            class="sidebar-label"
+            class="zayne-sb-text"
             placeholder="{{ $placeholder }}"
             data-zayne-search-field
             style="
                 flex: 1;
                 min-width: 0;
                 height: 100%;
-                placeholder-font: 8px;
                 border: none;
                 outline: none;
                 background: transparent;
-                font-size: 14px; /* 12px */
+                font-size: 14px;
                 color: var(--zayne-custom-sidebar-content);
                 padding: 0;
             "
@@ -100,7 +127,7 @@
 
         @if($kbd)
             <kbd
-                class="sidebar-label"
+                class="zayne-sb-text"
                 style="
                     flex-shrink: 0;
                     font-size: 0.7rem;

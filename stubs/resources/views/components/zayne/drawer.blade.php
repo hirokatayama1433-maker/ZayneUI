@@ -50,8 +50,21 @@
     function zayneDrawer() {
         return {
             open: false,
-            show() { this.open = true; },
-            hide() { this.open = false; },
+            _id: null,
+
+            show() {
+                this._id = Symbol();
+                ZayneOverlayStack.push({ id: this._id, type: 'blocking', hide: () => this.hide() });
+                this.open = true;
+            },
+
+            hide() {
+                this.open = false;
+                if (this._id) {
+                    ZayneOverlayStack.pop(this._id);
+                    this._id = null;
+                }
+            },
         };
     }
 
@@ -65,17 +78,17 @@
 
 <div x-data="zayneDrawer()" style="display:contents;" {{ $attributes->except(['class', 'style']) }}>
     @isset($trigger)
-        <div style="display:inline-flex;" x-on:click="open = true">
+        <div style="display:inline-flex;" x-on:click="show()">
             {{ $trigger }}
         </div>
     @endisset
 
     <template x-teleport="body">
-        <div x-show="open" style="position:fixed; inset:0; z-index:var(--zayne-z-drawer); display:none;">
+        <div x-show="open" x-cloak @keydown.window.escape="if (open) hide()" style="position:fixed; inset:0; z-index:var(--zayne-z-drawer); display:none;">
 
             {{-- Backdrop --}}
             <div
-                x-on:click="open = false"
+                x-on:click="hide()"
                 x-bind:class="open ? 'zayne-backdrop-enter' : 'zayne-backdrop-leave'"
                 style="position:absolute; inset:0; background:rgba(0,0,0,0.5); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px);"
             ></div>

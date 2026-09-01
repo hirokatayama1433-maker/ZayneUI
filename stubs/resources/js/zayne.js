@@ -7,6 +7,46 @@
 |  5. THEME
 ============================================================ */
 // import Collapse from '@alpinejs/collapse'
+
+/* ============================================================
+|  OVERLAY STACK — global singleton
+|  Tracks the open overlay hierarchy. Rules:
+|  - Positioned overlays (dropdown, popover) push onto the stack.
+|  - Blocking overlays (modal, drawer) CLEAR the whole stack first,
+|    then push themselves.
+|  - Any overlay calling hide() pops itself and everything above it.
+============================================================ */
+const ZayneOverlayStack = {
+    _stack: [], // [{ id, type, hide }]
+
+    push(entry) {
+        // Blocking overlays (modal, drawer) close everything first
+        if (entry.type === 'blocking') {
+            this._closeAllPositioned();
+        }
+        this._stack.push(entry);
+    },
+
+    pop(id) {
+        const idx = this._stack.findIndex(e => e.id === id);
+        if (idx === -1) return;
+        // Close everything above this entry too (e.g. a dropdown
+        // opened from inside a popover — closing the popover closes both)
+        const removed = this._stack.splice(idx);
+        removed.forEach(e => {
+            if (e.id !== id) e.hide(); // don't recurse on self
+        });
+    },
+
+    _closeAllPositioned() {
+        const toClose = this._stack.filter(e => e.type === 'positioned');
+        this._stack = this._stack.filter(e => e.type !== 'positioned');
+        toClose.forEach(e => e.hide());
+    },
+};
+
+window.ZayneOverlayStack = ZayneOverlayStack;
+
 /* ============================================================
 |  SECTION 1 - SMART POSITIONING
 ============================================================ */
@@ -264,11 +304,17 @@ if (localStorage.getItem('zayne-subbar') === 'true') Subbar.collapse();
 ============================================================ */
 
 const Theme = {
-    current: localStorage.getItem('zayne-theme') || 'light',
+    names: window.ZayneThemeNames || ['light', 'dark', 'abyss'],
+    cycle: ['light', 'dark', 'abyss'],
+    current: localStorage.getItem('zayne-theme') || 'zaynetheme-neutral-light-minimalist',
 
     set(theme) {
+        if (this.names.indexOf(theme) < 0) {
+            theme = 'zaynetheme-neutral-light-minimalist';
+        }
+
         this.current = theme;
-        document.documentElement.classList.remove('light', 'dark', 'abyss');
+        document.documentElement.classList.remove.apply(document.documentElement.classList, this.names);
         document.documentElement.classList.add(theme);
         localStorage.setItem('zayne-theme', theme);
         document.dispatchEvent(new CustomEvent('zayne-theme-changed', {
@@ -279,13 +325,13 @@ const Theme = {
     toggle() {
         if      (this.current === 'light') this.set('dark');
         else if (this.current === 'dark')  this.set('light');
-        else                               this.set('light');
+        else                               this.set('zaynetheme-neutral-light-minimalist');
     },
 
     next() {
-        if      (this.current === 'light') this.set('dark');
-        else if (this.current === 'dark')  this.set('abyss');
-        else                               this.set('light');
+        const idx = this.cycle.indexOf(this.current);
+        const next = idx < 0 ? 0 : (idx + 1) % this.cycle.length;
+        this.set(this.cycle[next] || 'zaynetheme-neutral-light-minimalist');
     },
 
     isLight() { return this.current === 'light'; },

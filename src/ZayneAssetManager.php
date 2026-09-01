@@ -52,23 +52,28 @@ class ZayneAssetManager
 
     protected static function appearanceScript(): string
     {
+        $themes = ZayneThemeRegistry::javascriptThemeNames();
+        $default = ZayneThemeRegistry::getDefault();
+
         return <<<HTML
 <script data-zayne-appearance>
     (function() {
         var root = document.documentElement;
+        var themes = {$themes};
 
         if (root.hasAttribute('data-zayne-appearance-ready')) {
             return;
         }
 
         root.setAttribute('data-zayne-appearance-ready', 'true');
+        window.ZayneThemeNames = themes;
 
         var savedTheme = localStorage.getItem('zayne-theme')
             || localStorage.getItem('zayne.theme')
-            || 'light';
+            || '{$default}';
 
-        root.classList.remove('light', 'dark', 'abyss');
-        root.classList.add(savedTheme);
+        root.classList.remove.apply(root.classList, themes);
+        root.classList.add(themes.indexOf(savedTheme) >= 0 ? savedTheme : '{$default}');
 
         if (localStorage.getItem('zayne-sidebar') === 'true') {
             root.classList.add('sidebar-collapsed');

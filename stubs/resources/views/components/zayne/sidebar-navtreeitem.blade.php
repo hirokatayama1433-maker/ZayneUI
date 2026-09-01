@@ -1,3 +1,30 @@
+@once
+<script>
+    window.zayneTooltip ??= function zayneTooltip() {
+        return {
+            open: false,
+            init() {
+                window.addEventListener('zayne:sidebar-toggled', () => {
+                    this.open = false;
+                });
+            },
+            show(trigger, panel) {
+                this.open = true;
+                this.$nextTick(() => zaynePosition(trigger, panel));
+            },
+            hide() {
+                this.open = false;
+            },
+        };
+    };
+
+    document.addEventListener('alpine:init', () => {
+        if (typeof Alpine === 'undefined') return;
+        Alpine.data('zayneTooltip', window.zayneTooltip);
+    });
+</script>
+@endonce
+
 @php($tag = $href !== '' ? 'a' : 'button')
 @once
     <style>

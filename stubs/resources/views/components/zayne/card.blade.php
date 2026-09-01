@@ -1,7 +1,7 @@
 @once
 <style>
     .zayne-card {
-        background: var(--zayne-color-base-100);
+        background: var(--zayne-color-base);
         border-radius: var(--zayne-radius-box);
         border: var(--zayne-border-box) solid var(--zayne-color-base-border);
         overflow: hidden;

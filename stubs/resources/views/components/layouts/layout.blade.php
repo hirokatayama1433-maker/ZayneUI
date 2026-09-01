@@ -4,21 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title ?? config('app.name') }}</title>
-    
     @zayneAppearance
     @zayneStyles
 </head>
-<body style="display: flex; justify-content:center; background: var(--zayne-background-main);">
-    <div class="zaynemainlayout">
-        @include('components.layouts.partials.header')
-        @include('components.layouts.partials.sidebar')
+<body class="zaynemainlayout">
 
-        <zayne:main width="90%" padding="20px">
-            {{ $slot }}
-        </zayne:main>
+    @include('components.layouts.partials.sidebar')
+    @include('components.layouts.partials.header')
 
-        @zayneScripts
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    </div>
+    <zayne:layout.main>
+        {{ $slot }}
+    </zayne:layout.main>
+
+    @zayneScripts
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
-</html> 
+</html>

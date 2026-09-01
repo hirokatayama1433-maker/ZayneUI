@@ -152,17 +152,17 @@
 </script>
 @endonce
 
-<div
-    x-data="zayneToast({ duration: {{ $duration }}, limit: {{ $limit }}, isTop: {{ $isTop ? 'true' : 'false' }} })"
-    @zayne-toast.window="add($event.detail)"
-    class="zayne-toast-portal"
-    style="
-        position: fixed;
-        z-index: var(--zayne-z-tooltip);
-        display: flex;
-        flex-direction: {{ $isTop ? 'column' : 'column-reverse' }};
-        gap: 0.5rem;
-        pointer-events: none;
+    <div
+        x-data="zayneToast({ duration: {{ $duration }}, limit: {{ $limit }}, isTop: {{ $isTop ? 'true' : 'false' }} })"
+        @zayne-toast.window="add($event.detail)"
+        class="zayne-toast-portal"
+        style="
+            position: fixed;
+            z-index: var(--zayne-z-toast);
+            display: flex;
+            flex-direction: {{ $isTop ? 'column' : 'column-reverse' }};
+            gap: 0.5rem;
+            pointer-events: none;
         width: max-content;
         max-width: min(22rem, calc(100vw - 2rem));
         {{ $posStyle }}

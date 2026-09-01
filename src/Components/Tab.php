@@ -20,8 +20,8 @@ class Tab extends Component
         public ?string $color        = null,
         public ?string $radius       = null,           // active-pill radius override (segmented container etc.)
         public bool    $muted        = false,
-        public bool    $fill         = false,            // wrapper takes 100% of its parent's height
-        public bool    $scrollable   = false,             // panels box scrolls internally (needs height/maxheight)
+        public bool    $fill         = false,            // tab list items fill the available width
+        public bool    $scrollable   = false,             // tab list scrolls horizontally when needed
         public bool    $sticky       = false,              // tab list sticks in place while panels scroll
         public string  $stickyoffset = '0px',                // top offset for sticky (e.g. below a fixed header)
 
@@ -32,9 +32,11 @@ class Tab extends Component
         public ?string $maxwidth     = null,
         public ?string $background   = null,
         public ?string $panelradius  = null,
-        public ?string $padding      = null,
+        public ?string $panelpadding = null,
         public ?string $margin       = null,
         public ?string $border       = null,
+        public string  $defaultopen  = '',
+        public ?string $title        = null,
     ) {
         $this->accentColor = $color ?? 'var(--zayne-color-accent)';
 
@@ -42,7 +44,7 @@ class Tab extends Component
             'display'            => 'flex',
             'flex-direction'     => $orientation === 'vertical' ? 'row' : 'column',
             'width'              => '100%',
-            'height'             => $fill ? '100%' : null,
+            'height'             => $height,
             '--zayne-tab-accent' => $this->accentColor,
         ]);
 
@@ -51,6 +53,8 @@ class Tab extends Component
             'position'      => $sticky ? 'sticky' : null,
             'top'           => $sticky ? $stickyoffset : null,
             'align-self'    => $sticky ? 'flex-start' : null,
+            'flex'          => $orientation === 'vertical' ? '0 0 auto' : null,
+            'overflow-x'    => $scrollable && $orientation === 'horizontal' ? 'auto' : null,
         ]);
 
         $this->panelsStyle = Zayne::styleString([
@@ -60,10 +64,10 @@ class Tab extends Component
             'max-width'     => $maxwidth,
             'background'    => $background,
             'border-radius' => $panelradius,
-            'padding'       => $padding,
+            'padding'       => $panelpadding,
             'margin'        => $margin,
             'border'        => $border,
-            'overflow'      => $scrollable ? 'auto' : null,
+            'overflow'      => null,
             'min-height'    => '0',
             'min-width'     => '0',
         ]);

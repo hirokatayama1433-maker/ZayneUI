@@ -48,31 +48,77 @@
             overflow-y: auto;
         }
 
+        /* ── Collapse: hide text/labels ── */
+        /* zayne-sb-text: any span that should vanish when collapsed */
+        .zayne-sb-text {
+            white-space: nowrap;
+            overflow: hidden;
+            transition: none;
+        }
+
+        html.sidebar-ready .zayne-sb-text {
+            transition: opacity var(--layout-transition), max-width var(--layout-transition);
+        }
+
+        html.sidebar-collapsed .zayne-sb-text {
+            opacity: 0;
+            max-width: 0;
+            pointer-events: none;
+        }
+
+        /* sidebar-label: the section-group label text (MODULES, etc.) */
+        .sidebar-label {
+            white-space: nowrap;
+            overflow: hidden;
+            transition: none;
+        }
+
+        html.sidebar-ready .sidebar-label {
+            transition: opacity var(--layout-transition), max-width var(--layout-transition);
+        }
+
+        html.sidebar-collapsed .sidebar-label {
+            opacity: 0;
+            max-width: 0;
+            pointer-events: none;
+        }
+
+        /* sidebar-divider: the line that appears in collapsed state */
+        .sidebar-divider {
+            display: none;
+        }
+
+        html.sidebar-collapsed .sidebar-divider {
+            display: block;
+            opacity: 1;
+            max-height: 1px;
+        }
+
         .zayne-mobile-backdrop {
-                display: none;
-            }
+            display: none;
+        }
 
         @media (max-width: 768px) {
             html.sidebar-mobile-open,
             html.sidebar-mobile-open body {
                 overflow: hidden;
             }
+
             .zayne-mobile-backdrop {
-                    position: fixed;
-                    inset: 0;
-                    z-index: 2;
-                    background: rgba(0, 0, 0, 0.5);
-                    backdrop-filter: blur(4px);
-                    -webkit-backdrop-filter: blur(4px);
-                    border: 0;
-                    padding: 0;
-                    appearance: none;
-                }
+                position: fixed;
+                inset: 0;
+                z-index: 2;
+                background: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+                border: 0;
+                padding: 0;
+                appearance: none;
+            }
 
-                html.sidebar-mobile-open .zayne-mobile-backdrop {
-                    display: block;
-                }
-
+            html.sidebar-mobile-open .zayne-mobile-backdrop {
+                display: block;
+            }
 
             .zaynesidebar {
                 grid-area: auto;
@@ -85,8 +131,8 @@
                 min-height: auto !important;
                 overflow: visible !important;
                 gap: 0 !important;
-                border:0 !important;
-                box-shadow:0px 0px !important;
+                border: 0 !important;
+                box-shadow: 0px 0px !important;
                 pointer-events: none;
             }
 
@@ -112,6 +158,8 @@
                 transform: translateX(0);
             }
 
+            /* restore all collapsible text on mobile when open */
+            html.sidebar-mobile-open .zayne-sb-text,
             html.sidebar-mobile-open .sidebar-label {
                 opacity: 1 !important;
                 max-width: none !important;
@@ -156,7 +204,6 @@
                 background: var(--zayne-color-primary);
                 color: var(--zayne-color-primary-content);
             }
-
 
             html:not(.sidebar-mobile-open) .zayne-mobile-backdrop {
                 display: none;
@@ -207,14 +254,14 @@
                 display: none;
             }
         }
-        </style>
+    </style>
 @endonce
 
 <div
     class="zaynesidebar"
     data-mode="{{ $mode }}"
     data-collapse="{{ $collapse }}"
-    style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; overflow: visible; border-style: solid; 
+    style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; overflow: visible; border-style: solid;
         {{ $shadow       ? 'box-shadow: '          . $shadow       . ';' : '' }}
         {{ $radius       ? 'border-radius: '       . $radius       . ';' : '' }}
         {{ $radiustop    ? 'border-top-left-radius: '     . $radiustop    . '; border-top-right-radius: '    . $radiustop    . ';' : '' }}
@@ -232,7 +279,7 @@
         {{ $borderleft   ? 'border-left-width: '   . $borderleft   . ';' : '' }}
         {{ $borderright  ? 'border-right-width: '  . $borderright  . ';' : '' }}
         {{ $bordercolor  ? 'border-color: '        . $bordercolor  . ';' : '' }}"
-    onscroll="zayneSidebarScrollCheck(this)" 
+    onscroll="zayneSidebarScrollCheck(this)"
 >
     <aside style="
         display: flex;
@@ -247,7 +294,7 @@
         background: {{ $background }};
         padding: {{ $padding }};
         {{ $gap ? 'gap: ' . $gap . ';' : 'gap: 8px;' }}
-        {{ $radius       ? 'border-radius: '       . $radius       . ';' : '' }}">
+        {{ $radius ? 'border-radius: ' . $radius . ';' : '' }}">
 
         @isset($header)
             <div style="flex-shrink: 0;">{{ $header }}</div>
@@ -265,6 +312,7 @@
             <div style="flex-shrink: 0;">{{ $footer }}</div>
         @endisset
     </aside>
+
     {{-- Mobile backdrop --}}
     <button
         type="button"
@@ -280,12 +328,12 @@
             onclick="Zayne.Sidebar.toggle()"
             aria-label="Toggle sidebar"
         >
-            <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                fill="none" 
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="2.5" 
-                stroke="currentColor" 
+                stroke-width="2.5"
+                stroke="currentColor"
                 class="zayne-sidebar-edge-toggle-icon"
             >
                 <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />

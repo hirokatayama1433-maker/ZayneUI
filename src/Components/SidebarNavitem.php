@@ -21,7 +21,10 @@ class SidebarNavitem extends Component
         public ?string $radius     = null,
         public ?string $padding    = null,
         public ?string $accent     = null,
-        public ?string $icon       = 'square-x',
+        public ?string $icon       = null,
+        // New props
+        public ?string $name       = null,   // label text — alternative to slot
+        public ?string $badge      = null,   // e.g. "+79"
     ) {
         $bg     = $background ?? ($active ? 'var(--zayne-custom-sidebar-item-bg-active)' : 'var(--zayne-custom-sidebar-item-bg)');
         $fg     = $color      ?? ($active ? 'var(--zayne-custom-sidebar-item-content-active)' : 'var(--zayne-custom-sidebar-content)');
